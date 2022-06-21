@@ -43,7 +43,7 @@ let lightTheme = createTheme({
 	components: {
 		MuiContainer: {
 			defaultProps: {
-				maxWidth: "lg"
+				maxWidth: "md"
 			}
 		},
 		MuiStack: {

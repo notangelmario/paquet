@@ -1,4 +1,5 @@
 import { Container, Typography } from "@mui/material";
+import TopBar from "../components/TopBar";
 import CardBackground from "../resources/deliveryBackground.svg";
 
 function NotFound() {
@@ -12,6 +13,7 @@ function NotFound() {
 				flexDirection: "column"
 			}}
 		>
+			<TopBar/>
 			<CardBackground
 				style={{
 					position: "absolute",

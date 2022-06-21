@@ -1,7 +1,6 @@
 import { Toolbar, AppBar, IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { ArrowBack as BackIcon } from "@mui/icons-material";
-import LogoIcon from "./LogoIcon";
 
 function TopBar() {
 	const router = useRouter();
@@ -37,13 +36,6 @@ function TopBar() {
 					>
 						<BackIcon />
 					</IconButton>
-					<LogoIcon 
-						sx={{
-							position: "absolute",
-							left: "50%",
-							transform: "translateX(-50%)"
-						}}
-					/>
 				</Toolbar>
 			</AppBar>
 			<Toolbar/>

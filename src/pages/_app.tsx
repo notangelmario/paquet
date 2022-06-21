@@ -4,7 +4,8 @@ import Head from "next/head";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material";
 import { darkTheme, lightTheme } from "../lib/theme";
-import TopBar from "../components/TopBar";
+import "../lib/firebase";
+
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -28,7 +29,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
 				<CssBaseline enableColorScheme/>
 				<ParallaxProvider>
-					<TopBar />
 					<Component {...pageProps} />
 				</ParallaxProvider>
 			</ThemeProvider>
