@@ -1,6 +1,6 @@
 export type AppListing = {
     id: string,
     name: string,
-    photoURL: string,
+    iconUrl: string,
     url: string
 }

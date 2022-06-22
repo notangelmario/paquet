@@ -7,7 +7,7 @@ import { darkTheme, lightTheme } from "../lib/theme";
 import "../lib/firebase";
 
 
-function MyApp({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
 	return (
@@ -37,4 +37,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 	);
 }
 
-export default MyApp;
+export default App;

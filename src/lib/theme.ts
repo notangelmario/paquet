@@ -38,7 +38,7 @@ let lightTheme = createTheme({
 	shadows: new Array(25).fill("none") as Shadows,
 	shape: {
 		blur: 15,
-		borderRadius: 20
+		borderRadius: 16
 	},
 	components: {
 		MuiContainer: {
@@ -47,11 +47,6 @@ let lightTheme = createTheme({
 			}
 		},
 		MuiStack: {
-			defaultProps: {
-				spacing: 2
-			}
-		},
-		MuiGrid: {
 			defaultProps: {
 				spacing: 2
 			}
