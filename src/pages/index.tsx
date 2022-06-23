@@ -1,10 +1,16 @@
-import type { NextPage } from "next";
-import { Container, Typography, Divider, Stack, Grid } from "@mui/material";
+import { Container, Typography, Divider, Stack } from "@mui/material";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import Header from "../components/Header";
 import Categories from "../components/Categories";
-import AppListingInline from "../components/AppListingInline";
+import AppListItem from "../components/AppListItem";
+import { firebase } from "../lib/firebase";
+import { AppListing } from "../types/AppListing";
 
-const Home: NextPage = () => {
+type Props = {
+	apps: AppListing[]
+}
+
+const Home = ({ apps }: Props) => {
 	return (
 		<>
 			<Container>
@@ -17,19 +23,41 @@ const Home: NextPage = () => {
 					<Typography
 						variant="h2"
 					>
-						Nou nout
+						Nou
 					</Typography>
 				</Stack>
 			</Container>
 			<Container disableGutters sx={{ mt: 2 }}>
-				<AppListingInline
-					name="Twitter"
-					categoryId="social"
-					iconUrl="https://abs.twimg.com/responsive-web/client-web/icon-default-maskable-large.ee2b7aa8.png"
-				/>
+				{apps.map((app) => (
+					<AppListItem
+						key={app.id}
+						name={app.name}
+						categoryId={app.categoryId}
+						iconUrl={app.iconUrl}
+					/>
+				))}
 			</Container>
 		</>
 	);
+};
+
+export const getServerSideProps = async () => {
+	const firestore = getFirestore(firebase);
+	const queryRef = collection(firestore, "hub");
+	let apps: AppListing[] = [];
+	const docs = await getDocs(queryRef);
+
+	const twitterManifest = await fetch("https://twitter.com/manifest.json").then((res) => res.json());
+
+	docs.forEach((doc) => {
+		apps.push(doc.data() as AppListing);
+	});
+
+	return {
+		props: {
+			apps
+		}
+	};
 };
 
 export default Home;

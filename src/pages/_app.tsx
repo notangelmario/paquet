@@ -15,6 +15,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 		<>
 			<Head>
 				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 				<meta name="description" content="Aducem comunitatea mai aproape" />
 				<link rel="apple-touch-icon" href="/icon.png" />
 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
