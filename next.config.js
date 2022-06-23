@@ -13,7 +13,7 @@ const nextConfig = {
     return config;
   },
   pwa: {
-    dest: "build"
+    dest: "public"
   }
 }
 
