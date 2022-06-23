@@ -16,14 +16,14 @@ const Home = ({ apps }: Props) => {
 			<Container>
 				<Stack>
 					<Header>
-						Acasa
+						Home
 					</Header>
 					<Categories/>
 					<Divider/>
 					<Typography
 						variant="h2"
 					>
-						Nou
+						New
 					</Typography>
 				</Stack>
 			</Container>
