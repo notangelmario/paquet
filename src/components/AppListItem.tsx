@@ -1,5 +1,5 @@
 import { Avatar, ListItemButton, ListItemAvatar, ListItemText, Skeleton } from "@mui/material";
-import { categories } from "../lib/categories";
+import { categories, getCategory } from "../lib/categories";
 import NextLink from "next/link";
 import { AppListing } from "../types/AppListing";
 
@@ -37,7 +37,7 @@ const AppListItem = ({ app }: Props) => {
 				</ListItemAvatar>
 				<ListItemText
 					primary={app?.name}
-					secondary={categories.find((value) => value.id === app?.categoryId)?.name}
+					secondary={app?.categoryId && getCategory(app.categoryId)}
 				/>
 			</ListItemButton>
 		</NextLink>

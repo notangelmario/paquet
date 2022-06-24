@@ -1,23 +1,30 @@
-import { Container } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { doc, getFirestore, getDoc } from "firebase/firestore";
 import { GetServerSideProps } from "next";
-import AppListItem from "../../components/AppListItem";
+import AppHeader from "../../components/AppHeader";
 import TopBar from "../../components/TopBar";
 import { firebase } from "../../lib/firebase";
-import { AppListing } from "../../types/AppListing";
+import type { AppListing } from "../../types/AppListing";
+import getMetaData from "metadata-scraper";
+import { MetaData } from "metadata-scraper/lib/types";
 
 type Props = {
-    app: AppListing | null
+    app: AppListing
 }
 
-const App = (props: Props) => {
+const App = ({ app }: Props) => {
 	return (
 		<>
 			<TopBar back />
 			<Container>
-				<AppListItem
-					app={props.app}
-				/>
+				<Stack>
+					<AppHeader
+						app={app}
+					/>
+					<Typography>
+						{app?.description}
+					</Typography>
+				</Stack>
 			</Container>
 		</>
 	);
@@ -30,11 +37,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	const firestore = getFirestore(firebase);
 	const docRef = doc(firestore, `/hub/${id}`);
 	const docSnap = await getDoc(docRef);
-
+	
 	if(docSnap.exists()) {
 		return {
 			props: {
-				app: {id: docSnap.id, ...docSnap.data()}
+				app: {
+					id: docSnap.id,
+					...docSnap.data()
+				}
 			}
 		};
 	} else {

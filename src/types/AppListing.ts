@@ -1,7 +1,13 @@
 export type AppListing = {
     id: string,
     name: string,
+    url: string,
     iconUrl: string,
     categoryId: string,
-    url: string
+
+    description?: string,
+
+    // !DEPRECATED: In caz de aplicatie nativa
+    appStoreLink?: string,
+    playStoreLink?: string
 }
