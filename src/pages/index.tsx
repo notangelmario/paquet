@@ -18,7 +18,7 @@ const Home = ({ apps }: Props) => {
 		<>
 			<TopBar
 				right={
-					<NextLink href="/settings">
+					<NextLink href="/settings" passHref>
 						<IconButton edge="end">
 							<SettingsIcon />
 						</IconButton>
@@ -43,9 +43,7 @@ const Home = ({ apps }: Props) => {
 				{apps.map((app) => (
 					<AppListItem
 						key={app.id}
-						name={app.name}
-						categoryId={app.categoryId}
-						iconUrl={app.iconUrl}
+						app={app}
 					/>
 				))}
 			</Container>

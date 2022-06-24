@@ -1,7 +1,7 @@
 import { Toolbar, AppBar, IconButton, useScrollTrigger, Divider } from "@mui/material";
 import { useRouter } from "next/router";
 import { ArrowBack as BackIcon } from "@mui/icons-material";
-import { isIos } from "../lib/browser";
+import { useBrowser } from "../hooks/useBrowser";
 
 type Props = {
 	back?: boolean,
@@ -9,11 +9,12 @@ type Props = {
 }
 
 function TopBar(props: Props) {
+	const { isIos } = useBrowser();
 	const router = useRouter();
 	const trigger = useScrollTrigger({
 		threshold: 64,
-		disableHysteresis: true,
-	})
+		disableHysteresis: true
+	});
 
 
 	// !AVERTIZMENT!
