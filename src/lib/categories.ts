@@ -23,6 +23,6 @@ export const getCategory = (id: string) => {
 	if (categories.find((value) => value.id === id)) {
 		return categories.find((value) => value.id === id)?.name;
 	} else {
-		return id[0].toUpperCase() + id.slice(1)
+		return id[0].toUpperCase() + id.slice(1);
 	}
-}
+};
