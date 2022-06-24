@@ -1,9 +1,19 @@
-import { Toolbar, AppBar, IconButton } from "@mui/material";
+import { Toolbar, AppBar, IconButton, useScrollTrigger, Divider } from "@mui/material";
 import { useRouter } from "next/router";
 import { ArrowBack as BackIcon } from "@mui/icons-material";
+import { isIos } from "../lib/browser";
 
-function TopBar() {
+type Props = {
+	back?: boolean,
+	right?: React.ReactElement
+}
+
+function TopBar(props: Props) {
 	const router = useRouter();
+	const trigger = useScrollTrigger({
+		threshold: 64,
+		disableHysteresis: true,
+	})
 
 
 	// !AVERTIZMENT!
@@ -24,19 +34,27 @@ function TopBar() {
 			<AppBar
 				color='transparent'
 				sx={{
-					backgroundColor: theme => `${theme.palette.background.default}99`,
-					backdropFilter: theme => `blur(${theme.shape.blur}px)`
+					backgroundColor: theme => isIos ? `${theme.palette.background.default}99` : theme.palette.background.default,
+					backdropFilter: theme => isIos ? `blur(${theme.shape.blur}px)` : undefined
 				}}
 			>
 				<Toolbar>
-					<IconButton
-						edge="start"
-						color="inherit"
-						onClick={handleBack}
-					>
-						<BackIcon />
-					</IconButton>
+					<>
+						{props.back && (
+							<IconButton
+								edge="start"
+								color="inherit"
+								onClick={handleBack}
+							>
+								<BackIcon />
+							</IconButton>
+						)}
+						<div style={{ marginLeft: "auto" }}>
+							{props.right ? props.right : null}
+						</div>
+					</>
 				</Toolbar>
+				{trigger && <Divider />}
 			</AppBar>
 			<Toolbar/>
 		</>
