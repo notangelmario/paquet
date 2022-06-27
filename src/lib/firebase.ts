@@ -8,8 +8,8 @@ const firebaseConfig = {
 	projectId: "paquetromania",
 	storageBucket: "paquetromania.appspot.com",
 	messagingSenderId: "438836893082",
-	appId: "1:438836893082:web:ffe467c2087768ad6f9623",
-	measurementId: "G-3VH95LD4JB"
+	appId: "1:438836893082:web:3c07647e5cd751686f9623",
+	measurementId: "G-JG8T67SK4M"
 };
 
 const firebase = initializeApp(firebaseConfig);
