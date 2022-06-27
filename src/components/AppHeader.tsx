@@ -1,6 +1,5 @@
 import type { AppListing } from "../types/AppListing";
 import { Avatar, Button, Grid, Typography } from "@mui/material";
-import NextLink from "next/link";
 import OpenIcon from "@mui/icons-material/OpenInNew";
 
 
@@ -48,6 +47,7 @@ const AppHeader = ({ app }: Props) => {
 			>
 				<Button
 					href={app.url}
+					disabled={!app.url}
 					target="_blank"
 					rel="noopener noreferrer"
 					startIcon={<OpenIcon />}
