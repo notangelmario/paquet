@@ -45,7 +45,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 				<ParallaxProvider>
 					<TransitionGroup>
 						<Fade
-                            key={router.pathname}
+							key={router.pathname}
 							// direction="right"
 						>
 							<div>
