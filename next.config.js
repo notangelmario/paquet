@@ -1,3 +1,4 @@
+const cache = require("next-pwa/cache");
 const withPwa = require("next-pwa");
 
 

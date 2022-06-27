@@ -5,8 +5,8 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { CssBaseline, ThemeProvider, useMediaQuery, useTheme, Fade, Slide } from "@mui/material";
 import { darkTheme, lightTheme } from "../lib/theme";
 import "../lib/firebase";
-import { SwitchTransition } from "react-transition-group";
 import { useRouter } from "next/router";
+import { TransitionGroup } from "react-transition-group";
 
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -43,15 +43,16 @@ const App = ({ Component, pageProps }: AppProps) => {
 			<ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
 				<CssBaseline enableColorScheme/>
 				<ParallaxProvider>
-					<SwitchTransition key={router.pathname}>
+					<TransitionGroup>
 						<Fade
+                            key={router.pathname}
 							// direction="right"
 						>
 							<div>
 					            <Component {...pageProps} />
 							</div>
 						</Fade>
-					</SwitchTransition>
+					</TransitionGroup>
 				</ParallaxProvider>
 			</ThemeProvider>
 		</>
