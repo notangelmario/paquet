@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const theme = useTheme();
-    const router = useRouter();
+	const router = useRouter();
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
 	return (
@@ -43,15 +43,15 @@ const App = ({ Component, pageProps }: AppProps) => {
 			<ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
 				<CssBaseline enableColorScheme/>
 				<ParallaxProvider>
-                    <SwitchTransition key={router.pathname}>
-                        <Fade
-                            // direction="right"
-                        >
-                            <div>
+					<SwitchTransition key={router.pathname}>
+						<Fade
+							// direction="right"
+						>
+							<div>
 					            <Component {...pageProps} />
-                            </div>
-                        </Fade>
-                    </SwitchTransition>
+							</div>
+						</Fade>
+					</SwitchTransition>
 				</ParallaxProvider>
 			</ThemeProvider>
 		</>
