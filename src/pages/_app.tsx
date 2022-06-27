@@ -6,7 +6,7 @@ import { CssBaseline, ThemeProvider, useMediaQuery, useTheme, Fade, Slide } from
 import { darkTheme, lightTheme } from "../lib/theme";
 import "../lib/firebase";
 import { useRouter } from "next/router";
-import { TransitionGroup } from "react-transition-group";
+import { SwitchTransition } from "react-transition-group";
 
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -43,7 +43,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 			<ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
 				<CssBaseline enableColorScheme/>
 				<ParallaxProvider>
-					<TransitionGroup>
+					<SwitchTransition>
 						<Fade
 							key={router.pathname}
 							// direction="right"
@@ -52,7 +52,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 					            <Component {...pageProps} />
 							</div>
 						</Fade>
-					</TransitionGroup>
+					</SwitchTransition>
 				</ParallaxProvider>
 			</ThemeProvider>
 		</>
