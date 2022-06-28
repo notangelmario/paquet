@@ -4,7 +4,6 @@ import Head from "next/head";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { CssBaseline, ThemeProvider, useMediaQuery, Fade, Slide } from "@mui/material";
 import { darkTheme, lightTheme } from "../lib/theme";
-import "../lib/firebase";
 import { useRouter } from "next/router";
 import { SwitchTransition } from "react-transition-group";
 

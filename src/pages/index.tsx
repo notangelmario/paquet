@@ -1,13 +1,12 @@
 import { Container, Typography, Divider, Stack, IconButton } from "@mui/material";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
 import Header from "../components/Header";
 import Categories from "../components/Categories";
 import AppListItem from "../components/AppListItem";
-import { firebase } from "../lib/firebase";
 import { AppListing } from "../types/AppListing";
 import TopBar from "../components/TopBar";
 import NextLink from "next/link";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { supabase } from "../lib/supabase";
 
 type Props = {
 	apps: AppListing[]
@@ -52,16 +51,7 @@ const Home = ({ apps }: Props) => {
 };
 
 export const getServerSideProps = async () => {
-	const firestore = getFirestore(firebase);
-	const queryRef = collection(firestore, "hub");
-	let apps: AppListing[] = [];
-	const docs = await getDocs(queryRef);
-
-	const twitterManifest = await fetch("https://twitter.com/manifest.json").then((res) => res.json());
-
-	docs.forEach((doc) => {
-		apps.push({...doc.data(), id: doc.id} as AppListing);
-	});
+	const { data: apps } = await supabase.from("apps").select("*");
 
 	return {
 		props: {

@@ -1,12 +1,11 @@
 import { Container, Stack, Typography } from "@mui/material";
-import { doc, getFirestore, getDoc } from "firebase/firestore";
+import { supabase } from "../../lib/supabase";
 import { GetServerSideProps } from "next";
 import AppHeader from "../../components/AppHeader";
 import TopBar from "../../components/TopBar";
-import { firebase } from "../../lib/firebase";
 import type { AppListing } from "../../types/AppListing";
-import getMetaData from "metadata-scraper";
-import { MetaData } from "metadata-scraper/lib/types";
+// import getMetaData from "metadata-scraper";
+// import { MetaData } from "metadata-scraper/lib/types";
 
 type Props = {
     app: AppListing
@@ -34,24 +33,20 @@ export default App;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const { id } = context.query;
-	const firestore = getFirestore(firebase);
-	const docRef = doc(firestore, `/hub/${id}`);
-	const docSnap = await getDoc(docRef);
-	
-	if(docSnap.exists()) {
+
+	if (id) {
+		const { data: app } = await supabase.from<AppListing>("apps").select("*").eq("id", id as string).single();
+
 		return {
 			props: {
-				app: {
-					id: docSnap.id,
-					...docSnap.data()
-				}
+				app
 			}
 		};
-	} else {
-		return {
-			props: {
-				app: null
-			}   
-		};
+	}
+		
+	return {
+		props: {
+			app: null
+		}
 	}
 };
