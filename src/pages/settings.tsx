@@ -42,12 +42,12 @@ const Settings = () => {
                             </ListItem>
 						}
 					</List>
-                    <Box
-                        display="flex"
-                        justifyContent="center"
-                    >
-                        <LogoIcon />
-                    </Box>
+					<Box
+						display="flex"
+						justifyContent="center"
+					>
+						<LogoIcon />
+					</Box>
 				</Stack>
 			</Container>
 		</>
