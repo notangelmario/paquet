@@ -1,8 +1,9 @@
-import { List, ListItem, ListItemText, Paper, Stack } from "@mui/material";
+import { List, ListItem, ListItemText, Paper, Stack, Typography, Box } from "@mui/material";
 import { Container } from "@mui/system";
 import Header from "../components/Header";
 import TopBar from "../components/TopBar";
 import { useBrowser } from "../hooks/useBrowser";
+import LogoIcon from "../components/LogoIcon";
 
 
 
@@ -14,7 +15,7 @@ const Settings = () => {
 			<TopBar
 				back
 			/>
-			<Container sx={{ height: "100vh" }}>
+			<Container>
 				<Stack>
 					<Header>
                         Setari
@@ -41,6 +42,12 @@ const Settings = () => {
                             </ListItem>
 						}
 					</List>
+                    <Box
+                        display="flex"
+                        justifyContent="center"
+                    >
+                        <LogoIcon />
+                    </Box>
 				</Stack>
 			</Container>
 		</>

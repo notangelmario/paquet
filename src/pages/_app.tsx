@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { ParallaxProvider } from "react-scroll-parallax";
-import { CssBaseline, ThemeProvider, useMediaQuery, useTheme, Fade, Slide } from "@mui/material";
+import { CssBaseline, ThemeProvider, useMediaQuery, Fade, Slide } from "@mui/material";
 import { darkTheme, lightTheme } from "../lib/theme";
 import "../lib/firebase";
 import { useRouter } from "next/router";
@@ -10,7 +10,6 @@ import { SwitchTransition } from "react-transition-group";
 
 
 const App = ({ Component, pageProps }: AppProps) => {
-	const theme = useTheme();
 	const router = useRouter();
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
