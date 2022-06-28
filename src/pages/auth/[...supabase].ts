@@ -1,3 +1,3 @@
-import { handleAuth } from '@supabase/auth-helpers-nextjs';
+import { handleAuth } from "@supabase/auth-helpers-nextjs";
 
-export default handleAuth({ logout: { returnTo: '/' } });
+export default handleAuth({ logout: { returnTo: "/" } });
