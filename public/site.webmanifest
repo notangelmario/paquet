@@ -1,6 +1,7 @@
 {
     "name": "Paquet Shop",
     "short_name": "Paquet",
+    "id": "shop.paquet",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
