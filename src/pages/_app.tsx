@@ -6,6 +6,7 @@ import { CssBaseline, ThemeProvider, useMediaQuery, Fade, Slide } from "@mui/mat
 import { darkTheme, lightTheme } from "../lib/theme";
 import { useRouter } from "next/router";
 import { SwitchTransition } from "react-transition-group";
+import NextNProgress from "nextjs-progressbar";
 
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -41,6 +42,13 @@ const App = ({ Component, pageProps }: AppProps) => {
 			<ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
 				<CssBaseline enableColorScheme/>
 				<ParallaxProvider>
+					<NextNProgress
+						color={lightTheme.palette.primary.main}
+						height={2}
+						options={{
+							showSpinner: false
+						}}
+					/>	
 					<SwitchTransition>
 						<Fade
 							key={router.pathname}
