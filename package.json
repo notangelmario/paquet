@@ -1,6 +1,6 @@
 {
-  "name": "@paquet/hub",
-  "author": "paquetromania",
+  "name": "paquet",
+  "author": "notangelmario",
   "version": "0.1.0",
   "private": true,
   "scripts": {

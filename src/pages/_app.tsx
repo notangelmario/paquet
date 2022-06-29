@@ -17,7 +17,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 			<Head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-				<meta name="description" content="Aducem comunitatea mai aproape" />
+				<meta name="description" content="The web app store" />
 				<link rel="apple-touch-icon" href="/icon.png" />
 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 				<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -36,7 +36,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 					}
 				/>
 
-				<title>Paquet Hub</title>
+				<title>Paquet</title>
 			</Head>
 			<ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
 				<CssBaseline enableColorScheme/>
