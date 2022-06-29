@@ -36,3 +36,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Supabase
+.supabase
+
+# Supabase
+**/supabase/.branches
+**/supabase/.temp
