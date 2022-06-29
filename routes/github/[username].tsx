@@ -1,12 +1,12 @@
-/** @jsx h */ 
+/** @jsx h */
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { h } from "preact";
 
 type User = {
-	login: string,
-	name: string,
-	avatar_url: string,
-}
+	login: string;
+	name: string;
+	avatar_url: string;
+};
 
 export const handler: Handlers<User | null> = {
 	async GET(_, ctx) {
@@ -21,13 +21,12 @@ export const handler: Handlers<User | null> = {
 		const user: User = await resp.json();
 
 		return ctx.render(user);
-	}
-}
-
+	},
+};
 
 export default function GithuUser({ data }: PageProps) {
 	if (!data) {
-		return <h1>User not found</h1>
+		return <h1>User not found</h1>;
 	}
 
 	return (
@@ -36,5 +35,5 @@ export default function GithuUser({ data }: PageProps) {
 			<h1>{data.name}</h1>
 			<p>{data.login}</p>
 		</div>
-	)
+	);
 }
