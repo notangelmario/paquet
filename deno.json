@@ -2,5 +2,26 @@
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts"
   },
-  "importMap": "./import_map.json"
+  "importMap": "./import_map.json",
+  "lint": {
+    "files": {
+      "include": ["routes/", "utils/", "islands/"]
+    },
+    "rules": {
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo"],
+      "exclude": ["no-unused-vars"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["routes/", "utils/", "islands/"]
+    },
+    "options": {
+      "useTabs": true,
+      "indentWidth": 4,
+      "singleQuote": false,
+      "proseWrap": "preserve"
+    }
+  }
 }
