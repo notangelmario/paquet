@@ -5,6 +5,8 @@
     "preact/": "https://esm.sh/preact@10.8.1/",
     "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.1",
     "dotenv": "https://deno.land/std@0.145.0/dotenv/load.ts",
+
+    "@app": "./app.ts",
   
     "@twind": "./twind.config.ts",
     "twind": "https://esm.sh/twind@0.16.17",
