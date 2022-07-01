@@ -7,7 +7,6 @@ import Header from "../components/Header.tsx";
 import Container from "../components/Container.tsx";
 import { supabase } from "@supabase";
 import type { App } from "../types/App.ts";
-import AppListItem from "../components/AppListItem.tsx";
 import Navbar from "../islands/Navbar.tsx";
 import { categories, getCategory } from "../utils/categories.ts";
 import Button from "../components/Button.tsx";
