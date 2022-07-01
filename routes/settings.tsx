@@ -8,7 +8,7 @@ import Container from "../components/Container.tsx";
 import Navbar from "../islands/Navbar.tsx";
 import Card from "../components/Card.tsx";
 import ListItem from "../components/ListItem.tsx";
-
+import app from "@app";
 
 
 
@@ -28,8 +28,8 @@ export default function Settings() {
 					/>
 					<ListItem
 						icon="conversion_path"
-						title="Verson"
-						subtitle={Deno.env.get("PAQUET_VERSION")}
+						title="Version"
+						subtitle={app.version}
 					/>
 				</Card>
 			</Container>
