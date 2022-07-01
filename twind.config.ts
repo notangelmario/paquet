@@ -17,7 +17,7 @@ export const config: Configuration = {
 		  }
 		},
 		borderRadius: {
-		  DEFAULT: '20px'
+		  DEFAULT: '18px'
 		},
 		container: {
 			center: true,
@@ -27,18 +27,5 @@ export const config: Configuration = {
 	},
 };
 if (IS_BROWSER) setup(config);
-
-
-declare module "twind" {
-	interface Color {
-		primary: string;
-		secondary: string;
-		dark: string;
-		paper: {
-			light: string;
-			dark: string;
-		}
-	}
-}
 
 export default config;

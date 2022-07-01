@@ -20,13 +20,13 @@ const AppListItem  = ({ app }: Props) => {
 				<img
 					src={app.iconUrl}
 					alt={app.name}
-					className={tw`w-16 h-16 rounded mr-4`}
+					className={tw`w-12 h-12 rounded mr-4`}
 				/>
 				<div>
 					<h2 className={tw`text-2xl`}>
 						{app.name}
 					</h2>
-					<p className={tw`text-sm opacity-75`}>
+					<p className={tw`text-sm opacity-50`}>
 						{app.categoryId}
 					</p>
 				</div>

@@ -1,13 +1,21 @@
 /**@jsx h */
 import { h } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts"
-import AppListItem from "../../components/AppListItem.tsx";
 import { supabase } from "../../utils/supabase.ts";
+
+import Root from "../../components/Root.tsx";
+import Navbar from "../../islands/Navbar.tsx";
+import Container from "../../components/Container.tsx";
 
 
 export default function App(props: PageProps) {
 	return (
-		<AppListItem app={props.data} />
+		<Root>
+			<Navbar back/>
+			<Container>
+				
+			</Container>
+		</Root>
 	)
 }
 

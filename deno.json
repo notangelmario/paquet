@@ -1,4 +1,8 @@
 {
+  "compilerOptions": {
+    "allowJs": false,
+    "strict": true
+  },
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "prod": "deno run -A --watch=static/,routes/ main.ts"
