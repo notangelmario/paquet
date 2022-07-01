@@ -9,8 +9,9 @@ import { supabase } from "@supabase";
 import type { App } from "../types/App.ts";
 import AppListItem from "../components/AppListItem.tsx";
 import Navbar from "../islands/Navbar.tsx";
-import { categories } from "../utils/categories.ts";
+import { categories, getCategory } from "../utils/categories.ts";
 import Button from "../components/Button.tsx";
+import ListItem from "../components/ListItem.tsx";
 
 
 export default function Home(props: PageProps) {
@@ -37,9 +38,19 @@ export default function Home(props: PageProps) {
 					))}
 				</div>
 				{props.data?.map((app: App) => (
-					<AppListItem
-						app={app}
-					/>
+					<a href={`/app/${app.id}`}>
+						<ListItem 
+							key={app.id}
+							image={app.iconUrl}
+							title={app.name}
+							subtitle={getCategory(app.categoryId)?.name}
+							button
+						/>
+					</a>
+					
+					// <AppListItem
+					// 	app={app}
+					// />
 				))}
 			</Container>
 		</Root>
