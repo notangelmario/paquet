@@ -16,7 +16,7 @@ export default function Home(props: PageProps) {
 				<Header style={{ paddingBottom: 16 }}>
 					Home
 				</Header>
-				{props.data.map((app: App) => (
+				{props.data?.map((app: App) => (
 					<AppListItem
 						app={app}
 					/>
