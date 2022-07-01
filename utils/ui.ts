@@ -1,4 +1,4 @@
-import { apply } from "twind";
+import { apply } from "@twind";
 
 export const btn = apply`
 	  	cursor-pointer
