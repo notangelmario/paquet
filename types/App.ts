@@ -9,8 +9,10 @@ export type App = {
     description: string,
 
     benchmarks: {
+        overall: number,
         performance: number,
-        
+        privacy: number,
+        bestPractice: number
     }
 
     // DEPRECATED
