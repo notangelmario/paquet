@@ -14,11 +14,19 @@ export default function App(props: PageProps) {
 		<Root>
 			<Navbar back/>
 			<Container style={{ paddingTop: 64 }}>
-				<div className={tw`flex flex-row`}>
+				<div className={tw`flex flex-row flex-wrap`}>
 					<img
 						className={tw`rounded w-20 h-20`}
 						src={props.data.iconUrl}
 					/>
+					<div className={tw`ml-2`}>
+						<h2 className={tw`text-3xl`}>
+							{props.data.name}
+						</h2>
+					</div>
+					<div className={tw`w-full !sm:w-min`}>
+						Hello
+					</div>
 				</div>
 			</Container>
 		</Root>
