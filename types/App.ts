@@ -8,7 +8,7 @@ export type App = {
     categoryId: string,
     description: string,
 
-    benchmarks: {
+    benchmarks?: {
         overall: number,
         performance: number,
         privacy: number,
