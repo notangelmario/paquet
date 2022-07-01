@@ -7,7 +7,7 @@ const Header = (props: h.JSX.IntrinsicElements["h1"]) => {
 	return (
 		<h1
 			{...props}
-			className={`${tw`text-7xl font-thin mt-16`} ${props.className}`}
+			className={`${tw`text-7xl font-thin pt-16`} ${props.className || ""}`}
 		>
 			{props.children}
 		</h1>

@@ -6,8 +6,15 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-tap-highlight-color: transparent;
+	overflow-x: hidden;
 }
 
+@media (prefers-color-scheme: dark) {
+	html, body {
+		background-color: #212121
+	}
+}
+ 
 * {
 	box-sizing: border-box;
 	-webkit-touch-callout: none;
@@ -21,6 +28,10 @@ body {
 ::selection {
 	background-color: #8267BE;
 	color: #fff;
+}
+
+button:focus {
+	outline: none!important;
 }
 
 a {

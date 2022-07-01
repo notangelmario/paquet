@@ -4,13 +4,18 @@
 
 import * as $0 from "./routes/app/[id].tsx";
 import * as $1 from "./routes/index.tsx";
+import * as $2 from "./routes/settings.tsx";
+import * as $$0 from "./islands/Navbar.tsx";
 
 const manifest = {
 	routes: {
 		"./routes/app/[id].tsx": $0,
 		"./routes/index.tsx": $1,
+		"./routes/settings.tsx": $2,
 	},
-	islands: {},
+	islands: {
+		"./islands/Navbar.tsx": $$0,
+	},
 	baseUrl: import.meta.url,
 };
 
