@@ -30,7 +30,7 @@ const ListItem  = ({ button, icon, image, title, subtitle }: Props) => {
 					<img
 						src={image}
 						alt=""
-						className={tw`w-12 h-12 rounded-full mr-4`}
+						className={tw`w-12 h-12 rounded	 mr-4`}
 					/>
 				: null
 			}

@@ -8,6 +8,10 @@ export type App = {
     categoryId: string,
     description: string,
 
+    benchmarks: {
+        performance: number,
+        
+    }
 
     // DEPRECATED
     appStoreLink?: string,
