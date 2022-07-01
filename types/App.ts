@@ -7,7 +7,7 @@ export type App = {
     categoryId: string,
     description: string,
 
-    // !DEPRECATED: In caz de aplicatie nativa
+    // !DEPRECATED
     appStoreLink?: string,
     playStoreLink?: string
 }

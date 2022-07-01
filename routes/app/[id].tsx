@@ -1,5 +1,6 @@
 /**@jsx h */
 import { h } from "preact";
+import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts"
 import { supabase } from "../../utils/supabase.ts";
 
@@ -12,8 +13,13 @@ export default function App(props: PageProps) {
 	return (
 		<Root>
 			<Navbar back/>
-			<Container>
-				
+			<Container style={{ paddingTop: 64 }}>
+				<div className={tw`flex flex-row`}>
+					<img
+						className={tw`rounded w-20 h-20`}
+						src={props.data.iconUrl}
+					/>
+				</div>
 			</Container>
 		</Root>
 	)
