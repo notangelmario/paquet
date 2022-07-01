@@ -9,7 +9,8 @@ import { supabase } from "@supabase";
 import type { App } from "../types/App.ts";
 import AppListItem from "../components/AppListItem.tsx";
 import Navbar from "../islands/Navbar.tsx";
-import { iconBtn } from "../utils/ui.ts";
+import { categories } from "../utils/categories.ts";
+import Button from "../components/Button.tsx";
 
 
 export default function Home(props: PageProps) {
@@ -20,9 +21,21 @@ export default function Home(props: PageProps) {
 				rightIconHref="/settings"
 			/>
 			<Container style={{ height: 1024 }}>
-				<Header style={{ paddingBottom: 16 }}>
+				<Header className={tw`mb-4`}>
 					Home
 				</Header>
+				<div 
+					className={tw`flex flex-row gap-2 mb-4`}
+				>
+					{categories.map(category => (
+						<Button
+							key={category.id}
+							icon={category.icon}
+						>
+							{category.name}
+						</Button>
+					))}
+				</div>
 				{props.data?.map((app: App) => (
 					<AppListItem
 						app={app}
