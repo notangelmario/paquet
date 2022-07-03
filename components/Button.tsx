@@ -12,17 +12,18 @@ type Props = {
 export default function Button(props: Props & h.JSX.IntrinsicElements["button"]) {
 	return (
 		<button
+			{...props}
 			className={tw`
-				${btn} block rounded px-8 py-2 bg-primary text-white 
+				${btn} rounded px-8 py-2 bg-primary text-white
+				flex flex-row flex-nowrap gap-2 justify-center items-center
 
 				${props.fullWidth ? "w-full" : ""}
 				${props.className || ""}
 			`}
-			{...props}
 		>
 			{props.icon && 
 				<span 
-					className={tw`align-middle mr-2 text-base material-symbols-outlined`}
+					className={tw`align-middle text-base material-symbols-outlined`}
 				>
 					{props.icon}
 				</span>

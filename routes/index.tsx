@@ -20,22 +20,25 @@ export default function Home(props: PageProps) {
 				rightIcon="settings"
 				rightIconHref="/settings"
 			/>
-			<Container style={{ height: 1024 }}>
+			<Container>
 				<Header className={tw`mb-4`}>
 					Home
 				</Header>
-				<div 
-					className={tw`flex flex-row gap-2 mb-4`}
-				>
-					{categories.map(category => (
-						<Button
-							key={category.id}
-							icon={category.icon}
-						>
-							{category.name}
-						</Button>
-					))}
-				</div>
+			</Container>
+			<div 
+				className={tw`flex flex-row gap-2 mb-4 overflow-y-scroll md:container`}
+			>
+				{categories.map((category, idx) => (
+					<Button
+						className={`${idx === 0 ? `ml-4` : idx === categories.length - 1 ? `mr-4` : ""} md:m-0`}
+						key={category.id}
+						icon={category.icon}
+					>
+						{category.name}
+					</Button>
+				))}
+			</div>
+			<Container>
 				{props.data?.map((app: App) => (
 					<a href={`/app/${app.id}`}>
 						<ListItem 
