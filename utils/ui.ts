@@ -3,7 +3,7 @@ import { css } from "twind/css";
 
 export const btn = apply`
 	  	cursor-pointer
-		opacity(hover-hover:90 active:80)
+		hover-hover:opacity-90 active:opacity-80
 		transition-opacity duration-75 ease-in-out origin-center
 `
 
@@ -11,7 +11,7 @@ export const iconBtn = apply`
 		cursor-pointer 
 		block p-2
 		focus:!outline-0
-		opacity(hover-hover:90 active:80)
+		hover-hover:opacity-90 active:opacity-80
 		transition-opacity duration-150 ease-in-out origin-center
 		${css({
 			"& > span": {
