@@ -24,7 +24,7 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 					<Header>
 						Settings
 					</Header>
-					<Card>
+					<Card disableGutters>
 						<ListItem
 							icon="toggle_on"
 							title="Environment"
@@ -36,7 +36,7 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 							subtitle={app.version}
 						/>
 					</Card>
-					<Card className={tw`mt-2`}>
+					<Card disableGutters>
 						<ListItem
 							icon="device_hub"
 							title="OS"

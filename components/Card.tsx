@@ -3,15 +3,18 @@ import { h } from "preact";
 import { tw } from "@twind";
 
 
+type Props = {
+	disableGutters?: boolean
+}
 
-export default function Card(props: h.JSX.IntrinsicElements["div"]) {
+export default function Card(props: Props & h.JSX.IntrinsicElements["div"]) {
 	return (
 		<div
 			className={
 				`${tw`
 					bg-paper-light
 					dark:bg-paper-dark
-					p-2
+					${!props.disableGutters && "p-2"}
 					rounded
 				`} 
 				${props.className || ""}
