@@ -8,6 +8,8 @@
 
     "@app": "./app.ts",
   
+    "bowser": "https://esm.sh/bowser@2.11.0",
+
     "@twind": "./twind.config.ts",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",

@@ -1,7 +1,9 @@
 /**@jsx h */
 import "dotenv";
+import Bowser from "bowser";
 import { h } from "preact";
 import { tw } from "@twind";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import Root from "../components/Root.tsx";
 import Header from "../components/Header.tsx";
 import Container from "../components/Container.tsx";
@@ -12,7 +14,7 @@ import app from "@app";
 
 
 
-export default function Settings() {
+export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 	return (
 		<Root>
 			<Navbar back/>
@@ -32,7 +34,22 @@ export default function Settings() {
 						subtitle={app.version}
 					/>
 				</Card>
+				<Card className={tw`mt-2`}>
+					<ListItem
+						icon="device_hub"
+						title="OS"
+						subtitle={props.data.os.name}
+					/>
+				</Card>
 			</Container>
 		</Root>
 	)
+}
+
+export const handler: Handlers = {
+	GET(req, ctx) {
+		const browser = Bowser.getParser(req.headers.get("user-agent") || "");
+
+		return ctx.render(browser.getResult())
+	}
 }

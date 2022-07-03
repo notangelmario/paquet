@@ -36,7 +36,7 @@ const ListItem  = ({ button, icon, image, title, subtitle }: Props) => {
 			}
 			
 			<div>
-				<h2 className={tw`text-xl`}>
+				<h2 className={tw`text-lg`}>
 					{title}
 				</h2>
 				<p className={tw`text-sm opacity-50`}>
