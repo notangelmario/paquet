@@ -20,11 +20,10 @@ export const config: Configuration = {
 		  DEFAULT: '18px'
 		},
 		container: {
-			center: true,
-			padding: "16px"
+			center: true
 		},
 		screens: {
-            'hover-hover': {'raw': '(hover: hover)'},
+            'betterhover': {'raw': '(hover: hover)'},
 		}
 	  },
 	},

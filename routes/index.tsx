@@ -28,27 +28,37 @@ export default function Home(props: PageProps) {
 					</Header>
 				</Container>
 				<div 
-					className={tw`flex flex-row gap-2 overflow-y-scroll md:container`}
+					className={tw`flex flex-row overflow-x-scroll md:container`}
+					style={{
+						scrollSnapType: "x mandatory",
+					}}
 				>
 					{categories.map((category, idx) => (
-						<Button
-							className={`${idx === 0 ? `ml-4` : idx === categories.length - 1 ? `mr-4` : ""} md:m-0`}
+						<a
 							key={category.id}
-							icon={category.icon}
+							href={`/category/${category.id}`}
+							className={tw`${idx === 0 ? `!pl-4 md:pl-0` : idx === categories.length - 1 ? `!pr-4 md:pr-0` : ""} pl-2`}
+							style={{
+								scrollSnapAlign: "start",
+							}}
 						>
-							{category.name}
-						</Button>
+							<Button
+								icon={category.icon}
+							>
+								{category.name}
+							</Button>
+						</a>
 					))}
 				</div>
-				<Container>
+				<Container disableGutters>
 					{props.data?.map((app: App) => (
 						<a href={`/app/${app.id}`}>
 							<ListItem 
+								button
 								key={app.id}
 								image={app.iconUrl}
 								title={app.name}
 								subtitle={getCategory(app.categoryId)?.name}
-								button
 							/>
 						</a>
 						

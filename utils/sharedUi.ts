@@ -3,7 +3,8 @@ import { css } from "twind/css";
 
 export const btn = apply`
 	  	cursor-pointer
-		hover-hover:opacity-90 active:opacity-80
+		betterhover:(hover:opacity-90 active:opacity-75)
+		active:opacity-75
 		transition-opacity duration-75 ease-in-out origin-center
 `
 

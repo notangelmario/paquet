@@ -3,15 +3,17 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $0 from "./routes/app/[id].tsx";
-import * as $1 from "./routes/index.tsx";
-import * as $2 from "./routes/settings.tsx";
+import * as $1 from "./routes/category/[id].tsx";
+import * as $2 from "./routes/index.tsx";
+import * as $3 from "./routes/settings.tsx";
 import * as $$0 from "./islands/Navbar.tsx";
 
 const manifest = {
 	routes: {
 		"./routes/app/[id].tsx": $0,
-		"./routes/index.tsx": $1,
-		"./routes/settings.tsx": $2,
+		"./routes/category/[id].tsx": $1,
+		"./routes/index.tsx": $2,
+		"./routes/settings.tsx": $3,
 	},
 	islands: {
 		"./islands/Navbar.tsx": $$0,

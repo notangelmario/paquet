@@ -2,8 +2,7 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { useScroll } from "../hooks/useScroll.ts";
-import { iconBtn } from "../utils/ui.ts";
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { iconBtn } from "../utils/sharedUi.ts";
 
 type Props = {
 	back?: boolean;

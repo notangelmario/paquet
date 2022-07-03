@@ -1,7 +1,7 @@
 /**@jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { btn } from "../utils/ui.ts";
+import { btn } from "../utils/sharedUi.ts";
 
 type Props = {
 	button?: boolean,
@@ -16,7 +16,7 @@ const ListItem  = ({ button, icon, image, title, subtitle }: Props) => {
 	return (
 		<div
 			className={
-				tw`${button && btn} flex flex-row items-center p-2`
+				tw`${button && btn} flex flex-row items-center p-4`
 			}
 		>
 			{icon || image ?

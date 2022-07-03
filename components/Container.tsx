@@ -2,12 +2,15 @@
 import { h } from "preact";
 import { tw } from "@twind";
 
+type Props = {
+	disableGutters?: boolean
+}
 
-const Container = (props: h.JSX.IntrinsicElements["h1"]) => {
+const Container = (props: Props & h.JSX.IntrinsicElements["h1"]) => {
 	return (
 		<div
 			{...props}
-			className={`${tw`md:container px-4`} ${props.className || ""}`}
+			className={`${tw`md:container ${!props.disableGutters && "px-4"}`} ${props.className || ""}`}
 		>
 			{props.children}
 		</div>
