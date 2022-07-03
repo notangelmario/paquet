@@ -21,8 +21,11 @@ export const config: Configuration = {
 		},
 		container: {
 			center: true,
-			padding: '16px'
+			padding: "16px"
 		},
+		screens: {
+            'hover-hover': {'raw': '(hover: hover)'},
+		}
 	  },
 	},
 };
