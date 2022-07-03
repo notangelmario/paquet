@@ -13,12 +13,10 @@ import Card from "../components/Card.tsx";
 import ListItem from "../components/ListItem.tsx";
 import app from "@app";
 
-
-
 export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 	return (
 		<Root>
-			<Navbar back/>
+			<Navbar back />
 			<Container>
 				<Stack>
 					<Header>
@@ -28,7 +26,9 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 						<ListItem
 							icon="toggle_on"
 							title="Environment"
-							subtitle={Deno.env.get("DENO_DEPLOYMENT_ID") ? "Production" : "Development"}
+							subtitle={Deno.env.get("DENO_DEPLOYMENT_ID")
+								? "Production"
+								: "Development"}
 						/>
 						<ListItem
 							icon="conversion_path"
@@ -46,13 +46,13 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 				</Stack>
 			</Container>
 		</Root>
-	)
+	);
 }
 
 export const handler: Handlers = {
 	GET(req, ctx) {
 		const browser = Bowser.getParser(req.headers.get("user-agent") || "");
 
-		return ctx.render(browser.getResult())
-	}
-}
+		return ctx.render(browser.getResult());
+	},
+};

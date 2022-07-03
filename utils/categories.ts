@@ -4,22 +4,22 @@ export const categories: Category[] = [
 	{
 		id: "social",
 		name: "Social",
-		icon: "group"
+		icon: "group",
 	},
 	{
 		id: "music",
 		name: "Music",
-		icon: "music_note"
+		icon: "music_note",
 	},
 	{
 		id: "games",
 		name: "Games",
-		icon: "stadia_controller"
+		icon: "stadia_controller",
 	},
 	{
 		id: "dev",
 		name: "Development",
-		icon: "code"
+		icon: "code",
 	},
 ];
 

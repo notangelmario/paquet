@@ -1,7 +1,7 @@
 /**@jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { Handlers, PageProps } from "$fresh/server.ts"
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { supabase } from "../../utils/supabase.ts";
 
 import type { App } from "../../types/App.ts";
@@ -12,11 +12,10 @@ import Container from "../../components/Container.tsx";
 import Button from "../../components/Button.tsx";
 import { getCategory } from "../../utils/categories.ts";
 
-
 export default function App(props: PageProps<App>) {
 	return (
 		<Root>
-			<Navbar back/>
+			<Navbar back />
 			<Container style={{ paddingTop: 64 }}>
 				<Stack>
 					<div className={tw`flex flex-row flex-wrap gap-4`}>
@@ -29,11 +28,16 @@ export default function App(props: PageProps<App>) {
 								{props.data.name}
 							</h2>
 							<p className={tw`opacity-50`}>
-								{props.data.author} &middot; {getCategory(props.data.categoryId)?.name}
+								{props.data.author} &middot;{" "}
+								{getCategory(props.data.categoryId)?.name}
 							</p>
 						</div>
 						<div className={tw`min-w-full sm:min-w-[30%]`}>
-							<a href={props.data.url} target="_blank" rel="noopener noreferrer">
+							<a
+								href={props.data.url}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								<Button
 									icon="open_in_new"
 									fullWidth
@@ -54,16 +58,19 @@ export default function App(props: PageProps<App>) {
 				</Stack>
 			</Container>
 		</Root>
-	)
+	);
 }
 
 export const handler: Handlers = {
 	async GET(_, ctx) {
-		const { data } = await supabase.from("apps").select("*").eq("id", ctx.params.id).single();
+		const { data } = await supabase.from("apps").select("*").eq(
+			"id",
+			ctx.params.id,
+		).single();
 
 		if (!data) {
-			return Response.redirect("/", 300)
+			return Response.redirect("/", 300);
 		}
 		return ctx.render(data);
-	}
-}
+	},
+};

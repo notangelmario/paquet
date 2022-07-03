@@ -13,17 +13,17 @@ import { getCategory } from "../../utils/categories.ts";
 import { supabase } from "../../utils/supabase.ts";
 
 type DataProps = {
-	category: Category,
-	apps: App[]
-}
+	category: Category;
+	apps: App[];
+};
 
 export default function Category(props: PageProps<DataProps>) {
 	return (
 		<Root>
-			<Navbar back/>
+			<Navbar back />
 			<Container>
 				<Header>
-					<span 
+					<span
 						className={tw`text-5xl material-symbols-outlined`}
 					>
 						{props.data.category.icon}
@@ -33,18 +33,18 @@ export default function Category(props: PageProps<DataProps>) {
 				</Header>
 			</Container>
 			<Container disableGutters>
-			{props.data.apps.map(app => (
-				<ListItem
-					button
-					key={app.id}
-					image={app.iconUrl}
-					title={app.name}
-					subtitle={app.author}
-				/>
-			))}
+				{props.data.apps.map((app) => (
+					<ListItem
+						button
+						key={app.id}
+						image={app.iconUrl}
+						title={app.name}
+						subtitle={app.author}
+					/>
+				))}
 			</Container>
 		</Root>
-	)
+	);
 }
 
 export const handler: Handlers = {
@@ -53,18 +53,21 @@ export const handler: Handlers = {
 		const category = getCategory(categoryId);
 
 		if (!category) {
-			return Response.redirect("/", 300)
+			return Response.redirect("/", 300);
 		}
 
-		const { data: apps } = await supabase.from("apps").select("*").eq("categoryId", categoryId);
-		
+		const { data: apps } = await supabase.from("apps").select("*").eq(
+			"categoryId",
+			categoryId,
+		);
+
 		if (!apps) {
-			return Response.redirect("/", 300)	
+			return Response.redirect("/", 300);
 		}
 
 		return ctx.render({
 			category,
-			apps
-		} as DataProps)
-	}
-}
+			apps,
+		} as DataProps);
+	},
+};

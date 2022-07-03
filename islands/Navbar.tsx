@@ -8,28 +8,31 @@ type Props = {
 	back?: boolean;
 	rightIcon?: string;
 	rightIconHref?: string;
-}
-
+};
 
 export default function Navbar(props: Props) {
 	const trigger = useScroll({
-		threshold: 32
-	})
+		threshold: 32,
+	});
 
 	return (
 		<div
-			className={
-				tw`
+			className={tw`
 					fixed flex w-full bg-white dark:bg-dark
 					items-center justify-between
-					${trigger && "border-b-1 border-opacity-25 border-black dark:border-paper-dark"}
-					px-2 py-2 z-50
-				`
+					${
+				trigger &&
+				"border-b-1 border-opacity-25 border-black dark:border-paper-dark"
 			}
+					px-2 py-2 z-50
+				`}
 		>
 			<div>
 				{props.back && (
-					<button className={tw(iconBtn)} onClick={() => history.back()}>
+					<button
+						className={tw(iconBtn)}
+						onClick={() => history.back()}
+					>
 						<span className="material-symbols-outlined">
 							arrow_back
 						</span>
@@ -44,5 +47,5 @@ export default function Navbar(props: Props) {
 				</a>
 			</div>
 		</div>
-	)
+	);
 }

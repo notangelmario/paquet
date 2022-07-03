@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { PageProps, Handlers } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import Root from "../components/Root.tsx";
 import Header from "../components/Header.tsx";
 import Stack from "../components/Stack.tsx";
@@ -12,7 +12,6 @@ import Navbar from "../islands/Navbar.tsx";
 import { categories, getCategory } from "../utils/categories.ts";
 import Button from "../components/Button.tsx";
 import ListItem from "../components/ListItem.tsx";
-
 
 export default function Home(props: PageProps) {
 	return (
@@ -27,7 +26,7 @@ export default function Home(props: PageProps) {
 						Home
 					</Header>
 				</Container>
-				<div 
+				<div
 					className={tw`flex flex-row overflow-x-scroll md:container`}
 					style={{
 						scrollSnapType: "x mandatory",
@@ -37,7 +36,13 @@ export default function Home(props: PageProps) {
 						<a
 							key={category.id}
 							href={`/category/${category.id}`}
-							className={tw`${idx === 0 ? `!pl-4 md:pl-0` : idx === categories.length - 1 ? `!pr-4 md:pr-0` : ""} pl-2`}
+							className={tw`${
+								idx === 0
+									? `!pl-4 md:pl-0`
+									: idx === categories.length - 1
+									? `!pr-4 md:pr-0`
+									: ""
+							} pl-2`}
 							style={{
 								scrollSnapAlign: "start",
 							}}
@@ -53,7 +58,7 @@ export default function Home(props: PageProps) {
 				<Container disableGutters>
 					{props.data?.map((app: App) => (
 						<a href={`/app/${app.id}`}>
-							<ListItem 
+							<ListItem
 								button
 								key={app.id}
 								image={app.iconUrl}
@@ -61,7 +66,6 @@ export default function Home(props: PageProps) {
 								subtitle={getCategory(app.categoryId)?.name}
 							/>
 						</a>
-						
 						// <AppListItem
 						// 	app={app}
 						// />
@@ -77,5 +81,5 @@ export const handler: Handlers = {
 		const { data: apps } = await supabase.from("apps").select("*");
 
 		return ctx.render(apps);
-	}
-}
+	},
+};
