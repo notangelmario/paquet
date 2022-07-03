@@ -8,14 +8,14 @@ export type App = {
     categoryId: string,
     description: string,
 
+    // DEPRECATED. To be removed
+    appStoreLink?: string,
+    playStoreLink?: string
+
     benchmarks?: {
         overall: number,
         performance: number,
         privacy: number,
         bestPractice: number
     }
-
-    // DEPRECATED
-    appStoreLink?: string,
-    playStoreLink?: string
 }
