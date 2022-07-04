@@ -33,19 +33,19 @@ export default function Category(props: PageProps<DataProps>) {
 				</Header>
 			</Container>
 			<Container disableGutters>
-			{props.data.apps.map(app => (
-				<a 
-					href={`/app/${app.id}`}
-					key={app.id}
-				>
-					<ListItem
-						button
-						image={app.iconUrl}
-						title={app.name}
-						subtitle={app.author}
-					/>
-				</a>
-			))}
+				{props.data.apps.map((app) => (
+					<a
+						href={`/app/${app.id}`}
+						key={app.id}
+					>
+						<ListItem
+							button
+							image={app.iconUrl}
+							title={app.name}
+							subtitle={app.author}
+						/>
+					</a>
+				))}
 			</Container>
 		</Root>
 	);

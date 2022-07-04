@@ -38,26 +38,31 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 					</Card>
 					<Card disableGutters>
 						{props.data.device.vendor &&
-							<ListItem
-								icon={props.data.device.type === "mobile" ? "smartphone" : "laptop_windows"}
-								title="Device"
-								subtitle={`${props.data.device.vendor} ${props.data.device.model}`}
-							/>				
-						}
+							(
+								<ListItem
+									icon={props.data.device.type === "mobile"
+										? "smartphone"
+										: "laptop_windows"}
+									title="Device"
+									subtitle={`${props.data.device.vendor} ${props.data.device.model}`}
+								/>
+							)}
 						{props.data.os.name &&
-							<ListItem
-								icon="device_hub"
-								title="OS"
-								subtitle={`${props.data.os.name} ${props.data.os.version}`}
-							/>						
-						}
-						{props.data.browser.name && 
-							<ListItem
-								icon="web"
-								title="Browser"
-								subtitle={`${props.data.browser.name} ${props.data.browser.version}`}
-							/>
-						}	
+							(
+								<ListItem
+									icon="device_hub"
+									title="OS"
+									subtitle={`${props.data.os.name} ${props.data.os.version}`}
+								/>
+							)}
+						{props.data.browser.name &&
+							(
+								<ListItem
+									icon="web"
+									title="Browser"
+									subtitle={`${props.data.browser.name} ${props.data.browser.version}`}
+								/>
+							)}
 					</Card>
 				</Stack>
 			</Container>

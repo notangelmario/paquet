@@ -14,10 +14,9 @@ import { getCategory } from "../../utils/categories.ts";
 
 export default function App(props: PageProps<App>) {
 	const onClick = () => {
-		console.log(1)
+		console.log(1);
 		window.open(props.data.url, "_blank");
-	}
-
+	};
 
 	return (
 		<Root>
