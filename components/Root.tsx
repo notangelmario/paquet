@@ -19,7 +19,8 @@ const Root = (props: { children: any }) => {
 				{/* @ts-ignore */}
 				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#8267be"/>
 				<meta name="msapplication-TileColor" content="#8267be"/>
-				<meta name="theme-color" content="#8267be"/>
+				<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#212121" />
+				<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff"/>
 
 				<title>Paquet</title>
 
