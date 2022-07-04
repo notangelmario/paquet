@@ -33,7 +33,7 @@ const Root = (props: Props) => {
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 				<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap"/>
 			</Head>
-			<main className={tw`dark:text-white`}>
+			<main className={tw`dark:text-white`} onTouchStart={"" as any}>
 				{props.children}
 			</main>
 		</Fragment>
