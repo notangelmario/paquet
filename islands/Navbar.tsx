@@ -12,7 +12,7 @@ type Props = {
 
 export default function Navbar(props: Props) {
 	const trigger = useScroll({
-		threshold: 32,
+		threshold: 16,
 	});
 
 	return (

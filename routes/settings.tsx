@@ -1,6 +1,6 @@
 /**@jsx h */
 import "dotenv";
-import Bowser from "bowser";
+import UAParser from "ua-parser-js";
 import { h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
@@ -15,7 +15,7 @@ import app from "@app";
 
 export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 	return (
-		<Root>
+		<Root enableFooter>
 			<Navbar back />
 			<Container>
 				<Stack>
@@ -37,11 +37,27 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 						/>
 					</Card>
 					<Card disableGutters>
-						<ListItem
-							icon="device_hub"
-							title="OS"
-							subtitle={props.data.os.name}
-						/>
+						{props.data.device.vendor &&
+							<ListItem
+								icon={props.data.device.type === "mobile" ? "smartphone" : "laptop_windows"}
+								title="Device"
+								subtitle={`${props.data.device.vendor} ${props.data.device.model}`}
+							/>				
+						}
+						{props.data.os.name &&
+							<ListItem
+								icon="device_hub"
+								title="OS"
+								subtitle={`${props.data.os.name} ${props.data.os.version}`}
+							/>						
+						}
+						{props.data.browser.name && 
+							<ListItem
+								icon="web"
+								title="Browser"
+								subtitle={`${props.data.browser.name} ${props.data.browser.version}`}
+							/>
+						}	
 					</Card>
 				</Stack>
 			</Container>
@@ -51,8 +67,10 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 
 export const handler: Handlers = {
 	GET(req, ctx) {
-		const browser = Bowser.getParser(req.headers.get("user-agent") || "");
+		const parser = new UAParser(req.headers.get("user-agent") || "");
 
-		return ctx.render(browser.getResult());
+		console.log(parser.getResult());
+
+		return ctx.render(parser.getResult());
 	},
 };
