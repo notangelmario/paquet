@@ -13,9 +13,9 @@ import Card from "../components/Card.tsx";
 import ListItem from "../components/ListItem.tsx";
 import app from "@app";
 
-export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
+export default function Settings(props: PageProps<UAParser.IResult>) {
 	return (
-		<Root enableFooter>
+		<Root>
 			<Navbar back />
 			<Container>
 				<Stack>
@@ -24,45 +24,25 @@ export default function Settings(props: PageProps<Bowser.Parser.ParsedResult>) {
 					</Header>
 					<Card disableGutters>
 						<ListItem
-							icon="toggle_on"
-							title="Environment"
-							subtitle={Deno.env.get("DENO_DEPLOYMENT_ID")
-								? "Production"
-								: "Development"}
-						/>
-						<ListItem
-							icon="conversion_path"
+							icon="info"
 							title="Version"
 							subtitle={app.version}
+							divider
 						/>
-					</Card>
-					<Card disableGutters>
-						{props.data.device.vendor &&
-							(
-								<ListItem
-									icon={props.data.device.type === "mobile"
-										? "smartphone"
-										: "laptop_windows"}
-									title="Device"
-									subtitle={`${props.data.device.vendor} ${props.data.device.model}`}
-								/>
-							)}
-						{props.data.os.name &&
-							(
-								<ListItem
-									icon="device_hub"
-									title="OS"
-									subtitle={`${props.data.os.name} ${props.data.os.version}`}
-								/>
-							)}
-						{props.data.browser.name &&
-							(
-								<ListItem
-									icon="web"
-									title="Browser"
-									subtitle={`${props.data.browser.name} ${props.data.browser.version}`}
-								/>
-							)}
+						<a 
+							href="https://github.com/notangelmario/paquet"
+							target="_blank"
+						>
+							<ListItem
+								button
+								title="GitHub"
+								subtitle="Star Paquet on GitHub"
+								image="/github.svg"
+								imageProps={{
+									className: tw`p-3`
+								}}
+							/>
+						</a>
 					</Card>
 				</Stack>
 			</Container>

@@ -14,7 +14,7 @@ export default function Card(props: Props & h.JSX.IntrinsicElements["div"]) {
 				`${tw`
 					bg-paper-light
 					dark:bg-paper-dark
-					${!props.disableGutters && "p-2"}
+					${!props.disableGutters && "p-4"}
 					rounded
 				`} 
 				${props.className || ""}

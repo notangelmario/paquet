@@ -11,6 +11,7 @@ import Container from "../../components/Container.tsx";
 import ListItem from "../../components/ListItem.tsx";
 import { getCategory } from "../../utils/categories.ts";
 import { supabase } from "../../utils/supabase.ts";
+import FewApps from "../../components/FewApps.tsx";
 
 type DataProps = {
 	category: Category;
@@ -46,6 +47,9 @@ export default function Category(props: PageProps<DataProps>) {
 						/>
 					</a>
 				))}
+			</Container>
+			<Container className={tw`mt-4`}>
+				<FewApps />
 			</Container>
 		</Root>
 	);

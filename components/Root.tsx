@@ -2,10 +2,8 @@
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { Head } from "$fresh/runtime.ts";
-import Footer from "./Footer.tsx";
 
 type Props = {
-	enableFooter?: boolean,
 	children?: any
 }
 
@@ -38,7 +36,6 @@ const Root = (props: Props) => {
 			<main className={tw`dark:text-white`}>
 				{props.children}
 			</main>
-			{props.enableFooter && <Footer />}
 		</Fragment>
 	)
 }

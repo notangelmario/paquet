@@ -22,7 +22,7 @@ export default function Navbar(props: Props) {
 					items-center justify-between
 					${
 				trigger &&
-				"border-b-1 border-opacity-25 border-black dark:border-paper-dark"
+				"border-b-1 border-opacity-25 border-black dark:(border-white border-opacity-25)"
 			}
 					px-2 py-2 z-50
 				`}

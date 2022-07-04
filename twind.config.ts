@@ -17,7 +17,7 @@ export const config: Configuration = {
 		  }
 		},
 		borderRadius: {
-		  DEFAULT: '18px'
+		  DEFAULT: '0.95rem'
 		},
 		container: {
 			center: true

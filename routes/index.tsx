@@ -12,6 +12,7 @@ import Navbar from "../islands/Navbar.tsx";
 import { categories, getCategory } from "../utils/categories.ts";
 import Button from "../components/Button.tsx";
 import ListItem from "../components/ListItem.tsx";
+import FewApps from "../components/FewApps.tsx";
 
 export default function Home(props: PageProps) {
 	return (
@@ -56,7 +57,7 @@ export default function Home(props: PageProps) {
 					))}
 				</div>
 				<Container disableGutters>
-					{props.data?.map((app: App) => (
+					{props.data?.map((app: App, idx: number) => (
 						<a href={`/app/${app.id}`}>
 							<ListItem
 								button
@@ -64,12 +65,16 @@ export default function Home(props: PageProps) {
 								image={app.iconUrl}
 								title={app.name}
 								subtitle={getCategory(app.categoryId)?.name}
+								divider={idx !== props.data.length - 1}
 							/>
 						</a>
 						// <AppListItem
 						// 	app={app}
 						// />
 					))}
+				</Container>
+				<Container className={tw`mt-4`}>
+					<FewApps />
 				</Container>
 			</Stack>
 		</Root>
