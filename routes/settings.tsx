@@ -39,7 +39,7 @@ export default function Settings(props: PageProps<UAParser.IResult>) {
 								subtitle="Star Paquet on GitHub"
 								image="/github.svg"
 								imageProps={{
-									className: tw`p-3`
+									className: tw`p-3 filter dark:invert`
 								}}
 							/>
 						</a>
