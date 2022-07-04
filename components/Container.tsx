@@ -10,7 +10,12 @@ const Container = (props: Props & h.JSX.IntrinsicElements["h1"]) => {
 	return (
 		<div
 			{...props}
-			className={`${tw`md:container ${!props.disableGutters && "px-4"}`} ${props.className || ""}`}
+			className={`${tw
+				`md:container
+
+				${!props.disableGutters && "px-4"}`} 
+				${props.className || ""}
+			`}
 		>
 			{props.children}
 		</div>

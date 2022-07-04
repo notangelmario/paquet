@@ -1,3 +1,4 @@
+
 html,
 body {
 	margin: 0;
@@ -6,12 +7,27 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	overflow-x: hidden;
+	background-color: "#fff";
 }
 
 @media (prefers-color-scheme: dark) {
 	html, body {
 		background-color: #212121
 	}
+}
+
+html { 
+	height: 100%;
+}
+
+body { 
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+main {
+	flex: 1;
 }
  
 *:not(body) {
