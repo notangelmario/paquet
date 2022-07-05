@@ -21,26 +21,26 @@ Welcome to your new web app shop!
 * 🎈 Easy to contribute to
 
 ## 🧰 Tools
-Paquet is built with a modern toolset in mind
+Paquet is built with a modern toolset in mind:
 - [Deno](https://deno.land)
 - [Fresh](https://fresh.deno.dev)
 - [Twind](https://twind.dev)
 - [Supabase](https://supabase.com)
 
-## 🤝 Contributing
+## :hammer: Run
+To run the app in dev mode:
+```
+deno task dev
+```
 
-### Quick start
-If you want to start contributing to this project as soon as possible, just press the <kbd>.</kbd> key on your keyboard
-
-### The good old way
-Classy, I like it. You can get started in just 3 easy steps:
-1. Fork this repo
-2. Clone it to you local machine
-3. Run `deno task dev`
-
-And that's it! You can start working on Paquet that easy
+To run the app in production mode:
+```
+deno task prod
+```
 
 ## ❓ FAQ
+* Why are there so few apps?
+	* Paquet is still growing, I am doing my best to add as many apps as possible.
 * How do I submit an app?
 	* Just drop an issue with the link to the web app you would like to see here.
 * What if my app is here and I don't like it?
