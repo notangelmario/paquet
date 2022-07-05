@@ -5,7 +5,7 @@ export const btn = apply`
 	  	cursor-pointer
 		betterhover:(hover:opacity-90 active:opacity-75)
 		active:opacity-75
-		transition-opacity duration-75 ease-in-out origin-center
+		transition-opacity duration-150 ease-in-out origin-center
 `;
 
 export const iconBtn = apply`

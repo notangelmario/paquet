@@ -2,7 +2,7 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { supabase } from "../../utils/supabase.ts";
+import { supabase } from "@supabase";
 
 import type { App } from "../../types/App.ts";
 import Root from "../../components/Root.tsx";

@@ -7,7 +7,6 @@ export default function FewApps() {
 	return (
 		<div
 			className={tw`
-				text-center
 				opacity-50
 			`}
 		>

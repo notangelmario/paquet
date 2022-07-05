@@ -54,8 +54,6 @@ export const handler: Handlers = {
 	GET(req, ctx) {
 		const parser = new UAParser(req.headers.get("user-agent") || "");
 
-		console.log(parser.getResult());
-
 		return ctx.render(parser.getResult());
 	},
 };

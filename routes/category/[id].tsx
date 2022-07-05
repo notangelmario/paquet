@@ -10,7 +10,7 @@ import Root from "../../components/Root.tsx";
 import Container from "../../components/Container.tsx";
 import ListItem from "../../components/ListItem.tsx";
 import { getCategory } from "../../utils/categories.ts";
-import { supabase } from "../../utils/supabase.ts";
+import { supabase } from "@supabase";
 import FewApps from "../../components/FewApps.tsx";
 
 type DataProps = {
