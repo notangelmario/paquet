@@ -36,6 +36,7 @@ const Root = (props: Props) => {
 			<main className={tw`dark:text-white`} onTouchStart={"" as any}>
 				{props.children}
 			</main>
+			{Deno.env.get("DENO_DEPLOYMENT_ID") && <script src="/registerSw.js"></script>}
 		</Fragment>
 	)
 }
