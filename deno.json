@@ -4,9 +4,9 @@
     "strict": true
   },
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts"
+    "start": "deno run -A --watch=src/static/,src/routes/ src/dev.ts"
   },
-  "importMap": "./import_map.json",
+  "importMap": "./src/import_map.json",
   "lint": {
     "files": {
       "include": ["routes/", "utils/", "islands/"]
