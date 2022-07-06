@@ -16,15 +16,13 @@ import FewApps from "../components/FewApps.tsx";
 import { useBrowserServerSide } from "../hooks/useBrowser.ts";
 
 type DataProps = {
-	apps: App[],
-	isIos: boolean
+	apps: App[];
 };
 
 export default function Home(props: PageProps<DataProps>) {
 	return (
 		<Root>
 			<Navbar
-				isIos={props.data.isIos}
 				rightIcon="settings"
 				rightIconHref="/settings"
 			/>
@@ -89,13 +87,11 @@ export default function Home(props: PageProps<DataProps>) {
 }
 
 export const handler: Handlers = {
-	async GET(req, ctx) {
-		const { isIos } = useBrowserServerSide(req);
+	async GET(_, ctx) {
 		const { data: apps } = await supabase.from("apps").select("*");
 
 		return ctx.render({
 			apps,
-			isIos
-		});
+		} as DataProps);
 	},
 };

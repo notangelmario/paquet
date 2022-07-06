@@ -14,15 +14,13 @@ import { getCategory } from "../../utils/categories.ts";
 import { useBrowserServerSide } from "../../hooks/useBrowser.ts";
 
 type DataProps = {
-	app: App,
-	isIos: boolean
+	app: App
 }
-
 
 export default function App(props: PageProps<DataProps>) {
 	return (
 		<Root>
-			<Navbar isIos={props.data.isIos} back />
+			<Navbar back />
 			<Container style={{ paddingTop: 64 }}>
 				<Stack>
 					<div className={tw`flex flex-row flex-wrap gap-4`}>
@@ -70,8 +68,6 @@ export default function App(props: PageProps<DataProps>) {
 
 export const handler: Handlers = {
 	async GET(req, ctx) {
-		const { isIos } = useBrowserServerSide(req);
-
 		const { data: app } = await supabase.from("apps").select("*").eq(
 			"id",
 			ctx.params.id,
@@ -81,8 +77,7 @@ export const handler: Handlers = {
 			return Response.redirect("/", 300);
 		}
 		return ctx.render({
-			app,
-			isIos
-		});
+			app
+		} as DataProps);
 	},
 };

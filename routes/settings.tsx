@@ -13,14 +13,11 @@ import Card from "../components/Card.tsx";
 import ListItem from "../components/ListItem.tsx";
 import app from "@app";
 
-type DataProps = {
-	isIos: boolean
-};
 
-export default function Settings(props: PageProps<DataProps>) {
+export default function Settings() {
 	return (
 		<Root>
-			<Navbar isIos={props.data.isIos} back />
+			<Navbar back />
 			<Container>
 				<Stack>
 					<Header>
@@ -53,13 +50,3 @@ export default function Settings(props: PageProps<DataProps>) {
 		</Root>
 	);
 }
-
-export const handler: Handlers = {
-	GET(req, ctx) {
-		const { isIos } = useBrowserServerSide(req);
-
-		return ctx.render({
-			isIos
-		});
-	},
-};

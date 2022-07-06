@@ -15,15 +15,14 @@ import FewApps from "../../components/FewApps.tsx";
 import { useBrowserServerSide } from "../../hooks/useBrowser.ts";
 
 type DataProps = {
-	category: Category,
-	apps: App[],
-	isIos: boolean
+	category: Category;
+	apps: App[];
 };
 
 export default function Category(props: PageProps<DataProps>) {
 	return (
 		<Root>
-			<Navbar isIos={props.data.isIos} back />
+			<Navbar back />
 			<Container>
 				<Header>
 					<span
@@ -59,8 +58,6 @@ export default function Category(props: PageProps<DataProps>) {
 
 export const handler: Handlers = {
 	async GET(req, ctx) {
-		const { isIos } = useBrowserServerSide(req);
-
 		const categoryId = ctx.params["id"];
 		const category = getCategory(categoryId);
 
@@ -80,7 +77,6 @@ export const handler: Handlers = {
 		return ctx.render({
 			category,
 			apps,
-			isIos
 		} as DataProps);
 	},
 };
