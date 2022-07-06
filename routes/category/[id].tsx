@@ -12,16 +12,18 @@ import ListItem from "../../components/ListItem.tsx";
 import { getCategory } from "../../utils/categories.ts";
 import { supabase } from "@supabase";
 import FewApps from "../../components/FewApps.tsx";
+import { useBrowserServerSide } from "../../hooks/useBrowser.ts";
 
 type DataProps = {
-	category: Category;
-	apps: App[];
+	category: Category,
+	apps: App[],
+	isIos: boolean
 };
 
 export default function Category(props: PageProps<DataProps>) {
 	return (
 		<Root>
-			<Navbar back />
+			<Navbar isIos={props.data.isIos} back />
 			<Container>
 				<Header>
 					<span
@@ -56,7 +58,9 @@ export default function Category(props: PageProps<DataProps>) {
 }
 
 export const handler: Handlers = {
-	async GET(_, ctx) {
+	async GET(req, ctx) {
+		const { isIos } = useBrowserServerSide(req);
+
 		const categoryId = ctx.params["id"];
 		const category = getCategory(categoryId);
 
@@ -76,6 +80,7 @@ export const handler: Handlers = {
 		return ctx.render({
 			category,
 			apps,
+			isIos
 		} as DataProps);
 	},
 };

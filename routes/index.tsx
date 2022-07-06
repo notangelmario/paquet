@@ -13,11 +13,18 @@ import { categories, getCategory } from "../utils/categories.ts";
 import Button from "../components/Button.tsx";
 import ListItem from "../components/ListItem.tsx";
 import FewApps from "../components/FewApps.tsx";
+import { useBrowserServerSide } from "../hooks/useBrowser.ts";
 
-export default function Home(props: PageProps) {
+type DataProps = {
+	apps: App[],
+	isIos: boolean
+};
+
+export default function Home(props: PageProps<DataProps>) {
 	return (
 		<Root>
 			<Navbar
+				isIos={props.data.isIos}
 				rightIcon="settings"
 				rightIconHref="/settings"
 			/>
@@ -57,7 +64,7 @@ export default function Home(props: PageProps) {
 					))}
 				</div>
 				<Container disableGutters>
-					{props.data?.map((app: App, idx: number) => (
+					{props.data.apps?.map((app: App, idx: number) => (
 						<a href={`/app/${app.id}`}>
 							<ListItem
 								button
@@ -65,7 +72,7 @@ export default function Home(props: PageProps) {
 								image={app.iconUrl}
 								title={app.name}
 								subtitle={getCategory(app.categoryId)?.name}
-								divider={idx !== props.data.length - 1}
+								divider={idx !== props.data.apps.length - 1}
 							/>
 						</a>
 						// <AppListItem
@@ -82,9 +89,13 @@ export default function Home(props: PageProps) {
 }
 
 export const handler: Handlers = {
-	async GET(_, ctx) {
+	async GET(req, ctx) {
+		const { isIos } = useBrowserServerSide(req);
 		const { data: apps } = await supabase.from("apps").select("*");
 
-		return ctx.render(apps);
+		return ctx.render({
+			apps,
+			isIos
+		});
 	},
 };

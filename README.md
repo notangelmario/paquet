@@ -30,12 +30,7 @@ Paquet is built with a modern toolset in mind:
 ## :hammer: Run
 To run the app in dev mode:
 ```
-deno task dev
-```
-
-To run the app in production mode:
-```
-deno task prod
+deno task start
 ```
 
 ## ❓ FAQ

@@ -19,6 +19,9 @@ export const config: Configuration = {
 		borderRadius: {
 		  DEFAULT: '0.95rem'
 		},
+		backdropBlur: {
+			DEFAULT: '16px'
+		},
 		container: {
 			center: true
 		},

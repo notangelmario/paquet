@@ -1,10 +1,10 @@
 /**@jsx h */
 import "dotenv";
-import UAParser from "ua-parser-js";
 import { h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Root from "../components/Root.tsx";
+import { useBrowserServerSide } from "../hooks/useBrowser.ts";
 import Header from "../components/Header.tsx";
 import Stack from "../components/Stack.tsx";
 import Container from "../components/Container.tsx";
@@ -13,10 +13,14 @@ import Card from "../components/Card.tsx";
 import ListItem from "../components/ListItem.tsx";
 import app from "@app";
 
-export default function Settings(props: PageProps<UAParser.IResult>) {
+type DataProps = {
+	isIos: boolean
+};
+
+export default function Settings(props: PageProps<DataProps>) {
 	return (
 		<Root>
-			<Navbar back />
+			<Navbar isIos={props.data.isIos} back />
 			<Container>
 				<Stack>
 					<Header>
@@ -52,8 +56,10 @@ export default function Settings(props: PageProps<UAParser.IResult>) {
 
 export const handler: Handlers = {
 	GET(req, ctx) {
-		const parser = new UAParser(req.headers.get("user-agent") || "");
+		const { isIos } = useBrowserServerSide(req);
 
-		return ctx.render(parser.getResult());
+		return ctx.render({
+			isIos
+		});
 	},
 };
