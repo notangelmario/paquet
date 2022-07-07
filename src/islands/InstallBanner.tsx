@@ -47,11 +47,11 @@ export default function InstallBanner(props: Props) {
 
 		if (props.isIos && props.browserName !== "Mobile Safari") {
 			return `
-			Unfortunately, Paquet on iOS only works in Safari.
-			Open Paquet in Safari and tap 
-			the <span class="${tw
-			`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
-			and tap "Add to Home Screen".
+				Unfortunately, Paquet on iOS only works in Safari.
+				Open Paquet in Safari and tap 
+				the <span class="${tw
+				`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
+				and tap "Add to Home Screen".
 			`;
 		}
 	};
