@@ -1,7 +1,8 @@
 <img
-	 src="/assets/rounded-logo.png"
-	 alt="Paquet logo"
-	 style="width: 128px"
+	align="right"
+	src="/assets/rounded-logo.png"
+	alt="Paquet logo"
+	height="150px"
 />
 
 # 📦 Paquet
