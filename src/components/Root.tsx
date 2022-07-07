@@ -1,4 +1,5 @@
 /**@jsx h */
+/**@jsxFrag Fragment */
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { Head } from "$fresh/runtime.ts";
@@ -9,7 +10,7 @@ type Props = {
 
 const Root = (props: Props) => {
 	return (
-		<Fragment>
+		<>
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 				<meta name="description" content="The web app store" />
@@ -37,7 +38,7 @@ const Root = (props: Props) => {
 				{props.children}
 			</main>
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && <script src="/registerSw.js"></script>}
-		</Fragment>
+		</>
 	)
 }
 

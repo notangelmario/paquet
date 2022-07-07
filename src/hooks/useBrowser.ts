@@ -1,9 +1,11 @@
 import UAParser from "ua-parser-js";
 import { useEffect, useState } from "preact/hooks";
 
+type BrowserDetails = {
+	isIos: boolean;
+}
 
-
-export const useBrowser = () => {
+export const useBrowser = (): BrowserDetails => {
 	const [result, setResult] = useState<UAParser.IResult>();
 
 	useEffect(() => {
@@ -17,7 +19,7 @@ export const useBrowser = () => {
 	}
 };
 
-export const useBrowserServerSide = (req: Request) => {
+export const useBrowserServerSide = (req: Request): BrowserDetails => {
 	const parser = new UAParser(req.headers.get("user-agent") || "");
 
 	return {

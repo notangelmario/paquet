@@ -13,10 +13,12 @@ import { categories, getCategory } from "../utils/categories.ts";
 import Button from "../components/Button.tsx";
 import ListItem from "../components/ListItem.tsx";
 import FewApps from "../components/FewApps.tsx";
-import { useBrowserServerSide } from "../hooks/useBrowser.ts";
+import InstallBanner from "../islands/InstallBanner.tsx";
+import { useInstalledServerSide } from "../hooks/useInstalled.ts";
 
 type DataProps = {
 	apps: App[];
+	installed: boolean;
 };
 
 export default function Home(props: PageProps<DataProps>) {
@@ -28,9 +30,10 @@ export default function Home(props: PageProps<DataProps>) {
 			/>
 			<Stack>
 				<Container>
-					<Header>
+					<Header className={tw`mb-2`}>
 						Home
 					</Header>
+					<InstallBanner installed={props.data.installed} />
 				</Container>
 				<div
 					className={tw`flex flex-row overflow-x-scroll md:container`}
@@ -87,11 +90,13 @@ export default function Home(props: PageProps<DataProps>) {
 }
 
 export const handler: Handlers = {
-	async GET(_, ctx) {
+	async GET(req, ctx) {
+		const installed = useInstalledServerSide(req);
 		const { data: apps } = await supabase.from("apps").select("*");
 
 		return ctx.render({
 			apps,
+			installed
 		} as DataProps);
 	},
 };
