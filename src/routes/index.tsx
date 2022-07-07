@@ -30,13 +30,13 @@ export default function Home(props: PageProps<DataProps>) {
 			/>
 			<Stack>
 				<Container>
-					<Header className={tw`mb-2`}>
+					<Header class={tw`mb-2`}>
 						Home
 					</Header>
-					<InstallBanner installed={props.data.installed} />
+					<InstallBanner initialInstalled={props.data.installed} />
 				</Container>
 				<div
-					className={tw`flex flex-row overflow-x-scroll md:container`}
+					class={tw`flex flex-row overflow-x-scroll md:container`}
 					style={{
 						scrollSnapType: "x mandatory",
 					}}
@@ -45,7 +45,7 @@ export default function Home(props: PageProps<DataProps>) {
 						<a
 							key={category.id}
 							href={`/category/${category.id}`}
-							className={tw`${
+							class={tw`${
 								idx === 0
 									? `!pl-4 md:pl-0`
 									: idx === categories.length - 1
@@ -81,7 +81,7 @@ export default function Home(props: PageProps<DataProps>) {
 						// />
 					))}
 				</Container>
-				<Container className={tw`mt-4`}>
+				<Container class={tw`mt-4`}>
 					<FewApps />
 				</Container>
 			</Stack>
@@ -96,7 +96,7 @@ export const handler: Handlers = {
 
 		return ctx.render({
 			apps,
-			installed
+			installed,
 		} as DataProps);
 	},
 };

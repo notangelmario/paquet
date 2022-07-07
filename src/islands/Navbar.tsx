@@ -17,31 +17,34 @@ export default function Navbar(props: Props) {
 
 	return (
 		<div
-			className={tw`
+			class={tw`
 					fixed flex w-full bg-white dark:bg-dark
 					-top-px left-0 right-0
 					items-center justify-between
 					
-					${trigger && "border-b-1 border-opacity-25 border-black dark:(border-white border-opacity-25)"}
+					${
+				trigger &&
+				"border-b-1 border-opacity-25 border-black dark:(border-white border-opacity-25)"
+			}
 
-					px-2 py-2 z-50
+					px-2 py-2 z-40
 				`}
 		>
 			<div>
 				{props.back && (
 					<button
-						className={tw(iconBtn)}
+						class={tw(iconBtn)}
 						onClick={() => history.back()}
 					>
-						<span className="material-symbols-outlined">
+						<span class="material-symbols-outlined">
 							arrow_back
 						</span>
 					</button>
 				)}
 			</div>
 			<div>
-				<a className={tw(iconBtn)} href={props.rightIconHref}>
-					<span className="material-symbols-outlined">
+				<a class={tw(iconBtn)} href={props.rightIconHref}>
+					<span class="material-symbols-outlined">
 						{props.rightIcon}
 					</span>
 				</a>

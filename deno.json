@@ -9,7 +9,7 @@
   "importMap": "./src/import_map.json",
   "lint": {
     "files": {
-      "include": ["routes/", "utils/", "islands/"]
+      "include": ["src/routes/", "src/utils/", "src/islands/"]
     },
     "rules": {
       "tags": ["recommended"],
@@ -19,7 +19,7 @@
   },
   "fmt": {
     "files": {
-      "include": ["routes/", "utils/", "islands/"]
+      "include": ["src/routes/", "src/utils/", "src/islands/"]
     },
     "options": {
       "useTabs": true,

@@ -3,6 +3,7 @@ import { useEffect, useState } from "preact/hooks";
 
 type BrowserDetails = {
 	isIos: boolean;
+	browserName: string | undefined;
 }
 
 export const useBrowser = (): BrowserDetails => {
@@ -16,13 +17,17 @@ export const useBrowser = (): BrowserDetails => {
 
 	return {
 		isIos: result?.os.name === "iOS",
+		browserName: result?.browser.name,
 	}
 };
 
 export const useBrowserServerSide = (req: Request): BrowserDetails => {
 	const parser = new UAParser(req.headers.get("user-agent") || "");
+	const result = parser.getResult();
+
 
 	return {
-		isIos: parser.getOS().name === "iOS",
+		isIos: result?.os.name === "iOS",
+		browserName: result?.browser.name,
 	}
 }

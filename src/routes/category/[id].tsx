@@ -26,7 +26,7 @@ export default function Category(props: PageProps<DataProps>) {
 			<Container>
 				<Header>
 					<span
-						className={tw`text-5xl material-symbols-outlined`}
+						class={tw`text-5xl material-symbols-outlined`}
 					>
 						{props.data.category.icon}
 					</span>
@@ -49,7 +49,7 @@ export default function Category(props: PageProps<DataProps>) {
 					</a>
 				))}
 			</Container>
-			<Container className={tw`mt-4`}>
+			<Container class={tw`mt-4`}>
 				<FewApps />
 			</Container>
 		</Root>

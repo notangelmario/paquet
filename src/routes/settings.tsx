@@ -11,7 +11,6 @@ import Card from "../components/Card.tsx";
 import ListItem from "../components/ListItem.tsx";
 import app from "@app";
 
-
 export default function Settings() {
 	return (
 		<Root>
@@ -28,7 +27,7 @@ export default function Settings() {
 							subtitle={app.version}
 							divider
 						/>
-						<a 
+						<a
 							href="https://github.com/notangelmario/paquet"
 							target="_blank"
 						>
@@ -38,7 +37,7 @@ export default function Settings() {
 								subtitle="Star Paquet on GitHub"
 								image="/github.svg"
 								imageProps={{
-									className: tw`p-3 filter dark:invert`
+									class: tw`p-3 filter dark:invert`,
 								}}
 							/>
 						</a>

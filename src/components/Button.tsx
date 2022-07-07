@@ -14,7 +14,7 @@ export default function Button(props: Props & h.JSX.IntrinsicElements["button"])
 	return (
 		<button
 			{...props}
-			className={tw`
+			class={tw`
 				${!props.disabled && btn}
 				rounded px-8 py-2
 				border-current
@@ -23,12 +23,12 @@ export default function Button(props: Props & h.JSX.IntrinsicElements["button"])
 				${props.disabled ? "opacity-25 cursor-not-allowed" : ""}
 
 				${props.fullWidth ? "w-full" : ""}
-				${props.className || ""}
+				${props.class || ""}
 			`}
 		>
 			{props.icon && 
 				<span 
-					className={tw`align-middle text-base material-symbols-outlined`}
+					class={tw`align-middle text-base material-symbols-outlined`}
 				>
 					{props.icon}
 				</span>

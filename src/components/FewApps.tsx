@@ -6,12 +6,12 @@ import { tw } from "@twind";
 export default function FewApps() {
 	return (
 		<div
-			className={tw`
+			class={tw`
 				opacity-50
 			`}
 		>
 			<h1
-				className={tw`
+				class={tw`
 					text-2xl
 				`}
 			>

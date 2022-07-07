@@ -10,14 +10,14 @@ type Props = {
 export default function Card(props: Props & h.JSX.IntrinsicElements["div"]) {
 	return (
 		<div
-			className={
+			class={
 				`${tw`
 					bg-paper-light
 					dark:bg-paper-dark
 					${!props.disableGutters && "p-4"}
 					rounded
 				`} 
-				${props.className || ""}
+				${props.class || ""}
 			`}
 		>
 			{props.children}

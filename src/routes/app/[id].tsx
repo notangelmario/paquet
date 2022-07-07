@@ -14,8 +14,8 @@ import { getCategory } from "../../utils/categories.ts";
 import { useBrowserServerSide } from "../../hooks/useBrowser.ts";
 
 type DataProps = {
-	app: App
-}
+	app: App;
+};
 
 export default function App(props: PageProps<DataProps>) {
 	return (
@@ -23,21 +23,21 @@ export default function App(props: PageProps<DataProps>) {
 			<Navbar back />
 			<Container style={{ paddingTop: 64 }}>
 				<Stack>
-					<div className={tw`flex flex-row flex-wrap gap-4`}>
+					<div class={tw`flex flex-row flex-wrap gap-4`}>
 						<img
-							className={tw`rounded w-20 h-20`}
+							class={tw`rounded w-20 h-20`}
 							src={props.data.app.iconUrl}
 						/>
-						<div className={tw`flex-1`}>
-							<h2 className={tw`text-3xl`}>
+						<div class={tw`flex-1`}>
+							<h2 class={tw`text-3xl`}>
 								{props.data.app.name}
 							</h2>
-							<p className={tw`opacity-50`}>
+							<p class={tw`opacity-50`}>
 								{props.data.app.author} &middot;{" "}
 								{getCategory(props.data.app.categoryId)?.name}
 							</p>
 						</div>
-						<div className={tw`min-w-full sm:min-w-[30%]`}>
+						<div class={tw`min-w-full sm:min-w-[30%]`}>
 							<a
 								href={props.data.app.url}
 								target="_blank"
@@ -53,7 +53,7 @@ export default function App(props: PageProps<DataProps>) {
 						</div>
 					</div>
 					<div>
-						<h3 className={tw`text-2xl`}>
+						<h3 class={tw`text-2xl`}>
 							About
 						</h3>
 						<p>
@@ -77,7 +77,7 @@ export const handler: Handlers = {
 			return Response.redirect("/", 300);
 		}
 		return ctx.render({
-			app
+			app,
 		} as DataProps);
 	},
 };

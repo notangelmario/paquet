@@ -5,6 +5,7 @@ export const useInstalled = (initial?: boolean): boolean => {
 	if (initial !== undefined && !IS_BROWSER) {
 		return initial;
 	}
+
 	return IS_BROWSER && window.matchMedia("(display-mode: standalone)").matches;
 }
 
