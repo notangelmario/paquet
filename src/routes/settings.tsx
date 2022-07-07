@@ -2,9 +2,7 @@
 import "dotenv";
 import { h } from "preact";
 import { tw } from "@twind";
-import { Handlers, PageProps } from "$fresh/server.ts";
 import Root from "../components/Root.tsx";
-import { useBrowserServerSide } from "../hooks/useBrowser.ts";
 import Header from "../components/Header.tsx";
 import Stack from "../components/Stack.tsx";
 import Container from "../components/Container.tsx";
