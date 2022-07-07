@@ -36,7 +36,7 @@ export default function InstallBanner(props: Props) {
 	};
 
 	const installInstructions = (props: typeof clientBrowser) => {
-		if (props.isIos && props.browserName === "Safari") {
+		if (props.isIos && props.browserName === "Mobile Safari") {
 			return `
 				Add Paquet by tapping
 				the <span class="${tw
@@ -45,7 +45,7 @@ export default function InstallBanner(props: Props) {
 			`;
 		}
 
-		if (props.isIos && props.browserName !== "Safari") {
+		if (props.isIos && props.browserName !== "Mobile Safari") {
 			return `
 			Unfortunately, Paquet on iOS only works in Safari.
 			Open Paquet in Safari and tap 
