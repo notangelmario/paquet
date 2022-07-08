@@ -39,7 +39,9 @@ const ListItem  = ({ button, icon, image, title, subtitle, imageProps, divider }
 							width="48px"
 							height="48px"
 							{...imageProps}
-							class={tw`rounded mr-4 ${imageProps?.class || ""}`}						
+							class={tw` 
+								rounded mr-4 ${imageProps?.class || ""}
+							`}						
 						/>
 					: null
 				}

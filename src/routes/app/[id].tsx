@@ -25,7 +25,9 @@ export default function App(props: PageProps<DataProps>) {
 				<Stack>
 					<div class={tw`flex flex-row flex-wrap gap-4`}>
 						<img
-							class={tw`rounded w-20 h-20`}
+							class={tw`
+								rounded w-20 h-20
+							`}
 							src={props.data.app.iconUrl}
 						/>
 						<div class={tw`flex-1`}>
