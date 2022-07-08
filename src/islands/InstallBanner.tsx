@@ -8,7 +8,7 @@ declare global {
 	}
 }
 
-import { h } from "preact";
+import { h, Fragment } from "preact";
 import { useState } from "preact/hooks";
 import Button from "../components/Button.tsx";
 import Card from "../components/Card.tsx";
@@ -56,44 +56,39 @@ export default function InstallBanner(props: Props) {
 		}
 	};
 
-	return (
-		// Div is required! The island crashes
-		<div>
-			{!installed && (
-				<Card
-					class={tw
-						`!bg-gradient-to-bl from-primary to-secondary !text-white`}
+	return !installed ? (
+		<Card
+			class={tw
+				`!bg-gradient-to-bl from-primary to-secondary !text-white`}
+		>
+			<Stack>
+				<h2 class={tw`text-xl`}>Install</h2>
+				<p>
+					It looks like Paquet isn't installed yet. You can
+					install it by clicking the button below.
+				</p>
+				<Button
+					fullWidth
+					outlined
+					onClick={onClickInstall}
+					icon="add_to_home_screen"
 				>
-					<Stack>
-						<h2 class={tw`text-xl`}>Install</h2>
-						<p>
-							It looks like Paquet isn't installed yet. You can
-							install it by clicking the button below.
-						</p>
-						<Button
-							fullWidth
-							outlined
-							onClick={onClickInstall}
-							icon="add_to_home_screen"
-						>
-							Install
-						</Button>
-					</Stack>
-					<Dialog
-						title="Install Paquet"
-						content={installInstructions(clientBrowser)}
-						open={dialogOpen}
-						setOpen={setDialogOpen}
-						buttons={[
-							{
-								outlined: true,
-								text: "OK",
-								onClick: () => setDialogOpen(false),
-							},
-						]}
-					/>
-				</Card>
-			)}
-		</div>
-	);
+					Install
+				</Button>
+			</Stack>
+			<Dialog
+				title="Install Paquet"
+				content={installInstructions(clientBrowser)}
+				open={dialogOpen}
+				setOpen={setDialogOpen}
+				buttons={[
+					{
+						outlined: true,
+						text: "OK",
+						onClick: () => setDialogOpen(false),
+					},
+				]}
+			/>
+		</Card>
+	) : <div class={tw`-mb-2`}/>;
 }

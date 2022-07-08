@@ -15,6 +15,7 @@ import ListItem from "../components/ListItem.tsx";
 import FewApps from "../components/FewApps.tsx";
 import InstallBanner from "../islands/InstallBanner.tsx";
 import { useInstalledServerSide } from "../hooks/useInstalled.ts";
+import SearchBox from "../components/SearchBox.tsx";
 
 type DataProps = {
 	apps: App[];
@@ -30,10 +31,13 @@ export default function Home(props: PageProps<DataProps>) {
 			/>
 			<Stack>
 				<Container>
-					<Header class={tw`mb-2`}>
-						Home
-					</Header>
-					<InstallBanner initialInstalled={props.data.installed} />
+					<Stack>
+						<Header>
+							Home
+						</Header>
+						<SearchBox />
+						<InstallBanner initialInstalled={props.data.installed} />
+					</Stack>
 				</Container>
 				<div
 					class={tw`flex flex-row overflow-x-scroll md:container`}
