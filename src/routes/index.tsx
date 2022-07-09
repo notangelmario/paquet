@@ -55,7 +55,7 @@ export default function Home(props: PageProps<DataProps>) {
 									: idx === categories.length - 1
 									? `!pr-4 md:pr-0`
 									: ""
-							} pl-2`}
+							} pl-4`}
 							style={{
 								scrollSnapAlign: "start",
 							}}
