@@ -2,10 +2,15 @@
 import { h } from "preact";
 import { tw } from "@twind";
 
+type Props = {
+	text?: string;
+}
 
-export default function SearchBox() {
+export default function SearchBox(props?: Props) {
 	return (
-		<div
+		<form
+			action="/search"
+			method="GET"
 			class={tw`
 				flex flex-row
 				items-center justify-between
@@ -23,6 +28,9 @@ export default function SearchBox() {
 				search
 			</span>
 			<input
+				autocomplete="off"
+				name="q"
+				value={props?.text}
 				type="text"
 				placeholder="Search"
 				class={tw`
@@ -31,10 +39,8 @@ export default function SearchBox() {
 					border-none
 					outline-none
 					text-black dark:text-white
-					text-opacity-50
-					
 				`}
 			/>
-		</div>
+		</form>
 	)
 }
