@@ -50,9 +50,7 @@ export default function Home(props: PageProps<DataProps>) {
 							key={category.id}
 							href={`/category/${category.id}`}
 							class={tw`${
-								idx === 0
-									? `!pl-4 md:pl-0`
-									: idx === categories.length - 1
+								idx === categories.length - 1
 									? `!pr-4 md:pr-0`
 									: ""
 							} pl-4`}
