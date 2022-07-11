@@ -4,14 +4,24 @@ import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { useEffect, useState } from "preact/hooks";
 import SearchBox from "../components/SearchBox.tsx";
+import { useDebounce } from "../hooks/useDebounce.ts";
 
 
 export default function Search() {
 	const [ open, setOpen ] = useState(false);
+	const [ searchTerm, setSearchTerm ] = useState("");
+	const debouncedValue = useDebounce(searchTerm, 500);
+	
+	useEffect(() => {
+		if (debouncedValue) {
+			console.log("Searching for:", debouncedValue);
+		}
+	}, [ debouncedValue ]);
 	
 	useEffect(() => {
 		if (open) {
 			document.documentElement.style.overflow = "hidden";
+			window.scrollTo(0, 64);
 		} else {
 			document.documentElement.style.overflow = "";
 		}
@@ -37,10 +47,13 @@ export default function Search() {
 			>
 			</div>
 			<SearchBox
-				class={tw`z-50`}
+				class={tw`${open && "z-50"}`}
 				inputProps={{
 					onFocus: () => setOpen(true),
 					onBlur: () => setOpen(false),
+
+					value: searchTerm,
+					onInput: (e) => setSearchTerm((e.target as HTMLInputElement).value),
 				}}
 			/>
 		</>

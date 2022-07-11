@@ -27,7 +27,7 @@ export default function Navbar(props: Props) {
 				"border-b-1 border-opacity-25 border-black dark:(border-white border-opacity-25)"
 			}
 
-					px-2 py-2 z-40
+					px-2 py-2 z-30
 				`}
 		>
 			<div>
