@@ -4,12 +4,16 @@ import { tw } from "@twind";
 
 type Props = {
 	text?: string;
+	resetButton?: boolean;
+	onReset?: () => void;
 	inputProps?: h.JSX.IntrinsicElements["input"];
+	inputRef?: h.JSX.IntrinsicElements["input"]["ref"];
 }
 
 export default function SearchBox(props?: Props & h.JSX.HTMLAttributes<HTMLDivElement>) {
 	return (
 		<div
+			{...props}
 			class={tw`
 				flex flex-row
 				items-center justify-between
@@ -28,6 +32,7 @@ export default function SearchBox(props?: Props & h.JSX.HTMLAttributes<HTMLDivEl
 				search
 			</span>
 			<input
+				ref={props?.inputRef}
 				autocomplete="off"
 				name="q"
 				value={props?.text}
@@ -43,6 +48,17 @@ export default function SearchBox(props?: Props & h.JSX.HTMLAttributes<HTMLDivEl
 					${props?.inputProps?.class || ""}
 				`}
 			/>
+			{props?.resetButton && (
+				<span
+					class={tw`
+						material-symbols-outlined
+						p-2
+					`}
+					onClick={props.onReset}
+				>
+					close
+				</span>
+			)}
 		</div>
 	)
 }

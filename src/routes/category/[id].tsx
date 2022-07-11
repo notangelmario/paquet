@@ -1,5 +1,6 @@
 /**@jsx h */
-import { h } from "preact";
+/**@jsxFrag Fragment */
+import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import type { Handlers, PageProps } from "$fresh/server.ts";
 import type { Category } from "../../types/Category.ts";
@@ -21,7 +22,7 @@ type DataProps = {
 
 export default function Category(props: PageProps<DataProps>) {
 	return (
-		<Root>
+		<>
 			<Navbar back />
 			<Container>
 				<Header>
@@ -52,7 +53,7 @@ export default function Category(props: PageProps<DataProps>) {
 			<Container class={tw`mt-4`}>
 				<FewApps />
 			</Container>
-		</Root>
+		</>
 	);
 }
 

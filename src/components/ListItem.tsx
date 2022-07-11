@@ -1,5 +1,6 @@
 /**@jsx h */
-import { h } from "preact";
+/**@jsxFrag Fragment */
+import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { btn } from "../utils/sharedUi.ts";
 
@@ -16,7 +17,7 @@ type Props = {
 
 const ListItem  = ({ button, icon, image, title, subtitle, imageProps, divider }: Props) => {
 	return (
-		<div>
+		<>
 			<div
 				class={
 					tw`
@@ -40,7 +41,7 @@ const ListItem  = ({ button, icon, image, title, subtitle, imageProps, divider }
 							height="48px"
 							{...imageProps}
 							class={tw` 
-								rounded mr-4 ${imageProps?.class || ""}
+								w-12 h-12 rounded mr-4 ${imageProps?.class || ""}
 							`}						
 						/>
 					: null
@@ -58,7 +59,7 @@ const ListItem  = ({ button, icon, image, title, subtitle, imageProps, divider }
 			{divider &&
 				<hr class={tw`border-t-1 border-black border-opacity-25 dark:(!border-white !border-opacity-25) mx-4`} />
 			}
-		</div>
+		</>
 	)
 }
 

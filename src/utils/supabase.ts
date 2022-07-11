@@ -1,7 +1,10 @@
 import "dotenv";
 import { createClient } from "supabase";
 
+const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
+const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY") || "";
+
 export const supabase = createClient(
-	Deno.env.get("SUPABASE_URL") || "",
-	Deno.env.get("SUPABASE_ANON_KEY") || "",
+	SUPABASE_URL,
+	SUPABASE_ANON_KEY,
 );

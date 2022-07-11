@@ -1,8 +1,8 @@
-/** @jsx h */
-import { h } from "preact";
+/**@jsx h */
+/**@jsxFrag Fragment */
+import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import Root from "../components/Root.tsx";
 import Header from "../components/Header.tsx";
 import Stack from "../components/Stack.tsx";
 import Container from "../components/Container.tsx";
@@ -24,7 +24,7 @@ type DataProps = {
 
 export default function Home(props: PageProps<DataProps>) {
 	return (
-		<Root>
+		<>
 			<Navbar
 				rightIcon="settings"
 				rightIconHref="/settings"
@@ -87,7 +87,7 @@ export default function Home(props: PageProps<DataProps>) {
 					<FewApps />
 				</Container>
 			</Stack>
-		</Root>
+		</>
 	);
 }
 

@@ -1,6 +1,7 @@
 /**@jsx h */
+/**@jsxFrag Fragment */
 import "dotenv";
-import { h } from "preact";
+import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import Root from "../components/Root.tsx";
 import Header from "../components/Header.tsx";
@@ -13,7 +14,7 @@ import app from "@app";
 
 export default function Settings() {
 	return (
-		<Root>
+		<>
 			<Navbar back />
 			<Container>
 				<Stack>
@@ -44,6 +45,6 @@ export default function Settings() {
 					</Card>
 				</Stack>
 			</Container>
-		</Root>
+		</>
 	);
 }

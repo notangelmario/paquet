@@ -1,5 +1,6 @@
 /**@jsx h */
-import { h } from "preact";
+/**@jsxFrag Fragment */
+import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { supabase } from "@supabase";
@@ -19,7 +20,7 @@ type DataProps = {
 
 export default function App(props: PageProps<DataProps>) {
 	return (
-		<Root>
+		<>
 			<Navbar back />
 			<Container style={{ paddingTop: 64 }}>
 				<Stack>
@@ -64,7 +65,7 @@ export default function App(props: PageProps<DataProps>) {
 					</div>
 				</Stack>
 			</Container>
-		</Root>
+		</>
 	);
 }
 
