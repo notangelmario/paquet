@@ -34,7 +34,8 @@ export default function App(props: AppProps) {
 				{/* @ts-ignore */}
 				<link rel="preload" as="style" onLoad="this.rel = 'stylesheet'" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap"/>
 			</Head>
-			<main class={tw`dark:text-white`} onTouchStart={"" as any}>
+			{/* @ts-ignore */}
+			<main class={tw`dark:text-white`} onTouchStart="">
 				<props.Component/>
 			</main>
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && <script src="/registerSw.js"></script>}

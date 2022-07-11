@@ -3,6 +3,7 @@
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { useDebounce } from "../hooks/useDebounce.ts";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 import type { App } from "../types/App.ts";
 import { useEffect, useState, useRef } from "preact/hooks";
 import SearchBox from "../components/SearchBox.tsx";
@@ -18,6 +19,12 @@ export default function Search() {
 	const searchRef = useRef<HTMLInputElement>(null);
 	const debouncedValue = useDebounce(searchTerm, 500);
 	
+	const onReset = () => {
+		setSearchTerm("");
+		searchRef.current?.blur();
+		setOpen(false);
+	}
+
 	useEffect(() => {
 		(async () => {
 			if (debouncedValue) {
@@ -60,6 +67,7 @@ export default function Search() {
 				<Container>
 					<SearchBox
 						resetButton
+						onReset={onReset}
 						inputRef={searchRef}
 						inputProps={{
 							onFocus: () => setOpen(true),
@@ -75,11 +83,6 @@ export default function Search() {
 							mt-4
 						`}
 					>
-						{!searchTerm && (
-							<p class={tw`opacity-50 text-center`}>
-								Search for an app...
-							</p>
-						)}
 						{apps.length > 0 && apps.map((app, idx) => (
 							<a href={`/app/${app.id}`}>
 								<ListItem
@@ -98,6 +101,7 @@ export default function Search() {
 				class={tw`${open && "opacity-0"}`}
 				inputProps={{
 					class: tw`opacity-50`,
+					disabled: !IS_BROWSER
 				}}
 				text={searchTerm}
 				onClick={() => {

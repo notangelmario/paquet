@@ -44,6 +44,10 @@ export default function SearchBox(props?: Props & h.JSX.HTMLAttributes<HTMLDivEl
 					bg-transparent
 					border-none
 					outline-none
+					placeholder-black
+					dark:placeholder-white
+					placeholder-opacity-50
+					focus:placeholder-opacity-50
 					text-black dark:text-white
 					${props?.inputProps?.class || ""}
 				`}
