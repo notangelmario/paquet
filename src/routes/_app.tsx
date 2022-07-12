@@ -39,7 +39,6 @@ export default function App(props: AppProps) {
 				<props.Component/>
 			</main>
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && <script src="/registerSw.js"></script>}
-			<script type="module" src="/supabase.js"></script>
 		</html>
 	)
 }
