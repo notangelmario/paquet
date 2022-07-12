@@ -27,9 +27,14 @@ export default function Search(props: PageProps<DataProps>) {
 					mt-16
 				`}
 			>
-				<SearchBar
-					text={props.url.searchParams.get("q") || ""}
-				/>
+				<form
+					action="/search"
+					method="GET"
+				>
+					<SearchBar
+						text={props.url.searchParams.get("q") || ""}
+					/>
+				</form>
 			</Container>
 			<Container
 				disableGutters
