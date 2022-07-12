@@ -1,11 +1,11 @@
 /**@jsx h */
-import { h } from "preact";
+/**@jsxFrag Fragment */
+import { h, Fragment} from "preact";
 import { tw } from "@twind";
 import type { Handlers, PageProps } from "$fresh/server.ts"
 import type { App } from "../types/App.ts";
 import { supabase } from "@supabase";
 import { getCategory } from "../utils/categories.ts";
-import Root from "../components/Root.tsx";
 import Stack from "../components/Stack.tsx";
 import ListItem from "../components/ListItem.tsx";
 import Navbar from "../islands/Navbar.tsx";
@@ -18,7 +18,7 @@ type DataProps = {
 
 export default function Search(props: PageProps<DataProps>) {
 	return (
-		<Root>
+		<>
 			<Navbar
 				back
 			/>
@@ -57,7 +57,7 @@ export default function Search(props: PageProps<DataProps>) {
 					))}
 				</Stack>
 			</Container>
-		</Root>
+		</>
 	)
 }
 
