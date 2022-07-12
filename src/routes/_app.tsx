@@ -11,7 +11,6 @@ export default function App(props: AppProps) {
 		<html>
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-				<meta name="description" content="The web app store" />
 				<link rel="apple-touch-icon" href="/icon.png" />
 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 				<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -20,10 +19,14 @@ export default function App(props: AppProps) {
 				{/* @ts-ignore */}
 				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#8267be"/>
 				<meta name="msapplication-TileColor" content="#8267be"/>
+				<meta name="color-scheme" content="light dark" />
 				<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#212121" />
 				<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff"/>
 
 				<title>Paquet</title>
+				<meta name="author" content="Savin Angel-Mario" />
+				<meta name="description" content="The web app store" />
+
 
 				<link href="/global.css" rel="stylesheet"/>
 				<link rel="preconnect" href="https://fonts.googleapis.com"/>
