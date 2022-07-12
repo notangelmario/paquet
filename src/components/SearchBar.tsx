@@ -10,7 +10,7 @@ type Props = {
 	inputRef?: h.JSX.IntrinsicElements["input"]["ref"];
 }
 
-export default function SearchBox(props?: Props & h.JSX.HTMLAttributes<HTMLDivElement>) {
+export default function SearchBar(props?: Props & h.JSX.HTMLAttributes<HTMLDivElement>) {
 	return (
 		<div
 			{...props}
@@ -37,32 +37,17 @@ export default function SearchBox(props?: Props & h.JSX.HTMLAttributes<HTMLDivEl
 				name="q"
 				value={props?.text}
 				type="text"
-				placeholder="Search"
+				placeholder="Search for an app..."
 				{...props?.inputProps}
 				class={tw`
 					p-2 w-full
 					bg-transparent
 					border-none
 					outline-none
-					placeholder-black
-					dark:placeholder-white
-					placeholder-opacity-50
-					focus:placeholder-opacity-50
 					text-black dark:text-white
 					${props?.inputProps?.class || ""}
 				`}
 			/>
-			{props?.resetButton && (
-				<span
-					class={tw`
-						material-symbols-outlined
-						p-2
-					`}
-					onClick={props.onReset}
-				>
-					close
-				</span>
-			)}
 		</div>
 	)
 }

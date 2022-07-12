@@ -20,7 +20,7 @@ export default function Navbar(props: Props) {
 			class={tw`
 					fixed flex w-full bg-white dark:bg-dark
 					-top-px left-0 right-0
-					items-center justify-between
+					items-center content-center
 					
 					${
 				trigger &&
@@ -42,13 +42,13 @@ export default function Navbar(props: Props) {
 					</button>
 				)}
 			</div>
-			<div>
-				<a class={tw(iconBtn)} href={props.rightIconHref}>
+			{props.rightIcon && (
+				<a class={tw`${iconBtn} ml-auto`} href={props.rightIconHref}>
 					<span class="material-symbols-outlined">
 						{props.rightIcon}
 					</span>
 				</a>
-			</div>
+			)}
 		</div>
 	);
 }

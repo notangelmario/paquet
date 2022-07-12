@@ -14,8 +14,8 @@ import Button from "../components/Button.tsx";
 import ListItem from "../components/ListItem.tsx";
 import FewApps from "../components/FewApps.tsx";
 import InstallBanner from "../islands/InstallBanner.tsx";
+import SearchBar from "../components/SearchBar.tsx";
 import { useInstalledServerSide } from "../hooks/useInstalled.ts";
-import Search from "../islands/Search.tsx";
 
 type DataProps = {
 	apps: App[];
@@ -35,7 +35,12 @@ export default function Home(props: PageProps<DataProps>) {
 						<Header>
 							Home
 						</Header>
-						<Search />
+						<form
+							action="/search"
+							method="GET"
+						>
+							<SearchBar />
+						</form>
 						<InstallBanner initialInstalled={props.data.installed} />
 					</Stack>
 				</Container>
