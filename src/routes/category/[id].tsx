@@ -7,13 +7,11 @@ import type { Category } from "../../types/Category.ts";
 import type { App } from "../../types/App.ts";
 import Navbar from "../../islands/Navbar.tsx";
 import Header from "../../components/Header.tsx";
-import Root from "../../components/Root.tsx";
 import Container from "../../components/Container.tsx";
 import ListItem from "../../components/ListItem.tsx";
 import { getCategory } from "../../utils/categories.ts";
 import { supabase } from "@supabase";
 import FewApps from "../../components/FewApps.tsx";
-import { useBrowserServerSide } from "../../hooks/useBrowser.ts";
 
 type DataProps = {
 	category: Category;

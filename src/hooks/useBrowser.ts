@@ -4,6 +4,7 @@ import { useEffect, useState } from "preact/hooks";
 type BrowserDetails = {
 	isIos: boolean;
 	browserName: string | undefined;
+	type: string | undefined;
 }
 
 export const useBrowser = (): BrowserDetails => {
@@ -18,6 +19,7 @@ export const useBrowser = (): BrowserDetails => {
 	return {
 		isIos: result?.os.name === "iOS",
 		browserName: result?.browser.name,
+		type: result?.device.type,
 	}
 };
 
@@ -29,5 +31,6 @@ export const useBrowserServerSide = (req: Request): BrowserDetails => {
 	return {
 		isIos: result?.os.name === "iOS",
 		browserName: result?.browser.name,
+		type: result?.device.type,
 	}
 }

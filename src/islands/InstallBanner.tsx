@@ -54,6 +54,20 @@ export default function InstallBanner(props: Props) {
 				and tap "Add to Home Screen".
 			`;
 		}
+
+		// Desktop Chrome instructions
+		if (props.browserName === "Chrome" && !props.type) {
+			return `
+				Add Paquet by clicking
+				the <span class="${tw`text-secondary align-text-bottom material-symbols-outlined`}">install_desktop</span> button
+				in the address bar and click "Install".
+			`;
+		}
+
+		return `
+			Sorry, we don't have instructions for your browser.
+			You could look it up though.
+		`
 	};
 
 	return !installed ? (

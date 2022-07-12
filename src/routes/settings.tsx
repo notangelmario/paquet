@@ -3,7 +3,6 @@
 import "dotenv";
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
-import Root from "../components/Root.tsx";
 import Header from "../components/Header.tsx";
 import Stack from "../components/Stack.tsx";
 import Container from "../components/Container.tsx";

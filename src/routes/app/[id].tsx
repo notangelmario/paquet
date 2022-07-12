@@ -6,7 +6,6 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { supabase } from "@supabase";
 
 import type { App } from "../../types/App.ts";
-import Root from "../../components/Root.tsx";
 import Navbar from "../../islands/Navbar.tsx";
 import Stack from "../../components/Stack.tsx";
 import Container from "../../components/Container.tsx";
