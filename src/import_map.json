@@ -1,5 +1,7 @@
 {
   "imports": {
+    "@/": "./",
+
     "$fresh/": "https://deno.land/x/fresh@1.0.1/",
     "preact": "https://esm.sh/preact@10.9.0",
     "preact/": "https://esm.sh/preact@10.9.0/",

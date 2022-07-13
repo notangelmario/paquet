@@ -2,7 +2,7 @@
 /**@jsxFrag Fragment */
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
-import { btn } from "../utils/sharedUi.ts";
+import { btn } from "@/utils/sharedUi.ts";
 
 type Props = {
 	button?: boolean,

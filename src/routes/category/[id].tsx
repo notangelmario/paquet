@@ -3,15 +3,15 @@
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import type { Handlers, PageProps } from "$fresh/server.ts";
-import type { Category } from "../../types/Category.ts";
-import type { App } from "../../types/App.ts";
-import Navbar from "../../islands/Navbar.tsx";
-import Header from "../../components/Header.tsx";
-import Container from "../../components/Container.tsx";
-import ListItem from "../../components/ListItem.tsx";
-import { getCategory } from "../../utils/categories.ts";
+import type { Category } from "@/types/Category.ts";
+import type { App } from "@/types/App.ts";
+import Navbar from "@/islands/Navbar.tsx";
+import Header from "@/components/Header.tsx";
+import Container from "@/components/Container.tsx";
+import ListItem from "@/components/ListItem.tsx";
+import { getCategory } from "@/utils/categories.ts";
 import { supabase } from "@supabase";
-import FewApps from "../../components/FewApps.tsx";
+import FewApps from "@/components/FewApps.tsx";
 
 
 type DataProps = {
@@ -42,7 +42,7 @@ export default function Category(props: PageProps<DataProps>) {
 					>
 						<ListItem
 							button
-							image={app.iconUrl}
+							image={app.iconSmall || app.iconUrl}
 							title={app.name}
 							subtitle={app.author}
 							divider={idx !== props.data.apps.length - 1}

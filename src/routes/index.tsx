@@ -3,19 +3,19 @@
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import Header from "../components/Header.tsx";
-import Stack from "../components/Stack.tsx";
-import Container from "../components/Container.tsx";
+import Header from "@/components/Header.tsx";
+import Stack from "@/components/Stack.tsx";
+import Container from "@/components/Container.tsx";
 import { supabase } from "@supabase";
-import type { App } from "../types/App.ts";
-import Navbar from "../islands/Navbar.tsx";
-import { categories, getCategory } from "../utils/categories.ts";
-import Button from "../components/Button.tsx";
-import ListItem from "../components/ListItem.tsx";
-import FewApps from "../components/FewApps.tsx";
-import InstallBanner from "../islands/InstallBanner.tsx";
-import SearchBar from "../components/SearchBar.tsx";
-import { useInstalledServerSide } from "../hooks/useInstalled.ts";
+import type { App } from "@/types/App.ts";
+import Navbar from "@/islands/Navbar.tsx";
+import { categories, getCategory } from "@/utils/categories.ts";
+import Button from "@/components/Button.tsx";
+import ListItem from "@/components/ListItem.tsx";
+import FewApps from "@/components/FewApps.tsx";
+import InstallBanner from "@/islands/InstallBanner.tsx";
+import SearchBar from "@/components/SearchBar.tsx";
+import { useInstalledServerSide } from "@/hooks/useInstalled.ts";
 
 type DataProps = {
 	apps: App[];
@@ -77,7 +77,7 @@ export default function Home(props: PageProps<DataProps>) {
 							<ListItem
 								button
 								key={app.id}
-								image={app.iconUrl}
+								image={app.iconSmall || app.iconUrl}
 								title={app.name}
 								subtitle={getCategory(app.categoryId)?.name}
 								divider={idx !== props.data.apps.length - 1}

@@ -5,13 +5,13 @@ import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { supabase } from "@supabase";
 
-import type { App } from "../../types/App.ts";
-import Navbar from "../../islands/Navbar.tsx";
-import Stack from "../../components/Stack.tsx";
-import Container from "../../components/Container.tsx";
-import Button from "../../components/Button.tsx";
-import { getCategory } from "../../utils/categories.ts";
-import { useBrowserServerSide } from "../../hooks/useBrowser.ts";
+import type { App } from "@/types/App.ts";
+import Navbar from "@/islands/Navbar.tsx";
+import Stack from "@/components/Stack.tsx";
+import Container from "@/components/Container.tsx";
+import Button from "@/components/Button.tsx";
+import { getCategory } from "@/utils/categories.ts";
+import { useBrowserServerSide } from "@/hooks/useBrowser.ts";
 
 type DataProps = {
 	app: App;
@@ -28,7 +28,7 @@ export default function App(props: PageProps<DataProps>) {
 							class={tw`
 								rounded w-20 h-20
 							`}
-							src={props.data.app.iconUrl}
+							src={props.data.app.iconLarge || props.data.app.iconUrl}
 						/>
 						<div class={tw`flex-1`}>
 							<h2 class={tw`text-3xl`}>
