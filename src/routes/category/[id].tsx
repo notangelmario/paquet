@@ -13,6 +13,7 @@ import { getCategory } from "../../utils/categories.ts";
 import { supabase } from "@supabase";
 import FewApps from "../../components/FewApps.tsx";
 
+
 type DataProps = {
 	category: Category;
 	apps: App[];
@@ -34,7 +35,7 @@ export default function Category(props: PageProps<DataProps>) {
 				</Header>
 			</Container>
 			<Container disableGutters>
-				{props.data.apps.map((app) => (
+				{props.data.apps.map((app, idx) => (
 					<a
 						href={`/app/${app.id}`}
 						key={app.id}
@@ -44,6 +45,7 @@ export default function Category(props: PageProps<DataProps>) {
 							image={app.iconUrl}
 							title={app.name}
 							subtitle={app.author}
+							divider={idx !== props.data.apps.length - 1}
 						/>
 					</a>
 				))}
