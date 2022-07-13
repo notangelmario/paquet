@@ -25,6 +25,11 @@ export const categories: Category[] = [
 		id: "utils",
 		name: "Utilities",
 		icon: "build"
+	},
+	{
+		id: "travel",
+		name: "Travel",
+		icon: "flight"
 	}
 ];
 
