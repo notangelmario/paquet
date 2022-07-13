@@ -12,10 +12,10 @@ export type App = {
     appStoreLink?: string,
     playStoreLink?: string
 
-    benchmarks?: {
-        overall: number,
+    lighthouse?: {
         performance: number,
-        privacy: number,
-        bestPractice: number
+        accessibility: number,
+        bestPractice: number,
+        seo: number
     }
 }
