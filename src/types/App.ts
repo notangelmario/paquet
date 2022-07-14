@@ -7,7 +7,7 @@ export type App = {
     iconUrl: string, // Soon to be removed
     categoryId: string,
     description: string,
-    
+
     // Not fully implemented yet
     lighthouse?: {
         performance: number,
