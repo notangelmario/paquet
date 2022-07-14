@@ -23,14 +23,13 @@ export default function App(props: AppProps) {
 				<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff"/>
 
 				<title>Paquet</title>
-				<meta name="author" content="Savin Angel-Mario" />
-				<meta name="description" content="The web app store" />
-				<meta property="og:title" content="Paquet"/>
-				<meta property="og:site_name" content="Paquet"/>
+				<meta property="description" content="Check out Paquet to find the best web apps on the open web." />
+				<meta property="og:image:width" content="1024"/>
+				<meta property="og:image:height" content="536"/>
+				<meta property="og:description" content="Check out Paquet to find the best web apps on the open web."/>
+				<meta property="og:title" content="Paquet - The web app shop"/>
 				<meta property="og:url" content="https://paquet.shop"/>
-				<meta property="og:description" content="The web app shop"/>
-				<meta property="og:type" content="website"/>
-				<meta property="og:image" content="/icon.png"/>
+				<meta property="og:image" content="https://paquet.shop/og-image.jpg"/>
 
 
 
