@@ -5,7 +5,6 @@ import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 
 
-
 export default function App(props: AppProps) {
 	return (
 		<html>
@@ -26,6 +25,13 @@ export default function App(props: AppProps) {
 				<title>Paquet</title>
 				<meta name="author" content="Savin Angel-Mario" />
 				<meta name="description" content="The web app store" />
+				<meta property="og:title" content="Paquet"/>
+				<meta property="og:site_name" content="Paquet"/>
+				<meta property="og:url" content="https://paquet.shop"/>
+				<meta property="og:description" content="The web app shop"/>
+				<meta property="og:type" content="website"/>
+				<meta property="og:image" content="/icon.png"/>
+
 
 
 				<link href="/global.css" rel="stylesheet"/>
