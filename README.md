@@ -5,7 +5,7 @@
 	height="150px"
 />
 
-# 📦 Paquet
+# [📦 Paquet](https://paquet.shop)
 
 Welcome to your new web app shop!
 
@@ -28,7 +28,7 @@ Paquet is built with a modern toolset in mind:
 - [Twind](https://twind.dev)
 - [Supabase](https://supabase.com)
 
-## :hammer: Run
+## 🔨 Run
 To run the app in dev mode:
 ```
 deno task start
@@ -38,6 +38,6 @@ deno task start
 * Why are there so few apps?
 	* Paquet is still growing, I am doing my best to add as many apps as possible.
 * How do I submit an app?
-	* Just drop an issue with the link to the web app you would like to see here.
+	* Just drop an issue with the link to the web app you would like to see.
 * What if my app is here and I don't like it?
-	* Well that's a bummer. But if you don't like that your app is on Paquet, just let us know and we'll remove it as soon as possible.
+	* Well that's a bummer. But if you don't like that your app is on Paquet, just let me know and I'll remove it as soon as possible.
