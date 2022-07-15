@@ -4,7 +4,10 @@ export type App = {
     name: string,
     author: string,
     url: string,
-    iconUrl: string, // Soon to be removed
+    iconLarge: string, 
+    iconSmall: string,
+    /**@deprecated This is no longer used */
+    iconUrl?: string,
     categoryId: string,
     description: string,
 
@@ -15,12 +18,7 @@ export type App = {
         bestPractice: number,
         seo: number,
         updatedAt: number
-    },
-
-    // Not fully implemented yet
-    iconLarge?: string, // For UI that requires big icon 
-    iconSmall?: string, // For UI that required small icon
-    
+    },    
 
     // DEPRECATED. To be removed
     appStoreLink?: string,

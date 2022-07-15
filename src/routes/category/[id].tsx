@@ -42,7 +42,7 @@ export default function Category(props: PageProps<DataProps>) {
 					>
 						<ListItem
 							button
-							image={app.iconSmall || app.iconUrl}
+							image={app.iconSmall}
 							title={app.name}
 							subtitle={app.author}
 							divider={idx !== props.data.apps.length - 1}

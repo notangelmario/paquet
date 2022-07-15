@@ -45,7 +45,7 @@ export default function Search(props: PageProps<DataProps>) {
 							<ListItem
 								button
 								key={app.id}
-								image={app.iconUrl}
+								image={app.iconSmall}
 								title={app.name}
 								subtitle={getCategory(app.categoryId)?.name}
 								divider={idx !== props.data.apps.length - 1}

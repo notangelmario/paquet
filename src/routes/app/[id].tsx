@@ -28,7 +28,7 @@ export default function App(props: PageProps<DataProps>) {
 							class={tw`
 								rounded w-20 h-20
 							`}
-							src={props.data.app.iconLarge || props.data.app.iconUrl}
+							src={props.data.app.iconLarge}
 						/>
 						<div class={tw`flex-1`}>
 							<h2 class={tw`text-3xl`}>

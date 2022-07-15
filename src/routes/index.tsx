@@ -77,7 +77,7 @@ export default function Home(props: PageProps<DataProps>) {
 							<ListItem
 								button
 								key={app.id}
-								image={app.iconSmall || app.iconUrl}
+								image={app.iconSmall}
 								title={app.name}
 								subtitle={getCategory(app.categoryId)?.name}
 								divider={idx !== props.data.apps.length - 1}
