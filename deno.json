@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "allowJs": false,
-    "strict": true
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictFunctionTypes": true
   },
   "tasks": {
     "start": "deno run -A --watch=src/static/,src/routes/ src/dev.ts"
