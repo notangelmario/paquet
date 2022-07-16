@@ -22,13 +22,31 @@ export class GitHubAPI {
 		const data = await res.json();
 		const accessToken = data["access_token"];
 
-		console.log(data);
-
 		if (typeof accessToken !== "string") {
 			throw new Error("Invalid access token");
 		}
 
 		return accessToken;
+	}
+
+	async getUserData(accessToken: string) {
+		const response = await fetch("https://api.github.com/user", {
+			headers: {
+				Authorization: `token ${accessToken}`,
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error(await response.text());
+		}
+		
+		const userData = await response.json();
+		
+		return {
+			id: userData.id as number,
+			email: userData.email as string,
+			username: userData.login as string,
+		};
 	}
 }
 

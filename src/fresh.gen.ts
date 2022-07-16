@@ -12,6 +12,7 @@ import * as $6 from "./routes/login.tsx";
 import * as $7 from "./routes/offline.tsx";
 import * as $8 from "./routes/search.tsx";
 import * as $9 from "./routes/settings.tsx";
+import * as $10 from "./routes/user.tsx";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/Navbar.tsx";
@@ -28,6 +29,7 @@ const manifest = {
 		"./routes/offline.tsx": $7,
 		"./routes/search.tsx": $8,
 		"./routes/settings.tsx": $9,
+		"./routes/user.tsx": $10,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,
