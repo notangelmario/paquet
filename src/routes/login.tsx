@@ -10,10 +10,11 @@ export default function Login() {
 	return (
 		<>
 			<Navbar />
-			<Header>
-				Login
-			</Header>
+			<Container>
+				<Header>
+					Login
+				</Header>
+			</Container>
 		</>
 	)
 }
-
