@@ -11,6 +11,18 @@ Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md&title=)
 
+## ⚠️ WARNING!
+Paquet is being moved to NextJS. The current model is not flexible enough for a good enough web app store.
+
+The new toolset will be:
+- NextJS
+- Pure TailwindCSS
+- Supabase (also maybe Supabase Functions)
+- Vercel (with partial edge)
+
+The developer dashboard will
+
+---
 
 ### About
 * ⚡ Works as fast as a native app
