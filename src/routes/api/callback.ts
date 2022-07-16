@@ -1,4 +1,5 @@
 import type { Handler } from "$fresh/server.ts";
+import { setCookies } from "$std/http/cookie";
 import { githubAPI } from "@/utils/github.ts";
 
 
@@ -10,7 +11,13 @@ export const handler: Handler = async (req: Request): Promise<Response> => {
 		return new Response("No code", { status: 400 });
 	}
 
-	const accessToken = await githubAPI.getAccessToken(code);
+	try {
+		const accessToken = await githubAPI.getAccessToken(code);
 
-	return new Response(JSON.stringify({ accessToken }), { status: 200 });
+		setCookie
+
+		return Response.redirect(new URL(req.url).origin)
+	} catch(e) {
+		return new Response(e.message, { status: 500 })
+	}
 }
