@@ -20,7 +20,9 @@ export class GitHubAPI {
 		}
 
 		const data = await res.json();
-		const accessToken = data["access_token"];
+		const accessToken: string = data["access_token"];
+
+		console.log(data);
 
 		if (typeof accessToken !== "string") {
 			throw new Error("Invalid access token");

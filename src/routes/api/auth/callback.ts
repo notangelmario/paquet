@@ -5,44 +5,53 @@ import { githubAPI } from "@/utils/github.ts";
 
 
 export const handler: Handler = async (req) =>{
-	const url = new URL(req.url);
+	const url = new URL(req.url); // WARNING! URL is localhost for some reason.
 	const code = url.searchParams.get("code");
 
 	if (!code) {
 		return Response.redirect(new URL(req.url).origin);
 	}
 
-	try {
+	// try {
 		const accessToken = await githubAPI.getAccessToken(code);
-
 		const userData = await githubAPI.getUserData(accessToken);
 
-		const { data: existingUser } = await supabaseService.from("users")
-			.select("*").eq("id", userData.id).single();
+		const { data: existingUserId } = await supabaseService
+			.from("users")
+			.select("id")
+			.eq("id", userData.id)
+			.single();
 
-		if (!existingUser) {
-			supabaseService.from("users",)
-				.insert({
+		if (!existingUserId) {
+			console.log("Creating user...");
+
+			await supabaseService
+				.from("users",)
+				.insert([{
 					id: userData.id,
 					username: userData.username,
 					email: userData.email,
-				})
-				.single();
+				}])
 		}
 
-		const res = Response.redirect(new URL(req.url).origin);
+		const res = new Response(`<head><meta http-equiv="Refresh" content="0; URL=/user"></head>`, {
+			headers: new Headers({
+				"Content-Type": "text/html",
+			})
+	 	});
 
 		setCookie(res.headers, {
 			name: "access_token",
 			value: accessToken,
 			maxAge: 60 * 60 * 24 * 7,
 			httpOnly: true,
-			secure: false,
+			sameSite: "Strict",
+			path: "/",
 		});
 
 		return res;
-	} catch (e) {
-		console.log(e);
-		return Response.redirect(new URL(req.url).origin);
-	}
+	// } catch (e) {
+		// console.log(e);
+		// return Response.redirect(new URL(req.url).origin);
+	// }
 };

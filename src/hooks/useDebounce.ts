@@ -1,5 +1,12 @@
 import { useEffect, useState } from "preact/hooks";
 
+/**
+ * This hook debounces a variable.
+ * 
+ * @param value Value to debounce
+ * @param delay Delay in milliseconds
+ * @returns 
+ */
 export const useDebounce = (value: unknown, delay: number) => {
 	const [debouncedValue, setDebouncedValue] = useState<typeof value>(value);
 
