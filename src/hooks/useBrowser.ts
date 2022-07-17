@@ -5,7 +5,7 @@ type BrowserDetails = {
 	isIos: boolean;
 	browserName: string | undefined;
 	type: string | undefined;
-}
+};
 
 export const useBrowser = (): BrowserDetails => {
 	const [result, setResult] = useState<UAParser.IResult>();
@@ -14,23 +14,22 @@ export const useBrowser = (): BrowserDetails => {
 		const parser = new UAParser();
 		const result = parser.getResult();
 		setResult(result);
-	}, [])
+	}, []);
 
 	return {
 		isIos: result?.os.name === "iOS",
 		browserName: result?.browser.name,
 		type: result?.device.type,
-	}
+	};
 };
 
 export const useBrowserServerSide = (req: Request): BrowserDetails => {
 	const parser = new UAParser(req.headers.get("user-agent") || "");
 	const result = parser.getResult();
 
-
 	return {
 		isIos: result?.os.name === "iOS",
 		browserName: result?.browser.name,
 		type: result?.device.type,
-	}
-}
+	};
+};

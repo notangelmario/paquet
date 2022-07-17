@@ -1,25 +1,25 @@
 {
-  "imports": {
-    "@/": "./",
+	"imports": {
+		"@/": "./",
 
-    "$std/": "https://deno.land/std@0.148.0/",
+		"$std/": "https://deno.land/std@0.148.0/",
 
-    "$fresh/": "https://deno.land/x/fresh@1.0.1/",
-    "preact": "https://esm.sh/preact@10.9.0",
-    "preact/": "https://esm.sh/preact@10.9.0/",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.9.0",
-    "dotenv": "https://deno.land/std@0.145.0/dotenv/load.ts",
+		"$fresh/": "https://deno.land/x/fresh@1.0.1/",
+		"preact": "https://esm.sh/preact@10.9.0",
+		"preact/": "https://esm.sh/preact@10.9.0/",
+		"preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.9.0",
+		"dotenv": "https://deno.land/std@0.145.0/dotenv/load.ts",
 
-    "@app": "./utils/app.ts",
-  
-    "ua-parser-js": "https://esm.sh/ua-parser-js@1.0.2",
+		"@app": "./utils/app.ts",
 
-    "@twind": "./utils/twind.ts",
-    "twind": "https://esm.sh/twind@0.16.17",
-    "twind/": "https://esm.sh/twind@0.16.17/",
+		"ua-parser-js": "https://esm.sh/ua-parser-js@1.0.2",
 
-    "@supabase": "./utils/supabase.ts",
-    "supabase": "https://esm.sh/@supabase/supabase-js@1.35.4",
-    "supabase/": "https://esm.sh/@supabase/supabase-js@1.35.4/"
-  }
+		"@twind": "./utils/twind.ts",
+		"twind": "https://esm.sh/twind@0.16.17",
+		"twind/": "https://esm.sh/twind@0.16.17/",
+
+		"@supabase": "./utils/supabase.ts",
+		"supabase": "https://esm.sh/@supabase/supabase-js@1.35.4",
+		"supabase/": "https://esm.sh/@supabase/supabase-js@1.35.4/"
+	}
 }

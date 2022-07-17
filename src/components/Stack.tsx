@@ -2,7 +2,6 @@
 import { h } from "preact";
 import { tw } from "@twind";
 
-
 const Stack = (props: h.JSX.IntrinsicElements["h1"]) => {
 	return (
 		<div
@@ -11,7 +10,7 @@ const Stack = (props: h.JSX.IntrinsicElements["h1"]) => {
 		>
 			{props.children}
 		</div>
-	)
-}
+	);
+};
 
 export default Stack;

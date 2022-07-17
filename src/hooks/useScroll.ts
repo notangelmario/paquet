@@ -1,25 +1,23 @@
-import { useState, useEffect } from "preact/hooks";
-
+import { useEffect, useState } from "preact/hooks";
 
 type Props = {
-	threshold?: number,
-}
+	threshold?: number;
+};
 
 export const useScroll = ({ threshold = 0 }: Props) => {
-	const [triggered, setTriggered] = useState(window.scrollY > threshold);
+	const [triggered, setTriggered] = useState(globalThis.scrollY > threshold);
 
 	useEffect(() => {
 		const handleScroll = () => {
 			setTriggered(window.scrollY > threshold);
-		}
-		
+		};
 
-		window.addEventListener("scroll", handleScroll);
+		globalThis.addEventListener("scroll", handleScroll);
 
 		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		}
-	}, [])
+			globalThis.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	return triggered;
-}
+};

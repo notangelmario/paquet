@@ -1,6 +1,6 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Header from "@/components/Header.tsx";
@@ -41,7 +41,9 @@ export default function Home(props: PageProps<DataProps>) {
 						>
 							<SearchBar />
 						</form>
-						<InstallBanner initialInstalled={props.data.installed} />
+						<InstallBanner
+							initialInstalled={props.data.installed}
+						/>
 					</Stack>
 				</Container>
 				<div

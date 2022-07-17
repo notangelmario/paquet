@@ -32,11 +32,11 @@ export default function Dialog(props: Props) {
 	return (
 		<div
 			class={tw`
-				${props.open ? 
-					"opacity-100 pointer-events-auto"
-					: 
-					"opacity-0 pointer-events-none"
-				}
+				${
+				props.open
+					? "opacity-100 pointer-events-auto"
+					: "opacity-0 pointer-events-none"
+			}
 				fixed top-0 left-0 right-0 bottom-0 flex justify-center items-end
 				
 				bg-black bg-opacity-50 z-50

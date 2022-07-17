@@ -12,5 +12,5 @@ export const supabase = createClient(
 
 export const supabaseService = createClient(
 	SUPABASE_URL,
-	SUPABASE_SERVICE_KEY
-)
+	SUPABASE_SERVICE_KEY,
+);

@@ -1,6 +1,6 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import type { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
 import type { User } from "@/types/User.ts";
@@ -12,10 +12,9 @@ import { setCookie } from "$std/http/cookie.ts";
 import { githubAPI } from "@/utils/github.ts";
 import Navbar from "@/islands/Navbar.tsx";
 
-
 type DataProps = {
-	user: User
-}
+	user: User;
+};
 
 export default function User(props: PageProps<DataProps>) {
 	return (
@@ -32,7 +31,7 @@ export default function User(props: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 		</>
-	)
+	);
 }
 
 export const handler: Handlers = {
@@ -43,11 +42,15 @@ export const handler: Handlers = {
 		const cookies = await getCookies(req.headers);
 
 		if (cookies["access_token"]) {
-			const userData = await githubAPI.getUserData(cookies["access_token"]);
-			const { data: existingUser } = await supabaseService.from<User>("users").select("*").eq("id", userData.id).single();
+			const userData = await githubAPI.getUserData(
+				cookies["access_token"],
+			);
+			const { data: existingUser } = await supabaseService.from<User>(
+				"users",
+			).select("*").eq("id", userData.id).single();
 
 			return ctx.render({
-				user: existingUser
+				user: existingUser,
 			} as DataProps);
 		}
 
@@ -60,11 +63,14 @@ export const handler: Handlers = {
 
 			const userData = await githubAPI.getUserData(accessToken);
 
-			const { data: existingUser } = await supabaseService.from("users").select("*").eq("id", userData.id).single();
+			const { data: existingUser } = await supabaseService.from("users")
+				.select("*").eq("id", userData.id).single();
 
 			let newUser: User | null = null;
 			if (!existingUser) {
-				const { data: newUserData } = await supabaseService.from("users").insert({
+				const { data: newUserData } = await supabaseService.from(
+					"users",
+				).insert({
 					id: userData.id,
 					username: userData.username,
 					email: userData.email,
@@ -74,7 +80,7 @@ export const handler: Handlers = {
 			}
 
 			const res = await ctx.render({
-				user: existingUser ?? newUser
+				user: existingUser ?? newUser,
 			});
 
 			setCookie(res.headers, {
@@ -82,13 +88,13 @@ export const handler: Handlers = {
 				value: accessToken,
 				maxAge: 60 * 60 * 24 * 7,
 				httpOnly: true,
-				secure: false
-			})
+				secure: false,
+			});
 
 			return res;
-		} catch(e) {
-			console.log(e)
+		} catch (e) {
+			console.log(e);
 			return Response.redirect(new URL(req.url).origin);
 		}
-	}
-}
+	},
+};

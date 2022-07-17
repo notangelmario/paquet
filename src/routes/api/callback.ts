@@ -1,42 +1,48 @@
-import type { Handler } from "$fresh/server.ts";
+import { Handler } from "$fresh/server.ts";
 import { supabaseService } from "@supabase";
 import { setCookie } from "$std/http/cookie.ts";
 import { githubAPI } from "@/utils/github.ts";
 
 
-export const handler: Handler = async (req) => {
+export const handler: Handler = async (req) =>{
 	const url = new URL(req.url);
 	const code = url.searchParams.get("code");
 
 	if (!code) {
-		return new Response("No code", { status: 400 });
+		return Response.redirect(new URL(req.url).origin);
 	}
 
-	// try {
+	try {
 		const accessToken = await githubAPI.getAccessToken(code);
 
-		setCookie(req.headers, {
+		const userData = await githubAPI.getUserData(accessToken);
+
+		const { data: existingUser } = await supabaseService.from("users")
+			.select("*").eq("id", userData.id).single();
+
+		if (!existingUser) {
+			supabaseService.from("users",)
+				.insert({
+					id: userData.id,
+					username: userData.username,
+					email: userData.email,
+				})
+				.single();
+		}
+
+		const res = Response.redirect(new URL(req.url).origin);
+
+		setCookie(res.headers, {
 			name: "access_token",
 			value: accessToken,
 			maxAge: 60 * 60 * 24 * 7,
 			httpOnly: true,
-		})
+			secure: false,
+		});
 
-		const userData = await githubAPI.getUserData(accessToken);
-
-		const { data: existingUser } = await supabaseService.from("users").select("id").eq("username", userData.username).single();
-
-		if (!existingUser) {
-			supabaseService.auth.api.createUser({
-				email: userData.email,
-				user_metadata: {
-					username: userData.username,
-				}
-			})
-		}
-
-		return Response.redirect(new URL(req.url).origin)
-	// } catch(e) {
-		// return new Response(e.message, { status: 500 })
-	// }
-}
+		return res;
+	} catch (e) {
+		console.log(e);
+		return Response.redirect(new URL(req.url).origin);
+	}
+};

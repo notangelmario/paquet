@@ -1,8 +1,8 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment} from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import type { Handlers, PageProps } from "$fresh/server.ts"
+import type { Handlers, PageProps } from "$fresh/server.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@supabase";
 import { getCategory } from "@/utils/categories.ts";
@@ -13,8 +13,8 @@ import Container from "@/components/Container.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
 
 type DataProps = {
-	apps: App[]
-}
+	apps: App[];
+};
 
 export default function Search(props: PageProps<DataProps>) {
 	return (
@@ -58,7 +58,7 @@ export default function Search(props: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 		</>
-	)
+	);
 }
 
 export const handler: Handlers = {
@@ -69,13 +69,15 @@ export const handler: Handlers = {
 		if (!query) {
 			return ctx.render({
 				apps: [],
-			})
+			});
 		}
 
-		const { data: apps } = await supabase.rpc("search_app", { search_term: query });
+		const { data: apps } = await supabase.rpc("search_app", {
+			search_term: query,
+		});
 
 		return ctx.render({
 			apps,
-		})
-	}
-}
+		});
+	},
+};

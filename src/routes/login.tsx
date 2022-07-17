@@ -1,13 +1,19 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
+import type { Handler, PageProps } from "$fresh/server.ts";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 import Stack from "@/components/Stack.tsx";
-import Button from "@/components/Button.tsx";
 import Navbar from "@/islands/Navbar.tsx";
+import LoginSection from "../islands/LoginSection.tsx";
 
-export default function Login() {
+type DataProps = {
+	supabaseUrl: string,
+	supabaseKey: string,
+}
+
+export default function Login(props: PageProps<DataProps>) {
 	return (
 		<>
 			<Navbar />
@@ -16,13 +22,20 @@ export default function Login() {
 					<Header>
 						Login
 					</Header>
-					<a href="/api/login">
-						<Button>
-							Login with GitHub
-						</Button>
-					</a>			
+					<LoginSection 
+						supabaseUrl={props.data.supabaseUrl}
+						supabaseKey={props.data.supabaseKey}
+					/>
 				</Stack>
 			</Container>
 		</>
-	)
+	);
+}
+
+
+export const handler: Handler = (_, ctx) => {
+	return ctx.render({
+		supabaseUrl: Deno.env.get("SUPABASE_URL"),
+		supabaseKey: Deno.env.get("SUPABASE_ANON_KEY"),
+	})
 }

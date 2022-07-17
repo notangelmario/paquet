@@ -1,7 +1,7 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import "dotenv";
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";

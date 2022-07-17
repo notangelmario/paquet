@@ -7,18 +7,18 @@ export class GitHubAPI {
 			body: JSON.stringify({
 				client_id: Deno.env.get("GITHUB_CLIENT_ID")!,
 				client_secret: Deno.env.get("GITHUB_CLIENT_SECRET")!,
-				code
+				code,
 			}),
 			headers: {
 				Accept: "application/json",
-				"Content-Type": "application/json"
-			}
+				"Content-Type": "application/json",
+			},
 		});
 
-		if(!res.ok) {
+		if (!res.ok) {
 			throw new Error(await res.text());
 		}
-		
+
 		const data = await res.json();
 		const accessToken = data["access_token"];
 
@@ -39,9 +39,9 @@ export class GitHubAPI {
 		if (!response.ok) {
 			throw new Error(await response.text());
 		}
-		
+
 		const userData = await response.json();
-		
+
 		return {
 			id: userData.id as number,
 			email: userData.email as string,

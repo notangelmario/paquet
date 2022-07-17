@@ -8,9 +8,11 @@ type Props = {
 	onReset?: () => void;
 	inputProps?: h.JSX.IntrinsicElements["input"];
 	inputRef?: h.JSX.IntrinsicElements["input"]["ref"];
-}
+};
 
-export default function SearchBar(props?: Props & h.JSX.HTMLAttributes<HTMLDivElement>) {
+export default function SearchBar(
+	props?: Props & h.JSX.HTMLAttributes<HTMLDivElement>,
+) {
 	return (
 		<div
 			{...props}
@@ -49,5 +51,5 @@ export default function SearchBar(props?: Props & h.JSX.HTMLAttributes<HTMLDivEl
 				`}
 			/>
 		</div>
-	)
+	);
 }

@@ -1,6 +1,6 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { Handlers, PageProps } from "$fresh/server.ts";
 import type { Category } from "@/types/Category.ts";
@@ -12,7 +12,6 @@ import ListItem from "@/components/ListItem.tsx";
 import { getCategory } from "@/utils/categories.ts";
 import { supabase } from "@supabase";
 import FewApps from "@/components/FewApps.tsx";
-
 
 type DataProps = {
 	category: Category;
