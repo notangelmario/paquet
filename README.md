@@ -29,9 +29,13 @@ Paquet is built with a modern toolset in mind:
 - [Supabase](https://supabase.com)
 
 ## 🔨 Run
-To run the app in dev mode:
+To run the app in development mode:
 ```
-deno task start
+deno task dev
+```
+To run the app in production mode:
+```
+deno task prod
 ```
 
 ## ❓ FAQ

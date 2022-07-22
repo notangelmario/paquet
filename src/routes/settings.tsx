@@ -24,7 +24,7 @@ export default function Settings() {
 						<ListItem
 							icon="info"
 							title="Version"
-							subtitle={app.version}
+							subtitle={`${app.version} - ${app.nickname}`}
 							divider
 						/>
 						<a
