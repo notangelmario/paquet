@@ -7,9 +7,9 @@
     "strictFunctionTypes": true
   },
   "tasks": {
-    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A src/main.ts", // Emulates production environment
-    "dev": "deno run -A --watch=src/static/,src/routes/ src/dev.ts", // Starts a development server
-    "cache": "deno cache --reload src/main.ts" // Cache all required modules
+    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A src/main.ts",
+    "dev": "deno run -A --watch=src/static/,src/routes/ src/dev.ts",
+    "cache": "deno cache --reload src/main.ts"
   },
   "importMap": "./src/import_map.json",
   "lint": {

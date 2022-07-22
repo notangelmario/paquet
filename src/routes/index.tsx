@@ -101,7 +101,7 @@ export default function Home(props: PageProps<DataProps>) {
 export const handler: Handlers = {
 	async GET(req, ctx) {
 		const installed = useInstalledServerSide(req);
-		const { data: apps } = await supabase.from("apps").select("*");
+		const { data: apps } = await supabase.from("apps").select("id, name, iconSmall, categoryId");
 
 		return ctx.render({
 			apps,

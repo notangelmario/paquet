@@ -35,6 +35,7 @@ export default function App(props: AppProps) {
 				<link
 					rel="mask-icon"
 					href="/safari-pinned-tab.svg"
+					// @ts-ignore: Color is used in MacOS Safari
 					color="#8267be"
 				/>
 				<meta name="msapplication-TileColor" content="#8267be" />
@@ -72,18 +73,12 @@ export default function App(props: AppProps) {
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" />
 
-				{/* @ts-ignore */}
 				<link
-					rel="preload"
-					as="style"
-					onLoad="this.rel = 'stylesheet'"
+					rel="stylesheet"
 					href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 				/>
-				{/* @ts-ignore */}
 				<link
-					rel="preload"
-					as="style"
-					onLoad="this.rel = 'stylesheet'"
+					rel="stylesheet"
 					href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap"
 				/>
 			</Head>

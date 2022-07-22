@@ -57,7 +57,7 @@ export default function Category(props: PageProps<DataProps>) {
 }
 
 export const handler: Handlers = {
-	async GET(req, ctx) {
+	async GET(_, ctx) {
 		const categoryId = ctx.params["id"];
 		const category = getCategory(categoryId);
 
@@ -65,7 +65,7 @@ export const handler: Handlers = {
 			return Response.redirect("/", 300);
 		}
 
-		const { data: apps } = await supabase.from("apps").select("*").eq(
+		const { data: apps } = await supabase.from("apps").select("id, name, iconSmall, author").eq(
 			"categoryId",
 			categoryId,
 		);

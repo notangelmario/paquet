@@ -11,7 +11,7 @@ import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import Button from "@/components/Button.tsx";
 import { getCategory } from "@/utils/categories.ts";
-import { useBrowserServerSide } from "@/hooks/useBrowser.ts";
+import Features from "@/components/Features.tsx";
 
 type DataProps = {
 	app: App;
@@ -62,6 +62,7 @@ export default function App(props: PageProps<DataProps>) {
 							{props.data.app.description}
 						</p>
 					</div>
+					<Features features={props.data.app.features} />
 				</Stack>
 			</Container>
 		</>
@@ -69,11 +70,11 @@ export default function App(props: PageProps<DataProps>) {
 }
 
 export const handler: Handlers = {
-	async GET(req, ctx) {
-		const { data: app } = await supabase.from("apps").select("*").eq(
-			"id",
-			ctx.params.id,
-		).single();
+	async GET(_, ctx) {
+		const { data: app } = await supabase.from("apps")
+			.select("id, name, author, description, url, iconLarge, categoryId, features")
+			.eq("id", ctx.params.id)
+			.single();
 
 		if (!app) {
 			return Response.redirect("/", 300);

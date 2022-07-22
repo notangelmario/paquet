@@ -3,3 +3,9 @@ export type User = {
 	username: string;
 	email: string;
 };
+
+export type GitHubUser = {
+	id: number;
+	username: string;
+	email: string;
+};

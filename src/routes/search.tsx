@@ -74,7 +74,7 @@ export const handler: Handlers = {
 
 		const { data: apps } = await supabase.rpc("search_app", {
 			search_term: query,
-		});
+		}).select("id, name, iconSmall, categoryId");
 
 		return ctx.render({
 			apps,

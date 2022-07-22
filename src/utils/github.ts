@@ -1,4 +1,7 @@
+import { GitHubUser } from "@/types/User.ts";
+
 const GITHUB_OAUTH_URL = "https://github.com/login/oauth/access_token";
+const GITHUB_USER_URL = "https://api.github.com/user";
 
 export class GitHubAPI {
 	async getAccessToken(code: string): Promise<string> {
@@ -9,10 +12,10 @@ export class GitHubAPI {
 				client_secret: Deno.env.get("GITHUB_CLIENT_SECRET")!,
 				code,
 			}),
-			headers: {
+			headers: new Headers({
 				Accept: "application/json",
 				"Content-Type": "application/json",
-			},
+			}),
 		});
 
 		if (!res.ok) {
@@ -32,10 +35,10 @@ export class GitHubAPI {
 	}
 
 	async getUserData(accessToken: string) {
-		const response = await fetch("https://api.github.com/user", {
-			headers: {
+		const response = await fetch(GITHUB_USER_URL, {
+			headers: new Headers({
 				Authorization: `token ${accessToken}`,
-			},
+			}),
 		});
 
 		if (!response.ok) {
@@ -48,7 +51,7 @@ export class GitHubAPI {
 			id: userData.id as number,
 			email: userData.email as string,
 			username: userData.login as string,
-		};
+		} as GitHubUser;
 	}
 }
 
