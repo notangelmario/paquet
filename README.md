@@ -9,16 +9,6 @@
 
 Welcome to your new web app shop!
 
-> ## ⚠️ WARNING ⚠️
->
-> Paquet is being reworked from scratch. Due to current model's limitations.
->
-> The new toolset will be as follows:
-> - SvelteKit
-> - Railway
-> - Tailwind
-
-
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md&title=)
 
 ### About
