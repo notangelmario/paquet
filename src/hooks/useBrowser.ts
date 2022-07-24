@@ -7,12 +7,6 @@ type BrowserDetails = {
 	type: string | undefined;
 };
 
-/**
- * This hook returns the browser details.
- * This is to be used client side.
- * 
- * @returns Browser details
- */
 export const useBrowser = (): BrowserDetails => {
 	const [result, setResult] = useState<UAParser.IResult>();
 
@@ -29,13 +23,6 @@ export const useBrowser = (): BrowserDetails => {
 	};
 };
 
-/**
- * This hook returns the browser details.
- * This is to be used server side.
- * 
- * @param req Request object
- * @returns Browser details
- */
 export const useBrowserServerSide = (req: Request): BrowserDetails => {
 	const parser = new UAParser(req.headers.get("user-agent") || "");
 	const result = parser.getResult();

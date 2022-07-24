@@ -7,10 +7,10 @@ const SUPABASE_SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_KEY")!;
 
 export const supabase = createClient(
 	SUPABASE_URL,
-	SUPABASE_ANON_KEY,
+	SUPABASE_ANON_KEY
 );
 
 export const supabaseService = createClient(
 	SUPABASE_URL,
-	SUPABASE_SERVICE_KEY,
+	SUPABASE_SERVICE_KEY
 );

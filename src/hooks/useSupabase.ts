@@ -7,5 +7,8 @@ export const useSupabase = (
 	return createClient(
 		supabaseUrl,
 		supabaseKey,
+		{
+			multiTab: false
+		}
 	);
 };

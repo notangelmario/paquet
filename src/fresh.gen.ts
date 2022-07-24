@@ -3,17 +3,14 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $0 from "./routes/_app.tsx";
-import * as $1 from "./routes/api/auth/callback.ts";
-import * as $2 from "./routes/api/auth/login.ts";
-import * as $3 from "./routes/api/auth/logout.ts";
-import * as $4 from "./routes/app/[id].tsx";
-import * as $5 from "./routes/category/[id].tsx";
-import * as $6 from "./routes/index.tsx";
-import * as $7 from "./routes/login.tsx";
-import * as $8 from "./routes/offline.tsx";
-import * as $9 from "./routes/search.tsx";
-import * as $10 from "./routes/settings.tsx";
-import * as $11 from "./routes/user.tsx";
+import * as $1 from "./routes/api/auth.ts";
+import * as $2 from "./routes/app/[id].tsx";
+import * as $3 from "./routes/category/[id].tsx";
+import * as $4 from "./routes/index.tsx";
+import * as $5 from "./routes/login.tsx";
+import * as $6 from "./routes/offline.tsx";
+import * as $7 from "./routes/search.tsx";
+import * as $8 from "./routes/settings.tsx";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoginSection.tsx";
@@ -22,17 +19,14 @@ import * as $$3 from "./islands/Navbar.tsx";
 const manifest = {
 	routes: {
 		"./routes/_app.tsx": $0,
-		"./routes/api/auth/callback.ts": $1,
-		"./routes/api/auth/login.ts": $2,
-		"./routes/api/auth/logout.ts": $3,
-		"./routes/app/[id].tsx": $4,
-		"./routes/category/[id].tsx": $5,
-		"./routes/index.tsx": $6,
-		"./routes/login.tsx": $7,
-		"./routes/offline.tsx": $8,
-		"./routes/search.tsx": $9,
-		"./routes/settings.tsx": $10,
-		"./routes/user.tsx": $11,
+		"./routes/api/auth.ts": $1,
+		"./routes/app/[id].tsx": $2,
+		"./routes/category/[id].tsx": $3,
+		"./routes/index.tsx": $4,
+		"./routes/login.tsx": $5,
+		"./routes/offline.tsx": $6,
+		"./routes/search.tsx": $7,
+		"./routes/settings.tsx": $8,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,
