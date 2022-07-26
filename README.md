@@ -12,10 +12,11 @@ Welcome to your new web app shop!
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md&title=)
 
 ### About
-* ⚡ Works as fast as a native app
+* ⚡ Optimized for speed
 * 💄 An actual good looking web app shop
 * ✨ As open as it gets
 * 🩸 On the bleeding edge of web technology
+* 🌐 Hosted on the edge
 * 🚀 Encourage app performance
 * 🔒 Security is a top priority
 * 🎈 Easy to contribute to
