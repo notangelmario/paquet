@@ -11,9 +11,12 @@ import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import Button from "@/components/Button.tsx";
 import Features from "@/components/Features.tsx";
+import ListItem from "@/components/ListItem.tsx";
+import Divider from "@/components/Divider.tsx";
 
 type DataProps = {
 	app: App;
+	otherApps: App[];
 };
 
 export default function App(props: PageProps<DataProps>) {
@@ -61,9 +64,41 @@ export default function App(props: PageProps<DataProps>) {
 							{props.data.app.description}
 						</p>
 					</div>
-					{props.data.app.features &&
-						<Features features={props.data.app.features} />}
+					<Divider inset/>
 				</Stack>
+			</Container>
+
+			{props.data.app.features && (
+				<div class={tw`mt-4`}>
+					<Features 
+						features={props.data.app.features}
+					/>
+				</div>
+			)}
+			<Container>
+				<Divider class="mt-4" inset />
+			</Container>
+
+			<Container>
+				<h3 class={tw`text-2xl mt-4`}>
+					Other apps
+				</h3>
+			</Container>
+			<Container disableGutters>
+				{props.data.otherApps.map((app, idx) => (
+					<a
+						key={idx}
+						href={`/app/${app.id}`}
+					>
+						<ListItem
+							button
+							title={app.name}
+							image={app.iconSmall}
+							subtitle={app.author}
+							divider={idx !== props.data.otherApps.length - 1}
+						/>
+					</a>
+				))}
 			</Container>
 		</>
 	);
@@ -71,18 +106,26 @@ export default function App(props: PageProps<DataProps>) {
 
 export const handler: Handlers = {
 	async GET(_, ctx) {
-		const { data: app } = await supabase.from("apps")
-			.select("id, name, author, description, url, iconLarge, category:categories(name), features")
+		const { data: app } = await supabase.from<App>("apps")
+			.select(
+				"id, name, author, description, url, iconLarge, category:categories(id, name), features",
+			)
 			.eq("id", ctx.params.id)
 			.single();
-
-		console.log(app);
 
 		if (!app) {
 			return Response.redirect("/", 300);
 		}
+
+		const { data: otherApps } = await supabase.from("random_apps")
+			.select("id, name, author, iconSmall")
+			.eq("category", app.category.id)
+			.neq("id", app.id)
+			.limit(3);
+
 		return ctx.render({
 			app,
+			otherApps,
 		} as DataProps);
 	},
 };

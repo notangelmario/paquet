@@ -72,8 +72,8 @@ export const handler: Handlers = {
 			supabase
 				.from<App>("apps")
 				.select("id, name, iconSmall, author")
-				.eq("category", categoryId)
-		])
+				.eq("category", categoryId),
+		]);
 
 		const [{ data: category }, { data: apps }] = values;
 

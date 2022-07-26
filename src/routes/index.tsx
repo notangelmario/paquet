@@ -14,6 +14,8 @@ import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
 import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
+import SlideContainer from "@/components/SlideContainer.tsx";
+import SlideItem from "@/components/SlideItem.tsx";
 import { useInstalledServerSide } from "@/hooks/useInstalled.ts";
 
 type DataProps = {
@@ -46,33 +48,26 @@ export default function Home(props: PageProps<DataProps>) {
 						/>
 					</Stack>
 				</Container>
-				<div
-					class={tw`flex flex-row overflow-x-scroll md:container`}
-					style={{
-						scrollSnapType: "x mandatory",
-					}}
+				<SlideContainer
+					snap
 				>
 					{props.data.categories.map((category, idx) => (
-						<a
+						<SlideItem
 							key={category.id}
-							href={`/category/${category.id}`}
-							class={tw`${
-								idx === props.data.categories.length - 1
-									? `!pr-4 md:pr-0`
-									: ""
-							} pl-4`}
-							style={{
-								scrollSnapAlign: "start",
-							}}
+							isLast={idx === props.data.categories.length - 1}
 						>
-							<Button
-								icon={category.icon}
+							<a
+								href={`/category/${category.id}`}
 							>
-								{category.name}
-							</Button>
-						</a>
+								<Button
+									icon={category.icon}
+								>
+									{category.name}
+								</Button>
+							</a>
+						</SlideItem>
 					))}
-				</div>
+				</SlideContainer>
 				<Container disableGutters>
 					{props.data.apps?.map((app: App, idx: number) => (
 						<a href={`/app/${app.id}`}>
@@ -102,9 +97,11 @@ export const handler: Handlers = {
 	async GET(req, ctx) {
 		const installed = useInstalledServerSide(req);
 
-		const [ { data: categories }, { data: apps } ] = await Promise.all([
+		const [{ data: categories }, { data: apps }] = await Promise.all([
 			supabase.from("categories").select("*"),
-			supabase.from("apps").select("id, name, iconSmall, category:categories(name)")
+			supabase.from("apps").select(
+				"id, name, iconSmall, category:categories(name)",
+			),
 		]);
 
 		return ctx.render({

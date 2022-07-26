@@ -2,11 +2,17 @@
 import { h } from "preact";
 import { tw } from "@twind";
 
-const Stack = (props: h.JSX.IntrinsicElements["h1"]) => {
+type Props = {
+	direction?: "horizontal" | "vertical";
+};
+
+const Stack = (props: Props & h.JSX.IntrinsicElements["h1"]) => {
 	return (
 		<div
 			{...props}
-			class={`${tw`flex flex-col gap-y-4`} ${props.class || ""}`}
+			class={`${tw`flex ${
+				props.direction === "vertical" ? "flex-row" : "flex-col"
+			} gap-y-4`} ${props.class || ""}`}
 		>
 			{props.children}
 		</div>

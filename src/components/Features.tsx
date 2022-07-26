@@ -1,7 +1,11 @@
 /**@jsx h */
-import { h } from "preact";
+/**@jsxFrag Fragment */
+import { h, Fragment } from "preact";
 import { tw } from "@twind";
-import { App } from "@/types/App.ts";
+import type { App } from "@/types/App.ts";
+import Container from "@/components/Container.tsx";
+import SlideContainer from "@/components/SlideContainer.tsx";
+import SlideItem from "@/components/SlideItem.tsx";
 
 export const FEATURES = {
 	desktop: {
@@ -32,46 +36,56 @@ type Props = {
 
 export default function Features(props: Props) {
 	return (
-		<div>
-			<h3
-				class={tw`text-2xl`}
+		<>
+			<Container>
+				<h3
+					class={tw`text-2xl mb-2`}
+				>
+					Features
+				</h3>
+			</Container>
+			<SlideContainer
+				snap
 			>
-				Features
-			</h3>
-			<ul
-				class={tw`flex flex-row gap-4 overflow-x-scroll mt-4`}
-			>
-				{Object.values(FEATURES).map(({ id, name, icon }) => (
-					<li
-						class={tw
-							`flex flex-1 flex-col items-center text-center ${
-								props.features?.[id as keyof App["features"]] ||
-								"opacity-50"
-							}`}
+				{Object.values(FEATURES).map(({ id, name, icon }, idx) => (
+					<SlideItem
+						isLast={idx === Object.entries(FEATURES).length - 1}
 					>
 						<div
-							class={tw`
-								flex justify-center items-center
-								rounded-full w-12 h-12 mb-2
+							class={`
+								${!props.features?.[id as keyof App["features"]] ? "opacity-50" : ""}
 
-								${
-								props.features?.[id as keyof App["features"]]
-									? "bg-secondary"
-									: "bg-black dark:bg-white"
-							}
+								flex flex-row justify-center items-center gap-2
 							`}
 						>
-							<span
-								class={tw
-									`material-symbols-outlined text-white dark:text-black`}
+							<div
+								class={tw`
+									flex flex-shrink-0 justify-center items-center
+									rounded-full w-12 h-12
+
+									${
+									props.features?.[id as keyof App["features"]]
+										? "bg-secondary"
+										: "bg-black dark:bg-white"
+								}
+								`}
 							>
-								{icon}
-							</span>
+								<span
+									class={tw`material-symbols-outlined text-white dark:text-black`}
+								>
+									{icon}
+								</span>
+							</div>
+
+							<p
+								class={tw`text-xs`}
+							>
+								{name}
+							</p>
 						</div>
-						{name}
-					</li>
+					</SlideItem>
 				))}
-			</ul>
-		</div>
+			</SlideContainer>
+		</>
 	);
 }
