@@ -57,7 +57,7 @@ export const handler: Handler = async (req, ctx) => {
 	);
 
 	if (user) {
-		return Response.redirect(url.origin, 302);
+		return Response.redirect(url.origin, 307);
 	}
 
 	return ctx.render({

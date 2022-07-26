@@ -1,16 +1,20 @@
 export type App = {
 	id: string;
 
-	name: string;
-	author: string;
-	url: string;
-	iconLarge: string;
-	iconSmall: string;
-	/**@deprecated Use iconLarge and iconSmall instead */
-	iconUrl?: string;
+    name: string,
+    author: string,
+    url: string,
+    iconLarge: string, 
+    iconSmall: string,
+    /**@deprecated Use iconLarge and iconSmall instead. To be removed */
+    iconUrl?: string,
 
-	categoryId: string;
-	description: string;
+    /**@deprecated Use category instead. To be removed */
+    categoryId: string,
+
+    category: Category,
+
+    description: string,
 
 	features?: {
 		desktop?: boolean;
@@ -28,9 +32,15 @@ export type App = {
 };
 
 export type LighthouseScores = {
-	performance: number;
-	accessibility: number;
-	bestPractices: number;
-	seo: number;
-	updatedAt: number;
+    performance: number,
+    accessibility: number,
+    bestPractices: number,
+    seo: number,
+    updatedAt: number
+};
+
+export type Category = {
+	id: string;
+	name: string;
+	icon: string;
 };

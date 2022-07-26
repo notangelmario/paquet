@@ -10,7 +10,6 @@ import Navbar from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import Button from "@/components/Button.tsx";
-import { getCategory } from "@/utils/categories.ts";
 import Features from "@/components/Features.tsx";
 
 type DataProps = {
@@ -36,7 +35,7 @@ export default function App(props: PageProps<DataProps>) {
 							</h2>
 							<p class={tw`opacity-50`}>
 								{props.data.app.author} &middot;{" "}
-								{getCategory(props.data.app.categoryId)?.name}
+								{props.data.app.category.name}
 							</p>
 						</div>
 						<div class={tw`min-w-full sm:min-w-[30%]`}>
@@ -73,11 +72,11 @@ export default function App(props: PageProps<DataProps>) {
 export const handler: Handlers = {
 	async GET(_, ctx) {
 		const { data: app } = await supabase.from("apps")
-			.select(
-				"id, name, author, description, url, iconLarge, categoryId, features",
-			)
+			.select("id, name, author, description, url, iconLarge, category:categories(name), features")
 			.eq("id", ctx.params.id)
 			.single();
+
+		console.log(app);
 
 		if (!app) {
 			return Response.redirect("/", 300);

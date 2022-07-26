@@ -3,13 +3,12 @@
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { Handlers, PageProps } from "$fresh/server.ts";
-import type { Category } from "@/types/Category.ts";
+import type { Category } from "@/types/App.ts";
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import { getCategory } from "@/utils/categories.ts";
 import { supabase } from "@supabase";
 import FewApps from "@/components/FewApps.tsx";
 
@@ -59,21 +58,27 @@ export default function Category(props: PageProps<DataProps>) {
 export const handler: Handlers = {
 	async GET(_, ctx) {
 		const categoryId = ctx.params["id"];
-		const category = getCategory(categoryId);
 
-		if (!category) {
-			return Response.redirect("/", 300);
+		if (!categoryId) {
+			return Response.redirect("/", 307);
 		}
 
-		const { data: apps } = await supabase.from("apps").select(
-			"id, name, iconSmall, author",
-		).eq(
-			"categoryId",
-			categoryId,
-		);
+		const values = await Promise.all([
+			supabase
+				.from<Category>("categories")
+				.select("*")
+				.eq("id", categoryId)
+				.single(),
+			supabase
+				.from<App>("apps")
+				.select("id, name, iconSmall, author")
+				.eq("category", categoryId)
+		])
 
-		if (!apps) {
-			return Response.redirect("/", 300);
+		const [{ data: category }, { data: apps }] = values;
+
+		if (!category || !apps) {
+			return Response.redirect("/", 307);
 		}
 
 		return ctx.render({

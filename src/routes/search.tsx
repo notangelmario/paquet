@@ -5,7 +5,6 @@ import { tw } from "@twind";
 import type { Handlers, PageProps } from "$fresh/server.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@supabase";
-import { getCategory } from "@/utils/categories.ts";
 import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Navbar from "@/islands/Navbar.tsx";
@@ -47,7 +46,7 @@ export default function Search(props: PageProps<DataProps>) {
 								key={app.id}
 								image={app.iconSmall}
 								title={app.name}
-								subtitle={getCategory(app.categoryId)?.name}
+								subtitle={app.category.name}
 								divider={idx !== props.data.apps.length - 1}
 							/>
 						</a>
@@ -74,7 +73,7 @@ export const handler: Handlers = {
 
 		const { data: apps } = await supabase.rpc("search_app", {
 			search_term: query,
-		}).select("id, name, iconSmall, categoryId");
+		}).select("id, name, iconSmall, category:categories(*)");
 
 		return ctx.render({
 			apps,
