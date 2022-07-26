@@ -54,12 +54,12 @@ export const handler: Handler = async (req, ctx) => {
 	const { user } = await supabaseService.auth.api.getUser(cookies["access_token"]);
 
 	if (user) {
-		return Response.redirect(url.origin, 301);
+		return Response.redirect(url.origin, 302);
 	}
 
 	return ctx.render({
 		supabaseUrl: Deno.env.get("SUPABASE_URL"),
 		supabaseKey: Deno.env.get("SUPABASE_ANON_KEY"),
-		redirectTo: DEV ? "http://localhost:3000/login" : undefined
+		redirectTo: DEV ? "http://localhost:3000/login" : url.origin + "/login"
 	} as DataProps)
 }

@@ -35,6 +35,9 @@ export default function Settings(props: PageProps<DataProps>) {
 							title={props.data.user ? props.data.user.email : "Login"}
 							image={props.data.user?.user_metadata.avatar_url}
 							icon={!props.data.user?.user_metadata.avatar_url ? "person" : undefined}
+							imageProps={{
+								class: "rounded-full"
+							}}
 						/>
 					</Card>
 					<Card disableGutters>
