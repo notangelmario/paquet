@@ -1,29 +1,31 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import Button from "@/components/Button.tsx";
 import { useSupabase } from "@/hooks/useSupabase.ts";
 import { Session } from "supabase";
 
 type Props = {
-	supabaseUrl: string,
-	supabaseKey: string,
-	redirectTo: string | undefined
-}
+	supabaseUrl: string;
+	supabaseKey: string;
+	redirectTo: string | undefined;
+};
 
 async function handleSignIn(session: Session) {
-	await fetch('/api/auth', {
-		method: 'POST',
-		headers: new Headers({ 'Content-Type': 'application/json' }),
-		credentials: 'same-origin',
+	await fetch("/api/auth", {
+		method: "POST",
+		headers: new Headers({ "Content-Type": "application/json" }),
+		credentials: "same-origin",
 		body: JSON.stringify({ session }),
-	})
+	});
 }
 
 export default function LoginSection(props: Props) {
-	const supabase = useSupabase(props.supabaseUrl, props.supabaseKey, { detectSessionInUrl: true });
-	const [ loading, setLoading ] = useState(false);
+	const supabase = useSupabase(props.supabaseUrl, props.supabaseKey, {
+		detectSessionInUrl: true,
+	});
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		supabase.auth.onAuthStateChange((event, session) => {
@@ -32,7 +34,7 @@ export default function LoginSection(props: Props) {
 				handleSignIn(session).finally(() => setLoading(false));
 			}
 		});
-	}, [])
+	}, []);
 
 	const login = () => {
 		supabase.auth.signIn({
@@ -40,16 +42,16 @@ export default function LoginSection(props: Props) {
 		}, {
 			redirectTo: props.redirectTo,
 		});
-	}
+	};
 
 	return (
 		<>
-			<Button 
+			<Button
 				onClick={login}
 				disabled={loading}
 			>
 				Login with GitHub
 			</Button>
 		</>
-	)
+	);
 }

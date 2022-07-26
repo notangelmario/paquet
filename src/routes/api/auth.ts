@@ -1,7 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
-import { getCookies, setCookie, deleteCookie } from "$std/http/cookie.ts";
+import { deleteCookie, getCookies, setCookie } from "$std/http/cookie.ts";
 import { Session } from "supabase";
-
 
 export const handler: Handlers = {
 	POST: async (req) => {
@@ -20,14 +19,14 @@ export const handler: Handlers = {
 			httpOnly: true,
 			sameSite: "Strict",
 			path: "/",
-		})
+		});
 
 		return res;
 	},
 	GET: async (req) => {
 		const cookies = await getCookies(req.headers);
-	
-		return Response.json({ cookies })
+
+		return Response.json({ cookies });
 	},
 	DELETE: () => {
 		const res = new Response();
@@ -35,5 +34,5 @@ export const handler: Handlers = {
 		deleteCookie(res.headers, "access_token");
 
 		return res;
-	}
-}
+	},
+};

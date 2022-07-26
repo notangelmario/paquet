@@ -17,7 +17,7 @@ import app from "@app";
 
 type DataProps = {
 	user: User | null;
-}
+};
 
 export default function Settings(props: PageProps<DataProps>) {
 	return (
@@ -32,11 +32,15 @@ export default function Settings(props: PageProps<DataProps>) {
 						disableGutters
 					>
 						<ListItem
-							title={props.data.user ? props.data.user.email : "Login"}
+							title={props.data.user
+								? props.data.user.email
+								: "Login"}
 							image={props.data.user?.user_metadata.avatar_url}
-							icon={!props.data.user?.user_metadata.avatar_url ? "person" : undefined}
+							icon={!props.data.user?.user_metadata.avatar_url
+								? "person"
+								: undefined}
 							imageProps={{
-								class: "rounded-full"
+								class: "rounded-full",
 							}}
 						/>
 					</Card>
@@ -72,14 +76,16 @@ export const handler: Handler = async (req, ctx) => {
 	const cookies = await getCookies(req.headers);
 
 	if (!cookies["access_token"]) {
-		return ctx.render({ user: null })
+		return ctx.render({ user: null });
 	}
 
-	const { user } = await supabaseService.auth.api.getUser(cookies["access_token"]);
+	const { user } = await supabaseService.auth.api.getUser(
+		cookies["access_token"],
+	);
 
 	if (!user) {
-		return ctx.render({ user: null })
+		return ctx.render({ user: null });
 	}
 
-	return ctx.render({	user });
-}
+	return ctx.render({ user });
+};

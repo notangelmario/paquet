@@ -21,11 +21,11 @@ export default function Button(
 				rounded px-8 py-2
 				border-current
 				
-				${props.outlined
+				${
+				props.outlined
 					? "bg-transparent border text-current"
 					: "bg-primary text-white"
-				
-				}
+			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.disabled ? "opacity-25 cursor-not-allowed" : ""}

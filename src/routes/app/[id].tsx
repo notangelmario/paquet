@@ -62,9 +62,8 @@ export default function App(props: PageProps<DataProps>) {
 							{props.data.app.description}
 						</p>
 					</div>
-					{props.data.app.features && 
-						<Features features={props.data.app.features} />
-					}
+					{props.data.app.features &&
+						<Features features={props.data.app.features} />}
 				</Stack>
 			</Container>
 		</>
@@ -74,7 +73,9 @@ export default function App(props: PageProps<DataProps>) {
 export const handler: Handlers = {
 	async GET(_, ctx) {
 		const { data: app } = await supabase.from("apps")
-			.select("id, name, author, description, url, iconLarge, categoryId, features")
+			.select(
+				"id, name, author, description, url, iconLarge, categoryId, features",
+			)
 			.eq("id", ctx.params.id)
 			.single();
 

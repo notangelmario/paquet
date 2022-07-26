@@ -2,7 +2,7 @@
 /**@jsxFrag Fragment */
 import "dotenv";
 import { Fragment, h } from "preact";
-import type { PageProps, Handler } from "$fresh/server.ts";
+import type { Handler, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
 import { User } from "supabase";
 import { supabaseService } from "@supabase";
@@ -15,13 +15,12 @@ import LoginSection from "@/islands/LoginSection.tsx";
 
 const DEV = !Deno.env.get("DENO_DEPLOYMENT_ID");
 
-
 type DataProps = {
-	supabaseUrl: string,
-	supabaseKey: string,
-	redirectTo: string | undefined,
-	user: User | undefined,
-}
+	supabaseUrl: string;
+	supabaseKey: string;
+	redirectTo: string | undefined;
+	user: User | undefined;
+};
 
 export default function Login(props: PageProps<DataProps>) {
 	return (
@@ -32,11 +31,13 @@ export default function Login(props: PageProps<DataProps>) {
 					<Header>
 						Login
 					</Header>
-					{/* <a href="/api/auth/login">
+					{
+						/* <a href="/api/auth/login">
 						<Button>
 							Login with GitHub
 						</Button>
-					</a> */}
+					</a> */
+					}
 					<p>Initial: {JSON.stringify(props.data.user)}</p>
 					<LoginSection
 						{...props.data}
@@ -51,7 +52,9 @@ export const handler: Handler = async (req, ctx) => {
 	const url = new URL(req.url);
 	const cookies = await getCookies(req.headers);
 
-	const { user } = await supabaseService.auth.api.getUser(cookies["access_token"]);
+	const { user } = await supabaseService.auth.api.getUser(
+		cookies["access_token"],
+	);
 
 	if (user) {
 		return Response.redirect(url.origin, 302);
@@ -60,6 +63,6 @@ export const handler: Handler = async (req, ctx) => {
 	return ctx.render({
 		supabaseUrl: Deno.env.get("SUPABASE_URL"),
 		supabaseKey: Deno.env.get("SUPABASE_ANON_KEY"),
-		redirectTo: DEV ? "http://localhost:3000/login" : url.origin + "/login"
-	} as DataProps)
-}
+		redirectTo: DEV ? "http://localhost:3000/login" : url.origin + "/login",
+	} as DataProps);
+};

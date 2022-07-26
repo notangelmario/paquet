@@ -3,7 +3,7 @@ import { createClient, SupabaseClient, SupabaseClientOptions } from "supabase";
 export const useSupabase = (
 	supabaseUrl: string,
 	supabaseKey: string,
-	options?: SupabaseClientOptions
+	options?: SupabaseClientOptions,
 ): SupabaseClient => {
 	return createClient(
 		supabaseUrl,
@@ -12,6 +12,6 @@ export const useSupabase = (
 			multiTab: false,
 			detectSessionInUrl: false,
 			...options,
-		}
+		},
 	);
 };

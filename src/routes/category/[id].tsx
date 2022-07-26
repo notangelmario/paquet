@@ -65,7 +65,9 @@ export const handler: Handlers = {
 			return Response.redirect("/", 300);
 		}
 
-		const { data: apps } = await supabase.from("apps").select("id, name, iconSmall, author").eq(
+		const { data: apps } = await supabase.from("apps").select(
+			"id, name, iconSmall, author",
+		).eq(
 			"categoryId",
 			categoryId,
 		);
