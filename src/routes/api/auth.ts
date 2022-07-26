@@ -13,10 +13,6 @@ export const handler: Handlers = {
 			return new Response("Missing access_token", { status: 400 });
 		}
 
-		if (!session.refresh_token) {
-			return new Response("Missing refresh_token", { status: 400 });
-		}
-
 		setCookie(res.headers, {
 			name: "access_token",
 			value: session.access_token,

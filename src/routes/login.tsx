@@ -23,9 +23,7 @@ type DataProps = {
 	user: User | undefined,
 }
 
-
 export default function Login(props: PageProps<DataProps>) {
-
 	return (
 		<>
 			<Navbar />
@@ -50,14 +48,18 @@ export default function Login(props: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (req, ctx) => {
+	const url = new URL(req.url);
 	const cookies = await getCookies(req.headers);
 
 	const { user } = await supabaseService.auth.api.getUser(cookies["access_token"]);
 
+	if (user) {
+		return Response.redirect(url.origin, 301);
+	}
+
 	return ctx.render({
 		supabaseUrl: Deno.env.get("SUPABASE_URL"),
 		supabaseKey: Deno.env.get("SUPABASE_ANON_KEY"),
-		redirectTo: DEV ? "http://localhost:3000/login" : undefined,
-		user,
+		redirectTo: DEV ? "http://localhost:3000/login" : undefined
 	} as DataProps)
 }

@@ -1,7 +1,7 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { h, Fragment } from "preact";
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import Button from "@/components/Button.tsx";
 import { useSupabase } from "@/hooks/useSupabase.ts";
 import { Session } from "supabase";
@@ -12,30 +12,26 @@ type Props = {
 	redirectTo: string | undefined
 }
 
-async function handleAuthChange(session: Session) {
-    await fetch('/api/auth', {
-      	method: 'POST',
-      	headers: new Headers({ 'Content-Type': 'application/json' }),
-      	credentials: 'same-origin',
+async function handleSignIn(session: Session) {
+	await fetch('/api/auth', {
+		method: 'POST',
+		headers: new Headers({ 'Content-Type': 'application/json' }),
+		credentials: 'same-origin',
 		body: JSON.stringify({ session }),
 	})
 }
 
 export default function LoginSection(props: Props) {
-	const supabase = useSupabase(props.supabaseUrl, props.supabaseKey);
+	const supabase = useSupabase(props.supabaseUrl, props.supabaseKey, { detectSessionInUrl: true });
+	const [ loading, setLoading ] = useState(false);
 
 	useEffect(() => {
-		const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-			console.log("auth change", event, session);
-
+		supabase.auth.onAuthStateChange((event, session) => {
 			if (event === "SIGNED_IN" && session) {
-				handleAuthChange(session);
+				setLoading(true);
+				handleSignIn(session).finally(() => setLoading(false));
 			}
 		});
-
-		return () => {
-			authListener?.unsubscribe();
-		}
 	}, [])
 
 	const login = () => {
@@ -48,8 +44,10 @@ export default function LoginSection(props: Props) {
 
 	return (
 		<>
-			<p>{JSON.stringify(supabase.auth.user())}</p>
-			<Button onClick={login}>
+			<Button 
+				onClick={login}
+				disabled={loading}
+			>
 				Login with GitHub
 			</Button>
 		</>
