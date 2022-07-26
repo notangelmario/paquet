@@ -62,7 +62,9 @@ export default function App(props: PageProps<DataProps>) {
 							{props.data.app.description}
 						</p>
 					</div>
-					<Features features={props.data.app.features} />
+					{props.data.app.features && 
+						<Features features={props.data.app.features} />
+					}
 				</Stack>
 			</Container>
 		</>
