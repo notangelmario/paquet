@@ -1,66 +1,75 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h, type JSX } from "preact";
 import { tw } from "@twind";
 import { btn } from "@/utils/sharedUi.ts";
+import Divider from "@/components/Divider.tsx";
 
-type Props = {
-	button?: boolean,
-	icon?: string,
-	image?: string,
+export type Props = {
+	button?: boolean;
+	icon?: string;
+	image?: string;
 
-	title?: string,
-	subtitle?: string,
-	imageProps?: h.JSX.IntrinsicElements["img"],
-	divider?: boolean,
-}
+	title?: string;
+	subtitle?: string;
+	imageProps?: h.JSX.IntrinsicElements["img"];
+	divider?: boolean;
+};
 
-const ListItem  = ({ button, icon, image, title, subtitle, imageProps, divider }: Props) => {
+export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
 		<>
 			<div
-				class={
-					tw`
-						${button && btn} 
-						flex flex-row items-center p-4
-					`
-				}
+				{...props}
+				class={tw`
+						${props.button && btn} 
+						flex items-center p-4
+
+						${props.class || ""}
+					`}
 			>
-				{icon || image ?
-					icon ?
-						<div class={tw`w-12 h-12 mr-4 flex justify-center items-center`}>
-							<span class={tw`!text-3xl !align-middle material-symbols-outlined`}>
-								{icon}
-							</span>
-						</div>
-						:
-						<img
-							src={image}
-							alt={title}
-							width="48px"
-							height="48px"
-							{...imageProps}
-							class={tw` 
-								w-12 h-12 rounded mr-4 ${imageProps?.class || ""}
-							`}						
-						/>
-					: null
-				}
-				
+				{props.icon || props.image
+					? props.icon
+						? (
+							<div
+								class={tw`
+									flex justify-center items-center w-12 h-12 mr-4
+								`}
+							>
+								<span
+									class={tw
+										`!text-3xl !align-middle material-symbols-outlined`}
+								>
+									{props.icon}
+								</span>
+							</div>
+						)
+						: (
+							<img
+								src={props.image}
+								alt={props.title}
+								width="48px"
+								height="48px"
+								{...props.imageProps}
+								class={tw` 
+									w-12 h-12 rounded 
+									mr-4 
+									${props.imageProps?.class || ""}
+								`}
+							/>
+						)
+					: null}
+
 				<div>
 					<h2 class={tw`text-lg`}>
-						{title}
+						{props.title}
 					</h2>
 					<p class={tw`text-sm opacity-50`}>
-						{subtitle}
+						{props.subtitle}
 					</p>
 				</div>
 			</div>
-			{divider &&
-				<hr class={tw`border-t-1 border-black border-opacity-25 dark:(!border-white !border-opacity-25) mx-4`} />
-			}
+			{props.divider && <Divider inset/>}
 		</>
-	)
+	);
 }
-
-export default ListItem;

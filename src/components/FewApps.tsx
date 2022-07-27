@@ -2,7 +2,6 @@
 import { h } from "preact";
 import { tw } from "@twind";
 
-
 export default function FewApps() {
 	return (
 		<div
@@ -18,9 +17,8 @@ export default function FewApps() {
 				More apps coming soon...
 			</h1>
 			<p>
-				Apps are being added every week.
-				Check back soon for more!
+				Apps are being added every week. Check back soon for more!
 			</p>
 		</div>
-	)
+	);
 }

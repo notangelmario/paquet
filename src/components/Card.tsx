@@ -1,17 +1,15 @@
 /**@jsx h */
-import { h } from "preact";
+import { h, type JSX } from "preact";
 import { tw } from "@twind";
 
+export type Props = {
+	disableGutters?: boolean;
+};
 
-type Props = {
-	disableGutters?: boolean
-}
-
-export default function Card(props: Props & h.JSX.IntrinsicElements["div"]) {
+export default function Card(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
 		<div
-			class={
-				`${tw`
+			class={`${tw`
 					bg-paper-light
 					dark:bg-paper-dark
 					${!props.disableGutters && "p-4"}
@@ -22,5 +20,5 @@ export default function Card(props: Props & h.JSX.IntrinsicElements["div"]) {
 		>
 			{props.children}
 		</div>
-	)
+	);
 }

@@ -1,4 +1,2 @@
-export default {
-	version: "0.3.0",
-	nickname: "Rodia"
-};
+import AppDetails from "../../app.json" assert { type: "json" };
+export default AppDetails;

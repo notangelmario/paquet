@@ -4,7 +4,7 @@ import { tw } from "@twind";
 import { useScroll } from "../hooks/useScroll.ts";
 import { iconBtn } from "../utils/sharedUi.ts";
 
-type Props = {
+export type Props = {
 	back?: boolean;
 	rightIcon?: string;
 	rightIconHref?: string;
@@ -22,10 +22,9 @@ export default function Navbar(props: Props) {
 					-top-px left-0 right-0
 					items-center content-center
 					
-					${
-				trigger &&
-				"border-b-1 border-opacity-25 border-black dark:(border-white border-opacity-25)"
-			}
+					border-opacity-25 border-black dark:(border-white border-opacity-25)
+
+					${trigger && "border-b-1"}
 
 					px-2 py-2 z-30
 				`}

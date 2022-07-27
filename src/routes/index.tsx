@@ -1,23 +1,25 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import { supabase } from "@supabase";
-import type { App } from "@/types/App.ts";
+import type { App, Category } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
-import { categories, getCategory } from "@/utils/categories.ts";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
 import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
+import SlideContainer from "@/components/SlideContainer.tsx";
+import SlideItem from "@/components/SlideItem.tsx";
 import { useInstalledServerSide } from "@/hooks/useInstalled.ts";
 
 type DataProps = {
+	categories: Category[];
 	apps: App[];
 	installed: boolean;
 };
@@ -41,36 +43,31 @@ export default function Home(props: PageProps<DataProps>) {
 						>
 							<SearchBar />
 						</form>
-						<InstallBanner initialInstalled={props.data.installed} />
+						<InstallBanner
+							initialInstalled={props.data.installed}
+						/>
 					</Stack>
 				</Container>
-				<div
-					class={tw`flex flex-row overflow-x-scroll md:container`}
-					style={{
-						scrollSnapType: "x mandatory",
-					}}
+				<SlideContainer
+					snap
 				>
-					{categories.map((category, idx) => (
-						<a
+					{props.data.categories.map((category, idx) => (
+						<SlideItem
 							key={category.id}
-							href={`/category/${category.id}`}
-							class={tw`${
-								idx === categories.length - 1
-									? `!pr-4 md:pr-0`
-									: ""
-							} pl-4`}
-							style={{
-								scrollSnapAlign: "start",
-							}}
+							isLast={idx === props.data.categories.length - 1}
 						>
-							<Button
-								icon={category.icon}
+							<a
+								href={`/category/${category.id}`}
 							>
-								{category.name}
-							</Button>
-						</a>
+								<Button
+									icon={category.icon}
+								>
+									{category.name}
+								</Button>
+							</a>
+						</SlideItem>
 					))}
-				</div>
+				</SlideContainer>
 				<Container disableGutters>
 					{props.data.apps?.map((app: App, idx: number) => (
 						<a href={`/app/${app.id}`}>
@@ -79,7 +76,7 @@ export default function Home(props: PageProps<DataProps>) {
 								key={app.id}
 								image={app.iconSmall}
 								title={app.name}
-								subtitle={getCategory(app.categoryId)?.name}
+								subtitle={app.category.name}
 								divider={idx !== props.data.apps.length - 1}
 							/>
 						</a>
@@ -99,9 +96,16 @@ export default function Home(props: PageProps<DataProps>) {
 export const handler: Handlers = {
 	async GET(req, ctx) {
 		const installed = useInstalledServerSide(req);
-		const { data: apps } = await supabase.from("apps").select("*");
+
+		const [{ data: categories }, { data: apps }] = await Promise.all([
+			supabase.from("categories").select("*"),
+			supabase.from("apps").select(
+				"id, name, iconSmall, category:categories(name)",
+			),
+		]);
 
 		return ctx.render({
+			categories,
 			apps,
 			installed,
 		} as DataProps);

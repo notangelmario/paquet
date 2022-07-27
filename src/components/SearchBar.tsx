@@ -1,16 +1,18 @@
 /**@jsx h */
-import { h } from "preact";
+import { h, type JSX } from "preact";
 import { tw } from "@twind";
 
-type Props = {
+export type Props = {
 	text?: string;
 	resetButton?: boolean;
 	onReset?: () => void;
 	inputProps?: h.JSX.IntrinsicElements["input"];
 	inputRef?: h.JSX.IntrinsicElements["input"]["ref"];
-}
+};
 
-export default function SearchBar(props?: Props & h.JSX.HTMLAttributes<HTMLDivElement>) {
+export default function SearchBar(
+	props?: Props & JSX.HTMLAttributes<HTMLDivElement>,
+) {
 	return (
 		<div
 			{...props}
@@ -49,5 +51,5 @@ export default function SearchBar(props?: Props & h.JSX.HTMLAttributes<HTMLDivEl
 				`}
 			/>
 		</div>
-	)
+	);
 }

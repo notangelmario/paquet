@@ -1,25 +1,31 @@
 {
   "compilerOptions": {
     "allowJs": false,
-    "strict": true
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictFunctionTypes": true
   },
   "tasks": {
-    "start": "deno run -A --watch=src/static/,src/routes/ src/dev.ts"
+    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A src/main.ts",
+    "dev": "deno run -A --watch=src/static/,src/routes/ src/dev.ts",
+    "cache": "deno cache --reload src/main.ts"
   },
   "importMap": "./src/import_map.json",
   "lint": {
     "files": {
-      "include": ["src/routes/", "src/utils/", "src/islands/"]
+      "include": ["src/"],
+      "exclude": ["src/static"]
     },
     "rules": {
       "tags": ["recommended"],
-      "include": ["ban-untagged-todo"],
-      "exclude": ["no-unused-vars"]
+      "include": ["ban-untagged-todo"]
     }
   },
   "fmt": {
     "files": {
-      "include": ["src/routes/", "src/utils/", "src/islands/"]
+      "include": ["src/"],
+      "exclude": ["src/static"]
     },
     "options": {
       "useTabs": true,
