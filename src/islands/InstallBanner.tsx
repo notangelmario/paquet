@@ -1,5 +1,4 @@
 /**@jsx h */
-/**@jsxFrag Fragment */
 
 declare global {
 	interface Window {
@@ -8,7 +7,7 @@ declare global {
 	}
 }
 
-import { Fragment, h } from "preact";
+import { h } from "preact";
 import { useState } from "preact/hooks";
 import Button from "../components/Button.tsx";
 import Card from "../components/Card.tsx";

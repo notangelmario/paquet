@@ -73,11 +73,11 @@ export default function App(props: PageProps<DataProps>) {
 					<Features 
 						features={props.data.app.features}
 					/>
+					<Container>
+						<Divider class="mt-4" inset />
+					</Container>
 				</div>
 			)}
-			<Container>
-				<Divider class="mt-4" inset />
-			</Container>
 
 			<Container>
 				<h3 class={tw`text-2xl mt-4`}>

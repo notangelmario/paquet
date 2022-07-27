@@ -2,7 +2,7 @@
 import { h, type JSX } from "preact";
 import { tw } from "@twind";
 
-type Props = {
+export type Props = {
 	inset?: boolean;
 }
 

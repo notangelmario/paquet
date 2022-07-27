@@ -14,7 +14,8 @@ import * as $8 from "./routes/settings.tsx";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoginSection.tsx";
-import * as $$3 from "./islands/Navbar.tsx";
+import * as $$3 from "./islands/LogoutButton.tsx";
+import * as $$4 from "./islands/Navbar.tsx";
 
 const manifest = {
 	routes: {
@@ -32,7 +33,8 @@ const manifest = {
 		"./islands/Dialog.tsx": $$0,
 		"./islands/InstallBanner.tsx": $$1,
 		"./islands/LoginSection.tsx": $$2,
-		"./islands/Navbar.tsx": $$3,
+		"./islands/LogoutButton.tsx": $$3,
+		"./islands/Navbar.tsx": $$4,
 	},
 	baseUrl: import.meta.url,
 };

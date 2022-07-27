@@ -1,30 +1,29 @@
 /**@jsx h */
-import { h } from "preact";
+import { h, type JSX } from "preact";
 import { tw } from "@twind";
 import { btn } from "@/utils/sharedUi.ts";
 
-type Props = {
+export type Props = {
 	icon?: string;
 	fullWidth?: boolean;
 	children?: string;
 	outlined?: boolean;
+	red?: boolean;
 };
 
-export default function Button(
-	props: Props & h.JSX.IntrinsicElements["button"],
-) {
+export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 	return (
 		<button
 			{...props}
 			class={tw`
 				${!props.disabled && btn}
 				rounded px-8 py-2
-				border-current
+				${props.red ? "border-red-500" : "border-current"}
 				
 				${
 				props.outlined
-					? "bg-transparent border text-current"
-					: "bg-primary text-white"
+					? `bg-transparent border ${props.red ? "text-red-500" : "text-current"}`
+					: `${props.red ? "bg-red-500" : "bg-primary"} text-white`
 			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				

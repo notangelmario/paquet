@@ -4,7 +4,6 @@ import "dotenv";
 import { Fragment, h } from "preact";
 import type { Handler, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
-import { User } from "supabase";
 import { supabaseService } from "@supabase";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
@@ -19,7 +18,6 @@ type DataProps = {
 	supabaseUrl: string;
 	supabaseKey: string;
 	redirectTo: string | undefined;
-	user: User | undefined;
 };
 
 export default function Login(props: PageProps<DataProps>) {
@@ -38,7 +36,6 @@ export default function Login(props: PageProps<DataProps>) {
 						</Button>
 					</a> */
 					}
-					<p>Initial: {JSON.stringify(props.data.user)}</p>
 					<LoginSection
 						{...props.data}
 					/>

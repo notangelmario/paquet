@@ -6,7 +6,7 @@ import Button from "@/components/Button.tsx";
 import { useSupabase } from "@/hooks/useSupabase.ts";
 import { Session } from "supabase";
 
-type Props = {
+export type Props = {
 	supabaseUrl: string;
 	supabaseKey: string;
 	redirectTo: string | undefined;
@@ -31,7 +31,9 @@ export default function LoginSection(props: Props) {
 		supabase.auth.onAuthStateChange((event, session) => {
 			if (event === "SIGNED_IN" && session) {
 				setLoading(true);
-				handleSignIn(session).finally(() => setLoading(false));
+				handleSignIn(session)
+					.then(() => globalThis.location.replace("/"))
+					.catch(() => setLoading(false));
 			}
 		});
 	}, []);

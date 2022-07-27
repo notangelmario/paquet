@@ -30,7 +30,7 @@ export const FEATURES = {
 	},
 };
 
-type Props = {
+export type Props = {
 	features: App["features"];
 };
 

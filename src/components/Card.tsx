@@ -1,12 +1,12 @@
 /**@jsx h */
-import { h } from "preact";
+import { h, type JSX } from "preact";
 import { tw } from "@twind";
 
-type Props = {
+export type Props = {
 	disableGutters?: boolean;
 };
 
-export default function Card(props: Props & h.JSX.IntrinsicElements["div"]) {
+export default function Card(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
 		<div
 			class={`${tw`

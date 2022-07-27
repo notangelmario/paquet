@@ -4,7 +4,7 @@ import { tw } from "@twind";
 import { useScroll } from "../hooks/useScroll.ts";
 import { iconBtn } from "../utils/sharedUi.ts";
 
-type Props = {
+export type Props = {
 	back?: boolean;
 	rightIcon?: string;
 	rightIconHref?: string;

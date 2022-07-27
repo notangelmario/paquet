@@ -1,12 +1,12 @@
 /**@jsx h */
-import { h } from "preact";
+import { h, type JSX } from "preact";
 import { tw } from "@twind";
 
-type Props = {
+export type Props = {
 	direction?: "horizontal" | "vertical";
 };
 
-const Stack = (props: Props & h.JSX.IntrinsicElements["h1"]) => {
+export default function Stack(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
 		<div
 			{...props}
@@ -17,6 +17,4 @@ const Stack = (props: Props & h.JSX.IntrinsicElements["h1"]) => {
 			{props.children}
 		</div>
 	);
-};
-
-export default Stack;
+}

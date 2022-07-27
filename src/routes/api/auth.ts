@@ -31,7 +31,9 @@ export const handler: Handlers = {
 	DELETE: () => {
 		const res = new Response();
 
-		deleteCookie(res.headers, "access_token");
+		deleteCookie(res.headers, "access_token", {
+			path: "/",
+		});
 
 		return res;
 	},

@@ -5,7 +5,7 @@ import { tw } from "@twind";
 import { btn } from "@/utils/sharedUi.ts";
 import Divider from "@/components/Divider.tsx";
 
-type Props = {
+export type Props = {
 	button?: boolean;
 	icon?: string;
 	image?: string;
@@ -33,7 +33,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 						? (
 							<div
 								class={tw`
-									flex justify-center items-center w-12 h-12 
+									flex justify-center items-center w-12 h-12 mr-4
 								`}
 							>
 								<span
