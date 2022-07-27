@@ -16,9 +16,9 @@ export default function LoginParamsConverter(props: Props) {
 		const expires_in = hashParams.get("expires_in");
 
 		if (access_token && refresh_token && expires_in) {
-			globalThis.location.href = `/api/auth/login?${hash.substring(1)}`;
+			globalThis.location.replace(`/api/auth/login?${hash.substring(1)}`);
 		} else {
-			globalThis.location.href = props.redirectTo;
+			globalThis.location.replace(props.redirectTo);
 		}
 	}, []);	
 	
