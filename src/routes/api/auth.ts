@@ -15,7 +15,7 @@ export const handler: Handlers = {
 		setCookie(res.headers, {
 			name: "access_token",
 			value: session.access_token,
-			maxAge: 60 * 60,
+			maxAge: 7 * 24 * 60 * 60,
 			httpOnly: true,
 			sameSite: "Strict",
 			path: "/",
