@@ -16,7 +16,7 @@ import Divider from "@/components/Divider.tsx";
 
 type DataProps = {
 	app: App;
-	otherApps: App[];
+	otherApps?: App[];
 };
 
 export default function App(props: PageProps<DataProps>) {
@@ -79,27 +79,31 @@ export default function App(props: PageProps<DataProps>) {
 				</div>
 			)}
 
-			<Container>
-				<h3 class={tw`text-2xl mt-4`}>
-					Other apps
-				</h3>
-			</Container>
-			<Container disableGutters>
-				{props.data.otherApps.map((app, idx) => (
-					<a
-						key={idx}
-						href={`/app/${app.id}`}
-					>
-						<ListItem
-							button
-							title={app.name}
-							image={app.iconSmall}
-							subtitle={app.author}
-							divider={idx !== props.data.otherApps.length - 1}
-						/>
-					</a>
-				))}
-			</Container>
+			{props.data.otherApps && 
+				<>
+					<Container>
+						<h3 class={tw`text-2xl mt-4`}>
+							Other apps
+						</h3>
+					</Container>
+					<Container disableGutters>
+						{props.data.otherApps.map((app, idx) => (
+							<a
+								key={idx}
+								href={`/app/${app.id}`}
+							>
+								<ListItem
+									button
+									title={app.name}
+									image={app.iconSmall}
+									subtitle={app.author}
+									divider={idx !== (props.data.otherApps?.length as number) - 1}
+								/>
+							</a>
+						))}
+					</Container>
+				</>
+			}
 		</>
 	);
 }
