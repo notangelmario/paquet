@@ -12,7 +12,7 @@ import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
-import LogoutButton from "@/islands/LogoutButton.tsx";
+import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import app from "@app";
 
@@ -55,13 +55,15 @@ export default function Settings(props: PageProps<DataProps>) {
 					</Card>
 					{props.data.user &&
 						<Card disableGutters>
-							<LogoutButton
-								supabaseUrl={props.data.supabaseUrl}
-								supabaseKey={props.data.supabaseKey}
-								fullWidth
-								red
-								outlined
-							/>
+							<a href="/api/auth/logout">
+								<Button
+									fullWidth
+									red
+									outlined
+								>
+									Log out
+								</Button>
+							</a>
 						</Card>
 					}
 					<Card disableGutters>
