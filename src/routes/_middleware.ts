@@ -10,7 +10,8 @@ export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 
 
 	if (["expires_at", "refresh_token"].every((key) => cookies[key])) {
-		const accessTokenExpired = new Date().getTime() > parseInt(cookies["expires_at"]);
+		const dateTimeInSeconds = Math.floor(Date.now() / 1000);
+		const accessTokenExpired = dateTimeInSeconds > parseInt(cookies["expires_at"]);
 
 		if (accessTokenExpired) {
 			const { data } = await supabaseService.auth.api.refreshAccessToken(cookies["refresh_token"]);
