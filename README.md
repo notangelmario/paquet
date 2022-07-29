@@ -10,6 +10,7 @@
 Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md&title=)
+> ⚠️ App submissions will be delayed since a developer dashboard is being implemented and apps are being restructured
 
 ### About
 * ⚡ Optimized for speed
