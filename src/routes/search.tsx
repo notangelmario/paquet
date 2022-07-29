@@ -44,7 +44,7 @@ export default function Search(props: PageProps<DataProps>) {
 							<ListItem
 								button
 								key={app.id}
-								image={app.iconSmall}
+								image={app.icon_small}
 								title={app.name}
 								subtitle={app.category.name}
 								divider={idx !== props.data.apps.length - 1}
@@ -73,7 +73,7 @@ export const handler: Handlers = {
 
 		const { data: apps } = await supabase.rpc("search_app", {
 			search_term: query,
-		}).select("id, name, iconSmall, category:categories(*)");
+		}).select("id, name, icon_small, category:categories(*)");
 
 		return ctx.render({
 			apps,

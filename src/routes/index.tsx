@@ -2,7 +2,8 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
+import { Handler } from "@/types/Handler.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -74,7 +75,7 @@ export default function Home(props: PageProps<DataProps>) {
 							<ListItem
 								button
 								key={app.id}
-								image={app.iconSmall}
+								image={app.icon_small}
 								title={app.name}
 								subtitle={app.category.name}
 								divider={idx !== props.data.apps.length - 1}
@@ -93,21 +94,24 @@ export default function Home(props: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handlers = {
-	async GET(req, ctx) {
-		const installed = useInstalledServerSide(req);
+export const handler: Handler = async (req, ctx) => {
+	const accessToken = ctx.state.accessToken;
+	const installed = useInstalledServerSide(req);
 
-		const [{ data: categories }, { data: apps }] = await Promise.all([
-			supabase.from("categories").select("*"),
-			supabase.from("apps").select(
-				"id, name, iconSmall, category:categories(name)",
-			),
-		]);
+	if (accessToken) {
+		supabase.auth.setAuth(accessToken)
+	}
 
-		return ctx.render({
-			categories,
-			apps,
-			installed,
-		} as DataProps);
-	},
-};
+	const [{ data: categories }, { data: apps }] = await Promise.all([
+		supabase.from("categories").select("*"),
+		supabase.from("apps").select(
+			"id, name, icon_small, category:categories(name)",
+		),
+	]);
+
+	return ctx.render({
+		categories,
+		apps,
+		installed,
+	} as DataProps);
+}

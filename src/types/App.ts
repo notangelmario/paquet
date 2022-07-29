@@ -1,16 +1,23 @@
+import type { User } from "./User.ts";
+
 export type App = {
 	id: string;
 
 	name: string;
 	author: string;
+	owner?: User;
 	url: string;
+
+	/**@deprecated Use icon_large instead. To be removed */
 	iconLarge: string;
+	/**@deprecated Use icon_small instead. To be removed */
 	iconSmall: string;
+	
+	icon_small: string;
+	icon_large: string;
+	
 	/**@deprecated Use iconLarge and iconSmall instead. To be removed */
 	iconUrl?: string;
-
-	/**@deprecated Use category instead. To be removed */
-	categoryId: string;
 
 	category: Category;
 
@@ -36,7 +43,7 @@ export type LighthouseScores = {
 	accessibility: number;
 	bestPractices: number;
 	seo: number;
-	updatedAt: number;
+	updated_at: number;
 };
 
 export type Category = {

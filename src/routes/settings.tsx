@@ -3,10 +3,9 @@
 import "dotenv";
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import { getCookies } from "$std/http/cookie.ts";
 import { User } from "supabase";
-import { supabaseService } from "@supabase";
-import type { Handler, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
+import type { Handler } from "@/types/Handler.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -17,9 +16,8 @@ import ListItem from "@/components/ListItem.tsx";
 import app from "@app";
 
 type DataProps = {
-	supabaseUrl: string;
-	supabaseKey: string;
 	user: User | null;
+	userIsDeveloper: boolean;
 };
 
 export default function Settings(props: PageProps<DataProps>) {
@@ -66,6 +64,20 @@ export default function Settings(props: PageProps<DataProps>) {
 							</a>
 						</Card>
 					}
+					{props.data.user && props.data.userIsDeveloper && 
+						<Card disableGutters>
+							<a
+								href="/dashboard"
+							>
+								<ListItem
+									button
+									icon="dashboard"
+									title="Developer dashboard"
+									subtitle="All things developer"
+								/>
+							</a>
+						</Card>
+					}
 					<Card disableGutters>
 						<ListItem
 							icon="info"
@@ -94,24 +106,9 @@ export default function Settings(props: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handler = async (req, ctx) => {
-	const cookies = await getCookies(req.headers);
-	const sbConfig = {
-		supabaseUrl: Deno.env.get("SUPABASE_URL"),
-		supabaseKey: Deno.env.get("SUPABASE_ANON_KEY"),
-	}
+export const handler: Handler = (_, ctx) => {
+	const user = ctx.state.user;
+	const developer = ctx.state.developer;
 
-	if (!cookies["access_token"]) {
-		return ctx.render({ ...sbConfig, user: null });
-	}
-
-	const { user } = await supabaseService.auth.api.getUser(
-		cookies["access_token"],
-	);
-
-	if (!user) {
-		return ctx.render({ ...sbConfig, user: null });
-	}
-
-	return ctx.render({ ...sbConfig, user });
+	return ctx.render({ user: user ?? null, userIsDeveloper: !!developer });
 };

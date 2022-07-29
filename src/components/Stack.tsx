@@ -11,8 +11,8 @@ export default function Stack(props: Props & JSX.IntrinsicElements["div"]) {
 		<div
 			{...props}
 			class={`${tw`flex ${
-				props.direction === "vertical" ? "flex-row" : "flex-col"
-			} gap-y-4`} ${props.class || ""}`}
+				props.direction === "horizontal" ? "flex-row" : "flex-col"
+			} gap-4`} ${props.class || ""}`}
 		>
 			{props.children}
 		</div>

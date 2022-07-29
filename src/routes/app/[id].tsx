@@ -2,7 +2,8 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
+import type { Handler } from "@/types/Handler.ts";
 import { supabase } from "@supabase";
 
 import type { App } from "@/types/App.ts";
@@ -30,14 +31,14 @@ export default function App(props: PageProps<DataProps>) {
 							class={tw`
 								rounded w-20 h-20
 							`}
-							src={props.data.app.iconLarge}
+							src={props.data.app.icon_large}
 						/>
 						<div class={tw`flex-1`}>
 							<h2 class={tw`text-3xl`}>
 								{props.data.app.name}
 							</h2>
 							<p class={tw`opacity-50`}>
-								{props.data.app.author} &middot;{" "}
+								{props.data.app.author || props.data.app.owner?.name} &middot;{" "}
 								{props.data.app.category.name}
 							</p>
 						</div>
@@ -95,8 +96,8 @@ export default function App(props: PageProps<DataProps>) {
 								<ListItem
 									button
 									title={app.name}
-									image={app.iconSmall}
-									subtitle={app.author}
+									image={app.icon_small}
+									subtitle={app.author || app.owner?.name}
 									divider={idx !== (props.data.otherApps?.length as number) - 1}
 								/>
 							</a>
@@ -108,28 +109,32 @@ export default function App(props: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handlers = {
-	async GET(_, ctx) {
-		const { data: app } = await supabase.from<App>("apps")
-			.select(
-				"id, name, author, description, url, iconLarge, category:categories(id, name), features",
-			)
-			.eq("id", ctx.params.id)
-			.single();
+export const handler: Handler = async (_, ctx) => {
+	const accessToken = ctx.state.accessToken;
 
-		if (!app) {
-			return Response.redirect("/", 300);
-		}
+	if (accessToken) {
+		supabase.auth.setAuth(accessToken);
+	}
 
-		const { data: otherApps } = await supabase.from("random_apps")
-			.select("id, name, author, iconSmall")
-			.eq("category", app.category.id)
-			.neq("id", app.id)
-			.limit(3);
+	const { data: app } = await supabase.from<App>("apps")
+		.select(
+			"id, name, author, description, url, icon_large, features, owner:users(name), category:categories(id, name)",
+		)
+		.eq("id", ctx.params.id)
+		.single();
 
-		return ctx.render({
-			app,
-			otherApps,
-		} as DataProps);
-	},
-};
+	if (!app) {
+		return Response.redirect("/", 300);
+	}
+
+	const { data: otherApps } = await supabase.from("random_apps")
+		.select("id, name, author, icon_small, owner:users(name)")
+		.eq("category", app.category.id)
+		.neq("id", app.id)
+		.limit(3);
+
+	return ctx.render({
+		app,
+		otherApps,
+	} as DataProps);
+}
