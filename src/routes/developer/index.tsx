@@ -2,10 +2,10 @@
 /**@jsxFrag Fragment */
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
-import type { Handler, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
+import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
-import { getCookies } from "$std/http/cookie.ts";
-import { supabaseService } from "@supabase";
+import { supabase } from "@supabase";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
@@ -29,7 +29,7 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 						Developer Dashboard
 					</Header>
 					<div>
-						<h2 class={tw`text-2xl`}>
+						<h2 class={tw`text-2xl mb-1`}>
 							Your apps
 						</h2>
 						<Card disableGutters>
@@ -39,7 +39,7 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 								icon="add"
 							/>
 							{props.data.apps?.map((app) => (
-								<a href={`/dashboard/edit/${app.id}`}>
+								<a href={`/developer/edit/${app.id}`}>
 									<ListItem
 										key={app.id}
 										button
@@ -57,12 +57,11 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 	)
 }
 
-export const handler: Handler = async (req, ctx) => {
-	const cookies = await getCookies(req.headers);
+export const handler: Handler = async (_, ctx) => {
+	const user = ctx.state.user;
+	const accessToken = ctx.state.accessToken
 
-	const { user } = await supabaseService.auth.api.getUser(cookies["access_token"]);
-
-	if (!user) {
+	if (!user || !accessToken) {
 		return new Response("Unauthorized", {
 			status: 307,
 			headers: {
@@ -71,11 +70,20 @@ export const handler: Handler = async (req, ctx) => {
 		});
 	}
 
-	supabaseService.auth.setAuth(cookies["access_token"]);
+	supabase.auth.setAuth(accessToken);
 
-	const { data: apps } = await supabaseService.from<App>("apps")
+	const { data: apps } = await supabase.from<App>("apps")
 		.select("id, name, icon_small")
 		.eq("owner", user.id)
+
+	if (!apps) {
+		return new Response("Unauthorized", {
+			status: 307,
+			headers: {
+				Location: "/login",
+			},
+		});
+	}
 
 	return ctx.render({
 		apps

@@ -6,15 +6,16 @@ import * as $0 from "./routes/_app.tsx";
 import * as $1 from "./routes/_middleware.ts";
 import * as $2 from "./routes/api/auth/login.tsx";
 import * as $3 from "./routes/api/auth/logout.ts";
-import * as $4 from "./routes/app/[id].tsx";
-import * as $5 from "./routes/category/[id].tsx";
-import * as $6 from "./routes/dashboard/edit/[id].tsx";
-import * as $7 from "./routes/dashboard/index.tsx";
-import * as $8 from "./routes/index.tsx";
-import * as $9 from "./routes/login.tsx";
-import * as $10 from "./routes/offline.tsx";
-import * as $11 from "./routes/search.tsx";
-import * as $12 from "./routes/settings.tsx";
+import * as $4 from "./routes/api/developer/update-app.ts";
+import * as $5 from "./routes/app/[id].tsx";
+import * as $6 from "./routes/category/[id].tsx";
+import * as $7 from "./routes/developer/edit/[id].tsx";
+import * as $8 from "./routes/developer/index.tsx";
+import * as $9 from "./routes/index.tsx";
+import * as $10 from "./routes/login.tsx";
+import * as $11 from "./routes/offline.tsx";
+import * as $12 from "./routes/search.tsx";
+import * as $13 from "./routes/settings.tsx";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoginParamsConverter.tsx";
@@ -26,15 +27,16 @@ const manifest = {
 		"./routes/_middleware.ts": $1,
 		"./routes/api/auth/login.tsx": $2,
 		"./routes/api/auth/logout.ts": $3,
-		"./routes/app/[id].tsx": $4,
-		"./routes/category/[id].tsx": $5,
-		"./routes/dashboard/edit/[id].tsx": $6,
-		"./routes/dashboard/index.tsx": $7,
-		"./routes/index.tsx": $8,
-		"./routes/login.tsx": $9,
-		"./routes/offline.tsx": $10,
-		"./routes/search.tsx": $11,
-		"./routes/settings.tsx": $12,
+		"./routes/api/developer/update-app.ts": $4,
+		"./routes/app/[id].tsx": $5,
+		"./routes/category/[id].tsx": $6,
+		"./routes/developer/edit/[id].tsx": $7,
+		"./routes/developer/index.tsx": $8,
+		"./routes/index.tsx": $9,
+		"./routes/login.tsx": $10,
+		"./routes/offline.tsx": $11,
+		"./routes/search.tsx": $12,
+		"./routes/settings.tsx": $13,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,

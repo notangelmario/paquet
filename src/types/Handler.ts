@@ -1,5 +1,5 @@
 import type { User } from "supabase";
-import type { Handler as FreshHandler } from "$fresh/server.ts";
+import type { Handler as FreshHandler, Handlers as FreshHandlers } from "$fresh/server.ts";
 
 type MiddlewareProps = {
 	accessToken?: string;
@@ -8,3 +8,4 @@ type MiddlewareProps = {
 }
 
 export type Handler = FreshHandler<unknown, MiddlewareProps>;
+export type Handlers = FreshHandlers<unknown, MiddlewareProps>;

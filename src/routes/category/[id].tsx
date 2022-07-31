@@ -57,7 +57,7 @@ export default function Category(props: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const categoryId = ctx.params["id"];
+	const categoryId = ctx.params.id;
 	const accessToken = ctx.state.accessToken;
 
 	if (!categoryId) {

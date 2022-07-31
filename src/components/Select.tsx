@@ -15,7 +15,7 @@ export default function Select(props: JSX.IntrinsicElements["select"]) {
 				rounded transition ease-in-out m-0
 				focus:bg-paper-light focus:border-primary focus:outline-none
 
-				dark:(bg-paper-dark focus:bg-paper-dark text-white border-white)
+				dark:(bg-paper-dark focus:bg-paper-dark text-white border-white border-opacity-25)
 
 				${props.class || ""}
 			`}

@@ -2,10 +2,10 @@
 /**@jsxFrag Fragment */
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
-import type { Handler, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
+import type { Handler } from "@/types/Handler.ts";
 import type { App, Category } from "@/types/App.ts";
-import { getCookies } from "$std/http/cookie.ts";
-import { supabaseService } from "@supabase";
+import { supabase } from "@supabase";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
@@ -34,7 +34,8 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 						subtitle={props.data.app.category.name}
 						image={props.data.app.icon_small}
 					/>
-					<form>
+					<form method="GET" action="/api/developer/update-app">
+						<input type="hidden" name="id" value={props.params.id} /> 
 						<Stack>
 							<label class={tw`form-label inline-block opacity-50`}>
 								App name
@@ -176,11 +177,11 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 	)
 }
 
-export const handler: Handler = async (req, ctx) => {
-	const cookies = await getCookies(req.headers);
-	const { user } = await supabaseService.auth.api.getUser(cookies["access_token"]);
+export const handler: Handler = async (_, ctx) => {
+	const user = ctx.state.user;
+	const access_token = ctx.state.accessToken;
 
-	if (!user) {
+	if (!user || !access_token) {
 		return new Response("Unauthorized", {
 			status: 307,
 			headers: {
@@ -189,15 +190,15 @@ export const handler: Handler = async (req, ctx) => {
 		});
 	}
 
-	supabaseService.auth.setAuth(cookies["access_token"]);
+	supabase.auth.setAuth(access_token);
 
-	const { data: app } = await supabaseService.from<App>("apps")
+	const { data: app } = await supabase.from<App>("apps")
 		.select("id, name, description, icon_small, icon_large, features, category:categories(*)")
 		.eq("id", ctx.params.id)
 		.eq("owner", user.id)
 		.single();
 	
-	const { data: categories } = await supabaseService.from<Category>("categories").select("*");
+	const { data: categories } = await supabase.from<Category>("categories").select("*");
 
 	if (!app || !categories) {
 		return new Response("Unauthorized", {

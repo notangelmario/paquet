@@ -67,7 +67,7 @@ export default function Settings(props: PageProps<DataProps>) {
 					{props.data.user && props.data.userIsDeveloper && 
 						<Card disableGutters>
 							<a
-								href="/dashboard"
+								href="/developer"
 							>
 								<ListItem
 									button
