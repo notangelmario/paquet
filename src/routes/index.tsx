@@ -52,7 +52,7 @@ export default function Home(props: PageProps<DataProps>) {
 				<SlideContainer
 					snap
 				>
-					{props.data.categories.map((category, idx) => (
+					{props.data.categories?.map((category, idx) => (
 						<SlideItem
 							key={category.id}
 							isLast={idx === props.data.categories.length - 1}

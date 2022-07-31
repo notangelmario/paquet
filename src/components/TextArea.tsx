@@ -1,17 +1,16 @@
 /**@jsx h */
 import { h, type JSX } from "preact";
-import { tw, theme } from "@twind";
-import { css } from "twind/css";
+import { tw } from "@twind";
 
-export default function Input(props: JSX.IntrinsicElements["input"]) {
+export default function Input(props: JSX.IntrinsicElements["textarea"]) {
 	return (
-		<input
+		<textarea
 			{...props}
 			class={tw`
 				block w-full
-				px-3 py-1.5 text-base
-				font-normal text-black
-				bg-paper-light bg-clip-padding
+				px-3 py-1.5
+				text-base font-normal
+				text-black bg-paper-light bg-clip-padding
 				border border-solid border-black border-opacity-25
 				rounded transition ease-in-out m-0
 				focus:bg-paper-light focus:border-primary focus:outline-none
@@ -19,10 +18,6 @@ export default function Input(props: JSX.IntrinsicElements["input"]) {
 				dark:(bg-paper-dark focus:bg-paper-dark text-white border-white)
 
 				${props.class || ""}
-
-				${css({
-					"accent-color": theme("colors.primary")
-				})}
 			`}
 		/>
 	)

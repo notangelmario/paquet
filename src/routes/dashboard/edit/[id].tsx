@@ -12,7 +12,9 @@ import Button from "@/components/Button.tsx";
 import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Input from "@/components/Input.tsx";
+import TextArea from "@/components/TextArea.tsx";
 import Select from "@/components/Select.tsx";
+import Divider from "@/components/Divider.tsx";
 
 type DataProps = {
 	app: App;
@@ -46,7 +48,7 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 							<label class={tw`form-label inline-block opacity-50`}>
 								App description
 							</label>
-							<Input
+							<TextArea
 								type="text"
 								name="description"
 								placeholder="description"
@@ -69,6 +71,85 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 									</option>
 								))}
 							</Select>
+							<Divider />
+							<h2
+								class={tw`text-2xl`}
+							>
+								App icons
+							</h2>
+							<label class={tw`form-label inline-block opacity-50`}>
+								Small icon URL (max 128x128)
+							</label>
+							<Input
+								type="url"
+								name="icon_small"
+								placeholder="Small icon"
+								value={props.data.app.icon_small}
+							/>
+							<label class={tw`form-label inline-block opacity-50`}>
+								Large icon URL (min 256x256; max 512x512)
+							</label>
+							<Input
+								type="url"
+								name="icon_large"
+								placeholder="Large icon"
+								value={props.data.app.icon_large}
+							/>
+							<Divider />
+							<h2
+								class={tw`text-2xl`}
+							>
+								App features
+							</h2>
+							<div class={tw`flex flex-row`}>
+								<Input
+									id="features-mobile"
+									type="checkbox"
+									name="features-mobile"
+									class="!w-min"
+									checked={props.data.app.features?.mobile}
+								/>
+								<label class={tw`ml-2`} for="features-mobile">
+									Mobile optimized
+								</label>
+							</div>
+							<div class={tw`flex flex-row`}>
+								<Input
+									id="features-desktop"
+									type="checkbox"
+									name="features-desktop"
+									class="!w-min"
+									checked={props.data.app.features?.desktop}
+								/>
+								<label class={tw`ml-2`} for="features-desktop">
+									Desktop optimized
+								</label>
+							</div>
+							<div class={tw`flex flex-row`}>
+								<Input
+									id="features-openSource"
+									type="checkbox"
+									name="features-openSource"
+									class="!w-min"
+									checked={props.data.app.features?.openSource}
+								/>
+								<label class={tw`ml-2`} for="features-openSource">
+									Open source
+								</label>
+							</div>
+							<div class={tw`flex flex-row`}>
+								<Input
+									id="features-offline"
+									type="checkbox"
+									name="features-offline"
+									class="!w-min"
+									checked={props.data.app.features?.offline}
+								/>
+								<label class={tw`ml-2`} for="features-offline">
+									Offline support
+								</label>
+							</div>
+							<Divider />
 							<Stack
 								direction="horizontal"
 							>
@@ -111,7 +192,7 @@ export const handler: Handler = async (req, ctx) => {
 	supabaseService.auth.setAuth(cookies["access_token"]);
 
 	const { data: app } = await supabaseService.from<App>("apps")
-		.select("id, name, description, icon_small, category:categories(*)")
+		.select("id, name, description, icon_small, icon_large, features, category:categories(*)")
 		.eq("id", ctx.params.id)
 		.eq("owner", user.id)
 		.single();
