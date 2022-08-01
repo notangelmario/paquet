@@ -14,3 +14,16 @@ export const supabaseService = createClient(
 	SUPABASE_URL,
 	SUPABASE_SERVICE_KEY,
 );
+
+export const supabaseAsUser = (jwt?: string) => {
+	const sb = createClient(
+		SUPABASE_URL,
+		SUPABASE_ANON_KEY
+	)
+	
+	if (jwt) {
+		sb.auth.setAuth(jwt);
+	}
+
+	return sb;
+}

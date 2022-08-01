@@ -2,7 +2,8 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import type { Handlers, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
+import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@supabase";
 import Stack from "@/components/Stack.tsx";
@@ -60,23 +61,21 @@ export default function Search(props: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handlers = {
-	async GET(req, ctx) {
-		const searchParams = new URLSearchParams(req.url.split("?")[1]);
-		const query = searchParams.get("q");
+export const handler: Handler = async (req, ctx) => {
+	const searchParams = new URLSearchParams(req.url.split("?")[1]);
+	const query = searchParams.get("q");
 
-		if (!query) {
-			return ctx.render({
-				apps: [],
-			});
-		}
-
-		const { data: apps } = await supabase.rpc("search_app", {
-			search_term: query,
-		}).select("id, name, icon_small, category:categories(*)");
-
+	if (!query) {
 		return ctx.render({
-			apps,
+			apps: [],
 		});
-	},
-};
+	}
+
+	const { data: apps } = await supabase.rpc("search_app", {
+		search_term: query,
+	}).select("id, name, icon_small, category:categories(*)");
+
+	return ctx.render({
+		apps,
+	});
+}

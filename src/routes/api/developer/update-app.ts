@@ -6,8 +6,7 @@ export const handler: Handler = async (req, ctx) => {
 	const url = new URL(req.url);
 	const params = new URLSearchParams(url.search);
 	const appId = params.get("id");
-	const user = ctx.state.user;
-	const developer = ctx.state.developer;
+	const { user, developer } = ctx.state;
 
 	console.log(url, appId);
 

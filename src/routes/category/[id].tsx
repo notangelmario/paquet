@@ -58,14 +58,9 @@ export default function Category(props: PageProps<DataProps>) {
 
 export const handler: Handler = async (_, ctx) => {
 	const categoryId = ctx.params.id;
-	const accessToken = ctx.state.accessToken;
 
 	if (!categoryId) {
 		return Response.redirect("/", 307);
-	}
-
-	if (accessToken) {
-		supabase.auth.setAuth(accessToken);
 	}
 
 	const values = await Promise.all([

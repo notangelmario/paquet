@@ -4,7 +4,7 @@ import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { supabase } from "@supabase";
+import { supabaseAsUser } from "@supabase";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -110,11 +110,9 @@ export default function App(props: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const accessToken = ctx.state.accessToken;
+	const { accessToken } = ctx.state;
 
-	if (accessToken) {
-		supabase.auth.setAuth(accessToken);
-	}
+	const supabase = supabaseAsUser(accessToken);
 
 	const { data: app } = await supabase.from<App>("apps")
 		.select(

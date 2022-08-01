@@ -3,12 +3,12 @@
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { PageProps } from "$fresh/server.ts";
-import { Handler } from "@/types/Handler.ts";
+import type { App, Category } from "@/types/App.ts";
+import type { Handler } from "@/types/Handler.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import { supabase } from "@supabase";
-import type { App, Category } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
@@ -95,12 +95,7 @@ export default function Home(props: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (req, ctx) => {
-	const accessToken = ctx.state.accessToken;
 	const installed = useInstalledServerSide(req);
-
-	if (accessToken) {
-		supabase.auth.setAuth(accessToken)
-	}
 
 	const [{ data: categories }, { data: apps }] = await Promise.all([
 		supabase.from("categories").select("*"),

@@ -5,7 +5,7 @@ import { tw } from "@twind";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
-import { supabase } from "@supabase";
+import { supabaseAsUser } from "@supabase";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
@@ -70,7 +70,7 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	supabase.auth.setAuth(accessToken);
+	const supabase = supabaseAsUser(accessToken);
 
 	const { data: apps } = await supabase.from<App>("apps")
 		.select("id, name, icon_small")

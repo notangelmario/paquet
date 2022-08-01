@@ -5,7 +5,7 @@ import { tw } from "@twind";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { App, Category } from "@/types/App.ts";
-import { supabase } from "@supabase";
+import { supabaseAsUser } from "@supabase";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
@@ -179,9 +179,9 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 
 export const handler: Handler = async (_, ctx) => {
 	const user = ctx.state.user;
-	const access_token = ctx.state.accessToken;
+	const { accessToken } = ctx.state;
 
-	if (!user || !access_token) {
+	if (!user || !accessToken) {
 		return new Response("Unauthorized", {
 			status: 307,
 			headers: {
@@ -190,7 +190,7 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	supabase.auth.setAuth(access_token);
+	const supabase = supabaseAsUser(accessToken);
 
 	const { data: app } = await supabase.from<App>("apps")
 		.select("id, name, description, icon_small, icon_large, features, category:categories(*)")
