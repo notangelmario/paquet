@@ -5,6 +5,7 @@ import { btn } from "@/utils/sharedUi.ts";
 
 export type Props = {
 	icon?: string;
+	brand?: boolean;
 	fullWidth?: boolean;
 	children?: string;
 	outlined?: boolean;
@@ -34,14 +35,16 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 			`}
 		>
 			{props.icon &&
-				(
+				props.brand ? (
+					<i class={`fa-brands fa-${props.icon}`}></i>
+				) : 
 					<span
 						class={tw
 							`align-middle text-base material-symbols-outlined`}
 					>
 						{props.icon}
 					</span>
-				)}
+				}
 			{props.children}
 		</button>
 	);

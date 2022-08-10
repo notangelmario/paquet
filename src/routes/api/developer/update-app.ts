@@ -8,8 +8,6 @@ export const handler: Handler = async (req, ctx) => {
 	const appId = params.get("id");
 	const { user, developer } = ctx.state;
 
-	console.log(url, appId);
-
 	if (!user || !developer) {
 		return new Response("Unauthorized", {
 			status: 307,
@@ -40,6 +38,12 @@ export const handler: Handler = async (req, ctx) => {
 			description: params.get("description") || undefined,
 			icon_small: params.get("icon_small") || undefined,
 			icon_large: params.get("icon_large") || undefined,
+			features: {
+				mobile: params.get("features-mobile") === "on",
+				desktop: params.get("features-desktop") === "on",
+				offline: params.get("features-offline") === "on",
+				openSource: params.get("features-openSource") === "on",
+			}
 		})
 		.eq("id", appId)
 

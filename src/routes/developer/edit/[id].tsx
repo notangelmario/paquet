@@ -34,6 +34,12 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 						subtitle={props.data.app.category.name}
 						image={props.data.app.icon_small}
 					/>
+					<span
+						class={tw`rounded ${!props.data.app.approved ? "bg-green-500" : "bg-yellow-500"} text-white p-2`}
+					>
+						<span class={tw`material-symbols-outlined !text-base`}>info</span>{" "}
+						Status: {!props.data.app.approved ? "Approved" : "Not approved"}
+					</span>
 					<form method="GET" action="/api/developer/update-app">
 						<input type="hidden" name="id" value={props.params.id} /> 
 						<Stack>
@@ -162,9 +168,10 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 								<Button
 									outlined
 									red
-									type="submit"
-									name="delete"
-									value="true"
+									disabled
+									// type="submit"
+									// name="delete"
+									// value="true"
 								>
 									Delete
 								</Button>
@@ -193,7 +200,7 @@ export const handler: Handler = async (_, ctx) => {
 	const supabase = supabaseAsUser(accessToken);
 
 	const { data: app } = await supabase.from<App>("apps")
-		.select("id, name, description, icon_small, icon_large, features, category:categories(*)")
+		.select("id, name, description, icon_small, icon_large, features, category:categories(*) ")
 		.eq("id", ctx.params.id)
 		.eq("owner", user.id)
 		.single();

@@ -8,17 +8,9 @@ export type App = {
 	owner?: User;
 	url: string;
 
-	/**@deprecated Use icon_large instead. To be removed */
-	iconLarge: string;
-	/**@deprecated Use icon_small instead. To be removed */
-	iconSmall: string;
-	
 	icon_small: string;
 	icon_large: string;
 	
-	/**@deprecated Use iconLarge and iconSmall instead. To be removed */
-	iconUrl?: string;
-
 	category: Category;
 
 	description: string;
@@ -32,10 +24,7 @@ export type App = {
 
 	lighthouse?: LighthouseScores;
 
-	/** @deprecated To be removed*/
-	appStoreLink?: string;
-	/** @deprecated To be removed*/
-	playStoreLink?: string;
+	approved: boolean;
 };
 
 export type LighthouseScores = {
