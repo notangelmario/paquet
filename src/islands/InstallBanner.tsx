@@ -77,7 +77,7 @@ export default function InstallBanner(props: Props) {
 					`!bg-gradient-to-bl from-primary to-secondary !text-white`}
 			>
 				<Stack>
-					<h2 class={tw`text-xl`}>Install</h2>
+					<h2 class={tw`text-xl`}>Welcome to Paquet!</h2>
 					<p>
 						It looks like Paquet isn't installed yet. You can
 						install it by clicking the button below.
@@ -90,6 +90,17 @@ export default function InstallBanner(props: Props) {
 					>
 						Install
 					</Button>
+					<a
+						href="/about"
+					>
+						<Button
+							fullWidth
+							outlined
+							icon="info"
+						>
+							About
+						</Button>
+					</a>
 				</Stack>
 				<Dialog
 					title="Install Paquet"
