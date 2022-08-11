@@ -12,10 +12,10 @@
 		"twind": "https://esm.sh/twind@0.16.17",
 		"twind/": "https://esm.sh/twind@0.16.17/",
 		"supabase": "https://esm.sh/@supabase/supabase-js@1.35.4",
-		"body-parser": "https://raw.githubusercontent.com/mayankchoubey/deno-body-parser/main/mod.ts",
 
 		"@app": "./utils/app.ts",
 		"@twind": "./utils/twind.ts",
-		"@supabase": "./utils/supabase.ts"
+		"@supabase": "./utils/supabase.ts",
+		"@ui": "./utils/sharedUi.ts"
 	}
 }

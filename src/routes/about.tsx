@@ -25,6 +25,15 @@ export default function About() {
 						app store for your device. Paquet is a web app
 						shop where you can find and install web apps. 
 					</p>
+					<ul class={tw`list-outside list-disc pl-4`}>
+						<li>No UI framework overhead</li>
+						<li>Deployed on the edge in over 30 regions</li>
+						<li>Built with Deno and Fresh for performance</li>
+						<li>No tracking</li>
+						<li>Supabase backend for a better database</li>
+						<li>Security is a top priority</li>
+						<li>Easy to contribute to</li>
+					</ul>
 					<img
 						src="/illustrations/app-installation.svg"
 						class={tw`h-64`}
@@ -52,19 +61,23 @@ export default function About() {
 					<Card>
 						<p>
 							<span 
-								class={tw`material-symbols-outlined !text-base !align-middle`}
+								class={tw`material-symbols-outlined !text-base !align-bottom`}
 							>
 								info
 							</span>{" "}
 							Web apps are meant to complement native apps, not replace
 							them. Use a web app when you don't use a service often or
-							if you use an low-end device.
+							if you use a low-end device.
 						</p>
 						<br />
 						<p>
 							Sometimes a native app would be better than a web app.
 						</p>
 					</Card>
+					<img
+						src="/illustrations/progressive-app.svg"
+						class={tw`h-64`}
+					/>
 				</Stack>
 			</Container>
 		</>

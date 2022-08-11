@@ -1,4 +1,4 @@
-import { apply } from "@twind";
+import { apply, theme } from "@twind";
 import { css } from "twind/css";
 
 export const btn = apply`
@@ -25,3 +25,15 @@ export const iconBtn = apply`
 	})
 }
 `;
+
+export const mdContainer = apply` markdown-body ${css({
+	"ol, ul": {
+		listStyle: "inherit!important"
+	},
+	"a": {
+		color: theme("colors.primary"),
+	},
+	"a:hover": {
+		textDecoration: "underline",
+	},
+})}`
