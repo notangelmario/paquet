@@ -32,7 +32,7 @@ export default function Login() {
 						<a href="/api/auth/login">
 							<ListItem
 								title="Login with GitHub"
-								image="/github.svg"
+								image="/external-icons/github.svg"
 								button
 								imageProps={{
 									class: tw`p-3 filter dark:invert`,

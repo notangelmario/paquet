@@ -94,7 +94,7 @@ export default function Settings(props: PageProps<DataProps>) {
 								button
 								title="GitHub"
 								subtitle="Star Paquet on GitHub"
-								image="/github.svg"
+								image="/external-icons/github.svg"
 								imageProps={{
 									class: tw`p-3 filter dark:invert`,
 								}}
