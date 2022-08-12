@@ -13,11 +13,10 @@ import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 
-
 export default function Login() {
 	return (
 		<>
-			<Navbar 
+			<Navbar
 				back
 			/>
 			<Container>
@@ -25,7 +24,7 @@ export default function Login() {
 					<Header>
 						Login
 					</Header>
-					<img 
+					<img
 						src="/illustrations/login.svg"
 						class={tw`h-32`}
 					/>
@@ -42,9 +41,11 @@ export default function Login() {
 						</a>
 					</Card>
 					<p class={tw`opacity-50`}>
-						<span class={tw`material-symbols-outlined !text-base`}>info</span>{" "}
-						Create a new account to get access to developer features,
-						reviews, and more.
+						<span class={tw`material-symbols-outlined !text-base`}>
+							info
+						</span>{" "}
+						Create a new account to get access to developer
+						features, reviews, and more.
 					</p>
 				</Stack>
 			</Container>
@@ -56,7 +57,9 @@ export const handler: Handler = async (req, ctx) => {
 	const url = new URL(req.url);
 	const cookies = await getCookies(req.headers);
 
-	const { user } = await supabaseService.auth.api.getUser(cookies["access_token"]);
+	const { user } = await supabaseService.auth.api.getUser(
+		cookies["access_token"],
+	);
 
 	if (user) {
 		return Response.redirect(url.origin, 307);

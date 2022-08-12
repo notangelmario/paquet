@@ -20,5 +20,5 @@ export default function Input(props: JSX.IntrinsicElements["textarea"]) {
 				${props.class || ""}
 			`}
 		/>
-	)
+	);
 }

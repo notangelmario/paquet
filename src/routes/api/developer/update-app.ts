@@ -1,7 +1,6 @@
 import { supabaseService } from "@supabase";
 import { Handler } from "@/types/Handler.ts";
 
-
 export const handler: Handler = async (req, ctx) => {
 	const url = new URL(req.url);
 	const params = new URLSearchParams(url.search);
@@ -29,7 +28,7 @@ export const handler: Handler = async (req, ctx) => {
 			headers: {
 				Location: "/dashboard",
 			},
-		})
+		});
 	}
 
 	const { error } = await supabaseService.from("apps")
@@ -43,9 +42,9 @@ export const handler: Handler = async (req, ctx) => {
 				desktop: params.get("features-desktop") === "on",
 				offline: params.get("features-offline") === "on",
 				openSource: params.get("features-openSource") === "on",
-			}
+			},
 		})
-		.eq("id", appId)
+		.eq("id", appId);
 
 	if (!error) {
 		return new Response("OK", {
@@ -59,4 +58,4 @@ export const handler: Handler = async (req, ctx) => {
 			Location: "/dashboard",
 		},
 	});
-}
+};

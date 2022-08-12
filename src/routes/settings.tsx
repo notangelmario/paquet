@@ -44,7 +44,8 @@ export default function Settings(props: PageProps<DataProps>) {
 								icon={!props.data.user?.user_metadata.avatar_url
 									? "person"
 									: undefined}
-								image={props.data.user?.user_metadata.avatar_url}
+								image={props.data.user?.user_metadata
+									.avatar_url}
 								imageProps={{
 									class: "rounded-full",
 								}}
@@ -52,32 +53,32 @@ export default function Settings(props: PageProps<DataProps>) {
 						</a>
 					</Card>
 					{props.data.user &&
-						<Card disableGutters>
-							<a href="/api/auth/logout">
-								<Button
-									fullWidth
-									red
-									outlined
-								>
-									Log out
-								</Button>
-							</a>
-						</Card>
-					}
-					{props.data.user && props.data.userIsDeveloper && 
-						<Card disableGutters>
-							<a
-								href="/developer"
-							>
-								<ListItem
-									button
-									icon="dashboard"
-									title="Developer dashboard"
-									subtitle="All things developer"
-								/>
-							</a>
-						</Card>
-					}
+						(
+							<Card disableGutters>
+								<a href="/api/auth/logout">
+									<Button
+										fullWidth
+										red
+										outlined
+									>
+										Log out
+									</Button>
+								</a>
+							</Card>
+						)}
+					{props.data.user && props.data.userIsDeveloper &&
+						(
+							<Card disableGutters>
+								<a href="/developer">
+									<ListItem
+										button
+										icon="dashboard"
+										title="Developer dashboard"
+										subtitle="All things developer"
+									/>
+								</a>
+							</Card>
+						)}
 					<Card disableGutters>
 						<ListItem
 							icon="info"

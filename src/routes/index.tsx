@@ -109,4 +109,4 @@ export const handler: Handler = async (req, ctx) => {
 		apps,
 		installed,
 	} as DataProps);
-}
+};

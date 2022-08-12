@@ -23,7 +23,9 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 				
 				${
 				props.outlined
-					? `bg-transparent border ${props.red ? "text-red-500" : "text-current"}`
+					? `bg-transparent border ${
+						props.red ? "text-red-500" : "text-current"
+					}`
 					: `${props.red ? "bg-red-500" : "bg-primary"} text-white`
 			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
@@ -35,13 +37,13 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 			`}
 		>
 			{props.icon &&
-				<span
-					class={tw
-						`align-middle text-base material-symbols-outlined`}
-				>
-					{props.icon}
-				</span>
-			}
+				(
+					<span
+						class={tw`align-middle text-base material-symbols-outlined`}
+					>
+						{props.icon}
+					</span>
+				)}
 			{props.children}
 		</button>
 	);

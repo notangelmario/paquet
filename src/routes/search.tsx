@@ -78,4 +78,4 @@ export const handler: Handler = async (req, ctx) => {
 	return ctx.render({
 		apps,
 	});
-}
+};

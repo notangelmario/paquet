@@ -10,7 +10,7 @@ export type App = {
 
 	icon_small: string;
 	icon_large: string;
-	
+
 	category: Category;
 
 	description: string;

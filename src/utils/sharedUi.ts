@@ -26,14 +26,16 @@ export const iconBtn = apply`
 }
 `;
 
-export const mdContainer = apply` markdown-body ${css({
-	"ol, ul": {
-		listStyle: "inherit!important"
-	},
-	"a": {
-		color: theme("colors.primary"),
-	},
-	"a:hover": {
-		textDecoration: "underline",
-	},
-})}`
+export const mdContainer = apply` markdown-body ${
+	css({
+		"ol, ul": {
+			listStyle: "inherit!important",
+		},
+		"a": {
+			color: theme("colors.primary"),
+		},
+		"a:hover": {
+			textDecoration: "underline",
+		},
+	})
+}`;

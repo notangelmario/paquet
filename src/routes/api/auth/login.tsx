@@ -1,6 +1,6 @@
 /**@jsx h */
 import { h } from "preact";
-import type { PageProps, Handler } from "$fresh/server.ts";
+import type { Handler, PageProps } from "$fresh/server.ts";
 import { supabaseService } from "@supabase";
 import { setCookie } from "$std/http/cookie.ts";
 import LoginParamsConverter from "@/islands/LoginParamsConverter.tsx";
@@ -9,12 +9,10 @@ const DEV = !Deno.env.get("DENO_DEPLOYMENT_ID");
 
 type DataProps = {
 	redirectTo: string | undefined;
-}
+};
 
 export default function LoginEndpoint(props: PageProps<DataProps>) {
-	return (
-		<LoginParamsConverter redirectTo={props.data.redirectTo || "/"}/>
-	)
+	return <LoginParamsConverter redirectTo={props.data.redirectTo || "/"} />;
 }
 
 export const handler: Handler = async (req, ctx) => {
@@ -26,16 +24,21 @@ export const handler: Handler = async (req, ctx) => {
 	const expires_in = url.searchParams.get("expires_in");
 
 	if (error) {
-		return new Response("Login failed", { status: 307, headers: { "Location": "/" } });
+		return new Response("Login failed", {
+			status: 307,
+			headers: { "Location": "/" },
+		});
 	}
 
 	if (!access_token || !refresh_token || !expires_in) {
 		const authUrl = supabaseService.auth.api.getUrlForProvider("github", {
-			redirectTo: DEV ? "http://localhost:3000/api/auth/login" : url.origin + "/api/auth/login"
-		})
+			redirectTo: DEV
+				? "http://localhost:3000/api/auth/login"
+				: url.origin + "/api/auth/login",
+		});
 
 		return ctx.render({
-			redirectTo: authUrl
+			redirectTo: authUrl,
 		});
 	}
 
@@ -45,7 +48,10 @@ export const handler: Handler = async (req, ctx) => {
 		return new Response("Invalid access_token", { status: 400 });
 	}
 
-	const res = new Response("OK", { status: 307, headers: { "Location": "/" } });
+	const res = new Response("OK", {
+		status: 307,
+		headers: { "Location": "/" },
+	});
 
 	setCookie(res.headers, {
 		name: "access_token",
@@ -54,7 +60,7 @@ export const handler: Handler = async (req, ctx) => {
 		httpOnly: true,
 		sameSite: "Strict",
 		path: "/",
-	})
+	});
 
 	setCookie(res.headers, {
 		name: "refresh_token",
@@ -63,8 +69,8 @@ export const handler: Handler = async (req, ctx) => {
 		httpOnly: true,
 		sameSite: "Strict",
 		path: "/",
-	})
-	
+	});
+
 	setCookie(res.headers, {
 		name: "expires_at",
 		value: (new Date().getTime() + parseInt(expires_in) * 1000).toString(),
@@ -72,7 +78,7 @@ export const handler: Handler = async (req, ctx) => {
 		httpOnly: true,
 		sameSite: "Strict",
 		path: "/",
-	})
+	});
 
 	return res;
-}
+};

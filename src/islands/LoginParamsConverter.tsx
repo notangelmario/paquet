@@ -4,7 +4,7 @@ import { useEffect } from "preact/hooks";
 
 type Props = {
 	redirectTo: string;
-}
+};
 
 export default function LoginParamsConverter(props: Props) {
 	useEffect(() => {
@@ -20,7 +20,7 @@ export default function LoginParamsConverter(props: Props) {
 		} else {
 			globalThis.location.replace(props.redirectTo);
 		}
-	}, []);	
-	
+	}, []);
+
 	return <p>Logging in...</p>;
 }

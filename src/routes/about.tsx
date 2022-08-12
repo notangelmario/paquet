@@ -1,13 +1,12 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from 'preact';
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import Navbar from "@/islands/Navbar.tsx";
-import Container from "@/components/Container.tsx"
+import Container from "@/components/Container.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Card from "@/components/Card.tsx";
-
 
 export default function About() {
 	return (
@@ -21,9 +20,9 @@ export default function About() {
 						About Paquet
 					</Header>
 					<p>
-						Paquet(french for "package") is an alternative
-						app store for your device. Paquet is a web app
-						shop where you can find and install web apps. 
+						Paquet(french for "package") is an alternative app store
+						for your device. Paquet is a web app shop where you can
+						find and install web apps.
 					</p>
 					<ul class={tw`list-outside list-disc pl-4`}>
 						<li>No UI framework overhead</li>
@@ -60,18 +59,19 @@ export default function About() {
 					</ul>
 					<Card>
 						<p>
-							<span 
+							<span
 								class={tw`material-symbols-outlined !text-base !align-bottom`}
 							>
 								info
 							</span>{" "}
-							Web apps are meant to complement native apps, not replace
-							them. Use a web app when you don't use a service often or
-							if you use a low-end device.
+							Web apps are meant to complement native apps, not
+							replace them. Use a web app when you don't use a
+							service often or if you use a low-end device.
 						</p>
 						<br />
 						<p>
-							Sometimes a native app would be better than a web app.
+							Sometimes a native app would be better than a web
+							app.
 						</p>
 					</Card>
 					<img
@@ -81,5 +81,5 @@ export default function About() {
 				</Stack>
 			</Container>
 		</>
-	)
+	);
 }

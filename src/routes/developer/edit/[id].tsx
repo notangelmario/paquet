@@ -1,6 +1,6 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -19,12 +19,12 @@ import Divider from "@/components/Divider.tsx";
 type DataProps = {
 	app: App;
 	categories: Category[];
-}
+};
 
 export default function DevDashboard(props: PageProps<DataProps>) {
 	return (
 		<>
-			<Navbar 
+			<Navbar
 				back
 			/>
 			<Container class={tw`mt-16`}>
@@ -35,15 +35,28 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 						image={props.data.app.icon_small}
 					/>
 					<span
-						class={tw`rounded ${!props.data.app.approved ? "bg-green-500" : "bg-yellow-500"} text-white p-2`}
+						class={tw`rounded ${
+							!props.data.app.approved
+								? "bg-green-500"
+								: "bg-yellow-500"
+						} text-white p-2`}
 					>
-						<span class={tw`material-symbols-outlined !text-base`}>info</span>{" "}
-						Status: {!props.data.app.approved ? "Approved" : "Not approved"}
+						<span class={tw`material-symbols-outlined !text-base`}>
+							info
+						</span>{" "}
+						Status:{" "}
+						{!props.data.app.approved ? "Approved" : "Not approved"}
 					</span>
 					<form method="GET" action="/api/developer/update-app">
-						<input type="hidden" name="id" value={props.params.id} /> 
+						<input
+							type="hidden"
+							name="id"
+							value={props.params.id}
+						/>
 						<Stack>
-							<label class={tw`form-label inline-block opacity-50`}>
+							<label
+								class={tw`form-label inline-block opacity-50`}
+							>
 								App name
 							</label>
 							<Input
@@ -52,7 +65,9 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 								placeholder="Name"
 								value={props.data.app.name}
 							/>
-							<label class={tw`form-label inline-block opacity-50`}>
+							<label
+								class={tw`form-label inline-block opacity-50`}
+							>
 								App description
 							</label>
 							<TextArea
@@ -61,7 +76,9 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 								placeholder="description"
 								value={props.data.app.description}
 							/>
-							<label class={tw`form-label inline-block opacity-50`}>
+							<label
+								class={tw`form-label inline-block opacity-50`}
+							>
 								App category
 							</label>
 							<Select
@@ -70,7 +87,8 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 							>
 								{props.data.categories.map((category) => (
 									<option
-										selected={category.id === props.data.app.category.id}
+										selected={category.id ===
+											props.data.app.category.id}
 										key={category.id}
 										value={category.id}
 									>
@@ -84,7 +102,9 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 							>
 								App icons
 							</h2>
-							<label class={tw`form-label inline-block opacity-50`}>
+							<label
+								class={tw`form-label inline-block opacity-50`}
+							>
 								Small icon URL (max 128x128)
 							</label>
 							<Input
@@ -93,7 +113,9 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 								placeholder="Small icon"
 								value={props.data.app.icon_small}
 							/>
-							<label class={tw`form-label inline-block opacity-50`}>
+							<label
+								class={tw`form-label inline-block opacity-50`}
+							>
 								Large icon URL (min 256x256; max 512x512)
 							</label>
 							<Input
@@ -138,9 +160,13 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 									type="checkbox"
 									name="features-openSource"
 									class="!w-min"
-									checked={props.data.app.features?.openSource}
+									checked={props.data.app.features
+										?.openSource}
 								/>
-								<label class={tw`ml-2`} for="features-openSource">
+								<label
+									class={tw`ml-2`}
+									for="features-openSource"
+								>
 									Open source
 								</label>
 							</div>
@@ -157,12 +183,8 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 								</label>
 							</div>
 							<Divider />
-							<Stack
-								direction="horizontal"
-							>
-								<Button
-									type="submit"
-								>
+							<Stack direction="horizontal">
+								<Button type="submit">
 									Submit
 								</Button>
 								<Button
@@ -181,7 +203,7 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 		</>
-	)
+	);
 }
 
 export const handler: Handler = async (_, ctx) => {
@@ -200,12 +222,15 @@ export const handler: Handler = async (_, ctx) => {
 	const supabase = supabaseAsUser(accessToken);
 
 	const { data: app } = await supabase.from<App>("apps")
-		.select("id, name, description, icon_small, icon_large, features, category:categories(*) ")
+		.select(
+			"id, name, description, icon_small, icon_large, features, category:categories(*) ",
+		)
 		.eq("id", ctx.params.id)
 		.eq("owner", user.id)
 		.single();
-	
-	const { data: categories } = await supabase.from<Category>("categories").select("*");
+
+	const { data: categories } = await supabase.from<Category>("categories")
+		.select("*");
 
 	if (!app || !categories) {
 		return new Response("Unauthorized", {
@@ -213,11 +238,11 @@ export const handler: Handler = async (_, ctx) => {
 			headers: {
 				Location: "/dashboard",
 			},
-		})
+		});
 	}
 
 	return ctx.render({
 		app,
-		categories
-	})
-}
+		categories,
+	});
+};

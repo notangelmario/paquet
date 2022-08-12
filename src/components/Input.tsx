@@ -1,6 +1,6 @@
 /**@jsx h */
 import { h, type JSX } from "preact";
-import { tw, theme } from "@twind";
+import { theme, tw } from "@twind";
 import { css } from "twind/css";
 
 export default function Input(props: JSX.IntrinsicElements["input"]) {
@@ -20,10 +20,12 @@ export default function Input(props: JSX.IntrinsicElements["input"]) {
 
 				${props.class || ""}
 
-				${css({
-					"accent-color": theme("colors.primary")
-				})}
+				${
+				css({
+					"accent-color": theme("colors.primary"),
+				})
+			}
 			`}
 		/>
-	)
+	);
 }

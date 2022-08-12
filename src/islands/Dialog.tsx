@@ -32,10 +32,11 @@ export default function Dialog(props: Props) {
 	return (
 		<div
 			class={tw`
-				${props.open
+				${
+				props.open
 					? "opacity-100 pointer-events-auto"
 					: "opacity-0 pointer-events-none"
-				}
+			}
 				fixed top-0 left-0 right-0 bottom-0 flex justify-center items-end
 				
 				bg-black bg-opacity-50 z-50
@@ -54,10 +55,7 @@ export default function Dialog(props: Props) {
 					w-full max-w-md mx-auto
 					!rounded-b-none
 
-					${props.open
-						? "translate-y-0"
-						: "translate-y-1/2"
-					}
+					${props.open ? "translate-y-0" : "translate-y-1/2"}
 
 					transition-transform duration-150 ease-in-out
 				`}

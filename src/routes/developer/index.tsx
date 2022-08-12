@@ -1,6 +1,6 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -15,12 +15,12 @@ import ListItem from "@/components/ListItem.tsx";
 
 type DataProps = {
 	apps: App[] | null;
-}
+};
 
 export default function DevDashboard(props: PageProps<DataProps>) {
 	return (
 		<>
-			<Navbar 
+			<Navbar
 				back
 			/>
 			<Container>
@@ -54,12 +54,12 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 		</>
-	)
+	);
 }
 
 export const handler: Handler = async (_, ctx) => {
 	const user = ctx.state.user;
-	const accessToken = ctx.state.accessToken
+	const accessToken = ctx.state.accessToken;
 
 	if (!user || !accessToken) {
 		return new Response("Unauthorized", {
@@ -74,7 +74,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: apps } = await supabase.from<App>("apps")
 		.select("id, name, icon_small")
-		.eq("owner", user.id)
+		.eq("owner", user.id);
 
 	if (!apps) {
 		return new Response("Unauthorized", {
@@ -86,6 +86,6 @@ export const handler: Handler = async (_, ctx) => {
 	}
 
 	return ctx.render({
-		apps
-	})
-}
+		apps,
+	});
+};

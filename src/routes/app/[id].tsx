@@ -38,7 +38,8 @@ export default function App(props: PageProps<DataProps>) {
 								{props.data.app.name}
 							</h2>
 							<p class={tw`opacity-50`}>
-								{props.data.app.author || props.data.app.owner?.name} &middot;{" "}
+								{props.data.app.author ||
+									props.data.app.owner?.name} &middot;{" "}
 								{props.data.app.category.name}
 							</p>
 						</div>
@@ -65,13 +66,13 @@ export default function App(props: PageProps<DataProps>) {
 							{props.data.app.description}
 						</p>
 					</div>
-					<Divider inset/>
+					<Divider inset />
 				</Stack>
 			</Container>
 
 			{props.data.app.features && (
 				<div class={tw`mt-4`}>
-					<Features 
+					<Features
 						features={props.data.app.features}
 					/>
 					<Container>
@@ -80,31 +81,34 @@ export default function App(props: PageProps<DataProps>) {
 				</div>
 			)}
 
-			{props.data.otherApps && 
-				<>
-					<Container>
-						<h3 class={tw`text-2xl mt-4`}>
-							Other apps
-						</h3>
-					</Container>
-					<Container disableGutters>
-						{props.data.otherApps.map((app, idx) => (
-							<a
-								key={idx}
-								href={`/app/${app.id}`}
-							>
-								<ListItem
-									button
-									title={app.name}
-									image={app.icon_small}
-									subtitle={app.author || app.owner?.name}
-									divider={idx !== (props.data.otherApps?.length as number) - 1}
-								/>
-							</a>
-						))}
-					</Container>
-				</>
-			}
+			{props.data.otherApps &&
+				(
+					<>
+						<Container>
+							<h3 class={tw`text-2xl mt-4`}>
+								Other apps
+							</h3>
+						</Container>
+						<Container disableGutters>
+							{props.data.otherApps.map((app, idx) => (
+								<a
+									key={idx}
+									href={`/app/${app.id}`}
+								>
+									<ListItem
+										button
+										title={app.name}
+										image={app.icon_small}
+										subtitle={app.author || app.owner?.name}
+										divider={idx !==
+											(props.data.otherApps
+													?.length as number) - 1}
+									/>
+								</a>
+							))}
+						</Container>
+					</>
+				)}
 		</>
 	);
 }
@@ -135,4 +139,4 @@ export const handler: Handler = async (_, ctx) => {
 		app,
 		otherApps,
 	} as DataProps);
-}
+};

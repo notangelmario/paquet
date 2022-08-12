@@ -20,5 +20,5 @@ export default function Select(props: JSX.IntrinsicElements["select"]) {
 				${props.class || ""}
 			`}
 		/>
-	)
+	);
 }
