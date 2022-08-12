@@ -1,5 +1,6 @@
 /**@jsx h */
 import { h } from "preact";
+import { useEffect, useState } from "preact/hooks";
 import { tw } from "@twind";
 import { useScroll } from "../hooks/useScroll.ts";
 import { iconBtn } from "../utils/sharedUi.ts";
@@ -11,9 +12,29 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
+	const [visitedRoot, setVisitedRoot] = useState(!!globalThis.sessionStorage.getItem("visitedRoot"));	
+
 	const trigger = useScroll({
 		threshold: 16,
 	});
+
+	useEffect(() => {
+		if (!visitedRoot && globalThis.location.pathname === "/") {
+			setVisitedRoot(true);
+			globalThis.sessionStorage.setItem("visitedRoot", "true");
+		}
+	} , []);
+
+	const goBack = () => {
+		if (visitedRoot) {
+			globalThis.history.back();
+		} else {
+			setVisitedRoot(true);
+			globalThis.sessionStorage.setItem("visitedRoot", "true");
+
+			globalThis.location.replace("/");
+		}
+	}
 
 	return (
 		<div
@@ -33,7 +54,7 @@ export default function Navbar(props: Props) {
 				{props.back && (
 					<button
 						class={tw(iconBtn)}
-						onClick={() => history.back()}
+						onClick={goBack}
 					>
 						<span class="material-symbols-outlined">
 							arrow_back

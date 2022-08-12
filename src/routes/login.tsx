@@ -9,7 +9,8 @@ import { supabaseService } from "@supabase";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 import Stack from "@/components/Stack.tsx";
-import Button from "@/components/Button.tsx";
+import Card from "@/components/Card.tsx";
+import ListItem from "@/components/ListItem.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 
 
@@ -28,15 +29,18 @@ export default function Login() {
 						src="/illustrations/login.svg"
 						class={tw`h-32`}
 					/>
-					<a href="/api/auth/login">
-						<Button
-							fullWidth
-							icon="github"
-							brand
-						>
-							Login with GitHub
-						</Button>
-					</a>
+					<Card disableGutters>
+						<a href="/api/auth/login">
+							<ListItem
+								title="Login with GitHub"
+								image="/github.svg"
+								button
+								imageProps={{
+									class: tw`p-3 filter dark:invert`,
+								}}
+							/>
+						</a>
+					</Card>
 					<p class={tw`opacity-50`}>
 						<span class={tw`material-symbols-outlined !text-base`}>info</span>{" "}
 						Create a new account to get access to developer features,

@@ -81,14 +81,6 @@ export default function App(props: AppProps) {
 					rel="stylesheet"
 					href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap"
 				/>
-				<link
-					rel="stylesheet"
-					href="/fontawesome/css/fontawesome.min.css"
-				/>
-				<link
-					rel="stylesheet"
-					href="/fontawesome/css/brands.min.css"
-				/>
 			</Head>
 			{/* @ts-ignore */}
 			<main class={tw`dark:text-white`} onTouchStart="">
