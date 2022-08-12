@@ -12,9 +12,7 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
-	const [visitedRoot, setVisitedRoot] = useState(
-		!!globalThis.sessionStorage.getItem("visitedRoot"),
-	);
+	const [visitedRoot, setVisitedRoot] = useState(!!globalThis.sessionStorage?.getItem("visitedRoot"));
 
 	const trigger = useScroll({
 		threshold: 16,
