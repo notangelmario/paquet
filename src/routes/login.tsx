@@ -29,7 +29,18 @@ export default function Login() {
 						class={tw`h-32`}
 					/>
 					<Card disableGutters>
-						<a href="/api/auth/login">
+						<a href="/api/auth/login?provider=google">
+							<ListItem
+								title="Login with Google"
+								image="/external-icons/google.svg"
+								button
+								divider
+								imageProps={{
+									class: tw`p-3 filter dark:invert`,
+								}}
+							/>
+						</a>
+						<a href="/api/auth/login?provider=github">
 							<ListItem
 								title="Login with GitHub"
 								image="/external-icons/github.svg"
