@@ -6,6 +6,7 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@supabase";
+import { z, ZodError } from "zod";
 import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Navbar from "@/islands/Navbar.tsx";
@@ -14,9 +15,10 @@ import SearchBar from "@/components/SearchBar.tsx";
 
 type DataProps = {
 	apps: App[];
+	error?: ZodError<string>;
 };
 
-export default function Search(props: PageProps<DataProps>) {
+export default function Search({ data, url }: PageProps<DataProps>) {
 	return (
 		<>
 			<Navbar
@@ -32,15 +34,23 @@ export default function Search(props: PageProps<DataProps>) {
 					method="GET"
 				>
 					<SearchBar
-						text={props.url.searchParams.get("q") || ""}
+						text={url.searchParams.get("q") || ""}
 					/>
+					{data.error && (
+						<p class={tw`text-red-500`}>
+							<span class={tw`material-symbols-outlined !align-bottom !text-base`}>
+								error
+							</span>{" "}
+							{data.error.issues[0].message}
+						</p>
+					)}
 				</form>
 			</Container>
 			<Container
 				disableGutters
 			>
 				<Stack>
-					{props.data.apps?.map((app: App, idx: number) => (
+					{data.apps.map((app: App, idx: number) => (
 						<a href={`/app/${app.id}`}>
 							<ListItem
 								button
@@ -48,12 +58,9 @@ export default function Search(props: PageProps<DataProps>) {
 								image={app.icon_small}
 								title={app.name}
 								subtitle={app.category.name}
-								divider={idx !== props.data.apps.length - 1}
+								divider={idx !== data.apps.length - 1}
 							/>
 						</a>
-						// <AppListItem
-						// 	app={app}
-						// />
 					))}
 				</Stack>
 			</Container>
@@ -65,9 +72,14 @@ export const handler: Handler = async (req, ctx) => {
 	const searchParams = new URLSearchParams(req.url.split("?")[1]);
 	const query = searchParams.get("q");
 
-	if (!query) {
+	const querySchema = z.string().min(3).max(50);
+
+	const queryValidation = querySchema.safeParse(query);
+
+	if (!queryValidation.success) {
 		return ctx.render({
 			apps: [],
+			error: queryValidation.error,
 		});
 	}
 

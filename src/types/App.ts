@@ -1,42 +1,36 @@
-import type { User } from "./User.ts";
+import { z } from "zod";
+import { UserSchema } from "./User.ts";
 
-export type App = {
-	id: string;
 
-	name: string;
-	author: string;
-	owner?: User;
-	url: string;
+export const CategorySchema = z.object({
+	id: z.string().uuid(),
+	name: z.string(),
+	icon: z.string()
+})
 
-	icon_small: string;
-	icon_large: string;
+export const AppSchema = z.object({
+	id: z.string().uuid(),
 
-	category: Category;
+	name: z.string().min(1).max(50),
+	author: z.string().min(1).max(50).optional(),
+	owner: UserSchema.optional(),
+	url: z.string().url(),
 
-	description: string;
+	icon_small: z.string().url(),
+	icon_large: z.string().url(),
 
-	features?: {
-		desktop?: boolean;
-		mobile?: boolean;
-		offline?: boolean;
-		openSource?: boolean;
-	};
+	description: z.string().min(1).max(500),
+	category: CategorySchema,
+	
+	features: z.object({
+		desktop: z.boolean().default(false).optional(),
+		mobile: z.boolean().default(false).optional(),
+		offline: z.boolean().default(false).optional(),
+		openSource: z.boolean().default(false).optional(),
+	}).optional(),
 
-	lighthouse?: LighthouseScores;
+	approved: z.boolean().default(false),
+});
 
-	approved: boolean;
-};
-
-export type LighthouseScores = {
-	performance: number;
-	accessibility: number;
-	bestPractices: number;
-	seo: number;
-	updated_at: number;
-};
-
-export type Category = {
-	id: string;
-	name: string;
-	icon: string;
-};
+export type App = z.infer<typeof AppSchema>;
+export type Category = z.infer<typeof CategorySchema>;

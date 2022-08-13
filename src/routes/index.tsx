@@ -3,7 +3,7 @@
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { PageProps } from "$fresh/server.ts";
-import type { App, Category } from "@/types/App.ts";
+import { App, Category } from "@/types/App.ts";
 import type { Handler } from "@/types/Handler.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -20,12 +20,12 @@ import SlideItem from "@/components/SlideItem.tsx";
 import { useInstalledServerSide } from "@/hooks/useInstalled.ts";
 
 type DataProps = {
-	categories: Category[];
-	apps: App[];
+	categories?: Category[];
+	apps?: App[];
 	installed: boolean;
 };
 
-export default function Home(props: PageProps<DataProps>) {
+export default function Home({ data }: PageProps<DataProps>) {
 	return (
 		<>
 			<Navbar
@@ -45,17 +45,17 @@ export default function Home(props: PageProps<DataProps>) {
 							<SearchBar />
 						</form>
 						<InstallBanner
-							initialInstalled={props.data.installed}
+							initialInstalled={data.installed}
 						/>
 					</Stack>
 				</Container>
 				<SlideContainer
 					snap
 				>
-					{props.data.categories?.map((category, idx) => (
+					{data.categories?.map((category, idx) => (
 						<SlideItem
 							key={category.id}
-							isLast={idx === props.data.categories.length - 1}
+							isLast={data.categories && idx === data.categories.length - 1}
 						>
 							<a
 								href={`/category/${category.id}`}
@@ -70,7 +70,7 @@ export default function Home(props: PageProps<DataProps>) {
 					))}
 				</SlideContainer>
 				<Container disableGutters>
-					{props.data.apps?.map((app: App, idx: number) => (
+					{data.apps?.map((app: App, idx: number) => (
 						<a href={`/app/${app.id}`}>
 							<ListItem
 								button
@@ -78,7 +78,7 @@ export default function Home(props: PageProps<DataProps>) {
 								image={app.icon_small}
 								title={app.name}
 								subtitle={app.category.name}
-								divider={idx !== props.data.apps.length - 1}
+								divider={data.apps && idx !== data.apps.length - 1}
 							/>
 						</a>
 						// <AppListItem
