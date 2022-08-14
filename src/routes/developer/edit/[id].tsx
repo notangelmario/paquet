@@ -6,6 +6,7 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handlers } from "@/types/Handler.ts";
 import { App, Category } from "@/types/App.ts";
 import { supabaseAsUser, supabaseService } from "@supabase";
+import { z, ZodError } from "zod";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
@@ -15,11 +16,13 @@ import Input from "@/components/Input.tsx";
 import TextArea from "@/components/TextArea.tsx";
 import Select from "@/components/Select.tsx";
 import Divider from "@/components/Divider.tsx";
-import { z } from "https://deno.land/x/zod@v3.18.0/index.ts";
+
 
 type DataProps = {
 	app: App;
 	categories: Category[];
+	error?: ZodError<FormData>;
+	updated?: boolean;
 };
 
 export default function DevDashboard({ data, params }: PageProps<DataProps>) {
@@ -48,6 +51,18 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 						Status:{" "}
 						{data.app.approved ? "Approved" : "Not approved"}
 					</span>
+					{data.updated && (
+						<p
+							class={tw`text-green-500`}
+						>
+							<span
+								class={tw`material-symbols-outlined !text-base !align-bottom`}
+							>
+								check
+							</span>{" "}
+							Successfully updated
+						</p>
+					)}
 					<form method="POST">
 						<input
 							type="hidden"
@@ -55,6 +70,8 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 							value={params.id}
 						/>
 						<Stack>
+
+
 							<label
 								class={tw`form-label inline-block opacity-50`}
 							>
@@ -66,6 +83,13 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 								placeholder="Name"
 								value={data.app.name}
 							/>
+							{data.error && data.error.format().name && (
+								<span class={tw`text-red-500`}>
+									{data.error.format().name?._errors[0]}
+								</span>
+							)}
+
+
 							<label
 								class={tw`form-label inline-block opacity-50`}
 							>
@@ -77,6 +101,13 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 								placeholder="Description"
 								value={data.app.description}
 							/>
+							{data.error && data.error.format().description && (
+								<span class={tw`text-red-500`}>
+									{data.error.format().description?._errors[0]}
+								</span>
+							)}
+
+
 							<label
 								class={tw`form-label inline-block opacity-50`}
 							>
@@ -89,6 +120,13 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 								placeholder="URL"
 								value={data.app.url}
 							/>
+							{data.error && data.error.format().url && (
+								<span class={tw`text-red-500`}>
+									{data.error.format().url?._errors[0]}
+								</span>
+							)}
+
+
 							<label
 								class={tw`form-label inline-block opacity-50`}
 							>
@@ -108,12 +146,20 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 									</option>
 								))}
 							</Select>
+							{data.error && data.error.format().category && (
+								<span class={tw`text-red-500`}>
+									{data.error.format().category?._errors[0]}
+								</span>
+							)}
+
+
 							<Divider />
 							<h2
 								class={tw`text-2xl`}
 							>
 								App icons
 							</h2>
+
 							<label
 								class={tw`form-label inline-block opacity-50`}
 							>
@@ -125,6 +171,14 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 								placeholder="Small icon"
 								value={data.app.icon_small}
 							/>
+							{data.error && data.error.format().icon_small && (
+								<span class={tw`text-red-500`}>
+									{data.error.format().icon_small?._errors[0]}
+								</span>
+							)}
+
+
+
 							<label
 								class={tw`form-label inline-block opacity-50`}
 							>
@@ -136,6 +190,23 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 								placeholder="Large icon"
 								value={data.app.icon_large}
 							/>
+							{data.error && data.error.format().icon_large && (
+								<span class={tw`text-red-500`}>
+									{data.error.format().icon_large?._errors[0]}
+								</span>
+							)}
+
+							<p
+								class={tw`opacity-50`}
+							>
+								<span
+									class={tw`material-symbols-outlined !text-base !align-bottom`}
+								>
+									info
+								</span>{" "}
+								To reduce requests to your server, we serve cached
+								versions of your icons to users.
+							</p>
 							<Divider />
 							<h2
 								class={tw`text-2xl`}
@@ -217,34 +288,93 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 	);
 }
 
+
+const formSchema = z.object({
+	id: z.string().uuid(),
+	name: z.string().min(3).max(50),
+	description: z.string().min(3).max(500),
+	category: z.string(),
+	url: z.string().url(),
+	icon_small: z.string().url(),
+	icon_large: z.string().url(),
+	features_mobile: z.literal("on").optional(),
+	features_desktop: z.literal("on").optional(),
+	features_openSource: z.literal("on").optional(),
+	features_offline: z.literal("on").optional(),
+})
+
+type FormData = z.infer<typeof formSchema>;
+
+const fetchApp = async (appId: string, userId: string, accessToken: string) => {
+	const supabase = supabaseAsUser(accessToken);
+
+	const [{ data: app }, { data: categories }] = await Promise.all([
+		supabase.from<App>("apps")
+			.select(
+				"id, name, url, description, icon_small, icon_large, features, category:categories(*), owner:users(*)"
+			)
+			.eq("id", appId)
+			.eq("owner", userId)
+			.single(),
+		supabase.from<Category>("categories")
+			.select("*")
+	]);
+
+	return { app, categories };
+}
+
 export const handler: Handlers = {
-	async POST(req) {
+	async POST(req, ctx) {
+		const { accessToken } = ctx.state
+
+		if (!accessToken) {
+			return new Response("Unauthorized", {
+				status: 307,
+				headers: {
+					Location: "/login",
+				},
+			})
+		}
+
+		const { user } = await supabaseService.auth.api.getUser(accessToken);
+
+		if (!user) {
+			return new Response("Unauthorized", {
+				status: 307,
+				headers: {
+					Location: "/developer",
+				},
+			})
+		}
+
+		const { app, categories } = await fetchApp(ctx.params.id, user.id, accessToken);
+
+		if (!app || !categories) {
+			return new Response("Internal server error", {
+				status: 500,
+			});
+		}
+
+		if (app.owner?.id !== user.id) {
+			return new Response("Forbidden", {
+				status: 307,
+				headers: {
+					Location: "/developer",
+				},
+			});
+		}
+
 		const formData = await req.formData();
 		const formDataObject = Object.fromEntries(formData);
-
-		const formSchema = z.object({
-			id: z.string().uuid(),
-			name: z.string().min(3).max(50),
-			description: z.string().min(3).max(500),
-			category: z.string(),
-			url: z.string().url(),
-			icon_small: z.string().url(),
-			icon_large: z.string().url(),
-			features_mobile: z.literal("on").optional(),
-			features_desktop: z.literal("on").optional(),
-			features_openSource: z.literal("on").optional(),
-			features_offline: z.literal("on").optional(),
-		})
 
 		const formValidation = formSchema.safeParse(formDataObject);
 
 		if (!formValidation.success) {
-			return new Response(JSON.stringify({
-				data: formDataObject,
+			return ctx.render({
+				app,
+				categories,
 				error: formValidation.error,
-			}, null, 4), {
-				status: 400,
-			});			
+			})
 		}
 
 		const { error } = await supabaseService.from("apps")
@@ -265,54 +395,46 @@ export const handler: Handlers = {
 			.eq("id", formDataObject.id);
 
 		if (error) {
-			return new Response(JSON.stringify({
-				data: formDataObject,
-				error: error,
-			}), {
-				status: 400,
+			return new Response("Internal server error", {
+				status: 500,
 			});
 		}
 
-		return new Response(JSON.stringify({
-			success: true,
-			data: formDataObject,
-			error: null,
-		}, null, 4), {
-			status: 200,
-		});
+		return ctx.render({
+			app,
+			categories,
+			updated: true,
+		})
 	},
+
 	async GET(_, ctx) {
-		const user = ctx.state.user;
 		const { accessToken } = ctx.state;
 
-		if (!user || !accessToken) {
+		if (!accessToken) {
 			return new Response("Unauthorized", {
 				status: 307,
 				headers: {
 					Location: "/login",
 				},
-			});
+			})
 		}
 
-		const supabase = supabaseAsUser(accessToken);
+		const { user } = await supabaseService.auth.api.getUser(accessToken);
 
-		const { data: app } = await supabase.from<App>("apps")
-			.select(
-				"id, name, url, description, icon_small, icon_large, features, category:categories(*) ",
-			)
-			.eq("id", ctx.params.id)
-			.eq("owner", user.id)
-			.single();
-
-		const { data: categories } = await supabase.from<Category>("categories")
-			.select("*");
-
-		if (!app || !categories) {
+		if (!user) {
 			return new Response("Unauthorized", {
 				status: 307,
 				headers: {
-					Location: "/dashboard",
+					Location: "/developer",
 				},
+			})
+		}
+
+		const { app, categories } = await fetchApp(ctx.params.id, user.id, accessToken);
+
+		if (!app || !categories) {
+			return new Response("Internal server error", {
+				status: 500,
 			});
 		}
 

@@ -16,8 +16,7 @@ import ListItem from "@/components/ListItem.tsx";
 import app from "@app";
 
 type DataProps = {
-	user: User | null;
-	userIsDeveloper: boolean;
+	user?: User;
 };
 
 export default function Settings(props: PageProps<DataProps>) {
@@ -52,33 +51,29 @@ export default function Settings(props: PageProps<DataProps>) {
 							/>
 						</a>
 					</Card>
-					{props.data.user &&
-						(
-							<Card disableGutters>
-								<a href="/api/auth/logout">
-									<Button
-										fullWidth
-										red
-										outlined
-									>
-										Log out
-									</Button>
-								</a>
-							</Card>
-						)}
-					{props.data.user && props.data.userIsDeveloper &&
-						(
-							<Card disableGutters>
-								<a href="/developer">
-									<ListItem
-										button
-										icon="dashboard"
-										title="Developer dashboard"
-										subtitle="All things developer"
-									/>
-								</a>
-							</Card>
-						)}
+					{props.data.user && (
+						<Card disableGutters>
+							<a href="/api/auth/logout">
+								<Button
+									fullWidth
+									red
+									outlined
+								>
+									Log out
+								</Button>
+							</a>
+						</Card>
+					)}
+					<Card disableGutters>
+						<a href="/developer">
+							<ListItem
+								button
+								icon="dashboard"
+								title="Developer dashboard"
+								subtitle="All things developer"
+							/>
+						</a>
+					</Card>
 					<Card disableGutters>
 						<ListItem
 							icon="info"
@@ -109,7 +104,6 @@ export default function Settings(props: PageProps<DataProps>) {
 
 export const handler: Handler = (_, ctx) => {
 	const user = ctx.state.user;
-	const developer = ctx.state.developer;
 
-	return ctx.render({ user: user ?? null, userIsDeveloper: !!developer });
+	return ctx.render({ user });
 };

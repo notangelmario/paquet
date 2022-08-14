@@ -8,23 +8,14 @@ export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 	const { user } = await supabaseService.auth.api.getUser(
 		cookies["access_token"],
 	);
-	if (user) {
-		const { data: userData } = await supabaseService.from("users")
-			.select("developer")
-			.eq("id", user?.id)
-			.single();
 
-		ctx.state.developer = userData?.developer;
-	}
-
-	const dateTimeInSeconds = Math.floor(Date.now() / 1000);
-	const accessTokenExpired =
-		dateTimeInSeconds > parseInt(cookies["expires_at"]);
-
-	ctx.state.accessToken = accessTokenExpired ? null : cookies["access_token"];
+	ctx.state.accessToken = cookies["access_token"];
 	ctx.state.user = user;
 
 	if (["expires_at", "refresh_token"].every((key) => cookies[key])) {
+		const dateTimeInSeconds = Math.floor(Date.now() / 1000);
+		const accessTokenExpired = dateTimeInSeconds > parseInt(cookies["expires_at"]);
+
 		if (accessTokenExpired) {
 			const { data } = await supabaseService.auth.api.refreshAccessToken(
 				cookies["refresh_token"],
@@ -32,15 +23,6 @@ export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 
 			if (!data) {
 				return ctx.next();
-			}
-
-			if (data.user) {
-				const { data: userData } = await supabaseService.from("users")
-					.select("developer")
-					.eq("id", user?.id)
-					.single();
-
-				ctx.state.developer = userData.developer;
 			}
 
 			ctx.state.accessToken = data.access_token;
