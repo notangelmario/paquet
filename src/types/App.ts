@@ -30,6 +30,7 @@ export const AppSchema = z.object({
 	}).optional(),
 
 	approved: z.boolean().default(false),
+	ready_to_approve: z.boolean().default(false)
 });
 
 export type App = z.infer<typeof AppSchema>;

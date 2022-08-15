@@ -311,7 +311,7 @@ const fetchApp = async (appId: string, userId: string, accessToken: string) => {
 	const [{ data: app }, { data: categories }] = await Promise.all([
 		supabase.from<App>("apps")
 			.select(
-				"id, name, url, description, icon_small, icon_large, features, category:categories(*), owner:users(*)"
+				"id, name, url, description, icon_small, icon_large, features, approved, ready_to_approve, category:categories(*), owner:users(*)"
 			)
 			.eq("id", appId)
 			.eq("owner", userId)
@@ -374,10 +374,10 @@ export const handler: Handlers = {
 				app,
 				categories,
 				error: formValidation.error,
-			})
+			} as DataProps)
 		}
 
-		const { error } = await supabaseService.from("apps")
+		const { error, data: newApp } = await supabaseService.from("apps")
 			.update({
 				name: formValidation.data.name,
 				description: formValidation.data.description,
@@ -392,7 +392,8 @@ export const handler: Handlers = {
 					openSource: formValidation.data.features_openSource === "on",
 				},
 			})
-			.eq("id", formDataObject.id);
+			.eq("id", formDataObject.id)
+			.single();
 
 		if (error) {
 			return new Response("Internal server error", {
@@ -401,10 +402,10 @@ export const handler: Handlers = {
 		}
 
 		return ctx.render({
-			app,
+			app: newApp,
 			categories,
 			updated: true,
-		})
+		} as DataProps)
 	},
 
 	async GET(_, ctx) {
@@ -441,6 +442,6 @@ export const handler: Handlers = {
 		return ctx.render({
 			app,
 			categories,
-		});
+		} as DataProps);
 	}
 }

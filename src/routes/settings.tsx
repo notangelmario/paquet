@@ -52,28 +52,30 @@ export default function Settings(props: PageProps<DataProps>) {
 						</a>
 					</Card>
 					{props.data.user && (
-						<Card disableGutters>
-							<a href="/api/auth/logout">
-								<Button
-									fullWidth
-									red
-									outlined
-								>
-									Log out
-								</Button>
-							</a>
-						</Card>
+						<>
+							<Card disableGutters>
+								<a href="/api/auth/logout">
+									<Button
+										fullWidth
+										red
+										outlined
+									>
+										Log out
+									</Button>
+								</a>
+							</Card>
+							<Card disableGutters>
+								<a href="/developer">
+									<ListItem
+										button
+										icon="dashboard"
+										title="Developer dashboard"
+										subtitle="All things developer"
+									/>
+								</a>
+							</Card>
+						</>
 					)}
-					<Card disableGutters>
-						<a href="/developer">
-							<ListItem
-								button
-								icon="dashboard"
-								title="Developer dashboard"
-								subtitle="All things developer"
-							/>
-						</a>
-					</Card>
 					<Card disableGutters>
 						<ListItem
 							icon="info"

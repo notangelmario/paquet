@@ -33,11 +33,14 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 							Your apps
 						</h2>
 						<Card disableGutters>
-							<ListItem
-								title="Submit a new app"
-								subtitle="Create a new app"
-								icon="add"
-							/>
+							<a href="/api/developer/create-app">
+								<ListItem
+									button
+									title="Submit a new app"
+									subtitle="Create a new app"
+									icon="add"
+								/>
+							</a>
 							{props.data.apps?.map((app) => (
 								<a href={`/developer/edit/${app.id}`}>
 									<ListItem

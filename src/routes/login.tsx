@@ -29,7 +29,9 @@ export default function Login() {
 						class={tw`h-32`}
 					/>
 					<Card disableGutters>
-						<a href="/api/auth/login?provider=google">
+						<a 
+							href="/api/auth/login?provider=google"
+						>
 							<ListItem
 								title="Login with Google"
 								image="/external-icons/google.svg"
@@ -40,7 +42,9 @@ export default function Login() {
 								}}
 							/>
 						</a>
-						<a href="/api/auth/login?provider=github">
+						<a 
+							href="/api/auth/login?provider=github"
+						>
 							<ListItem
 								title="Login with GitHub"
 								image="/external-icons/github.svg"
