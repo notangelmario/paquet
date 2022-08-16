@@ -126,7 +126,12 @@ export const handler: Handler = async (_, ctx) => {
 		.single();
 
 	if (!app) {
-		return Response.redirect("/", 300);
+		return new Response("Not found", {
+			status: 307,
+			headers: {
+				Location: "/"
+			}
+		});
 	}
 
 	const { data: otherApps } = await supabase.from("random_apps")

@@ -31,7 +31,9 @@ export const handler: Handler = async (_, ctx) => {
 			name: "New app",
 			description: "",
 			url: "",
+			// deno-lint-ignore no-explicit-any
 			category: "utils" as any,
+			// deno-lint-ignore no-explicit-any
 			owner: user.id as any,
 			icon_large: "",
 			icon_small: "",

@@ -265,6 +265,32 @@ export default function DevDashboard({ data, params }: PageProps<DataProps>) {
 								</label>
 							</div>
 							<Divider />
+							<div class={tw`flex flex-row`}>
+								<Input
+									id="ready_to_approve"
+									type="checkbox"
+									name="ready_to_approve"
+									class="!w-min"
+									checked={data.app.ready_to_approve}
+								/>
+								<label class={tw`ml-2`} for="ready_to_approve">
+									Ready to approve
+								</label>
+							</div>
+							<p
+								class={tw`opacity-50`}
+							>
+								<span
+									class={tw`material-symbols-outlined !align-bottom !text-base`}
+								>
+									info
+								</span>{" "}
+								{data.app.ready_to_approve ?
+									"Your app will be reviewed as soon as possible"
+									:
+									"Your app will not be reviewed until you are ready"
+								}
+							</p>
 							<Stack direction="horizontal">
 								<Button type="submit">
 									Submit
@@ -301,6 +327,7 @@ const formSchema = z.object({
 	features_desktop: z.literal("on").optional(),
 	features_openSource: z.literal("on").optional(),
 	features_offline: z.literal("on").optional(),
+	ready_to_approve: z.literal("on").optional()
 })
 
 type FormData = z.infer<typeof formSchema>;
@@ -391,6 +418,7 @@ export const handler: Handlers = {
 					offline: formValidation.data.features_offline === "on",
 					openSource: formValidation.data.features_openSource === "on",
 				},
+				ready_to_approve: formValidation.data.ready_to_approve === "on"
 			})
 			.eq("id", formDataObject.id)
 			.single();
