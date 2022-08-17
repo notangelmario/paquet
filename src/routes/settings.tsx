@@ -80,7 +80,7 @@ export default function Settings(props: PageProps<DataProps>) {
 						<ListItem
 							icon="info"
 							title="Version"
-							subtitle={`${app.version} - ${app.nickname}`}
+							subtitle={`${app.version} - ${app.codename}`}
 							divider
 						/>
 						<a
