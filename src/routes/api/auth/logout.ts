@@ -13,11 +13,11 @@ export const handler: Handler = () => {
 		deleteCookie(res.headers, "access_token", {
 			path: "/",
 		});
-	
+
 		deleteCookie(res.headers, "refresh_token", {
 			path: "/",
 		});
-	
+
 		deleteCookie(res.headers, "expires_at", {
 			path: "/",
 		});
@@ -26,4 +26,4 @@ export const handler: Handler = () => {
 	} catch {
 		return new Response("Error", { status: 500 });
 	}
-}
+};

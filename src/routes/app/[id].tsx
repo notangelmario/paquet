@@ -2,8 +2,9 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import { Handlers, PageProps } from "$fresh/server.ts";
-import { supabase } from "@supabase";
+import type { PageProps } from "$fresh/server.ts";
+import type { Handler } from "@/types/Handler.ts";
+import { supabaseAsUser } from "@supabase";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -30,14 +31,15 @@ export default function App(props: PageProps<DataProps>) {
 							class={tw`
 								rounded w-20 h-20
 							`}
-							src={props.data.app.iconLarge}
+							src={props.data.app.icon_large}
 						/>
 						<div class={tw`flex-1`}>
 							<h2 class={tw`text-3xl`}>
 								{props.data.app.name}
 							</h2>
 							<p class={tw`opacity-50`}>
-								{props.data.app.author} &middot;{" "}
+								{props.data.app.author ||
+									props.data.app.owner?.name} &middot;{" "}
 								{props.data.app.category.name}
 							</p>
 						</div>
@@ -64,13 +66,13 @@ export default function App(props: PageProps<DataProps>) {
 							{props.data.app.description}
 						</p>
 					</div>
-					<Divider inset/>
+					<Divider inset />
 				</Stack>
 			</Container>
 
 			{props.data.app.features && (
 				<div class={tw`mt-4`}>
-					<Features 
+					<Features
 						features={props.data.app.features}
 					/>
 					<Container>
@@ -79,57 +81,67 @@ export default function App(props: PageProps<DataProps>) {
 				</div>
 			)}
 
-			{props.data.otherApps && 
-				<>
-					<Container>
-						<h3 class={tw`text-2xl mt-4`}>
-							Other apps
-						</h3>
-					</Container>
-					<Container disableGutters>
-						{props.data.otherApps.map((app, idx) => (
-							<a
-								key={idx}
-								href={`/app/${app.id}`}
-							>
-								<ListItem
-									button
-									title={app.name}
-									image={app.iconSmall}
-									subtitle={app.author}
-									divider={idx !== (props.data.otherApps?.length as number) - 1}
-								/>
-							</a>
-						))}
-					</Container>
-				</>
-			}
+			{props.data.otherApps &&
+				(
+					<>
+						<Container>
+							<h3 class={tw`text-2xl mt-4`}>
+								Other apps
+							</h3>
+						</Container>
+						<Container disableGutters>
+							{props.data.otherApps.map((app, idx) => (
+								<a
+									key={idx}
+									href={`/app/${app.id}`}
+								>
+									<ListItem
+										button
+										title={app.name}
+										image={app.icon_small}
+										subtitle={app.author || app.owner?.name}
+										divider={idx !==
+											(props.data.otherApps
+													?.length as number) - 1}
+									/>
+								</a>
+							))}
+						</Container>
+					</>
+				)}
 		</>
 	);
 }
 
-export const handler: Handlers = {
-	async GET(_, ctx) {
-		const { data: app } = await supabase.from<App>("apps")
-			.select(
-				"id, name, author, description, url, iconLarge, category:categories(id, name), features",
-			)
-			.eq("id", ctx.params.id)
-			.single();
+export const handler: Handler = async (_, ctx) => {
+	const { accessToken } = ctx.state;
 
-		if (!app) {
-			return Response.redirect("/", 300);
-		}
+	const supabase = supabaseAsUser(accessToken);
 
-		const { data: otherApps } = await supabase.from("random_apps")
-			.select("id, name, author, iconSmall")
-			.eq("category", app.category.id)
-			.neq("id", app.id)
-			.limit(3);
+	const { data: app } = await supabase.from<App>("apps")
+		.select(
+			"id, name, author, description, url, icon_large, features, owner:users(name), category:categories(id, name)",
+		)
+		.eq("id", ctx.params.id)
+		.single();
 
-		return ctx.render({
-			app,
-			otherApps,
-		} as DataProps);
-	},
+	if (!app) {
+		return new Response("Not found", {
+			status: 307,
+			headers: {
+				Location: "/"
+			}
+		});
+	}
+
+	const { data: otherApps } = await supabase.from("random_apps")
+		.select("id, name, author, icon_small, owner:users(name)")
+		.eq("category", app.category.id)
+		.neq("id", app.id)
+		.limit(3);
+
+	return ctx.render({
+		app,
+		otherApps,
+	} as DataProps);
 };

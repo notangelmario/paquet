@@ -38,8 +38,7 @@ export default function InstallBanner(props: Props) {
 		if (props.isIos && props.browserName === "Mobile Safari") {
 			return `
 				Add Paquet by tapping
-				the <span class="${tw
-				`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
+				the <span class="${tw`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
 				and tap "Add to Home Screen".
 			`;
 		}
@@ -48,8 +47,7 @@ export default function InstallBanner(props: Props) {
 			return `
 				Unfortunately, Paquet on iOS only works in Safari.
 				Open Paquet in Safari and tap 
-				the <span class="${tw
-				`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
+				the <span class="${tw`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
 				and tap "Add to Home Screen".
 			`;
 		}
@@ -58,8 +56,7 @@ export default function InstallBanner(props: Props) {
 		if (props.browserName === "Chrome" && !props.type) {
 			return `
 				Add Paquet by clicking
-				the <span class="${tw
-				`text-secondary align-text-bottom material-symbols-outlined`}">install_desktop</span> button
+				the <span class="${tw`text-secondary align-text-bottom material-symbols-outlined`}">install_desktop</span> button
 				in the address bar and click "Install".
 			`;
 		}
@@ -73,11 +70,10 @@ export default function InstallBanner(props: Props) {
 	return !installed
 		? (
 			<Card
-				class={tw
-					`!bg-gradient-to-bl from-primary to-secondary !text-white`}
+				class={tw`!bg-gradient-to-bl from-primary to-secondary !text-white`}
 			>
 				<Stack>
-					<h2 class={tw`text-xl`}>Install</h2>
+					<h2 class={tw`text-xl`}>Welcome to Paquet!</h2>
 					<p>
 						It looks like Paquet isn't installed yet. You can
 						install it by clicking the button below.
@@ -90,6 +86,15 @@ export default function InstallBanner(props: Props) {
 					>
 						Install
 					</Button>
+					<a href="/about">
+						<Button
+							fullWidth
+							outlined
+							icon="info"
+						>
+							About
+						</Button>
+					</a>
 				</Stack>
 				<Dialog
 					title="Install Paquet"

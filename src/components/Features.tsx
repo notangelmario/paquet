@@ -1,6 +1,6 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import type { App } from "@/types/App.ts";
 import Container from "@/components/Container.tsx";
@@ -53,7 +53,11 @@ export default function Features(props: Props) {
 					>
 						<div
 							class={`
-								${!props.features?.[id as keyof App["features"]] ? "opacity-50" : ""}
+								${
+								!props.features?.[id as keyof App["features"]]
+									? "opacity-50"
+									: ""
+							}
 
 								flex flex-row justify-center items-center gap-2
 							`}
@@ -64,7 +68,8 @@ export default function Features(props: Props) {
 									rounded-full w-12 h-12
 
 									${
-									props.features?.[id as keyof App["features"]]
+									props.features
+											?.[id as keyof App["features"]]
 										? "bg-secondary"
 										: "bg-black dark:bg-white"
 								}

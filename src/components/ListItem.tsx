@@ -37,8 +37,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 								`}
 							>
 								<span
-									class={tw
-										`!text-3xl !align-middle material-symbols-outlined`}
+									class={tw`!text-3xl !align-middle material-symbols-outlined`}
 								>
 									{props.icon}
 								</span>
@@ -69,7 +68,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 					</p>
 				</div>
 			</div>
-			{props.divider && <Divider inset/>}
+			{props.divider && <Divider inset />}
 		</>
 	);
 }

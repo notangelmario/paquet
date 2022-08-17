@@ -1,46 +1,37 @@
-export type App = {
-	id: string;
+import { z } from "zod";
+import { UserSchema } from "./User.ts";
 
-	name: string;
-	author: string;
-	url: string;
-	iconLarge: string;
-	iconSmall: string;
-	/**@deprecated Use iconLarge and iconSmall instead. To be removed */
-	iconUrl?: string;
 
-	/**@deprecated Use category instead. To be removed */
-	categoryId: string;
+export const CategorySchema = z.object({
+	id: z.string().uuid(),
+	name: z.string(),
+	icon: z.string()
+})
 
-	category: Category;
+export const AppSchema = z.object({
+	id: z.string().uuid(),
 
-	description: string;
+	name: z.string().min(1).max(50),
+	author: z.string().min(1).max(50).optional(),
+	owner: UserSchema.optional(),
+	url: z.string().url(),
 
-	features?: {
-		desktop?: boolean;
-		mobile?: boolean;
-		offline?: boolean;
-		openSource?: boolean;
-	};
+	icon_small: z.string().url(),
+	icon_large: z.string().url(),
 
-	lighthouse?: LighthouseScores;
+	description: z.string().min(1).max(500),
+	category: CategorySchema,
+	
+	features: z.object({
+		desktop: z.boolean().default(false).optional(),
+		mobile: z.boolean().default(false).optional(),
+		offline: z.boolean().default(false).optional(),
+		openSource: z.boolean().default(false).optional(),
+	}).optional(),
 
-	/** @deprecated To be removed*/
-	appStoreLink?: string;
-	/** @deprecated To be removed*/
-	playStoreLink?: string;
-};
+	approved: z.boolean().default(false),
+	ready_to_approve: z.boolean().default(false)
+});
 
-export type LighthouseScores = {
-	performance: number;
-	accessibility: number;
-	bestPractices: number;
-	seo: number;
-	updatedAt: number;
-};
-
-export type Category = {
-	id: string;
-	name: string;
-	icon: string;
-};
+export type App = z.infer<typeof AppSchema>;
+export type Category = z.infer<typeof CategorySchema>;

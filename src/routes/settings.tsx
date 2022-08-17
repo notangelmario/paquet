@@ -3,10 +3,9 @@
 import "dotenv";
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import { getCookies } from "$std/http/cookie.ts";
 import { User } from "supabase";
-import { supabaseService } from "@supabase";
-import type { Handler, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
+import type { Handler } from "@/types/Handler.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -17,9 +16,7 @@ import ListItem from "@/components/ListItem.tsx";
 import app from "@app";
 
 type DataProps = {
-	supabaseUrl: string;
-	supabaseKey: string;
-	user: User | null;
+	user?: User;
 };
 
 export default function Settings(props: PageProps<DataProps>) {
@@ -28,7 +25,9 @@ export default function Settings(props: PageProps<DataProps>) {
 			<Navbar back />
 			<Container>
 				<Stack>
-					<Header>
+					<Header
+						icon="settings"
+					>
 						Settings
 					</Header>
 					<Card
@@ -46,31 +45,44 @@ export default function Settings(props: PageProps<DataProps>) {
 								icon={!props.data.user?.user_metadata.avatar_url
 									? "person"
 									: undefined}
-								image={props.data.user?.user_metadata.avatar_url}
+								image={props.data.user?.user_metadata
+									.avatar_url}
 								imageProps={{
 									class: "rounded-full",
 								}}
 							/>
 						</a>
 					</Card>
-					{props.data.user &&
-						<Card disableGutters>
-							<a href="/api/auth/logout">
-								<Button
-									fullWidth
-									red
-									outlined
-								>
-									Log out
-								</Button>
-							</a>
-						</Card>
-					}
+					{props.data.user && (
+						<>
+							<Card disableGutters>
+								<a href="/api/auth/logout">
+									<Button
+										fullWidth
+										red
+										outlined
+									>
+										Log out
+									</Button>
+								</a>
+							</Card>
+						</>
+					)}
+					<Card disableGutters>
+						<a href="/developer">
+							<ListItem
+								button
+								icon="code"
+								title="Developer"
+								subtitle="All things developer"
+							/>
+						</a>
+					</Card>
 					<Card disableGutters>
 						<ListItem
 							icon="info"
 							title="Version"
-							subtitle={`${app.version} - ${app.nickname}`}
+							subtitle={`${app.version} - ${app.codename}`}
 							divider
 						/>
 						<a
@@ -81,7 +93,7 @@ export default function Settings(props: PageProps<DataProps>) {
 								button
 								title="GitHub"
 								subtitle="Star Paquet on GitHub"
-								image="/github.svg"
+								image="/external-icons/github.svg"
 								imageProps={{
 									class: tw`p-3 filter dark:invert`,
 								}}
@@ -94,24 +106,8 @@ export default function Settings(props: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handler = async (req, ctx) => {
-	const cookies = await getCookies(req.headers);
-	const sbConfig = {
-		supabaseUrl: Deno.env.get("SUPABASE_URL"),
-		supabaseKey: Deno.env.get("SUPABASE_ANON_KEY"),
-	}
+export const handler: Handler = (_, ctx) => {
+	const user = ctx.state.user;
 
-	if (!cookies["access_token"]) {
-		return ctx.render({ ...sbConfig, user: null });
-	}
-
-	const { user } = await supabaseService.auth.api.getUser(
-		cookies["access_token"],
-	);
-
-	if (!user) {
-		return ctx.render({ ...sbConfig, user: null });
-	}
-
-	return ctx.render({ ...sbConfig, user });
+	return ctx.render({ user });
 };

@@ -4,21 +4,21 @@ import { tw } from "@twind";
 
 export default function FewApps() {
 	return (
-		<div
-			class={tw`
-				opacity-50
-			`}
-		>
+		<div>
 			<h1
 				class={tw`
-					text-2xl
+					text-2xl opacity-50
 				`}
 			>
 				More apps coming soon...
 			</h1>
-			<p>
+			<p class={tw`opacity-50 mb-4`}>
 				Apps are being added every week. Check back soon for more!
 			</p>
+			<img
+				src="/illustrations/app-installation.svg"
+				class={tw`h-64`}
+			/>
 		</div>
 	);
 }

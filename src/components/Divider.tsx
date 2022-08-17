@@ -4,7 +4,7 @@ import { tw } from "@twind";
 
 export type Props = {
 	inset?: boolean;
-}
+};
 
 export default function Divider(props: Props & JSX.IntrinsicElements["hr"]) {
 	return (
@@ -16,5 +16,5 @@ export default function Divider(props: Props & JSX.IntrinsicElements["hr"]) {
 				${props.class || ""}
 			`}
 		/>
-	)
+	);
 }
