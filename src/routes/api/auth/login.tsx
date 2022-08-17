@@ -97,7 +97,7 @@ export const handler: Handler = async (req, ctx) => {
 
 	setCookie(res.headers, {
 		name: "expires_at",
-		value: (new Date().getTime() + parseInt(expires_in) * 1000).toString(),
+		value: (Math.floor(Date.now() / 1000) + parseInt(expires_in)).toString(),
 		maxAge: 365 * 24 * 60 * 60,
 		httpOnly: true,
 		sameSite: "Strict",
