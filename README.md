@@ -42,10 +42,9 @@ To run the app in production mode:
 deno task prod
 ```
 
-## ❓ FAQ
-* Why are there so few apps?
-	* Paquet is still growing, I am doing my best to add as many apps as possible.
-* How do I submit an app?
-	* Just drop an issue with the link to the web app you would like to see.
-* What if my app is here and I don't like it?
-	* Well that's a bummer. But if you don't like that your app is on Paquet, just let me know and I'll remove it as soon as possible.
+## 📄 Developer Documentation
+
+Developer documentation is available both on [GitHub](/docs/developer/getting-started.md) and
+[Paquet](https://paquet.shop/developer/docs/getting-started)
+
+Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
