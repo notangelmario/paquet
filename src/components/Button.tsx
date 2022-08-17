@@ -39,7 +39,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 			{props.icon &&
 				(
 					<span
-						class={tw`align-middle text-base material-symbols-outlined`}
+						class={tw`!align-bottom !text-base material-symbols-outlined`}
 					>
 						{props.icon}
 					</span>

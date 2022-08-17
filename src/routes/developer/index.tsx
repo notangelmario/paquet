@@ -13,10 +13,6 @@ import Card from "@/components/Card.tsx";
 import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
 
-type DataProps = {
-	apps: App[] | null;
-};
-
 type Doc = {
 	title: string,
 	description: string
@@ -27,17 +23,19 @@ type Doc = {
 const DOCS: Doc[] = [
 	{
 		title: "Getting started",
+		description: "How to add your app on Paquet",
 		icon: "flag",
 		filename: "getting-started.md"
 	},
 	{
 		title: "Manifest file",
+		description: "How to use your manifest file to edit your app listing",
 		icon: "description",
 		filename: "manifest.md"
 	}
 ]
 
-export default function DevDashboard(props: PageProps<DataProps>) {
+export default function DevDashboard() {
 	return (
 		<>
 			<Navbar
@@ -45,27 +43,11 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 			/>
 			<Container>
 				<Stack>
-					<Header>
+					<Header
+						icon="code"
+					>
 						For developers
 					</Header>
-					<div>
-						<h2 class={tw`text-2xl mb-1`}>
-							Your apps
-						</h2>
-						<Card disableGutters>
-							{props.data.apps?.map((app) => (
-								<a href={`/app/${app.id}`}>
-									<ListItem
-										key={app.id}
-										button
-										image={app.icon_small}
-										title={app.name}
-										subtitle={app.id}
-									/>
-								</a>
-							))}
-						</Card>
-					</div>
 					<div>
 						<h2 class={tw`text-2xl mb-1`}>
 							Docs
@@ -80,6 +62,7 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 										button
 										icon={doc.icon}
 										title={doc.title}
+										subtitle={doc.description}
 									/>
 								</a>
 							))}
@@ -90,37 +73,3 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 		</>
 	);
 }
-
-export const handler: Handler = async (_, ctx) => {
-	const user = ctx.state.user;
-	const accessToken = ctx.state.accessToken;
-
-	if (!user || !accessToken) {
-		return new Response("Unauthorized", {
-			status: 307,
-			headers: {
-				Location: "/login",
-			},
-		});
-	}
-
-	const supabase = supabaseAsUser(accessToken);
-
-	const { data: apps } = await supabase.from<App>("apps")
-		.select("id, name, icon_small")
-		.eq("owner", user.id);
-
-	if (!apps) {
-		return new Response("Unauthorized", {
-			status: 307,
-			headers: {
-				Location: "/login",
-			},
-		});
-	}
-
-
-	return ctx.render({
-		apps,
-	});
-};

@@ -23,13 +23,9 @@ export default function Category(props: PageProps<DataProps>) {
 		<>
 			<Navbar back />
 			<Container>
-				<Header>
-					<span
-						class={tw`text-5xl material-symbols-outlined`}
-					>
-						{props.data.category.icon}
-					</span>
-					<br />
+				<Header
+					icon={props.data.category.icon}
+				>
 					{props.data.category.name}
 				</Header>
 			</Container>

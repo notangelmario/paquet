@@ -21,7 +21,7 @@ export const supabaseAsUser = (jwt?: string) => {
 		SUPABASE_ANON_KEY,
 	);
 
-	if (jwt) {
+	if (typeof jwt === "string") {
 		sb.auth.setAuth(jwt);
 	}
 

@@ -3,7 +3,7 @@ import { getCookies, setCookie } from "$std/http/cookie.ts";
 import { supabaseService } from "@supabase";
 
 export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
-	const cookies = await getCookies(req.headers);
+	const cookies = getCookies(req.headers);
 
 	const { user } = await supabaseService.auth.api.getUser(
 		cookies["access_token"],
@@ -16,12 +16,15 @@ export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 		const dateTimeInSeconds = Math.floor(Date.now() / 1000);
 		const accessTokenExpired = dateTimeInSeconds > parseInt(cookies["expires_at"]);
 
-		if (accessTokenExpired) {
+		if (accessTokenExpired || !user) {
 			const { data } = await supabaseService.auth.api.refreshAccessToken(
 				cookies["refresh_token"],
 			);
 
 			if (!data) {
+				ctx.state.accessToken = null;
+				ctx.state.user = null;
+
 				return ctx.next();
 			}
 

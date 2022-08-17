@@ -16,7 +16,9 @@ export default function About() {
 			/>
 			<Container>
 				<Stack>
-					<Header>
+					<Header
+						icon="info"
+					>
 						About Paquet
 					</Header>
 					<p>

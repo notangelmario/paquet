@@ -25,7 +25,9 @@ export default function Settings(props: PageProps<DataProps>) {
 			<Navbar back />
 			<Container>
 				<Stack>
-					<Header>
+					<Header
+						icon="settings"
+					>
 						Settings
 					</Header>
 					<Card
@@ -64,18 +66,18 @@ export default function Settings(props: PageProps<DataProps>) {
 									</Button>
 								</a>
 							</Card>
-							<Card disableGutters>
-								<a href="/developer">
-									<ListItem
-										button
-										icon="dashboard"
-										title="Developer"
-										subtitle="All things developer"
-									/>
-								</a>
-							</Card>
 						</>
 					)}
+					<Card disableGutters>
+						<a href="/developer">
+							<ListItem
+								button
+								icon="code"
+								title="Developer"
+								subtitle="All things developer"
+							/>
+						</a>
+					</Card>
 					<Card disableGutters>
 						<ListItem
 							icon="info"

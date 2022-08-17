@@ -35,7 +35,9 @@ export default function Home({ data }: PageProps<DataProps>) {
 			<Stack>
 				<Container>
 					<Stack>
-						<Header>
+						<Header
+							icon="home"
+						>
 							Home
 						</Header>
 						<form
