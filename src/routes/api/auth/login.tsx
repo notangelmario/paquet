@@ -8,7 +8,7 @@ security reasons.
 This does not concern us, so we can safely convert the hash
 to querystring params and pass them to the login endpoint.
 
-If anyone finds a better solution, please let us know.
+If anyone finds a better solution, please let me know.
 This is a very hacky fix and might have some unforeseen consequences.
 */
 /**@jsx h */

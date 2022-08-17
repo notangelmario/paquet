@@ -11,7 +11,6 @@ details.
 Here are the keys we use when displaying your app listing on Paquet:
 
 * `name`
-* `author`
 * `description`
 * `categories`
 * `icons`
@@ -19,6 +18,7 @@ Here are the keys we use when displaying your app listing on Paquet:
 
 Also we use some non-standard keys to specify additional details:
 
-* `paquet-features`
+* `paquet_features`
+* `paquet_author_id`
 
 You can find more about manifest keys on the [manifest documentation](/docs/developer/manifest.md)

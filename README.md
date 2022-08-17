@@ -1,6 +1,6 @@
 <img
 	align="right"
-	src="/assets/rounded-logo.png"
+	src="/resources/rounded-logo.png"
 	alt="Paquet logo"
 	height="150px"
 />

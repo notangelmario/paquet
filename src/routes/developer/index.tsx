@@ -2,10 +2,6 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
-import type { PageProps } from "$fresh/server.ts";
-import type { Handler } from "@/types/Handler.ts";
-import type { App } from "@/types/App.ts";
-import { supabaseAsUser } from "@supabase";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";

@@ -1,6 +1,8 @@
 {
     "name": "Paquet Shop",
     "short_name": "Paquet",
+    "author": "Savin Angel-Mario",
+    "description": "Check out Paquet to find the best web apps on the open web.",
     "id": "shop.paquet",
     "icons": [
         {
@@ -12,7 +14,6 @@
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "maskable"
         },
         {
             "src": "/android-chrome-192x192.png",
