@@ -59,7 +59,7 @@ export default function Login() {
 						<span class={tw`material-symbols-outlined !text-base`}>
 							info
 						</span>{" "}
-						Create a new account to get access to developer
+						Login to get access to developer
 						features, reviews, and more.
 					</p>
 				</Stack>
@@ -70,7 +70,7 @@ export default function Login() {
 
 export const handler: Handler = async (req, ctx) => {
 	const url = new URL(req.url);
-	const cookies = await getCookies(req.headers);
+	const cookies = getCookies(req.headers);
 
 	const { user } = await supabaseService.auth.api.getUser(
 		cookies["access_token"],

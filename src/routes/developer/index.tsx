@@ -17,6 +17,26 @@ type DataProps = {
 	apps: App[] | null;
 };
 
+type Doc = {
+	title: string,
+	description: string
+	icon: string,
+	filename: string
+}
+
+const DOCS: Doc[] = [
+	{
+		title: "Getting started",
+		icon: "flag",
+		filename: "getting-started.md"
+	},
+	{
+		title: "Manifest file",
+		icon: "description",
+		filename: "manifest.md"
+	}
+]
+
 export default function DevDashboard(props: PageProps<DataProps>) {
 	return (
 		<>
@@ -26,29 +46,40 @@ export default function DevDashboard(props: PageProps<DataProps>) {
 			<Container>
 				<Stack>
 					<Header>
-						Developer Dashboard
+						For developers
 					</Header>
 					<div>
 						<h2 class={tw`text-2xl mb-1`}>
 							Your apps
 						</h2>
 						<Card disableGutters>
-							<a href="/api/developer/create-app">
-								<ListItem
-									button
-									title="Submit a new app"
-									subtitle="Create a new app"
-									icon="add"
-								/>
-							</a>
 							{props.data.apps?.map((app) => (
-								<a href={`/developer/edit/${app.id}`}>
+								<a href={`/app/${app.id}`}>
 									<ListItem
 										key={app.id}
 										button
 										image={app.icon_small}
 										title={app.name}
 										subtitle={app.id}
+									/>
+								</a>
+							))}
+						</Card>
+					</div>
+					<div>
+						<h2 class={tw`text-2xl mb-1`}>
+							Docs
+						</h2>
+						<Card disableGutters>
+							{DOCS.map(doc => (
+								<a 
+									href={`/developer/docs/${doc.filename.slice(0, -3)}`}
+									key={doc.filename}
+								>
+									<ListItem
+										button
+										icon={doc.icon}
+										title={doc.title}
 									/>
 								</a>
 							))}
@@ -87,6 +118,7 @@ export const handler: Handler = async (_, ctx) => {
 			},
 		});
 	}
+
 
 	return ctx.render({
 		apps,

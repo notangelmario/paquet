@@ -69,7 +69,7 @@ export default function Settings(props: PageProps<DataProps>) {
 									<ListItem
 										button
 										icon="dashboard"
-										title="Developer dashboard"
+										title="Developer"
 										subtitle="All things developer"
 									/>
 								</a>
