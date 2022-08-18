@@ -62,16 +62,26 @@ export const handler: Handler = async (_, ctx) => {
 	const category = ctx.params.id;
 
 	if (!category) {
-		return Response.redirect("/", 307);
+		return new Response("Not found", {
+			status: 307,
+			headers: {
+				Location: "/"
+			}
+		});
 	}
 
 	const { data: apps } = await supabase
 		.from<App>("apps")
-		.select("id, name, icon_small, author, owner:users(name)")
+		.select("id, name, icon_small, author")
 		.eq("category", category);
 
 	if (!apps) {
-		return Response.redirect("/", 307);
+		return new Response("Not found", {
+			status: 307,
+			headers: {
+				Location: "/"
+			}
+		});
 	}
 
 	return ctx.render({

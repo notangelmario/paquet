@@ -77,7 +77,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 								key={app.id}
 								image={app.icon_small}
 								title={app.name}
-								subtitle={app.category.name}
+								subtitle={categories.find(category => category.id === app.category)?.name}
 								divider={data.apps &&
 									idx !== data.apps.length - 1}
 							/>
@@ -98,9 +98,9 @@ export default function Home({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (req, ctx) => {
 	const installed = useInstalledServerSide(req);
 
-	const { data: apps } = await supabase.from("apps")
+	const { data: apps } = await supabase.from<App>("random_apps")
 		.select(
-			"id, name, icon_small, category:categories(name)",
+			"id, name, icon_small, category",
 		);
 
 	return ctx.render({

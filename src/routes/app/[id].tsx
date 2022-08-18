@@ -123,7 +123,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
-			"id, name, author, description, url, icon_large, features, owner:users(name), category",
+			"id, name, author, description, url, icon_large, features, category",
 		)
 		.eq("id", ctx.params.id)
 		.single();
@@ -138,7 +138,7 @@ export const handler: Handler = async (_, ctx) => {
 	}
 
 	const { data: otherApps } = await supabase.from("random_apps")
-		.select("id, name, author, icon_small, owner:users(name)")
+		.select("id, name, author, icon_small")
 		.eq("category", app.category)
 		.neq("id", app.id)
 		.limit(3);
