@@ -22,7 +22,7 @@ export const categories: Category[] = [
 		name: "Social",
 	},
 	{
-		id: "developement",
+		id: "development",
 		icon: "code",
 		name: "Development",
 	},
