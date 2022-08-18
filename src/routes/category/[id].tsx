@@ -65,8 +65,8 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Not found", {
 			status: 307,
 			headers: {
-				Location: "/"
-			}
+				Location: "/",
+			},
 		});
 	}
 
@@ -79,8 +79,8 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Not found", {
 			status: 307,
 			headers: {
-				Location: "/"
-			}
+				Location: "/",
+			},
 		});
 	}
 
