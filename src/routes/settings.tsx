@@ -2,7 +2,7 @@
 /**@jsxFrag Fragment */
 import "dotenv";
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import { User } from "supabase";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -13,7 +13,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import app from "@app";
+import app from "@/lib/app.ts";
 
 type DataProps = {
 	user?: User;
@@ -25,9 +25,7 @@ export default function Settings(props: PageProps<DataProps>) {
 			<Navbar back />
 			<Container>
 				<Stack>
-					<Header
-						icon="settings"
-					>
+					<Header icon="settings">
 						Settings
 					</Header>
 					<Card

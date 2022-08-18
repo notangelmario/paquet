@@ -1,7 +1,7 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import Header from "@/components/Header.tsx";
@@ -16,9 +16,7 @@ export default function About() {
 			/>
 			<Container>
 				<Stack>
-					<Header
-						icon="info"
-					>
+					<Header icon="info">
 						About Paquet
 					</Header>
 					<p>

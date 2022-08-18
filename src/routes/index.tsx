@@ -1,14 +1,15 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import type { PageProps } from "$fresh/server.ts";
-import { App, Category } from "@/types/App.ts";
+import type { App } from "@/types/App.ts";
 import type { Handler } from "@/types/Handler.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
-import { supabase } from "@supabase";
+import { supabase } from "@/lib/supabase.ts";
+import { categories } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
@@ -20,7 +21,6 @@ import SlideItem from "@/components/SlideItem.tsx";
 import { useInstalledServerSide } from "@/hooks/useInstalled.ts";
 
 type DataProps = {
-	categories?: Category[];
 	apps?: App[];
 	installed: boolean;
 };
@@ -35,9 +35,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 			<Stack>
 				<Container>
 					<Stack>
-						<Header
-							icon="home"
-						>
+						<Header icon="home">
 							Home
 						</Header>
 						<form
@@ -54,10 +52,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 				<SlideContainer
 					snap
 				>
-					{data.categories?.map((category, idx) => (
+					{categories.map((category, idx) => (
 						<SlideItem
 							key={category.id}
-							isLast={data.categories && idx === data.categories.length - 1}
+							isLast={categories && idx === categories.length - 1}
 						>
 							<a
 								href={`/category/${category.id}`}
@@ -80,7 +78,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 								image={app.icon_small}
 								title={app.name}
 								subtitle={app.category.name}
-								divider={data.apps && idx !== data.apps.length - 1}
+								divider={data.apps &&
+									idx !== data.apps.length - 1}
 							/>
 						</a>
 						// <AppListItem
@@ -99,15 +98,12 @@ export default function Home({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (req, ctx) => {
 	const installed = useInstalledServerSide(req);
 
-	const [{ data: categories }, { data: apps }] = await Promise.all([
-		supabase.from("categories").select("*"),
-		supabase.from("apps").select(
+	const { data: apps } = await supabase.from("apps")
+		.select(
 			"id, name, icon_small, category:categories(name)",
-		),
-	]);
+		);
 
 	return ctx.render({
-		categories,
 		apps,
 		installed,
 	} as DataProps);

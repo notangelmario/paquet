@@ -1,10 +1,10 @@
 /**@jsx h */
 import { h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import { StateUpdater, useEffect } from "preact/hooks";
-import Card from "../components/Card.tsx";
-import Stack from "../components/Stack.tsx";
-import Button from "../components/Button.tsx";
+import Card from "@/components/Card.tsx";
+import Stack from "@/components/Stack.tsx";
+import Button from "@/components/Button.tsx";
 
 export type Props = {
 	open: boolean;

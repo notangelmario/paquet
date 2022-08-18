@@ -1,7 +1,7 @@
 /**@jsx h */
 import { h, type JSX } from "preact";
-import { tw } from "@twind";
-import { btn } from "@/utils/sharedUi.ts";
+import { tw } from "@/lib/twind.ts";
+import { btn } from "@/lib/ui.ts";
 
 export type Props = {
 	icon?: string;

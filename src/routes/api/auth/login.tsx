@@ -14,14 +14,13 @@ This is a very hacky fix and might have some unforeseen consequences.
 /**@jsx h */
 import { h } from "preact";
 import type { Handler, PageProps } from "$fresh/server.ts";
-import { supabaseService } from "@supabase";
+import { supabaseService } from "@/lib/supabase.ts";
 import { Provider } from "supabase";
 import { setCookie } from "$std/http/cookie.ts";
 import LoginParamsConverter from "@/islands/LoginParamsConverter.tsx";
 
 const DEV = !Deno.env.get("DENO_DEPLOYMENT_ID");
-const PROVIDERS = ["google", "github"]
-
+const PROVIDERS = ["google", "github"];
 
 type DataProps = {
 	redirectTo?: string | undefined;
@@ -49,16 +48,18 @@ export const handler: Handler = async (req, ctx) => {
 	}
 
 	if (!access_token || !refresh_token || !expires_in) {
-
 		if (!PROVIDERS.includes(provider as string)) {
-			return ctx.render()
+			return ctx.render();
 		}
 
-		const authUrl = supabaseService.auth.api.getUrlForProvider(provider as Provider, {
-			redirectTo: DEV
-				? `http://localhost:3000/api/auth/login`
-				: `${url.origin}/api/auth/login`,
-		});
+		const authUrl = supabaseService.auth.api.getUrlForProvider(
+			provider as Provider,
+			{
+				redirectTo: DEV
+					? `http://localhost:3000/api/auth/login`
+					: `${url.origin}/api/auth/login`,
+			},
+		);
 
 		return ctx.render({
 			redirectTo: authUrl,

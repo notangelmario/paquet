@@ -1,6 +1,6 @@
 /**@jsx h */
 import { h, type JSX } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 
 export default function Input(props: JSX.IntrinsicElements["textarea"]) {
 	return (

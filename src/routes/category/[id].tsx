@@ -1,12 +1,14 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { Category } from "@/types/App.ts";
 import type { App } from "@/types/App.ts";
-import { supabase } from "@supabase";
+import { supabase } from "@/lib/supabase.ts";
+import { categories } from "@/lib/categories.ts";
+
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
@@ -14,23 +16,27 @@ import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
 
 type DataProps = {
-	category: Category;
+	category: string;
 	apps: App[];
 };
 
-export default function Category(props: PageProps<DataProps>) {
+export default function Category({ data }: PageProps<DataProps>) {
 	return (
 		<>
 			<Navbar back />
 			<Container>
 				<Header
-					icon={props.data.category.icon}
+					icon={categories.find((category) =>
+						category.id === data.category
+					)?.icon}
 				>
-					{props.data.category.name}
+					{categories.find((category) =>
+						category.id === data.category
+					)?.name}
 				</Header>
 			</Container>
 			<Container disableGutters>
-				{props.data.apps.map((app, idx) => (
+				{data.apps.map((app, idx) => (
 					<a
 						href={`/app/${app.id}`}
 						key={app.id}
@@ -40,7 +46,7 @@ export default function Category(props: PageProps<DataProps>) {
 							image={app.icon_small}
 							title={app.name}
 							subtitle={app.author || app.owner?.name}
-							divider={idx !== props.data.apps.length - 1}
+							divider={idx !== data.apps.length - 1}
 						/>
 					</a>
 				))}
@@ -53,27 +59,18 @@ export default function Category(props: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const categoryId = ctx.params.id;
+	const category = ctx.params.id;
 
-	if (!categoryId) {
+	if (!category) {
 		return Response.redirect("/", 307);
 	}
 
-	const values = await Promise.all([
-		supabase
-			.from<Category>("categories")
-			.select("*")
-			.eq("id", categoryId)
-			.single(),
-		supabase
-			.from<App>("apps")
-			.select("id, name, icon_small, author, owner:users(name)")
-			.eq("category", categoryId),
-	]);
+	const { data: apps } = await supabase
+		.from<App>("apps")
+		.select("id, name, icon_small, author, owner:users(name)")
+		.eq("category", category);
 
-	const [{ data: category }, { data: apps }] = values;
-
-	if (!category || !apps) {
+	if (!apps) {
 		return Response.redirect("/", 307);
 	}
 

@@ -1,5 +1,5 @@
-import { apply } from "@twind";
-import { css, theme } from "twind/css";
+import { apply } from "@/lib/twind.ts";
+import { css } from "twind/css";
 
 export const btn = apply`
 	  	cursor-pointer

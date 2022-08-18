@@ -1,9 +1,9 @@
 /**@jsx h */
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import { useScroll } from "@/hooks/useScroll.ts";
-import { iconBtn } from "@ui";
+import { iconBtn } from "@/lib/ui.ts";
 
 export type Props = {
 	back?: boolean;
@@ -12,7 +12,9 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
-	const [visitedRoot, setVisitedRoot] = useState(!!globalThis.sessionStorage?.getItem("visitedRoot"));
+	const [visitedRoot, setVisitedRoot] = useState(
+		!!globalThis.sessionStorage?.getItem("visitedRoot"),
+	);
 
 	const trigger = useScroll({
 		threshold: 16,
