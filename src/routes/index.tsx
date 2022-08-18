@@ -77,7 +77,9 @@ export default function Home({ data }: PageProps<DataProps>) {
 								key={app.id}
 								image={app.icon_small}
 								title={app.name}
-								subtitle={categories.find(category => category.id === app.category)?.name}
+								subtitle={categories.find((category) =>
+									category.id === app.category
+								)?.name}
 								divider={data.apps &&
 									idx !== data.apps.length - 1}
 							/>
