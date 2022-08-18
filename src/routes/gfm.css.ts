@@ -53,9 +53,10 @@ ol.nested li:before {
 
 `;
 
-export const handler: Handler = () => new Response(CSS, {
-	headers: {
-		"content-type": "text/css",
-		"cache-control": "public, max-age=31536000, immutable",
-	},
-});
+export const handler: Handler = () =>
+	new Response(CSS, {
+		headers: {
+			"content-type": "text/css",
+			"cache-control": "public, max-age=31536000, immutable",
+		},
+	});

@@ -1,7 +1,7 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import type { App } from "@/types/App.ts";
 import Container from "@/components/Container.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";

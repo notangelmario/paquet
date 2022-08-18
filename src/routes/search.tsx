@@ -1,11 +1,11 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
-import { supabase } from "@supabase";
+import { supabase } from "@/lib/supabase.ts";
 import { z, ZodError } from "zod";
 import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
@@ -38,7 +38,9 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 					/>
 					{data.error && (
 						<p class={tw`text-red-500`}>
-							<span class={tw`material-symbols-outlined !align-bottom !text-base`}>
+							<span
+								class={tw`material-symbols-outlined !align-bottom !text-base`}
+							>
 								error
 							</span>{" "}
 							{data.error.issues[0].message}

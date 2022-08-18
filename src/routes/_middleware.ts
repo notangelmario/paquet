@@ -1,6 +1,6 @@
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getCookies, setCookie } from "$std/http/cookie.ts";
-import { supabaseService } from "@supabase";
+import { supabaseService } from "@/lib/supabase.ts";
 
 export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 	const cookies = getCookies(req.headers);
@@ -14,7 +14,8 @@ export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 
 	if (["expires_at", "refresh_token"].every((key) => cookies[key])) {
 		const dateTimeInSeconds = Math.floor(Date.now() / 1000);
-		const accessTokenExpired = dateTimeInSeconds > parseInt(cookies["expires_at"]);
+		const accessTokenExpired =
+			dateTimeInSeconds > parseInt(cookies["expires_at"]);
 
 		if (accessTokenExpired || !user) {
 			const { data } = await supabaseService.auth.api.refreshAccessToken(

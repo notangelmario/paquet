@@ -1,6 +1,6 @@
 /**@jsx h */
 import { h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 

@@ -1,6 +1,6 @@
 /**@jsx h */
 import { h, type JSX } from "preact";
-import { theme, tw } from "@twind";
+import { theme, tw } from "@/lib/twind.ts";
 import { css } from "twind/css";
 
 export default function Input(props: JSX.IntrinsicElements["input"]) {

@@ -1,10 +1,11 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { supabaseAsUser } from "@supabase";
+import { supabaseAsUser } from "@/lib/supabase.ts";
+import { categories } from "@/lib/categories.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -20,7 +21,7 @@ type DataProps = {
 	otherApps?: App[];
 };
 
-export default function App(props: PageProps<DataProps>) {
+export default function App({ data }: PageProps<DataProps>) {
 	return (
 		<>
 			<Navbar back />
@@ -31,21 +32,23 @@ export default function App(props: PageProps<DataProps>) {
 							class={tw`
 								rounded w-20 h-20
 							`}
-							src={props.data.app.icon_large}
+							src={data.app.icon_large}
 						/>
 						<div class={tw`flex-1`}>
 							<h2 class={tw`text-3xl`}>
-								{props.data.app.name}
+								{data.app.name}
 							</h2>
 							<p class={tw`opacity-50`}>
-								{props.data.app.author ||
-									props.data.app.owner?.name} &middot;{" "}
-								{props.data.app.category.name}
+								{data.app.author ||
+									data.app.owner?.name} &middot;{" "}
+								{categories.find((category) =>
+									category.id === data.app.category
+								)?.name}
 							</p>
 						</div>
 						<div class={tw`min-w-full sm:min-w-[30%]`}>
 							<a
-								href={props.data.app.url}
+								href={data.app.url}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -63,17 +66,17 @@ export default function App(props: PageProps<DataProps>) {
 							About
 						</h3>
 						<p>
-							{props.data.app.description}
+							{data.app.description}
 						</p>
 					</div>
 					<Divider inset />
 				</Stack>
 			</Container>
 
-			{props.data.app.features && (
+			{data.app.features && (
 				<div class={tw`mt-4`}>
 					<Features
-						features={props.data.app.features}
+						features={data.app.features}
 					/>
 					<Container>
 						<Divider class="mt-4" inset />
@@ -81,7 +84,7 @@ export default function App(props: PageProps<DataProps>) {
 				</div>
 			)}
 
-			{props.data.otherApps &&
+			{data.otherApps &&
 				(
 					<>
 						<Container>
@@ -90,7 +93,7 @@ export default function App(props: PageProps<DataProps>) {
 							</h3>
 						</Container>
 						<Container disableGutters>
-							{props.data.otherApps.map((app, idx) => (
+							{data.otherApps.map((app, idx) => (
 								<a
 									key={idx}
 									href={`/app/${app.id}`}
@@ -101,8 +104,8 @@ export default function App(props: PageProps<DataProps>) {
 										image={app.icon_small}
 										subtitle={app.author || app.owner?.name}
 										divider={idx !==
-											(props.data.otherApps
-													?.length as number) - 1}
+											(data.otherApps?.length as number) -
+												1}
 									/>
 								</a>
 							))}
@@ -120,7 +123,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
-			"id, name, author, description, url, icon_large, features, owner:users(name), category:categories(id, name)",
+			"id, name, author, description, url, icon_large, features, owner:users(name), category",
 		)
 		.eq("id", ctx.params.id)
 		.single();
@@ -129,14 +132,14 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Not found", {
 			status: 307,
 			headers: {
-				Location: "/"
-			}
+				Location: "/",
+			},
 		});
 	}
 
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon_small, owner:users(name)")
-		.eq("category", app.category.id)
+		.eq("category", app.category)
 		.neq("id", app.id)
 		.limit(3);
 

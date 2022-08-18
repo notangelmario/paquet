@@ -1,8 +1,8 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h, type JSX } from "preact";
-import { tw } from "@twind";
-import { btn } from "@/utils/sharedUi.ts";
+import { tw } from "@/lib/twind.ts";
+import { btn } from "@/lib/ui.ts";
 import Divider from "@/components/Divider.tsx";
 
 export type Props = {

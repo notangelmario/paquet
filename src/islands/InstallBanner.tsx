@@ -9,13 +9,13 @@ declare global {
 
 import { h } from "preact";
 import { useState } from "preact/hooks";
-import Button from "../components/Button.tsx";
-import Card from "../components/Card.tsx";
-import { tw } from "@twind";
-import Stack from "../components/Stack.tsx";
-import { useInstalled } from "../hooks/useInstalled.ts";
+import Button from "@/components/Button.tsx";
+import Card from "@/components/Card.tsx";
+import { tw } from "@/lib/twind.ts";
+import Stack from "@/components/Stack.tsx";
+import { useInstalled } from "@/hooks/useInstalled.ts";
 import Dialog from "./Dialog.tsx";
-import { useBrowser } from "../hooks/useBrowser.ts";
+import { useBrowser } from "@/hooks/useBrowser.ts";
 
 type Props = {
 	initialInstalled: boolean;

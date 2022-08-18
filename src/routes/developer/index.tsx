@@ -1,7 +1,7 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
@@ -10,26 +10,26 @@ import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
 
 type Doc = {
-	title: string,
-	description: string
-	icon: string,
-	filename: string
-}
+	title: string;
+	description: string;
+	icon: string;
+	filename: string;
+};
 
 const DOCS: Doc[] = [
 	{
 		title: "Getting started",
 		description: "How to add your app on Paquet",
 		icon: "flag",
-		filename: "getting-started.md"
+		filename: "getting-started.md",
 	},
 	{
 		title: "Manifest file",
 		description: "How to use your manifest file to edit your app listing",
 		icon: "description",
-		filename: "manifest.md"
-	}
-]
+		filename: "manifest.md",
+	},
+];
 
 export default function DevDashboard() {
 	return (
@@ -39,9 +39,7 @@ export default function DevDashboard() {
 			/>
 			<Container>
 				<Stack>
-					<Header
-						icon="code"
-					>
+					<Header icon="code">
 						For developers
 					</Header>
 					<div>
@@ -49,9 +47,11 @@ export default function DevDashboard() {
 							Docs
 						</h2>
 						<Card disableGutters>
-							{DOCS.map(doc => (
-								<a 
-									href={`/developer/docs/${doc.filename.slice(0, -3)}`}
+							{DOCS.map((doc) => (
+								<a
+									href={`/developer/docs/${
+										doc.filename.slice(0, -3)
+									}`}
 									key={doc.filename}
 								>
 									<ListItem

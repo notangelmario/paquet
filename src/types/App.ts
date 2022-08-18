@@ -1,12 +1,11 @@
 import { z } from "zod";
 import { UserSchema } from "./User.ts";
 
-
 export const CategorySchema = z.object({
-	id: z.string().uuid(),
+	id: z.string(),
+	icon: z.string(),
 	name: z.string(),
-	icon: z.string()
-})
+});
 
 export const AppSchema = z.object({
 	id: z.string().uuid(),
@@ -20,8 +19,8 @@ export const AppSchema = z.object({
 	icon_large: z.string().url(),
 
 	description: z.string().min(1).max(500),
-	category: CategorySchema,
-	
+	category: z.string(),
+
 	features: z.object({
 		desktop: z.boolean().default(false).optional(),
 		mobile: z.boolean().default(false).optional(),
@@ -30,7 +29,7 @@ export const AppSchema = z.object({
 	}).optional(),
 
 	approved: z.boolean().default(false),
-	ready_to_approve: z.boolean().default(false)
+	ready_to_approve: z.boolean().default(false),
 });
 
 export type App = z.infer<typeof AppSchema>;

@@ -1,6 +1,6 @@
 /**@jsx h */
 import { cloneElement, h, type JSX, toChildArray, VNode } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 
 type Props = {
 	snap?: boolean;

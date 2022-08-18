@@ -2,10 +2,10 @@
 /**@jsxFrag Fragment */
 import "dotenv";
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
+import { tw } from "@/lib/twind.ts";
 import type { Handler } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
-import { supabaseService } from "@supabase";
+import { supabaseService } from "@/lib/supabase.ts";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -29,9 +29,7 @@ export default function Login() {
 						class={tw`h-32`}
 					/>
 					<Card disableGutters>
-						<a 
-							href="/api/auth/login?provider=google"
-						>
+						<a href="/api/auth/login?provider=google">
 							<ListItem
 								title="Login with Google"
 								image="/external-icons/google.svg"
@@ -42,9 +40,7 @@ export default function Login() {
 								}}
 							/>
 						</a>
-						<a 
-							href="/api/auth/login?provider=github"
-						>
+						<a href="/api/auth/login?provider=github">
 							<ListItem
 								title="Login with GitHub"
 								image="/external-icons/github.svg"
@@ -59,8 +55,8 @@ export default function Login() {
 						<span class={tw`material-symbols-outlined !text-base`}>
 							info
 						</span>{" "}
-						Login to get access to developer
-						features, reviews, and more.
+						Login to get access to developer features, reviews, and
+						more.
 					</p>
 				</Stack>
 			</Container>
