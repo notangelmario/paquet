@@ -31,7 +31,7 @@ const DOCS: Doc[] = [
 	},
 ];
 
-export default function DevDashboard() {
+export default function Developers() {
 	return (
 		<>
 			<Navbar
@@ -40,7 +40,7 @@ export default function DevDashboard() {
 			<Container>
 				<Stack>
 					<Header icon="code">
-						For developers
+						Developers
 					</Header>
 					<div>
 						<h2 class={tw`text-2xl mb-1`}>
@@ -49,7 +49,7 @@ export default function DevDashboard() {
 						<Card disableGutters>
 							{DOCS.map((doc) => (
 								<a
-									href={`/developer/docs/${
+									href={`/developers/docs/${
 										doc.filename.slice(0, -3)
 									}`}
 									key={doc.filename}

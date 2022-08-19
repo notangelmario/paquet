@@ -7,7 +7,7 @@ import type { Handler } from "@/types/Handler.ts";
 import { supabaseAsUser } from "@/lib/supabase.ts";
 import { categories } from "@/lib/categories.ts";
 
-import type { App } from "@/types/App.ts";
+import { type App, AppSchema } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -39,8 +39,7 @@ export default function App({ data }: PageProps<DataProps>) {
 								{data.app.name}
 							</h2>
 							<p class={tw`opacity-50`}>
-								{data.app.author ||
-									data.app.owner?.name} &middot;{" "}
+								{data.app.author} &middot;{" "}
 								{categories.find((category) =>
 									category.id === data.app.category
 								)?.name}
@@ -135,6 +134,17 @@ export const handler: Handler = async (_, ctx) => {
 				Location: "/",
 			},
 		});
+	}
+
+	const appValidation = AppSchema.partial().safeParse(app);
+
+	if (!appValidation.success) {
+		return new Response("Invalid app details", {
+			status: 307,
+			headers: {
+				Location: "/"
+			}
+		})
 	}
 
 	const { data: otherApps } = await supabase.from("random_apps")

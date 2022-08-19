@@ -9,8 +9,8 @@ import * as $3 from "./routes/api/auth/login.tsx";
 import * as $4 from "./routes/api/auth/logout.ts";
 import * as $5 from "./routes/app/[id].tsx";
 import * as $6 from "./routes/category/[id].tsx";
-import * as $7 from "./routes/developer/docs/[doc].tsx";
-import * as $8 from "./routes/developer/index.tsx";
+import * as $7 from "./routes/developers/docs/[doc].tsx";
+import * as $8 from "./routes/developers/index.tsx";
 import * as $9 from "./routes/gfm.css.ts";
 import * as $10 from "./routes/index.tsx";
 import * as $11 from "./routes/login.tsx";
@@ -31,8 +31,8 @@ const manifest = {
 		"./routes/api/auth/logout.ts": $4,
 		"./routes/app/[id].tsx": $5,
 		"./routes/category/[id].tsx": $6,
-		"./routes/developer/docs/[doc].tsx": $7,
-		"./routes/developer/index.tsx": $8,
+		"./routes/developers/docs/[doc].tsx": $7,
+		"./routes/developers/index.tsx": $8,
 		"./routes/gfm.css.ts": $9,
 		"./routes/index.tsx": $10,
 		"./routes/login.tsx": $11,
