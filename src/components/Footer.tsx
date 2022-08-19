@@ -1,24 +1,23 @@
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
 import Container from "@/components/Container.tsx";
-
 
 const LINKS = [
 	{
 		title: "About",
-		href: "/about"
+		href: "/about",
 	},
 	{
 		title: "Settings",
-		href: "/settings"
+		href: "/settings",
 	},
 	{
 		title: "Developers",
-		href: "/developers"
-	}
-]
+		href: "/developers",
+	},
+];
 
 export default function Footer() {
 	return (
@@ -52,17 +51,18 @@ export default function Footer() {
 							>
 								{link.title}
 							</a>
-							{idx !== LINKS.length - 1 && 
-								<span 
-									class={tw`opacity-50 mx-1`}
-								>
-									&middot;
-								</span>
-							}
+							{idx !== LINKS.length - 1 &&
+								(
+									<span
+										class={tw`opacity-50 mx-1`}
+									>
+										&middot;
+									</span>
+								)}
 						</>
 					))}
 				</div>
 			</Container>
 		</footer>
-	)
+	);
 }

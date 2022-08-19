@@ -60,7 +60,7 @@ export default function About() {
 					<Card>
 						<p>
 							<span
-								class={tw`material-symbols-outlined !text-base !align-bottom`}
+								class={tw`material-icons-outlined !text-base !align-bottom`}
 							>
 								info
 							</span>{" "}

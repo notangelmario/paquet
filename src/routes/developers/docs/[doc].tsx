@@ -2,14 +2,13 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { join } from "$std/path/mod.ts";
-import { CSS, render } from "gfm";
+import { render } from "gfm";
 import "https://esm.sh/prismjs@1.28.0/components/prism-json.js?no-check";
 import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import { Handler, PageProps } from "$fresh/server.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
-import { mdContainer } from "@/lib/ui.ts";
 
 type DataProps = {
 	content: string;
@@ -31,7 +30,7 @@ export default function Changelog({ data }: PageProps<DataProps>) {
 			>
 				<p>
 					<span
-						class={tw`material-symbols-outlined !align-bottom !text-base opacity-50`}
+						class={tw`material-icons-outlined !align-bottom !text-base opacity-50`}
 					>
 						info
 					</span>{" "}

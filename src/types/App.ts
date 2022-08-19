@@ -21,7 +21,9 @@ export const AppSchema = z.object({
 
 	description: z.string().min(1).max(500),
 	// deno-lint-ignore no-explicit-any
-	category: z.union(categories.map(category => z.literal(category.id)) as any),
+	category: z.union(
+		categories.map((category) => z.literal(category.id)) as any,
+	),
 
 	features: z.object({
 		desktop: z.boolean().default(false).optional(),

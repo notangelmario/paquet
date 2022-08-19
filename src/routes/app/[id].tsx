@@ -142,9 +142,9 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Invalid app details", {
 			status: 307,
 			headers: {
-				Location: "/"
-			}
-		})
+				Location: "/",
+			},
+		});
 	}
 
 	const { data: otherApps } = await supabase.from("random_apps")
