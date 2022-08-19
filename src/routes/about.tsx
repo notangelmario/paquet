@@ -17,7 +17,7 @@ export default function About() {
 			<Container>
 				<Stack>
 					<Header icon="info">
-						About Paquet
+						About
 					</Header>
 					<p>
 						Paquet(french for "package") is an alternative app store

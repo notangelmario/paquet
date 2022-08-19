@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { UserSchema } from "./User.ts";
+import { categories } from "@/lib/categories.ts";
 
 export const CategorySchema = z.object({
 	id: z.string(),
@@ -12,14 +12,16 @@ export const AppSchema = z.object({
 
 	name: z.string().min(1).max(50),
 	author: z.string().min(1).max(50).optional(),
-	owner: UserSchema.optional(),
 	url: z.string().url(),
+	manifest_url: z.string().url().endsWith(".webmanifest")
+		.or(z.string().url().endsWith(".json")),
 
 	icon_small: z.string().url(),
 	icon_large: z.string().url(),
 
 	description: z.string().min(1).max(500),
-	category: z.string(),
+	// deno-lint-ignore no-explicit-any
+	category: z.union(categories.map(category => z.literal(category.id)) as any),
 
 	features: z.object({
 		desktop: z.boolean().default(false).optional(),
@@ -29,7 +31,6 @@ export const AppSchema = z.object({
 	}).optional(),
 
 	approved: z.boolean().default(false),
-	ready_to_approve: z.boolean().default(false),
 });
 
 export type App = z.infer<typeof AppSchema>;

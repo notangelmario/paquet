@@ -3,6 +3,7 @@ import { h } from "preact";
 import { tw } from "@/lib/twind.ts";
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
+import Footer from "@/components/Footer.tsx";
 
 export default function App(props: AppProps) {
 	return (
@@ -86,6 +87,7 @@ export default function App(props: AppProps) {
 			<main class={tw`dark:text-white`} onTouchStart="">
 				<props.Component />
 			</main>
+			<Footer />
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
 				<script src="/registerSw.js"></script>
 			)}
