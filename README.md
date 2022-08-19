@@ -11,6 +11,8 @@ Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md&title=)
 
+> ⚠ Keep in mind that Paquet is not yet stable and lots of things might change
+
 ### About
 * ⚡ Optimized for speed
 * 💄 An actual good looking web app shop
