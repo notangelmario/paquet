@@ -22,7 +22,7 @@ const LINKS = [
 export default function Footer() {
 	return (
 		<footer
-			class={tw`bg-paper-light dark:bg-paper-dark rounded-t p-2 mt-2`}
+			class={tw`bg-paper-light dark:bg-paper-dark rounded-t p-4 mt-2`}
 		>
 			<Container>
 				<h2
@@ -40,7 +40,31 @@ export default function Footer() {
 					The web app shop
 				</p>
 				<div
-					class={tw`mt-2 flex`}
+					class={tw`mt-2 flex flex-row gap-2`}
+				>
+					<a
+						href="https://github.com/notangelmario/paquet"
+						target="_blank"
+						rel="noreferrer noopener"
+					>
+						<img 
+							src="/external-icons/github.svg"
+							class={tw`w-6 h-6 dark:(filter invert)`}
+						/>
+					</a>
+					<a
+						href="https://www.madewithsupabase.com/p/paquet"
+						target="_blank"
+						rel="noreferrer noopener"
+					>
+						<img 
+							src="/external-icons/supabase.svg"
+							class={tw`w-6 h-6 dark:(filter invert)`}
+						/>
+					</a>
+				</div>
+				<div
+					class={tw`mt-2 flex flex-row`}
 				>
 					{LINKS.map((link, idx) => (
 						<>
@@ -52,13 +76,12 @@ export default function Footer() {
 								{link.title}
 							</a>
 							{idx !== LINKS.length - 1 &&
-								(
-									<span
-										class={tw`opacity-50 mx-1`}
-									>
-										&middot;
-									</span>
-								)}
+								<span
+									class={tw`opacity-50 mx-1`}
+								>
+									&middot;
+								</span>
+							}
 						</>
 					))}
 				</div>
