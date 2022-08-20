@@ -21,4 +21,4 @@ Also we use some non-standard keys to specify additional details:
 * `paquet_features`
 * `paquet_author_id`
 
-You can find more about manifest keys on the [manifest documentation](/docs/developer/manifest.md)
+You can find more about manifest keys on the [manifest documentation](/docs/developers/manifest.md)

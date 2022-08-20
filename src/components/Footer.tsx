@@ -22,7 +22,7 @@ const LINKS = [
 export default function Footer() {
 	return (
 		<footer
-			class={tw`bg-paper-light dark:bg-paper-dark rounded-t p-4 mt-2`}
+			class={tw`bg-paper-light dark:bg-paper-dark rounded-t p-4 mt-4`}
 		>
 			<Container>
 				<h2

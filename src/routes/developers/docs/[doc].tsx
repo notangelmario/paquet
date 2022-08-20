@@ -30,7 +30,7 @@ export default function Changelog({ data }: PageProps<DataProps>) {
 			>
 				<p>
 					<span
-						class={tw`material-icons-outlined !align-bottom !text-base opacity-50`}
+						class={tw`material-symbols-outlined !align-bottom !text-base opacity-50`}
 					>
 						info
 					</span>{" "}
@@ -58,16 +58,16 @@ export const handler: Handler = async (_, ctx) => {
 	const doc = ctx.params.doc;
 
 	const file = await Deno.readTextFile(
-		join("docs", "developer", `${doc}.md`),
+		join("docs", "developers", `${doc}.md`),
 	);
 	let content = render(file);
 
 	// Compatibility with GitHub and Website
-	content = content.replaceAll("/docs/developer", "/developer/docs");
+	content = content.replaceAll("/docs/developers", "/developers/docs");
 	content = content.replaceAll('.md"', '"');
 
 	const githubUrl =
-		`https://github.com/notangelmario/paquet/blob/main/docs/developer/${doc}.md`;
+		`https://github.com/notangelmario/paquet/blob/main/docs/developers/${doc}.md`;
 
 	return ctx.render({
 		content,

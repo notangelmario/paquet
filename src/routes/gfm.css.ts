@@ -23,6 +23,13 @@ ol.nested li:before {
 	counter-increment: item;
 }
 
+.markdown-body {
+	font-family: "Poppins", sans-serif !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 .markdown-body ul {
 	list-style: disc;
 }
