@@ -32,7 +32,7 @@ export default function Login() {
 						<a href="/api/auth/login?provider=google">
 							<ListItem
 								title="Login with Google"
-								image="/external-icons/google.svg"
+								image="/icons/google.svg"
 								button
 								divider
 								imageProps={{
@@ -43,7 +43,7 @@ export default function Login() {
 						<a href="/api/auth/login?provider=github">
 							<ListItem
 								title="Login with GitHub"
-								image="/external-icons/github.svg"
+								image="/icons/github.svg"
 								button
 								imageProps={{
 									class: tw`p-3 filter dark:invert`,

@@ -29,7 +29,7 @@ export default function Footer() {
 					class={tw`text-3xl`}
 				>
 					<img
-						src="/icon.svg"
+						src="/icons/paquet.svg"
 						alt=""
 						class={tw`inline-block w-8 h-8 align-middle dark:(filter invert)`}
 					/>{" "}
@@ -50,7 +50,7 @@ export default function Footer() {
 						aria-label="GitHub"
 					>
 						<img 
-							src="/external-icons/github.svg"
+							src="/icons/github.svg"
 							alt="GitHub"
 							class={tw`w-8 h-8 dark:(filter invert)`}
 						/>
@@ -62,7 +62,7 @@ export default function Footer() {
 						aria-label="Made with Supabase"
 					>
 						<img 
-							src="/external-icons/supabase.svg"
+							src="/icons/supabase.svg"
 							alt="Made with Supabase"
 							class={tw`w-8 h-8 dark:(filter invert)`}
 						/>
