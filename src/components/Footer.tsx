@@ -30,6 +30,7 @@ export default function Footer() {
 				>
 					<img
 						src="/icon.svg"
+						alt=""
 						class={tw`inline-block w-8 h-8 align-middle dark:(filter invert)`}
 					/>{" "}
 					Paquet
@@ -40,31 +41,35 @@ export default function Footer() {
 					The web app shop
 				</p>
 				<div
-					class={tw`mt-2 flex flex-row gap-2`}
+					class={tw`mt-4 flex flex-row gap-2`}
 				>
 					<a
 						href="https://github.com/notangelmario/paquet"
 						target="_blank"
 						rel="noreferrer noopener"
+						aria-label="GitHub"
 					>
 						<img 
 							src="/external-icons/github.svg"
-							class={tw`w-6 h-6 dark:(filter invert)`}
+							alt="GitHub"
+							class={tw`w-8 h-8 dark:(filter invert)`}
 						/>
 					</a>
 					<a
 						href="https://www.madewithsupabase.com/p/paquet"
 						target="_blank"
 						rel="noreferrer noopener"
+						aria-label="Made with Supabase"
 					>
 						<img 
 							src="/external-icons/supabase.svg"
-							class={tw`w-6 h-6 dark:(filter invert)`}
+							alt="Made with Supabase"
+							class={tw`w-8 h-8 dark:(filter invert)`}
 						/>
 					</a>
 				</div>
 				<div
-					class={tw`mt-2 flex flex-row`}
+					class={tw`mt-4 flex flex-row`}
 				>
 					{LINKS.map((link, idx) => (
 						<>
@@ -77,7 +82,7 @@ export default function Footer() {
 							</a>
 							{idx !== LINKS.length - 1 &&
 								<span
-									class={tw`opacity-50 mx-1`}
+									class={tw`opacity-50 mx-2`}
 								>
 									&middot;
 								</span>

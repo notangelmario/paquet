@@ -17,6 +17,7 @@ export default function FewApps() {
 			</p>
 			<img
 				src="/illustrations/app-installation.svg"
+				alt=""
 				class={tw`h-64`}
 			/>
 		</div>
