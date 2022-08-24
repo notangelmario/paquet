@@ -41,7 +41,7 @@ export default function Footer() {
 					The web app shop
 				</p>
 				<div
-					class={tw`mt-4 flex flex-row gap-2`}
+					class={tw`mt-4 flex flex-row gap-4`}
 				>
 					<a
 						href="https://github.com/notangelmario/paquet"
@@ -64,6 +64,18 @@ export default function Footer() {
 						<img 
 							src="/icons/supabase.svg"
 							alt="Made with Supabase"
+							class={tw`w-8 h-8 dark:(filter invert)`}
+						/>
+					</a>
+					<a
+						href="https://discord.paquet.shop"
+						target="_blank"
+						rel="noreferrer noopener"
+						aria-label="Discord"
+					>
+						<img 
+							src="/icons/discord.svg"
+							alt="Discord"
 							class={tw`w-8 h-8 dark:(filter invert)`}
 						/>
 					</a>
