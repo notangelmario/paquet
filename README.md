@@ -27,7 +27,6 @@ Welcome to your new web app shop!
 * 🔒 Security is a top priority
 * 🎈 Easy to contribute to
 
-
 ## 🧰 Tools
 Paquet is built with a modern toolset in mind:
 - [Deno](https://deno.land)
