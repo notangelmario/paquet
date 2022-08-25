@@ -87,7 +87,7 @@ export const handler: Handler = async (req, ctx) => {
 
 	const { data: apps } = await supabase.rpc("search_app", {
 		search_term: query,
-	}).select("id, name, icon_small, category:categories(*)");
+	}).select("id, name, icon_small, category");
 
 	return ctx.render({
 		apps,

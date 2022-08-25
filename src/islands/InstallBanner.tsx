@@ -14,7 +14,7 @@ import Card from "@/components/Card.tsx";
 import { tw } from "@/lib/twind.ts";
 import Stack from "@/components/Stack.tsx";
 import { useInstalled } from "@/hooks/useInstalled.ts";
-import Dialog from "./Dialog.tsx";
+import Dialog from "@/islands/Dialog.tsx";
 import { useBrowser } from "@/hooks/useBrowser.ts";
 
 type Props = {
@@ -38,7 +38,7 @@ export default function InstallBanner(props: Props) {
 		if (props.isIos && props.browserName === "Mobile Safari") {
 			return `
 				Add Paquet by tapping
-				the <span class="${tw`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
+				the share button
 				and tap "Add to Home Screen".
 			`;
 		}
@@ -47,7 +47,7 @@ export default function InstallBanner(props: Props) {
 			return `
 				Unfortunately, Paquet on iOS only works in Safari.
 				Open Paquet in Safari and tap 
-				the <span class="${tw`text-secondary align-text-bottom material-symbols-outlined`}">ios_share</span> button
+				the share button
 				and tap "Add to Home Screen".
 			`;
 		}
@@ -56,7 +56,7 @@ export default function InstallBanner(props: Props) {
 		if (props.browserName === "Chrome" && !props.type) {
 			return `
 				Add Paquet by clicking
-				the <span class="${tw`text-secondary align-text-bottom material-symbols-outlined`}">install_desktop</span> button
+				the install button
 				in the address bar and click "Install".
 			`;
 		}
@@ -70,7 +70,7 @@ export default function InstallBanner(props: Props) {
 	return !installed
 		? (
 			<Card
-				class={tw`!bg-gradient-to-bl from-primary to-secondary !text-white`}
+				class={tw`!bg-gradient-to-tr from-primary to-secondary !text-white`}
 			>
 				<Stack>
 					<h2 class={tw`text-xl`}>Welcome to Paquet!</h2>
@@ -82,7 +82,7 @@ export default function InstallBanner(props: Props) {
 						fullWidth
 						outlined
 						onClick={onClickInstall}
-						icon="add_to_home_screen"
+						icon="install_mobile"
 					>
 						Install
 					</Button>

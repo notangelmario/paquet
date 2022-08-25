@@ -1,6 +1,7 @@
 /**@jsx h */
 import { h, type JSX } from "preact";
 import { tw } from "@/lib/twind.ts";
+import Icon from "@/components/Icon.tsx";
 
 export type Props = {
 	text?: string;
@@ -24,7 +25,13 @@ export default function SearchBar(
 				${props?.class || ""}
 			`}
 		>
-			<span
+			<Icon 
+				name="search"
+				class="ml-2 opacity-50"
+				width={18}
+				height={18}
+			/>
+			{/*<span
 				class={tw`
 					pl-2
 					material-symbols-outlined
@@ -32,7 +39,7 @@ export default function SearchBar(
 				`}
 			>
 				search
-			</span>
+			</span>*/}
 			<input
 				ref={props?.inputRef}
 				autocomplete="off"

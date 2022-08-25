@@ -24,10 +24,7 @@ export default function AppLinks({ github, gitlab }: Props) {
 						button
 						title="GitHub"
 						subtitle={github.replace("https://github.com/", "")}
-						image="/icons/github.svg"
-						imageProps={{
-							class: tw`p-3 filter dark:invert`,
-						}}
+						icon="github"
 						divider={!!gitlab}
 					/>
 				</a>
@@ -42,10 +39,7 @@ export default function AppLinks({ github, gitlab }: Props) {
 						button
 						title="GitLab"
 						subtitle={gitlab.replace("https://gitlab.com/", "")}
-						image="/icons/gitlab.svg"
-						imageProps={{
-							class: tw`p-3 filter dark:invert`,
-						}}
+						icon="gitlab"
 					/>
 				</a>
 			}

@@ -45,7 +45,7 @@ export default function Category({ data }: PageProps<DataProps>) {
 							button
 							image={app.icon_small}
 							title={app.name}
-							subtitle={app.author || app.owner?.name}
+							subtitle={app.author}
 							divider={idx !== data.apps.length - 1}
 						/>
 					</a>
