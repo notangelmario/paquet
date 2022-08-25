@@ -31,15 +31,6 @@ export default function SearchBar(
 				width={18}
 				height={18}
 			/>
-			{/*<span
-				class={tw`
-					pl-2
-					material-symbols-outlined
-					opacity-50
-				`}
-			>
-				search
-			</span>*/}
 			<input
 				ref={props?.inputRef}
 				autocomplete="off"
