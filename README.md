@@ -54,3 +54,5 @@ Developer documentation is available both on [GitHub](/docs/developer/getting-st
 [Paquet](https://paquet.shop/developer/docs/getting-started)
 
 Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
+
+[![Made with Fresh](https://fresh.deno.dev/fresh-badge.svg)](https://fresh.deno.dev)

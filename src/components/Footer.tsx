@@ -81,7 +81,7 @@ export default function Footer() {
 					</a>
 				</div>
 				<div
-					class={tw`mt-4 flex flex-row`}
+					class={tw`my-4 flex flex-row`}
 				>
 					{LINKS.map((link, idx) => (
 						<>
@@ -102,6 +102,17 @@ export default function Footer() {
 						</>
 					))}
 				</div>
+				<a href="https://fresh.deno.dev" aria-label="Fresh">
+					{/* Neat trick to change between light mode and dark mode */}
+					<picture>
+					    <source srcset="https://fresh.deno.dev/fresh-badge-dark.svg" media="(prefers-color-scheme: dark)"/>
+					    <img 
+							width="197" 
+							height="37" 
+							src="https://fresh.deno.dev/fresh-badge.svg"
+						/>
+					</picture>
+				</a>
 			</Container>
 		</footer>
 	);
