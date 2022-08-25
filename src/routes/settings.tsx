@@ -81,37 +81,7 @@ export default function Settings(props: PageProps<DataProps>) {
 							icon="info"
 							title="Version"
 							subtitle={`${app.version} - ${app.codename}`}
-							divider
 						/>
-						<a
-							href="https://github.com/notangelmario/paquet"
-							target="_blank"
-						>
-							<ListItem
-								button
-								title="GitHub"
-								subtitle="Star Paquet on GitHub"
-								image="/icons/github.svg"
-								imageProps={{
-									class: tw`p-3 filter dark:invert`,
-								}}
-								divider
-							/>
-						</a>
-						<a
-							href="https://discord.paquet.shop"
-							target="_blank"
-						>
-							<ListItem
-								button
-								title="Discord"
-								subtitle="Join our Discord server"
-								image="/icons/discord.svg"
-								imageProps={{
-									class: tw`p-3 filter dark:invert`,
-								}}
-							/>
-						</a>
 					</Card>
 				</Stack>
 			</Container>

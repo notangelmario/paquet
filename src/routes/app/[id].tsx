@@ -15,6 +15,7 @@ import Button from "@/components/Button.tsx";
 import Features from "@/components/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
+import AppLinks from "../../components/AppLinks.tsx";
 
 type DataProps = {
 	app: App;
@@ -72,6 +73,15 @@ export default function App({ data }: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 
+			{data.app.links && (
+				<Container class={tw`mt-4`}>
+					<AppLinks 
+						{...data.app.links}
+					/>
+					<Divider class="mt-4" inset />			
+				</Container>
+			)}
+
 			{data.app.features && (
 				<div class={tw`mt-4`}>
 					<Features
@@ -101,7 +111,7 @@ export default function App({ data }: PageProps<DataProps>) {
 										button
 										title={app.name}
 										image={app.icon_small}
-										subtitle={app.author || app.owner?.name}
+										subtitle={app.author}
 										divider={idx !==
 											(data.otherApps?.length as number) -
 												1}
@@ -122,7 +132,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
-			"id, name, author, description, url, icon_large, features, category",
+			"id, name, author, description, url, icon_large, features, category, links",
 		)
 		.eq("id", ctx.params.id)
 		.single();
@@ -131,7 +141,7 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Not found", {
 			status: 307,
 			headers: {
-				Location: "/",
+				Location: "/app/error",
 			},
 		});
 	}
@@ -142,7 +152,7 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Invalid app details", {
 			status: 307,
 			headers: {
-				Location: "/",
+				Location: "/app/error",
 			},
 		});
 	}
