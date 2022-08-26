@@ -83,6 +83,9 @@ export default function InstallBanner(props: Props) {
 						outlined
 						onClick={onClickInstall}
 						icon="install_mobile"
+						iconProps={{
+							class: "filter invert"
+						}}
 					>
 						Install
 					</Button>
@@ -91,6 +94,9 @@ export default function InstallBanner(props: Props) {
 							fullWidth
 							outlined
 							icon="info"
+							iconProps={{
+								class: "filter invert"
+							}}
 						>
 							About
 						</Button>

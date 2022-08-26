@@ -51,8 +51,6 @@ export default function App(props: AppProps) {
 					media="(prefers-color-scheme: light)"
 					content="#ffffff"
 				/>
-
-				<title>Paquet</title>
 				<meta
 					name="description"
 					content="Check out Paquet to find the best web apps on the open web."

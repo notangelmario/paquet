@@ -5,6 +5,7 @@ import { tw } from "@/lib/twind.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { App } from "@/types/App.ts";
 import type { Handler } from "@/types/Handler.ts";
+import { Head } from "$fresh/runtime.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -28,6 +29,9 @@ type DataProps = {
 export default function Home({ data }: PageProps<DataProps>) {
 	return (
 		<>
+			<Head>
+				<title>Paquet</title>
+			</Head>
 			<Navbar
 				rightIcon="settings"
 				rightIconHref="/settings"

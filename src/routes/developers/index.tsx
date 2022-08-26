@@ -2,6 +2,7 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { Head } from "$fresh/runtime.ts";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
@@ -16,7 +17,7 @@ type Doc = {
 	filename: string;
 };
 
-const DOCS: Doc[] = [
+export const DOCS: Doc[] = [
 	{
 		title: "Getting started",
 		description: "How to add your app on Paquet",
@@ -34,6 +35,9 @@ const DOCS: Doc[] = [
 export default function Developers() {
 	return (
 		<>
+			<Head>
+				<title>Developers &middot; Paquet</title>
+			</Head>
 			<Navbar
 				back
 			/>

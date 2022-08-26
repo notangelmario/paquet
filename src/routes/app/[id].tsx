@@ -2,6 +2,7 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import { supabaseAsUser } from "@/lib/supabase.ts";
@@ -15,7 +16,7 @@ import Button from "@/components/Button.tsx";
 import Features from "@/components/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
-import AppLinks from "../../components/AppLinks.tsx";
+import AppLinks from "@/components/AppLinks.tsx";
 
 type DataProps = {
 	app: App;
@@ -25,6 +26,9 @@ type DataProps = {
 export default function App({ data }: PageProps<DataProps>) {
 	return (
 		<>
+			<Head>
+				<title>{data.app.name} &middot; Paquet</title>
+			</Head>
 			<Navbar back />
 			<Container style={{ paddingTop: 64 }}>
 				<Stack>

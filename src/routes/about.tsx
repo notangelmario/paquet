@@ -2,6 +2,7 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { Head } from "$fresh/runtime.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import Header from "@/components/Header.tsx";
@@ -11,6 +12,9 @@ import Card from "@/components/Card.tsx";
 export default function About() {
 	return (
 		<>
+			<Head>
+				<title>About &middot; Paquet</title>
+			</Head>
 			<Navbar
 				back
 			/>

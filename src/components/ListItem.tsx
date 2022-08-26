@@ -39,8 +39,8 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 							>
 								<Icon 
 									name={props.icon}
-									width={32}
-									height={32}
+									width={28}
+									height={28}
 								/>
 							</div>
 						)

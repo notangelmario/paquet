@@ -9,10 +9,13 @@ import { Head } from "$fresh/runtime.ts";
 import { Handler, PageProps } from "$fresh/server.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
+import Icon from "@/components/Icon.tsx";
+import { DOCS } from "@/routes/developers/index.tsx";
 
 type DataProps = {
 	content: string;
 	githubUrl: string;
+	title: string;
 };
 
 export default function Changelog({ data }: PageProps<DataProps>) {
@@ -23,17 +26,20 @@ export default function Changelog({ data }: PageProps<DataProps>) {
 					rel="stylesheet"
 					href={`/gfm.css?build=${__FRSH_BUILD_ID}`}
 				/>
+				<title>{ data.title } &middot; Paquet</title>
 			</Head>
 			<Navbar back />
 			<Container
 				class={tw`mt-16`}
 			>
 				<p>
-					<span
-						class={tw`material-symbols-outlined !align-bottom !text-base opacity-50`}
-					>
-						info
-					</span>{" "}
+					<Icon 
+						name="info"
+						width={18}
+						height={18}
+						inline
+						class="opacity-50"
+					/>{" "}
 					<span class={tw`opacity-50`}>Read this page on{" "}</span>
 					<a
 						class={tw`text-primary`}
@@ -66,11 +72,14 @@ export const handler: Handler = async (_, ctx) => {
 	content = content.replaceAll("/docs/developers", "/developers/docs");
 	content = content.replaceAll('.md"', '"');
 
+
+	const title = DOCS.find((docElement) => docElement.filename === `${doc}.md`)?.title;
 	const githubUrl =
 		`https://github.com/notangelmario/paquet/blob/main/docs/developers/${doc}.md`;
 
 	return ctx.render({
 		content,
 		githubUrl,
+		title
 	});
 };

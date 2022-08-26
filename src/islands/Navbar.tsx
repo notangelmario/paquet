@@ -6,6 +6,7 @@ import { useScroll } from "@/hooks/useScroll.ts";
 import { iconBtn } from "@/lib/ui.ts";
 import Icon from "@/components/Icon.tsx";
 
+ 
 export type Props = {
 	back?: boolean;
 	rightIcon?: string;
@@ -67,15 +68,17 @@ export default function Navbar(props: Props) {
 					</button>
 				)}
 			</div>
-			{props.rightIcon && (
-				<a class={tw`${iconBtn} ml-auto`} href={props.rightIconHref}>
-					<Icon
-						name={props.rightIcon}
-						width={24}
-						height={24}
-					/>
-				</a>
-			)}
+			<div class={tw`flex flex-row ml-auto items-center gap-2`}>
+				{props.rightIcon && (
+					<a class={tw(iconBtn)} href={props.rightIconHref}>
+						<Icon
+							name={props.rightIcon}
+							width={24}
+							height={24}
+						/>
+					</a>
+				)}
+			</div>
 		</div>
 	);
 }

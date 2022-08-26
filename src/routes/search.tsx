@@ -2,6 +2,7 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
@@ -21,6 +22,9 @@ type DataProps = {
 export default function Search({ data, url }: PageProps<DataProps>) {
 	return (
 		<>
+			<Head>
+				<title>{url.searchParams.get("q")} &middot; Paquet</title>
+			</Head>
 			<Navbar
 				back
 			/>
