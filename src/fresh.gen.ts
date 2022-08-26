@@ -15,10 +15,11 @@ import * as $9 from "./routes/developers/index.tsx";
 import * as $10 from "./routes/gfm.css.ts";
 import * as $11 from "./routes/index.tsx";
 import * as $12 from "./routes/login.tsx";
-import * as $13 from "./routes/offline.tsx";
-import * as $14 from "./routes/search.tsx";
-import * as $15 from "./routes/settings.tsx";
-import * as $16 from "./routes/sitemap.xml.ts";
+import * as $13 from "./routes/manifest.json.ts";
+import * as $14 from "./routes/offline.tsx";
+import * as $15 from "./routes/search.tsx";
+import * as $16 from "./routes/settings.tsx";
+import * as $17 from "./routes/sitemap.xml.ts";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoginParamsConverter.tsx";
@@ -39,10 +40,11 @@ const manifest = {
 		"./routes/gfm.css.ts": $10,
 		"./routes/index.tsx": $11,
 		"./routes/login.tsx": $12,
-		"./routes/offline.tsx": $13,
-		"./routes/search.tsx": $14,
-		"./routes/settings.tsx": $15,
-		"./routes/sitemap.xml.ts": $16,
+		"./routes/manifest.json.ts": $13,
+		"./routes/offline.tsx": $14,
+		"./routes/search.tsx": $15,
+		"./routes/settings.tsx": $16,
+		"./routes/sitemap.xml.ts": $17,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,
