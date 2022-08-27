@@ -2,6 +2,7 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { css } from "twind/css";
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -13,6 +14,7 @@ import ListItem from "@/components/ListItem.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
+import Icon from "@/components/Icon.tsx";
 
 type DataProps = {
 	apps: App[];
@@ -42,11 +44,13 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 					/>
 					{data.error && (
 						<p class={tw`text-red-500`}>
-							<span
-								class={tw`material-symbols-outlined !align-bottom !text-base`}
-							>
+							<Icon
+								name="error"
+								width={18}
+								height={18}
 								error
-							</span>{" "}
+								inline
+							/>{" "}
 							{data.error.issues[0].message}
 						</p>
 					)}
