@@ -68,14 +68,8 @@ export default function App(props: AppProps) {
 					content="https://paquet.shop/og-image.jpg"
 				/>
 
-				<link href="/global.css" rel="stylesheet" />
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" />
-
-				<link
-					rel="stylesheet"
-					href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap"
-				/>
+				<link rel="stylesheet" href="/fonts.css"/>
+				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}
 			<main class={tw`dark:text-white`} onTouchStart="">
