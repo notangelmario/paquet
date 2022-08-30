@@ -7,6 +7,3 @@
 # Supabase
 **/supabase/.branches
 **/supabase/.temp
-
-# Deno vendor files
-.vendor
