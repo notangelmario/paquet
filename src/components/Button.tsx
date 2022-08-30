@@ -3,6 +3,7 @@ import { h, type JSX } from "preact";
 import { tw } from "@/lib/twind.ts";
 import { btn } from "@/lib/ui.ts";
 import Icon, { Props as IconProps } from "@/components/Icon.tsx";
+>>>>>>> 1278098 (Rebranded Paquet)
 
 export type Props = {
 	icon?: string;
@@ -45,8 +46,11 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 						width={18}
 						height={18}
 						inline
+<<<<<<< HEAD
 						class={!props.outlined ? "filter invert" : undefined}
 						{...props.iconProps}
+=======
+>>>>>>> 1278098 (Rebranded Paquet)
 					/>
 				)}
 			{props.children}
