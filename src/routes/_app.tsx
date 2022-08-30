@@ -44,7 +44,7 @@ export default function App(props: AppProps) {
 				<meta
 					name="theme-color"
 					media="(prefers-color-scheme: dark)"
-					content="#212121"
+					content="#121212"
 				/>
 				<meta
 					name="theme-color"
