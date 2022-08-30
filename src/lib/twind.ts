@@ -10,10 +10,10 @@ export const config: Configuration = {
 			colors: {
 				primary: "#8267be",
 				secondary: "#D77fa1",
-				dark: "#212121",
+				dark: "#121212",
 				paper: {
 					light: "#f0f0f0",
-					dark: "#323232",
+					dark: "#212121",
 				},
 			},
 			borderRadius: {
