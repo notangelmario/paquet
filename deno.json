@@ -12,7 +12,7 @@
     "cache": "deno cache --reload src/main.ts",
     "vendor": "deno vendor --force --no-config --import-map=import_map.json --output=.vendor src/main.ts"
   },
-  "importMap": "./import_map.json",
+  "importMap": "./src/import_map.json",
   "lint": {
     "files": {
       "include": ["src/"],
