@@ -32,4 +32,4 @@ jobs:
         with:
           project: paquet
           entrypoint: ./src/main.ts
-          import-map: ./vendor/import_map.json
+          import-map: ./.vendor/import_map.json
