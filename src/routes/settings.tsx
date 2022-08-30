@@ -13,7 +13,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import app, { DEV_MODE } from "@/lib/app.ts";
+import { APP, DEV_MODE } from "@/lib/app.ts";
 
 type DataProps = {
 	user?: User;
@@ -91,7 +91,7 @@ export default function Settings(props: PageProps<DataProps>) {
 						<ListItem
 							icon="info"
 							title="Version"
-							subtitle={`${app.version} - ${app.codename}`}
+							subtitle={`${APP.version} - ${APP.codename}`}
 						/>
 					</Card>
 				</Stack>

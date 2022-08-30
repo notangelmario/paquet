@@ -24,9 +24,12 @@ jobs:
       - name: Cache dependencies
         run: deno task cache
 
+      - name: Vendor dependencies
+        run: deno task vendor
+
       - name: Deploy to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: paquet
           entrypoint: ./src/main.ts
-          import-map: ./src/import_map.json
+          import-map: ./vendor/import_map.json
