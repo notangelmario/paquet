@@ -6,7 +6,6 @@ import type {
 
 type MiddlewareProps = {
 	accessToken?: string;
-	developer?: boolean;
 	user?: User;
 };
 

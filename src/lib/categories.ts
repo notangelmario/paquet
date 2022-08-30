@@ -8,7 +8,7 @@ export const categories: Category[] = [
 	},
 	{
 		id: "games",
-		icon: "stadia_controller",
+		icon: "videogame_asset",
 		name: "Games",
 	},
 	{

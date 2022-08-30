@@ -8,16 +8,18 @@ import * as $2 from "./routes/about.tsx";
 import * as $3 from "./routes/api/auth/login.tsx";
 import * as $4 from "./routes/api/auth/logout.ts";
 import * as $5 from "./routes/app/[id].tsx";
-import * as $6 from "./routes/category/[id].tsx";
-import * as $7 from "./routes/developers/docs/[doc].tsx";
-import * as $8 from "./routes/developers/index.tsx";
-import * as $9 from "./routes/gfm.css.ts";
-import * as $10 from "./routes/index.tsx";
-import * as $11 from "./routes/login.tsx";
-import * as $12 from "./routes/offline.tsx";
-import * as $13 from "./routes/search.tsx";
-import * as $14 from "./routes/settings.tsx";
-import * as $15 from "./routes/sitemap.xml.ts";
+import * as $6 from "./routes/app/error.tsx";
+import * as $7 from "./routes/category/[id].tsx";
+import * as $8 from "./routes/developers/docs/[doc].tsx";
+import * as $9 from "./routes/developers/index.tsx";
+import * as $10 from "./routes/gfm.css.ts";
+import * as $11 from "./routes/index.tsx";
+import * as $12 from "./routes/login.tsx";
+import * as $13 from "./routes/manifest.json.ts";
+import * as $14 from "./routes/offline.tsx";
+import * as $15 from "./routes/search.tsx";
+import * as $16 from "./routes/settings.tsx";
+import * as $17 from "./routes/sitemap.xml.ts";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoginParamsConverter.tsx";
@@ -31,16 +33,18 @@ const manifest = {
 		"./routes/api/auth/login.tsx": $3,
 		"./routes/api/auth/logout.ts": $4,
 		"./routes/app/[id].tsx": $5,
-		"./routes/category/[id].tsx": $6,
-		"./routes/developers/docs/[doc].tsx": $7,
-		"./routes/developers/index.tsx": $8,
-		"./routes/gfm.css.ts": $9,
-		"./routes/index.tsx": $10,
-		"./routes/login.tsx": $11,
-		"./routes/offline.tsx": $12,
-		"./routes/search.tsx": $13,
-		"./routes/settings.tsx": $14,
-		"./routes/sitemap.xml.ts": $15,
+		"./routes/app/error.tsx": $6,
+		"./routes/category/[id].tsx": $7,
+		"./routes/developers/docs/[doc].tsx": $8,
+		"./routes/developers/index.tsx": $9,
+		"./routes/gfm.css.ts": $10,
+		"./routes/index.tsx": $11,
+		"./routes/login.tsx": $12,
+		"./routes/manifest.json.ts": $13,
+		"./routes/offline.tsx": $14,
+		"./routes/search.tsx": $15,
+		"./routes/settings.tsx": $16,
+		"./routes/sitemap.xml.ts": $17,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,

@@ -2,9 +2,11 @@
 import { h, type JSX } from "preact";
 import { tw } from "@/lib/twind.ts";
 import { btn } from "@/lib/ui.ts";
+import Icon, { Props as IconProps } from "@/components/Icon.tsx";
 
 export type Props = {
 	icon?: string;
+	iconProps?: IconProps;
 	brand?: boolean;
 	fullWidth?: boolean;
 	children?: string;
@@ -18,7 +20,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 			{...props}
 			class={tw`
 				${!props.disabled && btn}
-				rounded px-8 py-2
+				rounded px-8 py-2 text-base
 				${props.red ? "border-red-500" : "border-current"}
 				
 				${
@@ -38,11 +40,14 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 		>
 			{props.icon &&
 				(
-					<span
-						class={tw`!align-bottom !text-base material-symbols-outlined`}
-					>
-						{props.icon}
-					</span>
+					<Icon
+						name={props.icon}
+						width={18}
+						height={18}
+						inline
+						class={!props.outlined ? "filter invert" : undefined}
+						{...props.iconProps}
+					/>
 				)}
 			{props.children}
 		</button>

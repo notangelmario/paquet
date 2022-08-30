@@ -31,7 +31,7 @@ export default function App(props: AppProps) {
 					sizes="16x16"
 					href="/favicon-16x16.png"
 				/>
-				<link rel="manifest" href="/site.webmanifest" />
+				<link rel="manifest" href="/manifest.json" />
 				{/* @ts-ignore */}
 				<link
 					rel="mask-icon"
@@ -44,15 +44,13 @@ export default function App(props: AppProps) {
 				<meta
 					name="theme-color"
 					media="(prefers-color-scheme: dark)"
-					content="#212121"
+					content="#121212"
 				/>
 				<meta
 					name="theme-color"
 					media="(prefers-color-scheme: light)"
 					content="#ffffff"
 				/>
-
-				<title>Paquet</title>
 				<meta
 					name="description"
 					content="Check out Paquet to find the best web apps on the open web."
@@ -70,20 +68,8 @@ export default function App(props: AppProps) {
 					content="https://paquet.shop/og-image.jpg"
 				/>
 
-				<link href="/global.css" rel="stylesheet" />
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" />
-
-				{/* @ts-ignore */} 
-				<link onload="this.rel = 'stylesheet'"
-					rel="preload"
-					as="style"
-					href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-				/>
-				<link
-					rel="stylesheet"
-					href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap"
-				/>
+				<link rel="stylesheet" href="/fonts.css"/>
+				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}
 			<main class={tw`dark:text-white`} onTouchStart="">

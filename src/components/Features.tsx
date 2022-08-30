@@ -6,6 +6,7 @@ import type { App } from "@/types/App.ts";
 import Container from "@/components/Container.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
+import Icon from "@/components/Icon.tsx";
 
 export const FEATURES = {
 	desktop: {
@@ -75,11 +76,12 @@ export default function Features(props: Props) {
 								}
 								`}
 							>
-								<span
-									class={tw`material-symbols-outlined text-white dark:text-black`}
-								>
-									{icon}
-								</span>
+								<Icon
+									name={icon}
+									width={24}
+									height={24}
+									class="filter dark:!invert-0 invert"
+								/>
 							</div>
 
 							<p

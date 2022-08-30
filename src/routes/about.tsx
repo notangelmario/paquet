@@ -2,15 +2,20 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { Head } from "$fresh/runtime.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Card from "@/components/Card.tsx";
+import Icon from "@/components/Icon.tsx";
 
 export default function About() {
 	return (
 		<>
+			<Head>
+				<title>About &middot; Paquet</title>
+			</Head>
 			<Navbar
 				back
 			/>
@@ -59,11 +64,12 @@ export default function About() {
 					</ul>
 					<Card>
 						<p>
-							<span
-								class={tw`material-icons-outlined !text-base !align-bottom`}
-							>
-								info
-							</span>{" "}
+							<Icon 
+								name="info"
+								width={18}
+								height={18}
+								inline
+							/>{" "}
 							Web apps are meant to complement native apps, not
 							replace them. Use a web app when you don't use a
 							service often or if you use a low-end device.

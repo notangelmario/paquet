@@ -3,6 +3,7 @@
 import { Fragment, h, type JSX } from "preact";
 import { tw } from "@/lib/twind.ts";
 import { btn } from "@/lib/ui.ts";
+import Icon from "@/components/Icon.tsx";
 import Divider from "@/components/Divider.tsx";
 
 export type Props = {
@@ -36,11 +37,11 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 									flex justify-center items-center w-12 h-12 mr-4
 								`}
 							>
-								<span
-									class={tw`!text-3xl !align-middle material-symbols-outlined`}
-								>
-									{props.icon}
-								</span>
+								<Icon 
+									name={props.icon}
+									width={28}
+									height={28}
+								/>
 							</div>
 						)
 						: (

@@ -2,6 +2,7 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { Category } from "@/types/App.ts";
@@ -23,6 +24,13 @@ type DataProps = {
 export default function Category({ data }: PageProps<DataProps>) {
 	return (
 		<>
+			<Head>
+				<title>
+					{categories.find((category) =>
+						category.id === data.category
+					)?.name} &middot; Paquet
+				</title>
+			</Head>
 			<Navbar back />
 			<Container>
 				<Header
@@ -45,7 +53,7 @@ export default function Category({ data }: PageProps<DataProps>) {
 							button
 							image={app.icon_small}
 							title={app.name}
-							subtitle={app.author || app.owner?.name}
+							subtitle={app.author}
 							divider={idx !== data.apps.length - 1}
 						/>
 					</a>

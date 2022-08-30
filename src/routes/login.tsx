@@ -4,6 +4,7 @@ import "dotenv";
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
 import type { Handler } from "$fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
 import { getCookies } from "$std/http/cookie.ts";
 import { supabaseService } from "@/lib/supabase.ts";
 import Header from "@/components/Header.tsx";
@@ -11,11 +12,15 @@ import Container from "@/components/Container.tsx";
 import Stack from "@/components/Stack.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
+import Icon from "@/components/Icon.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 
 export default function Login() {
 	return (
 		<>
+			<Head>
+				<title>Login &middot; Paquet</title>
+			</Head>
 			<Navbar
 				back
 			/>
@@ -52,9 +57,12 @@ export default function Login() {
 						</a>
 					</Card>
 					<p class={tw`opacity-50`}>
-						<span class={tw`material-symbols-outlined !text-base`}>
-							info
-						</span>{" "}
+						<Icon
+							name="info"
+							width={18}
+							height={18}
+							inline
+						/>{" "}
 						Login to get access to developer features, reviews, and
 						more.
 					</p>

@@ -12,7 +12,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
 	html, body {
-		background-color: #212121
+		background-color: #121212
 	}
 }
 
@@ -72,12 +72,4 @@ button:focus {
 a {
 	color: inherit;
 	text-decoration-line: none;
-}
-
-.material-symbols-outlined {
-	font-variation-settings:
-  		'FILL' 0,
-  		'wght' 300,
-  		'GRAD' 200,
-  		'opsz' 48
 }

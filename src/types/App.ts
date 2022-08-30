@@ -11,17 +11,17 @@ export const AppSchema = z.object({
 	id: z.string().uuid(),
 
 	name: z.string().min(1).max(50),
-	author: z.string().min(1).max(50).optional(),
+	author: z.string().min(1).max(50),
 	url: z.string().url(),
 	manifest_url: z.string().url().endsWith(".webmanifest")
-		.or(z.string().url().endsWith(".json")),
+		.or(z.string().url().endsWith(".json")).nullable(),
 
 	icon_small: z.string().url(),
 	icon_large: z.string().url(),
 
 	description: z.string().min(1).max(500),
-	// deno-lint-ignore no-explicit-any
 	category: z.union(
+		// deno-lint-ignore no-explicit-any
 		categories.map((category) => z.literal(category.id)) as any,
 	),
 
@@ -30,7 +30,12 @@ export const AppSchema = z.object({
 		mobile: z.boolean().default(false).optional(),
 		offline: z.boolean().default(false).optional(),
 		openSource: z.boolean().default(false).optional(),
-	}).optional(),
+	}).nullable(),
+
+	links: z.object({
+		github: z.string().url().startsWith("https://github.com/").optional(),
+		gitlab: z.string().url().startsWith("https://gitlab.com/").optional()
+	}).nullable(),
 
 	approved: z.boolean().default(false),
 });

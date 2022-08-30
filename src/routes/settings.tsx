@@ -2,9 +2,9 @@
 /**@jsxFrag Fragment */
 import "dotenv";
 import { Fragment, h } from "preact";
-import { tw } from "@/lib/twind.ts";
 import { User } from "supabase";
 import type { PageProps } from "$fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
 import type { Handler } from "@/types/Handler.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -13,7 +13,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import app from "@/lib/app.ts";
+import { APP, DEV_MODE } from "@/lib/app.ts";
 
 type DataProps = {
 	user?: User;
@@ -22,6 +22,9 @@ type DataProps = {
 export default function Settings(props: PageProps<DataProps>) {
 	return (
 		<>
+			<Head>
+				<title>Settings &middot; Paquet</title>
+			</Head>
 			<Navbar back />
 			<Container>
 				<Stack>
@@ -77,41 +80,19 @@ export default function Settings(props: PageProps<DataProps>) {
 						</a>
 					</Card>
 					<Card disableGutters>
+						{DEV_MODE &&
+							<ListItem
+								icon="build"
+								title="Running in Development Mode"
+								subtitle="Paquet is running under development mode"
+								divider
+							/>
+						}
 						<ListItem
 							icon="info"
 							title="Version"
-							subtitle={`${app.version} - ${app.codename}`}
-							divider
+							subtitle={`${APP.version} - ${APP.codename}`}
 						/>
-						<a
-							href="https://github.com/notangelmario/paquet"
-							target="_blank"
-						>
-							<ListItem
-								button
-								title="GitHub"
-								subtitle="Star Paquet on GitHub"
-								image="/icons/github.svg"
-								imageProps={{
-									class: tw`p-3 filter dark:invert`,
-								}}
-								divider
-							/>
-						</a>
-						<a
-							href="https://discord.paquet.shop"
-							target="_blank"
-						>
-							<ListItem
-								button
-								title="Discord"
-								subtitle="Join our Discord server"
-								image="/icons/discord.svg"
-								imageProps={{
-									class: tw`p-3 filter dark:invert`,
-								}}
-							/>
-						</a>
 					</Card>
 				</Stack>
 			</Container>

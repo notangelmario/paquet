@@ -12,8 +12,10 @@ If anyone finds a better solution, please let me know.
 This is a very hacky fix and might have some unforeseen consequences.
 */
 /**@jsx h */
-import { h } from "preact";
+/**@jsxFrag Fragment */
+import { h, Fragment } from "preact";
 import type { Handler, PageProps } from "$fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
 import { supabaseService } from "@/lib/supabase.ts";
 import { Provider } from "supabase";
 import { setCookie } from "$std/http/cookie.ts";
@@ -27,7 +29,14 @@ type DataProps = {
 };
 
 export default function LoginEndpoint(props: PageProps<DataProps>) {
-	return <LoginParamsConverter redirectTo={props.data?.redirectTo || "/"} />;
+	return (
+		<>
+			<Head>
+				<title>Logging in &middot; Paquet</title>
+			</Head>
+			<LoginParamsConverter redirectTo={props.data?.redirectTo || "/"} />
+		</>
+	);
 }
 
 export const handler: Handler = async (req, ctx) => {
