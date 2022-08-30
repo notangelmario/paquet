@@ -37,7 +37,7 @@ Paquet is built with a modern toolset in mind:
 
 ## 🚧 Development preview
 
-You can check out the [development preview](https://dev.paquet.shop) to see the latest features. Please, keep in mind that
+You can check out the [development preview](https://dev.paquet.shop) to see the latest features. Please, keep in mind that this preview might be broken or buggy!
 
 ## 🔨 Run
 To cache all required dependencies:
