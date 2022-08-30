@@ -21,9 +21,6 @@ jobs:
         with:
           deno-version: vx.x.x
 
-      - name: Cache dependencies
-        run: deno task cache
-
       - name: Deploy to Deno Deploy
         uses: denoland/deployctl@v1
         with:
