@@ -8,8 +8,9 @@
 # [📦 Paquet](https://paquet.shop)
 
 [![Discord](https://img.shields.io/badge/discord-join-success?style=for-the-badge&logo=discord)](https://discord.paquet.shop)
-[![Website](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fpaquet.shop)](https://paquet.shop)
+[![Web app](https://img.shields.io/website?style=for-the-badge&label=Web%20app&url=https%3A%2F%2Fpaquet.shop)](https://paquet.shop)
 [![Version](https://img.shields.io/badge/dynamic/json?color=success&label=version&query=%24.version&url=https%3A%2F%2Fgithub.com%2Fnotangelmario%2Fpaquet%2Fraw%2Fmain%2Fapp.json&style=for-the-badge)](https://github.com/notangelmario/paquet/releases)
+[![Dev preview](https://img.shields.io/website?style=for-the-badge&label=Dev%20Preview&url=https%3A%2F%2Fdev.paquet.shop)](https://dev.paquet.shop)
 
 Welcome to your new web app shop!
 
