@@ -34,6 +34,10 @@ Paquet is built with a modern toolset in mind:
 - [Twind](https://twind.dev)
 - [Supabase](https://supabase.com)
 
+## 🚧 Development preview
+
+You can check out the [development preview](https://dev.paquet.shop) to see the latest features. Please, keep in mind that
+
 ## 🔨 Run
 To cache all required dependencies:
 ```
