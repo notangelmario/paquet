@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    // "jsx": "react-jsx",
+    // "jsxImportSource": "preact",
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
