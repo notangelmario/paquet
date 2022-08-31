@@ -35,7 +35,6 @@ export const AppSchema = z.object({
 	github_url: z.string().url().startsWith("https://github.com/").nullable(),
 	gitlab_url: z.string().url().startsWith("https://gitlab.com/").nullable(),
 
-
 	approved: z.boolean().default(false),
 });
 
