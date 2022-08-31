@@ -6,7 +6,6 @@ import { useScroll } from "@/hooks/useScroll.ts";
 import { iconBtn } from "@/lib/ui.ts";
 import Icon from "@/components/Icon.tsx";
 
- 
 export type Props = {
 	back?: boolean;
 	rightIcon?: string;

@@ -49,7 +49,7 @@ export default function Footer() {
 						rel="noreferrer noopener"
 						aria-label="GitHub"
 					>
-						<img 
+						<img
 							src="/icons/github.svg"
 							alt="GitHub"
 							class={tw`w-8 h-8 dark:(filter invert)`}
@@ -61,7 +61,7 @@ export default function Footer() {
 						rel="noreferrer noopener"
 						aria-label="Made with Supabase"
 					>
-						<img 
+						<img
 							src="/icons/supabase.svg"
 							alt="Made with Supabase"
 							class={tw`w-8 h-8 dark:(filter invert)`}
@@ -73,7 +73,7 @@ export default function Footer() {
 						rel="noreferrer noopener"
 						aria-label="Discord"
 					>
-						<img 
+						<img
 							src="/icons/discord.svg"
 							alt="Discord"
 							class={tw`w-8 h-8 dark:(filter invert)`}
@@ -93,22 +93,26 @@ export default function Footer() {
 								{link.title}
 							</a>
 							{idx !== LINKS.length - 1 &&
-								<span
-									class={tw`opacity-50 mx-2`}
-								>
-									&middot;
-								</span>
-							}
+								(
+									<span
+										class={tw`opacity-50 mx-2`}
+									>
+										&middot;
+									</span>
+								)}
 						</>
 					))}
 				</div>
 				<a href="https://fresh.deno.dev" aria-label="Fresh">
 					{/* Neat trick to change between light mode and dark mode */}
 					<picture>
-					    <source srcset="https://fresh.deno.dev/fresh-badge-dark.svg" media="(prefers-color-scheme: dark)"/>
-					    <img 
-							width="197" 
-							height="37" 
+						<source
+							srcset="https://fresh.deno.dev/fresh-badge-dark.svg"
+							media="(prefers-color-scheme: dark)"
+						/>
+						<img
+							width="197"
+							height="37"
 							src="https://fresh.deno.dev/fresh-badge.svg"
 						/>
 					</picture>

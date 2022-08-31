@@ -34,7 +34,7 @@ export const AppSchema = z.object({
 
 	links: z.object({
 		github: z.string().url().startsWith("https://github.com/").optional(),
-		gitlab: z.string().url().startsWith("https://gitlab.com/").optional()
+		gitlab: z.string().url().startsWith("https://gitlab.com/").optional(),
 	}).nullable(),
 
 	approved: z.boolean().default(false),

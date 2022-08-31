@@ -64,7 +64,7 @@ export default function About() {
 					</ul>
 					<Card>
 						<p>
-							<Icon 
+							<Icon
 								name="info"
 								width={18}
 								height={18}

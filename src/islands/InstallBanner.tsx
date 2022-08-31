@@ -84,7 +84,7 @@ export default function InstallBanner(props: Props) {
 						onClick={onClickInstall}
 						icon="install_mobile"
 						iconProps={{
-							class: "filter invert"
+							class: "filter invert",
 						}}
 					>
 						Install
@@ -95,7 +95,7 @@ export default function InstallBanner(props: Props) {
 							outlined
 							icon="info"
 							iconProps={{
-								class: "filter invert"
+								class: "filter invert",
 							}}
 						>
 							About

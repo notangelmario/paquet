@@ -26,14 +26,14 @@ export default function Changelog({ data }: PageProps<DataProps>) {
 					rel="stylesheet"
 					href={`/gfm.css?build=${__FRSH_BUILD_ID}`}
 				/>
-				<title>{ data.title } &middot; Paquet</title>
+				<title>{data.title} &middot; Paquet</title>
 			</Head>
 			<Navbar back />
 			<Container
 				class={tw`mt-16`}
 			>
 				<p>
-					<Icon 
+					<Icon
 						name="info"
 						width={18}
 						height={18}
@@ -72,14 +72,14 @@ export const handler: Handler = async (_, ctx) => {
 	content = content.replaceAll("/docs/developers", "/developers/docs");
 	content = content.replaceAll('.md"', '"');
 
-
-	const title = DOCS.find((docElement) => docElement.filename === `${doc}.md`)?.title;
+	const title = DOCS.find((docElement) => docElement.filename === `${doc}.md`)
+		?.title;
 	const githubUrl =
 		`https://github.com/notangelmario/paquet/blob/main/docs/developers/${doc}.md`;
 
 	return ctx.render({
 		content,
 		githubUrl,
-		title
+		title,
 	});
 };

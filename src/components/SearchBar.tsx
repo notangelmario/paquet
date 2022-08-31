@@ -25,7 +25,7 @@ export default function SearchBar(
 				${props?.class || ""}
 			`}
 		>
-			<Icon 
+			<Icon
 				name="search"
 				class="ml-2 opacity-50"
 				width={18}

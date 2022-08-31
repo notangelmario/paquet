@@ -79,10 +79,10 @@ export default function App({ data }: PageProps<DataProps>) {
 
 			{data.app.links && (
 				<Container class={tw`mt-4`}>
-					<AppLinks 
+					<AppLinks
 						{...data.app.links}
 					/>
-					<Divider class="mt-4" inset />			
+					<Divider class="mt-4" inset />
 				</Container>
 			)}
 

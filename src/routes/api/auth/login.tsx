@@ -13,7 +13,7 @@ This is a very hacky fix and might have some unforeseen consequences.
 */
 /**@jsx h */
 /**@jsxFrag Fragment */
-import { h, Fragment } from "preact";
+import { Fragment, h } from "preact";
 import type { Handler, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { supabaseService } from "@/lib/supabase.ts";

@@ -81,13 +81,14 @@ export default function Settings(props: PageProps<DataProps>) {
 					</Card>
 					<Card disableGutters>
 						{DEV_MODE &&
-							<ListItem
-								icon="build"
-								title="Running in Development Mode"
-								subtitle="Paquet is running under development mode"
-								divider
-							/>
-						}
+							(
+								<ListItem
+									icon="build"
+									title="Running in Development Mode"
+									subtitle="Paquet is running under development mode"
+									divider
+								/>
+							)}
 						<ListItem
 							icon="info"
 							title="Version"

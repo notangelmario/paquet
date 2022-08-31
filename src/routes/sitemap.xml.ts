@@ -5,17 +5,20 @@ import type { App } from "@/types/App.ts";
 import { SitemapContext } from "fresh-seo";
 import { supabase } from "@/lib/supabase.ts";
 
-
-const excludedRoutes = ["/api/auth/login", "/api/auth/logout", "/gfm.css", "/app/error"]
+const excludedRoutes = [
+	"/api/auth/login",
+	"/api/auth/logout",
+	"/gfm.css",
+	"/app/error",
+];
 
 export const handler: Handlers = {
 	async GET() {
 		const sitemap = new SitemapContext("https://paquet.shop", manifest);
 		const developerDocs = Deno.readDir(join("docs", "developers"));
 
-
 		const { data: apps } = await supabase.from<App>("apps")
-			.select("*")
+			.select("*");
 
 		if (!apps) {
 			return sitemap.render();
@@ -26,7 +29,7 @@ export const handler: Handlers = {
 			sitemap.add(`/app/${app.id}`);
 		});
 
-		for await ( const dirEntry of developerDocs ) {
+		for await (const dirEntry of developerDocs) {
 			sitemap.add(`/developers/docs/${dirEntry.name.slice(0, -3)}`);
 		}
 

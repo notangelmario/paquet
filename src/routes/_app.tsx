@@ -68,7 +68,7 @@ export default function App(props: AppProps) {
 					content="https://paquet.shop/og-image.jpg"
 				/>
 
-				<link rel="stylesheet" href="/fonts.css"/>
+				<link rel="stylesheet" href="/fonts.css" />
 				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}

@@ -37,7 +37,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 									flex justify-center items-center w-12 h-12 mr-4
 								`}
 							>
-								<Icon 
+								<Icon
 									name={props.icon}
 									width={28}
 									height={28}
