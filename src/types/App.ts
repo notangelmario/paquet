@@ -32,10 +32,9 @@ export const AppSchema = z.object({
 		openSource: z.boolean().default(false).optional(),
 	}).nullable(),
 
-	links: z.object({
-		github: z.string().url().startsWith("https://github.com/").optional(),
-		gitlab: z.string().url().startsWith("https://gitlab.com/").optional(),
-	}).nullable(),
+	github_url: z.string().url().startsWith("https://github.com/").nullable(),
+	gitlab_url: z.string().url().startsWith("https://gitlab.com/").nullable(),
+
 
 	approved: z.boolean().default(false),
 });

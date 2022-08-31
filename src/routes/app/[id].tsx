@@ -77,10 +77,11 @@ export default function App({ data }: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 
-			{data.app.links && (
+			{(data.app?.github_url || data.app?.gitlab_url) && (
 				<Container class={tw`mt-4`}>
 					<AppLinks
-						{...data.app.links}
+						github={data.app?.github_url || undefined}
+						gitlab={data.app?.gitlab_url || undefined}
 					/>
 					<Divider class="mt-4" inset />
 				</Container>
@@ -136,7 +137,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
-			"id, name, author, description, url, icon_large, features, category, links",
+			"id, name, author, description, url, icon_large, features, category, github_url, gitlab_url",
 		)
 		.eq("id", ctx.params.id)
 		.single();
