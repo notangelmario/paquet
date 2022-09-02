@@ -9,6 +9,7 @@ declare global {
 
 import { h } from "preact";
 import { useState } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 import Button from "@/components/Button.tsx";
 import Card from "@/components/Card.tsx";
 import { tw } from "@/lib/twind.ts";
@@ -17,13 +18,10 @@ import { useInstalled } from "@/hooks/useInstalled.ts";
 import Dialog from "@/islands/Dialog.tsx";
 import { useBrowser } from "@/hooks/useBrowser.ts";
 
-type Props = {
-	initialInstalled: boolean;
-};
 
-export default function InstallBanner(props: Props) {
+export default function InstallBanner() {
 	const clientBrowser = useBrowser();
-	const installed = useInstalled(props.initialInstalled);
+	const installed = useInstalled();
 	const [dialogOpen, setDialogOpen] = useState(false);
 
 	const onClickInstall = () => {
@@ -67,7 +65,7 @@ export default function InstallBanner(props: Props) {
 		`;
 	};
 
-	return !installed
+	return IS_BROWSER && !installed
 		? (
 			<Card
 				class={tw`!bg-gradient-to-tr from-primary to-secondary !text-white`}

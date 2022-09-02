@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { categories } from "@/lib/categories.ts";
 
 export const CategorySchema = z.object({
 	id: z.string(),
@@ -20,10 +19,7 @@ export const AppSchema = z.object({
 	icon_large: z.string().url(),
 
 	description: z.string().min(1).max(500),
-	category: z.union(
-		// deno-lint-ignore no-explicit-any
-		categories.map((category) => z.literal(category.id)) as any,
-	),
+	category: z.string(),
 
 	features: z.object({
 		desktop: z.boolean().default(false).optional(),

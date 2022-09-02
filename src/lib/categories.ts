@@ -1,6 +1,6 @@
 import type { Category } from "@/types/App.ts";
 
-export const categories: Category[] = [
+export const CATEGORIES: Category[] = [
 	{
 		id: "utilities",
 		icon: "build",
@@ -32,3 +32,7 @@ export const categories: Category[] = [
 		name: "Travel",
 	},
 ];
+
+export const getCategory = (categoryId: Category["id"]): Category | undefined => {
+	return CATEGORIES.find((category) => category.id === categoryId)
+}

@@ -6,7 +6,7 @@ import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import { supabaseAsUser } from "@/lib/supabase.ts";
-import { categories } from "@/lib/categories.ts";
+import { getCategory } from "@/lib/categories.ts";
 
 import { type App, AppSchema } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -45,9 +45,7 @@ export default function App({ data }: PageProps<DataProps>) {
 							</h2>
 							<p class={tw`opacity-50`}>
 								{data.app.author} &middot;{" "}
-								{categories.find((category) =>
-									category.id === data.app.category
-								)?.name}
+								{getCategory(data.app.category)?.name}
 							</p>
 						</div>
 						<div class={tw`min-w-full sm:min-w-[30%]`}>

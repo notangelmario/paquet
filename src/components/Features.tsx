@@ -2,34 +2,12 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
+import { FEATURES } from "@/lib/features.ts";
 import type { App } from "@/types/App.ts";
 import Container from "@/components/Container.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import Icon from "@/components/Icon.tsx";
-
-export const FEATURES = {
-	desktop: {
-		id: "desktop",
-		name: "Desktop optimized",
-		icon: "computer",
-	},
-	mobile: {
-		id: "mobile",
-		name: "Mobile optimized",
-		icon: "smartphone",
-	},
-	offline: {
-		id: "offline",
-		name: "Works offline",
-		icon: "cloud_off",
-	},
-	openSource: {
-		id: "openSource",
-		name: "Open source",
-		icon: "code",
-	},
-};
 
 export type Props = {
 	features: App["features"];

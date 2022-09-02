@@ -10,7 +10,7 @@ import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import { supabase } from "@/lib/supabase.ts";
-import { categories } from "@/lib/categories.ts";
+import { CATEGORIES, getCategory } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
@@ -19,11 +19,13 @@ import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
-import { useInstalledServerSide } from "@/hooks/useInstalled.ts";
 
 type DataProps = {
-	apps?: App[];
-	installed: boolean;
+	randomApps?: App[];
+	randomCategory?: {
+		category: string,
+		apps: App[]
+	},
 };
 
 export default function Home({ data }: PageProps<DataProps>) {
@@ -48,18 +50,16 @@ export default function Home({ data }: PageProps<DataProps>) {
 						>
 							<SearchBar />
 						</form>
-						<InstallBanner
-							initialInstalled={data.installed}
-						/>
+						<InstallBanner />
 					</Stack>
 				</Container>
 				<SlideContainer
 					snap
 				>
-					{categories.map((category, idx) => (
+					{CATEGORIES.map((category, idx) => (
 						<SlideItem
 							key={category.id}
-							isLast={categories && idx === categories.length - 1}
+							isLast={CATEGORIES && idx === CATEGORIES.length - 1}
 						>
 							<a
 								href={`/category/${category.id}`}
@@ -73,26 +73,61 @@ export default function Home({ data }: PageProps<DataProps>) {
 						</SlideItem>
 					))}
 				</SlideContainer>
-				<Container disableGutters>
-					{data.apps?.map((app: App, idx: number) => (
-						<a href={`/app/${app.id}`}>
-							<ListItem
-								button
-								key={app.id}
-								image={app.icon_small}
-								title={app.name}
-								subtitle={categories.find((category) =>
-									category.id === app.category
-								)?.name}
-								divider={data.apps &&
-									idx !== data.apps.length - 1}
-							/>
-						</a>
-						// <AppListItem
-						// 	app={app}
-						// />
-					))}
-				</Container>
+
+				{data.randomApps &&
+					<div>
+						<Container>
+							<h2
+								class={tw`text-2xl`}
+							>
+								Random picks
+							</h2>
+						</Container>
+						<Container disableGutters>
+							{data.randomApps.map((app: App, idx: number) => (
+								<a href={`/app/${app.id}`}>
+									<ListItem
+										button
+										key={app.id}
+										image={app.icon_small}
+										title={app.name}
+										subtitle={getCategory(app.category)?.name}
+										divider={data.randomApps &&
+											idx !== data.randomApps.length - 1}
+									/>
+								</a>
+							))}
+						</Container>
+					</div>
+				}
+
+				{data.randomCategory &&
+					<div>
+						<Container>
+							<h2
+								class={tw`text-2xl`}
+							>
+								Looking for {getCategory(data.randomCategory.category)?.name}?
+							</h2>
+						</Container>
+						<Container disableGutters>
+							{data.randomCategory.apps.map((app: App, idx: number) => (
+								<a href={`/app/${app.id}`}>
+									<ListItem
+										button
+										key={app.id}
+										image={app.icon_small}
+										title={app.name}
+										subtitle={app.author}
+										divider={data.randomCategory?.apps &&
+											idx !== data.randomCategory.apps.length - 1}
+									/>
+								</a>
+							))}
+						</Container>
+					</div>
+				}
+
 				<Container class={tw`mt-4`}>
 					<FewApps />
 				</Container>
@@ -101,16 +136,26 @@ export default function Home({ data }: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handler = async (req, ctx) => {
-	const installed = useInstalledServerSide(req);
+export const handler: Handler = async (_, ctx) => {
+	const randomCategoryId: string = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
+	const { data: randomCategoryApps } = await supabase.from<App>("random_apps")
+		.select("id, name, icon_small, author, category")
+		.eq("category", randomCategoryId)
+		.limit(5);
 
-	const { data: apps } = await supabase.from<App>("random_apps")
+	const randomCategory: DataProps["randomCategory"] = randomCategoryApps?.length ? {
+		category: randomCategoryId,
+		apps: randomCategoryApps
+	} : undefined;
+
+	const { data: randomApps } = await supabase.from<App>("random_apps")
 		.select(
 			"id, name, icon_small, category",
-		);
+		)
+		.limit(5);
 
 	return ctx.render({
-		apps,
-		installed,
+		randomApps,
+		randomCategory,
 	} as DataProps);
 };

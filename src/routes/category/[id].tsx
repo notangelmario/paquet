@@ -8,7 +8,7 @@ import type { Handler } from "@/types/Handler.ts";
 import type { Category } from "@/types/App.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@/lib/supabase.ts";
-import { categories } from "@/lib/categories.ts";
+import { getCategory } from "@/lib/categories.ts";
 
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
@@ -26,21 +26,15 @@ export default function Category({ data }: PageProps<DataProps>) {
 		<>
 			<Head>
 				<title>
-					{categories.find((category) =>
-						category.id === data.category
-					)?.name} &middot; Paquet
+					{getCategory(data.category)?.name} &middot; Paquet
 				</title>
 			</Head>
 			<Navbar back />
 			<Container>
 				<Header
-					icon={categories.find((category) =>
-						category.id === data.category
-					)?.icon}
+					icon={getCategory(data.category)?.icon}
 				>
-					{categories.find((category) =>
-						category.id === data.category
-					)?.name}
+					{getCategory(data.category)?.name}
 				</Header>
 			</Container>
 			<Container disableGutters>

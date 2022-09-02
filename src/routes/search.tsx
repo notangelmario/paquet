@@ -67,7 +67,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 								key={app.id}
 								image={app.icon_small}
 								title={app.name}
-								subtitle={app.category.name}
+								subtitle={app.category}
 								divider={idx !== data.apps.length - 1}
 							/>
 						</a>
