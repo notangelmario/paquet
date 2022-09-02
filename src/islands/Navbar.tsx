@@ -29,6 +29,7 @@ export default function Navbar(props: Props) {
 	}, []);
 
 	const goBack = () => {
+		console.log("Pressed back");
 		if (visitedRoot) {
 			globalThis.history.back();
 		} else {

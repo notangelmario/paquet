@@ -4,7 +4,6 @@ import { tw } from "@/lib/twind.ts";
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
-// import ExperimentalSpa from "@/islands/ExperimentalSpa.tsx";
 
 export default function App(props: AppProps) {
 	return (
@@ -77,7 +76,6 @@ export default function App(props: AppProps) {
 				<props.Component />
 			</main>
 			<Footer />
-			{/*<ExperimentalSpa />*/}
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
 				<script src="/registerSw.js"></script>
 			)}

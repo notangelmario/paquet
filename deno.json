@@ -9,7 +9,7 @@
     "strictFunctionTypes": true
   },
   "tasks": {
-    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A --no-remote --import-map=.vendor/import_map.json src/main.ts",
+    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A src/main.ts",
     "dev": "deno run -A --watch=src/static/,src/routes/ src/dev.ts",
     "cache": "deno cache --reload src/main.ts",
     "lint": "deno lint",
