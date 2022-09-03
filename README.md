@@ -9,7 +9,6 @@
 
 [![Discord](https://img.shields.io/badge/discord-join-success?style=for-the-badge&logo=discord)](https://discord.paquet.shop)
 [![Web app](https://img.shields.io/website?style=for-the-badge&label=Web%20app&url=https%3A%2F%2Fpaquet.shop)](https://paquet.shop)
-[![Dev preview](https://img.shields.io/website?style=for-the-badge&label=Dev%20Preview&url=https%3A%2F%2Fdev.paquet.shop)](https://dev.paquet.shop)
 
 Welcome to your new web app shop!
 
@@ -33,10 +32,6 @@ Paquet is built with a modern toolset in mind:
 - [Fresh](https://fresh.deno.dev)
 - [Twind](https://twind.dev)
 - [Supabase](https://supabase.com)
-
-## 🚧 Development preview
-
-You can check out the [development preview](https://dev.paquet.shop) to see the latest features. Please, keep in mind that this preview might be broken or buggy!
 
 ## 🔨 Run
 To cache all required dependencies:
