@@ -70,11 +70,11 @@ export default function Settings(props: PageProps<DataProps>) {
 						</>
 					)}
 					<Card disableGutters>
-						<a href="/developers">
+						<a href="/docs">
 							<ListItem
 								button
 								icon="code"
-								title="Developers"
+								title="Documentation"
 								subtitle="All things developer"
 							/>
 						</a>
