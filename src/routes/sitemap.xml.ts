@@ -6,8 +6,6 @@ import { SitemapContext } from "fresh-seo";
 import { supabase } from "@/lib/supabase.ts";
 
 const excludedRoutes = [
-	"/api/auth/login",
-	"/api/auth/logout",
 	"/gfm.css",
 	"/app/error",
 ];
