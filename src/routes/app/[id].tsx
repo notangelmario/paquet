@@ -17,6 +17,7 @@ import Features from "@/components/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
+import { getApp } from "@/lib/app.ts";
 
 type DataProps = {
 	app: App;
@@ -37,7 +38,7 @@ export default function App({ data }: PageProps<DataProps>) {
 							class={tw`
 								rounded w-20 h-20
 							`}
-							src={data.app.icon_large}
+							src={data.app.iconLarge}
 						/>
 						<div class={tw`flex-1`}>
 							<h2 class={tw`text-3xl`}>
@@ -75,11 +76,11 @@ export default function App({ data }: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 
-			{(data.app?.github_url || data.app?.gitlab_url) && (
+			{(data.app?.githubUrl || data.app?.gitlabUrl) && (
 				<Container class={tw`mt-4`}>
 					<AppLinks
-						github={data.app?.github_url || undefined}
-						gitlab={data.app?.gitlab_url || undefined}
+						github={data.app?.githubUrl || undefined}
+						gitlab={data.app?.gitlabUrl || undefined}
 					/>
 					<Divider class="mt-4" inset />
 				</Container>
@@ -113,7 +114,7 @@ export default function App({ data }: PageProps<DataProps>) {
 									<ListItem
 										button
 										title={app.name}
-										image={app.icon_small}
+										image={app.iconSmall}
 										subtitle={app.author}
 										divider={idx !==
 											(data.otherApps?.length as number) -
@@ -129,30 +130,12 @@ export default function App({ data }: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const { accessToken } = ctx.state;
+	const supabase = supabaseAsUser();
 
-	const supabase = supabaseAsUser(accessToken);
-
-	const { data: app } = await supabase.from<App>("apps")
-		.select(
-			"id, name, author, description, url, icon_large, features, category, github_url, gitlab_url",
-		)
-		.eq("id", ctx.params.id)
-		.single();
+	const app = await getApp(ctx.params.id);
 
 	if (!app) {
 		return new Response("Not found", {
-			status: 307,
-			headers: {
-				Location: "/app/error",
-			},
-		});
-	}
-
-	const appValidation = AppSchema.partial().safeParse(app);
-
-	if (!appValidation.success) {
-		return new Response("Invalid app details", {
 			status: 307,
 			headers: {
 				Location: "/app/error",

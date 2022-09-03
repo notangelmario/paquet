@@ -10,7 +10,7 @@ import SlideItem from "@/components/SlideItem.tsx";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
-	features: App["features"];
+	features: string[];
 };
 
 export default function Features(props: Props) {
@@ -33,10 +33,10 @@ export default function Features(props: Props) {
 						<div
 							class={`
 								${
-								!props.features?.[id as keyof App["features"]]
+								!props.features?.includes(id)
 									? "opacity-50"
 									: ""
-							}
+								}
 
 								flex flex-row justify-center items-center gap-2
 							`}
@@ -47,11 +47,10 @@ export default function Features(props: Props) {
 									rounded-full w-12 h-12
 
 									${
-									props.features
-											?.[id as keyof App["features"]]
+									props.features?.includes(id)
 										? "bg-secondary"
 										: "bg-black dark:bg-white"
-								}
+									}
 								`}
 							>
 								<Icon

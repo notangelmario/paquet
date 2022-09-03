@@ -13,7 +13,7 @@ export const FeatureSchema = z.object({
 })
 
 export const AppSchema = z.object({
-	id: z.string().uuid(),
+	id: z.string(),
 
 	name: z.string().min(1).max(50),
 	author: z.string().min(1).max(50),
@@ -27,8 +27,8 @@ export const AppSchema = z.object({
 
 	features: z.array(z.string()),
 
-	githubUrl: z.string().url().startsWith("https://github.com/").nullable(),
-	gitlabUrl: z.string().url().startsWith("https://gitlab.com/").nullable(),
+	githubUrl: z.string().url().startsWith("https://github.com/").optional(),
+	gitlabUrl: z.string().url().startsWith("https://gitlab.com/").optional(),
 });
 
 export type App = z.infer<typeof AppSchema>;

@@ -8,7 +8,7 @@ import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import { APP, DEV_MODE } from "@/lib/app.ts";
+import { APP, DEV_MODE } from "@/lib/info.ts";
 
 export default function Settings() {
 	return (

@@ -1,6 +1,6 @@
 import "dotenv";
 import type { Handler } from "@/types/Handler.ts";
-import { DEV_MODE } from "@/lib/app.ts";
+import { DEV_MODE } from "@/lib/info.ts";
 
 export const handler: Handler = () => {
 	const manifest = {
