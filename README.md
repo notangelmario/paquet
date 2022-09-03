@@ -32,7 +32,6 @@ Paquet is built with a modern toolset in mind:
 - [Deno](https://deno.land)
 - [Fresh](https://fresh.deno.dev)
 - [Twind](https://twind.dev)
-- [Supabase](https://supabase.com)
 
 ## 🚧 Development preview
 
