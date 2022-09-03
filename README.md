@@ -49,8 +49,8 @@ deno task prod
 
 ## 📄 Developer Documentation
 
-Developer documentation is available both on [GitHub](/docs/developer/getting-started.md) and
-[Paquet](https://paquet.shop/developer/docs/getting-started)
+Developer documentation is available both on [GitHub](/docs/getting-started.md) and
+[Paquet](https://paquet.shop/docs/getting-started)
 
 Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
 
