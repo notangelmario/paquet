@@ -14,8 +14,8 @@ const LINKS = [
 		href: "/settings",
 	},
 	{
-		title: "Developers",
-		href: "/developers",
+		title: "Docs",
+		href: "/docs",
 	},
 ];
 
@@ -52,18 +52,6 @@ export default function Footer() {
 						<img
 							src="/icons/github.svg"
 							alt="GitHub"
-							class={tw`w-8 h-8 dark:(filter invert)`}
-						/>
-					</a>
-					<a
-						href="https://www.madewithsupabase.com/p/paquet"
-						target="_blank"
-						rel="noreferrer noopener"
-						aria-label="Made with Supabase"
-					>
-						<img
-							src="/icons/supabase.svg"
-							alt="Made with Supabase"
 							class={tw`w-8 h-8 dark:(filter invert)`}
 						/>
 					</a>
