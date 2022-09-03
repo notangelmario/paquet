@@ -6,6 +6,12 @@ export const CategorySchema = z.object({
 	name: z.string(),
 });
 
+export const FeatureSchema = z.object({
+	id: z.string(),
+	icon: z.string(),
+	name: z.string(),
+})
+
 export const AppSchema = z.object({
 	id: z.string().uuid(),
 
@@ -36,3 +42,4 @@ export const AppSchema = z.object({
 
 export type App = z.infer<typeof AppSchema>;
 export type Category = z.infer<typeof CategorySchema>;
+export type Feature = z.infer<typeof FeatureSchema>;

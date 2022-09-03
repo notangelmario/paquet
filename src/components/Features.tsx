@@ -26,7 +26,7 @@ export default function Features(props: Props) {
 			<SlideContainer
 				snap
 			>
-				{Object.values(FEATURES).map(({ id, name, icon }, idx) => (
+				{FEATURES.map(({ id, name, icon }, idx) => (
 					<SlideItem
 						isLast={idx === Object.entries(FEATURES).length - 1}
 					>
