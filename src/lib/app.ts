@@ -5,5 +5,4 @@ export const APP = {
 	codename: "Rodia",
 };
 
-export const DEV_MODE = !Deno.env.get("DENO_DEPLOYMENT_ID") ||
-	Deno.env.get("DEV_MODE");
+export const DEV = !Deno.env.get("DENO_DEPLOYMENT_ID");

@@ -13,7 +13,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import { APP, DEV_MODE } from "@/lib/app.ts";
+import { APP } from "@/lib/app.ts";
 
 type DataProps = {
 	user?: User;
@@ -80,15 +80,6 @@ export default function Settings(props: PageProps<DataProps>) {
 						</a>
 					</Card>
 					<Card disableGutters>
-						{DEV_MODE &&
-							(
-								<ListItem
-									icon="build"
-									title="Running in Development Mode"
-									subtitle="Paquet is running under development mode"
-									divider
-								/>
-							)}
 						<ListItem
 							icon="info"
 							title="Version"
