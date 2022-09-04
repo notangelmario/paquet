@@ -32,11 +32,11 @@ export const DOCS: Doc[] = [
 	},
 ];
 
-export default function Developers() {
+export default function Documentation() {
 	return (
 		<>
 			<Head>
-				<title>Developers &middot; Paquet</title>
+				<title>Documentation &middot; Paquet</title>
 			</Head>
 			<Navbar
 				back
@@ -44,16 +44,13 @@ export default function Developers() {
 			<Container>
 				<Stack>
 					<Header icon="code">
-						Developers
+						Documentation
 					</Header>
 					<div>
-						<h2 class={tw`text-2xl mb-1`}>
-							Docs
-						</h2>
 						<Card disableGutters>
 							{DOCS.map((doc) => (
 								<a
-									href={`/developers/docs/${
+									href={`/docs/${
 										doc.filename.slice(0, -3)
 									}`}
 									key={doc.filename}

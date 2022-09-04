@@ -2,7 +2,6 @@
 /**@jsxFrag Fragment */
 import { Fragment, h } from "preact";
 import { tw } from "@/lib/twind.ts";
-import { css } from "twind/css";
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
