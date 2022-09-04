@@ -1,4 +1,3 @@
-import { join } from "$std/path/mod.ts";
 import manifest from "@/fresh.gen.ts";
 import type { Handlers } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
@@ -6,8 +5,6 @@ import { SitemapContext } from "fresh-seo";
 import { supabase } from "@/lib/supabase.ts";
 
 const excludedRoutes = [
-	"/api/auth/login",
-	"/api/auth/logout",
 	"/gfm.css",
 	"/app/error",
 ];
@@ -15,7 +12,7 @@ const excludedRoutes = [
 export const handler: Handlers = {
 	async GET() {
 		const sitemap = new SitemapContext("https://paquet.shop", manifest);
-		const developerDocs = Deno.readDir(join("docs", "developers"));
+		const docs = Deno.readDir("docs");
 
 		const { data: apps } = await supabase.from<App>("apps")
 			.select("*");
@@ -29,8 +26,8 @@ export const handler: Handlers = {
 			sitemap.add(`/app/${app.id}`);
 		});
 
-		for await (const dirEntry of developerDocs) {
-			sitemap.add(`/developers/docs/${dirEntry.name.slice(0, -3)}`);
+		for await (const dirEntry of docs) {
+			sitemap.add(`/docs/${dirEntry.name.slice(0, -3)}`);
 		}
 
 		excludedRoutes.forEach((route) => {

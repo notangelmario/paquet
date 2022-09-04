@@ -10,7 +10,7 @@ import { Handler, PageProps } from "$fresh/server.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import Icon from "@/components/Icon.tsx";
-import { DOCS } from "@/routes/developers/index.tsx";
+import { DOCS } from "@/routes/docs/index.tsx";
 
 type DataProps = {
 	content: string;
@@ -64,18 +64,17 @@ export const handler: Handler = async (_, ctx) => {
 	const doc = ctx.params.doc;
 
 	const file = await Deno.readTextFile(
-		join("docs", "developers", `${doc}.md`),
+		join("docs", `${doc}.md`),
 	);
 	let content = render(file);
 
 	// Compatibility with GitHub and Website
-	content = content.replaceAll("/docs/developers", "/developers/docs");
 	content = content.replaceAll('.md"', '"');
 
 	const title = DOCS.find((docElement) => docElement.filename === `${doc}.md`)
 		?.title;
 	const githubUrl =
-		`https://github.com/notangelmario/paquet/blob/main/docs/developers/${doc}.md`;
+		`https://github.com/notangelmario/paquet/blob/main/docs/${doc}.md`;
 
 	return ctx.render({
 		content,
