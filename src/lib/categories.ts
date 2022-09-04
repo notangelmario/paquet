@@ -1,5 +1,14 @@
 import type { Category } from "@/types/App.ts";
 
+export const CATEGORY_IDS: string[] = [
+	"utilites",
+	"games",
+	"music",
+	"social",
+	"development",
+	"travel"
+]
+
 export const CATEGORIES: Category[] = [
 	{
 		id: "utilities",
@@ -33,6 +42,6 @@ export const CATEGORIES: Category[] = [
 	},
 ];
 
-export const getCategory = (categoryId: Category["id"]): Category | undefined => {
-	return CATEGORIES.find((category) => category.id === categoryId)
+export const getCategory = (categoryId: string): Category | null => {
+	return CATEGORIES.find((category) => category.id === categoryId) || null
 }

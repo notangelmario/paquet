@@ -1,0 +1,16 @@
+{
+	"id": "app.daily.dev",
+	"name": "daily.dev",
+	"author": "daily.dev",
+	"category": "development",
+	"description": "daily.dev is the easiest way to stay updated on the latest programming news. Get the best content from the top tech publications on any topic you want.",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/1c0def19-a814-4d07-b838-732773e05a80/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/1c0def19-a814-4d07-b838-732773e05a80/icon-small.webp",
+	"url": "https://app.daily.dev",
+	"githubUrl": "https://github.com/dailydotdev/daily"
+}

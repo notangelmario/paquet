@@ -7,7 +7,7 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { Category } from "@/types/App.ts";
 import type { App } from "@/types/App.ts";
-import { supabase } from "@/lib/supabase.ts";
+import { getApps } from "@/lib/app.ts";
 import { getCategory } from "@/lib/categories.ts";
 
 import Navbar from "@/islands/Navbar.tsx";
@@ -22,19 +22,21 @@ type DataProps = {
 };
 
 export default function Category({ data }: PageProps<DataProps>) {
+	const category = getCategory(data.category);
+
 	return (
 		<>
 			<Head>
 				<title>
-					{getCategory(data.category)?.name} &middot; Paquet
+					{category?.name} &middot; Paquet
 				</title>
 			</Head>
 			<Navbar back />
 			<Container>
 				<Header
-					icon={getCategory(data.category)?.icon}
+					icon={category?.icon}
 				>
-					{getCategory(data.category)?.name}
+					{category?.name}
 				</Header>
 			</Container>
 			<Container disableGutters>
@@ -45,7 +47,7 @@ export default function Category({ data }: PageProps<DataProps>) {
 					>
 						<ListItem
 							button
-							image={app.icon_small}
+							image={app.iconSmall}
 							title={app.name}
 							subtitle={app.author}
 							divider={idx !== data.apps.length - 1}
@@ -72,10 +74,9 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	const { data: apps } = await supabase
-		.from<App>("apps")
-		.select("id, name, icon_small, author")
-		.eq("category", category);
+	const apps = await getApps({
+		category: ctx.params.id
+	});
 
 	if (!apps) {
 		return new Response("Not found", {

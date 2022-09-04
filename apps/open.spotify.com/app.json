@@ -1,0 +1,14 @@
+{
+	"id": "open.spotify.com",
+	"name": "Spotify",
+	"author": "Spotify AB",
+	"category": "music",
+	"description": "Spotify is a digital music service that gives you access to millions of songs.",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/97ce4f38-d9d1-4180-8a77-ddf93a3bbf6e/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/97ce4f38-d9d1-4180-8a77-ddf93a3bbf6e/icon-small.webp",
+	"url": "https://open.spotify.com"
+}

@@ -1,0 +1,16 @@
+{
+	"id": "vscode.dev",
+	"name": "Visual Studio Code",
+	"author": "Microsoft",
+	"category": "development",
+	"description": "Build with Visual Studio Code, anywhere, anytime, entirely in your browser.",
+	"features": [
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/420305a6-ddd5-429c-9443-c7f50f68f7a3/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/420305a6-ddd5-429c-9443-c7f50f68f7a3/icon-small.webp",
+	"url": "https://vscode.dev",
+	"githubUrl": "https://github.com/microsoft/vscode"
+}

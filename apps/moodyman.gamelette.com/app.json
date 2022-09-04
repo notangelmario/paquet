@@ -1,0 +1,15 @@
+{
+	"id": "moodyman.gamelette.com",
+	"name": "Moody Man",
+	"author": "Shishir Singh",
+	"category": "games",
+	"description": "Moody Man - A Hangman type game of guess",
+	"features": [
+		"mobile",
+		"desktop",
+		"offline"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/f2599a89-db74-49b1-afc9-57ecd554151f/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/f2599a89-db74-49b1-afc9-57ecd554151f/icon-small.webp",
+	"url": "https://moodyman.gamelette.com"
+}

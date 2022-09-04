@@ -1,0 +1,17 @@
+{
+	"id": "adelpro.github.io-check-hadith",
+	"name": "Check-hadith",
+	"author": "BENYAHIA-DEV",
+	"category": "utilities",
+	"description": "Search for hadith nabawi by words or phrases, using Dorar API",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource",
+		"offline"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/61761587-a058-49bc-af11-b15e6392ed75/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/61761587-a058-49bc-af11-b15e6392ed75/icon-small.webp",
+	"url": "https://adelpro.github.io/check-hadith",
+	"githubUrl": "https://github.com/adelpro/check-hadith"
+}

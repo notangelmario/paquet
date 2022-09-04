@@ -1,0 +1,15 @@
+{
+	"id": "wallpeppers.web.app",
+	"name": "Wallpeppers",
+	"author": "undefyned",
+	"category": "utilities",
+	"description": "Wallpeppers - Free wallpapers for your mobile device!",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/b92daf2a-13a4-480d-ba9c-d04cf7fb134c/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/b92daf2a-13a4-480d-ba9c-d04cf7fb134c/icon-small.webp",
+	"url": "https://wallpeppers.web.app"
+}

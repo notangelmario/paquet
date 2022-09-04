@@ -1,0 +1,14 @@
+{
+	"id": "mconverter.eu",
+	"name": "MConverter",
+	"author": "MConverter",
+	"category": "utilities",
+	"description": "Convert files in bulk with ease. MConverter supports most media, e-book, office & archive formats, including new ones like AVIF and JPEG XL. Compress PDFs by up to 90% for free with adjustable quality.",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/ad6d6cd6-5aaf-47a5-9bc3-3d4d9ea9ffe2/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/ad6d6cd6-5aaf-47a5-9bc3-3d4d9ea9ffe2/icon-small.webp",
+	"url": "https://mconverter.eu"
+}

@@ -1,0 +1,14 @@
+{
+	"id": "githubstat.us",
+	"name": "GitHub Status",
+	"author": "Ryan Fredrickson",
+	"category": "development",
+	"description": "An unofficial website to monitor GitHub status updates.",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/da980043-6054-4935-b25a-04be1db3ebc9/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/da980043-6054-4935-b25a-04be1db3ebc9/icon-small.webp",
+	"url": "https://githubstat.us"
+}

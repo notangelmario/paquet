@@ -1,14 +1,17 @@
 {
 	"id": "snapdrop.net",
-
 	"name": "Snapdrop",
-	"description": "Instantly share images, videos, PDFs, and links with people nearby. Peer2Peer and Open Source. No Setup, No Signup.",
-	"url": "https://snapdrop.net",
 	"author": "RobinLinus",
-	"features": ["mobile", "desktop", "offline", "openSource"],
 	"category": "utilities",
-	"iconSmall": "https://snapdrop.net/images/android-chrome-192x192-maskable.png",
-	"iconLarge": "https://snapdrop.net/images/android-chrome-512x512-maskable.png",
-
+	"description": "Instantly share images, videos, PDFs, and links with people nearby. Peer2Peer and Open Source. No Setup, No Signup.",
+	"features": [
+		"mobile",
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/b3dff2a6-6e0b-4f2c-a4e0-bcbd258d739e/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/b3dff2a6-6e0b-4f2c-a4e0-bcbd258d739e/icon-small.webp",
+	"url": "https://snapdrop.net",
 	"githubUrl": "https://github.com/RobinLinus/snapdrop"
 }

@@ -5,10 +5,9 @@ import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { supabaseAsUser } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
 
-import { type App, AppSchema } from "@/types/App.ts";
+import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -17,7 +16,7 @@ import Features from "@/components/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
-import { getApp } from "@/lib/app.ts";
+import { getApp, getApps } from "@/lib/app.ts";
 
 type DataProps = {
 	app: App;
@@ -130,8 +129,6 @@ export default function App({ data }: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const supabase = supabaseAsUser();
-
 	const app = await getApp(ctx.params.id);
 
 	if (!app) {
@@ -143,14 +140,19 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	const { data: otherApps } = await supabase.from("random_apps")
-		.select("id, name, author, icon_small")
-		.eq("category", app.category)
-		.neq("id", app.id)
-		.limit(3);
+	let otherApps = await getApps({
+		limit: 4,
+		random: true,
+		category: app.category,
+	})
+
+	if (otherApps) {
+		otherApps = otherApps.filter(a => a.id !== app.id);
+		otherApps = otherApps.slice(0, 3)
+	}
 
 	return ctx.render({
 		app,
-		otherApps,
+		otherApps
 	} as DataProps);
 };

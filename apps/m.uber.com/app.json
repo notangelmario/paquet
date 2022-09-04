@@ -1,0 +1,14 @@
+{
+	"id": "m.uber.com",
+	"name": "Uber",
+	"author": "Uber",
+	"category": "travel",
+	"description": "Book an Uber ride using your web browser on your desktop or phone",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/77c5adc5-3802-4b25-92da-ecd7a1dc7e16/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/77c5adc5-3802-4b25-92da-ecd7a1dc7e16/icon-small.webp",
+	"url": "https://m.uber.com"
+}

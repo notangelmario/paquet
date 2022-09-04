@@ -1,0 +1,14 @@
+{
+	"id": "similarworlds.com",
+	"name": "Similar Worlds",
+	"author": "Similar Worlds",
+	"category": "social",
+	"description": "Discuss Experiences, Share Stories, Ask Questions, Find Answers, Explore Interests, Make Friends ... Express your true Self!\n",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/cce2f17e-7132-48be-95f4-6a00d1106ce7/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/cce2f17e-7132-48be-95f4-6a00d1106ce7/icon-small.webp",
+	"url": "https://similarworlds.com"
+}

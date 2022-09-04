@@ -1,0 +1,68 @@
+{
+	"all": [
+		"tiktok.com",
+		"long-cat.vercel.app",
+		"farmhand.life",
+		"instagram.com",
+		"twitter.com",
+		"moodyman.gamelette.com",
+		"open.spotify.com",
+		"towergame.app",
+		"bsehovac.github.io-the-cube",
+		"githubstat.us",
+		"cuzzle-react.vercel.app",
+		"www.quranipfs.com",
+		"app.daily.dev",
+		"music.youtube.com",
+		"wallpeppers.web.app",
+		"vscode.dev",
+		"google.com-maps",
+		"m.uber.com",
+		"snapdrop.net",
+		"rec.net",
+		"web.telegram.org",
+		"adelpro.github.io-check-hadith",
+		"similarworlds.com",
+		"calculator-game-reactjs.vercel.app",
+		"mconverter.eu"
+	],
+	"categories": {
+		"utilities": [
+			"www.quranipfs.com",
+			"wallpeppers.web.app",
+			"snapdrop.net",
+			"adelpro.github.io-check-hadith",
+			"mconverter.eu"
+		],
+		"music": [
+			"open.spotify.com",
+			"music.youtube.com"
+		],
+		"development": [
+			"githubstat.us",
+			"app.daily.dev",
+			"vscode.dev"
+		],
+		"social": [
+			"tiktok.com",
+			"instagram.com",
+			"twitter.com",
+			"rec.net",
+			"web.telegram.org",
+			"similarworlds.com"
+		],
+		"games": [
+			"long-cat.vercel.app",
+			"farmhand.life",
+			"moodyman.gamelette.com",
+			"towergame.app",
+			"bsehovac.github.io-the-cube",
+			"cuzzle-react.vercel.app",
+			"calculator-game-reactjs.vercel.app"
+		],
+		"travel": [
+			"google.com-maps",
+			"m.uber.com"
+		]
+	}
+}

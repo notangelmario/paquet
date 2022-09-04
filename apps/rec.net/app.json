@@ -1,0 +1,15 @@
+{
+	"id": "rec.net",
+	"name": "RecNet",
+	"author": "Rec Room",
+	"category": "social",
+	"description": "A social app for the game RecRoom",
+	"features": [
+		"mobile",
+		"desktop",
+		"offline"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/bc13158b-8c18-416b-8fc5-6761653339db/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/bc13158b-8c18-416b-8fc5-6761653339db/icon-small.webp",
+	"url": "https://rec.net"
+}

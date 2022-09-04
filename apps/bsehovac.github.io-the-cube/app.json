@@ -1,0 +1,16 @@
+{
+	"id": "bsehovac.github.io-the-cube",
+	"name": "The Cube",
+	"author": "Boris Sehovac",
+	"category": "games",
+	"description": "See if you can solve this classic puzzle game.",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource",
+		"offline"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/0cfc9b40-0d11-421a-9ae5-28fc09e5338a/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/0cfc9b40-0d11-421a-9ae5-28fc09e5338a/icon-small.webp",
+	"url": "https://bsehovac.github.io/the-cube"
+}

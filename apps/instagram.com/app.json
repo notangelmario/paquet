@@ -1,0 +1,14 @@
+{
+	"id": "instagram.com",
+	"name": "Instagram",
+	"author": "Instagram",
+	"category": "social",
+	"description": "Instagram is a simple way to capture and share the world's moments.",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/43d151ed-55de-44d7-b409-50473d5b00ea/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/43d151ed-55de-44d7-b409-50473d5b00ea/icon-small.webp",
+	"url": "https://instagram.com"
+}

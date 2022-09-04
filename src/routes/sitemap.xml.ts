@@ -1,9 +1,8 @@
 import { join } from "$std/path/mod.ts";
 import manifest from "@/fresh.gen.ts";
 import type { Handlers } from "@/types/Handler.ts";
-import type { App } from "@/types/App.ts";
+import { getApps } from "@/lib/app.ts";
 import { SitemapContext } from "fresh-seo";
-import { supabase } from "@/lib/supabase.ts";
 
 const excludedRoutes = [
 	"/gfm.css",
@@ -15,8 +14,7 @@ export const handler: Handlers = {
 		const sitemap = new SitemapContext("https://paquet.shop", manifest);
 		const developerDocs = Deno.readDir(join("docs", "developers"));
 
-		const { data: apps } = await supabase.from<App>("apps")
-			.select("*");
+		const apps = await getApps();
 
 		if (!apps) {
 			return sitemap.render();

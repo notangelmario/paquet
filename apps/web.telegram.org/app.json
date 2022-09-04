@@ -1,0 +1,17 @@
+{
+	"id": "web.telegram.org",
+	"name": "Telegram",
+	"author": "Telegram",
+	"category": "social",
+	"description": "Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed.",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource",
+		"offline"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/c6f8d911-a956-4669-916a-fee4e6950159/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/c6f8d911-a956-4669-916a-fee4e6950159/icon-small.webp",
+	"url": "https://web.telegram.org",
+	"githubUrl": "https://github.com/Ajaxy/telegram-tt"
+}

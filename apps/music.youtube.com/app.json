@@ -1,0 +1,14 @@
+{
+	"id": "music.youtube.com",
+	"name": "YouTube Music",
+	"author": "Google",
+	"category": "music",
+	"description": "A new music service with official albums, singles, videos, remixes, live performances and more for Android, iOS and desktop. It's all here.",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/bc1260b5-8dbf-4a44-b28c-3a312a2842f3/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/bc1260b5-8dbf-4a44-b28c-3a312a2842f3/icon-small.webp",
+	"url": "https://music.youtube.com"
+}

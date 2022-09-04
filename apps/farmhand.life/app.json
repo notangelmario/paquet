@@ -1,0 +1,17 @@
+{
+	"id": "farmhand.life",
+	"name": "Farmhand",
+	"author": "Jeremy Kahn",
+	"category": "games",
+	"description": "A resource management game that's fun for 30 seconds or 30 minutes at a time! The goal of Farmhand is to buy seeds and sell crops for the best price you can get. You can also raise cows, craft recipes, mine for resources, and play with others online for free.",
+	"features": [
+		"mobile",
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/a3ef4a57-3ea5-4880-9803-e57729452442/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/a3ef4a57-3ea5-4880-9803-e57729452442/icon-small.webp",
+	"url": "https://farmhand.life",
+	"githubUrl": "https://github.com/jeremyckahn/farmhand"
+}

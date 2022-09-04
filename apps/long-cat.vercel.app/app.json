@@ -1,0 +1,15 @@
+{
+	"id": "long-cat.vercel.app",
+	"name": "LongCat",
+	"author": "Jorge Rubiano",
+	"category": "games",
+	"description": "LongCat ReactJS - game developed by Jorge Rubiano @ostjh",
+	"features": [
+		"mobile",
+		"offline",
+		"openSource"
+	],
+	"iconLarge": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/2ec360d5-0ee6-45ed-85ca-75cf3b040b93/icon-large.webp",
+	"iconSmall": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/2ec360d5-0ee6-45ed-85ca-75cf3b040b93/icon-small.webp",
+	"url": "https://long-cat.vercel.app"
+}

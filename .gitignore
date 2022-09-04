@@ -7,3 +7,5 @@
 # Supabase
 **/supabase/.branches
 **/supabase/.temp
+
+grabApps.ts
