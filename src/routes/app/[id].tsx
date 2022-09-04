@@ -5,7 +5,7 @@ import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { supabaseAsUser } from "@/lib/supabase.ts";
+import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
 
 import { type App, AppSchema } from "@/types/App.ts";
@@ -129,10 +129,6 @@ export default function App({ data }: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const { accessToken } = ctx.state;
-
-	const supabase = supabaseAsUser(accessToken);
-
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
 			"id, name, author, description, url, icon_large, features, category, github_url, gitlab_url",
