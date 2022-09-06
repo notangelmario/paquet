@@ -15,29 +15,27 @@ export const FeatureSchema = z.object({
 export const AppSchema = z.object({
 	id: z.string().uuid(),
 
-	name: z.string().min(1).max(50),
-	author: z.string().min(1).max(50),
+	name: z.string().max(50),
+	description: z.string().max(500),
+	author: z.string().max(50),
 	url: z.string().url(),
-	manifest_url: z.string().url().endsWith(".webmanifest")
-		.or(z.string().url().endsWith(".json")).nullable(),
+	categories: z.array(z.string()),
 
 	icon_small: z.string().url(),
 	icon_large: z.string().url(),
 
-	description: z.string().min(1).max(500),
-	category: z.string(),
+	manifest_url: z.string().url().endsWith(".webmanifest")
+		.or(z.string().url().endsWith(".json")).nullable(),
+	manifest_hash: z.string().regex(/^[a-f0-9]{64}$/gi),
 
-	features: z.object({
-		desktop: z.boolean().default(false).optional(),
-		mobile: z.boolean().default(false).optional(),
-		offline: z.boolean().default(false).optional(),
-		openSource: z.boolean().default(false).optional(),
+	additional: z.object({
+		features: z.array(z.string()),
+
+		github_url: z.string().url().startsWith("https://github.com/").nullable(),
+		gitlab_url: z.string().url().startsWith("https://gitlab.com/").nullable(),
 	}).nullable(),
 
-	github_url: z.string().url().startsWith("https://github.com/").nullable(),
-	gitlab_url: z.string().url().startsWith("https://gitlab.com/").nullable(),
-
-	approved: z.boolean().default(false)
+	category: z.string(),
 });
 
 export type App = z.infer<typeof AppSchema>;
