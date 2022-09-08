@@ -1,35 +1,45 @@
 {
   "compilerOptions": {
-    // "jsx": "react-jsx",
-    // "jsxImportSource": "preact",
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   },
   "tasks": {
-    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A src/main.ts",
-    "dev": "deno run -A --watch=src/static/,src/routes/ src/dev.ts",
+    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A main.ts",
+    "dev": "deno run -A --watch=static/,routes/ dev.ts",
     "cache": "deno cache --reload src/main.ts",
     "lint": "deno lint",
-    "format": "deno fmt",
+    "format": "deno fmt"
   },
-  "importMap": "./src/import_map.json",
+  "importMap": "./import_map.json",
   "lint": {
     "files": {
-      "include": ["src/"],
-      "exclude": ["src/static"]
+      "exclude": [
+        "static",
+        "docs",
+        "resources"
+      ]
     },
     "rules": {
-      "tags": ["recommended"],
-      "include": ["ban-untagged-todo"]
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "ban-untagged-todo"
+      ]
     }
   },
   "fmt": {
     "files": {
-      "include": ["src/"],
-      "exclude": ["src/static"]
+      "exclude": [
+        "static",
+        "docs",
+        "resources"
+      ]
     },
     "options": {
       "useTabs": true,
