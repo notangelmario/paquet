@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import Container from "@/components/Container.tsx";
 import Button from "@/components/Button.tsx";
@@ -13,11 +12,11 @@ export default function AppError() {
 			<Container>
 				<Stack>
 					<img
-						class={tw`w-full max-w-xs mt-2`}
+						class="w-full max-w-xs mt-2"
 						src="/illustrations/app-error.svg"
 					/>
 					<h1
-						class={tw`text-5xl`}
+						class="text-5xl"
 					>
 						Oops...
 					</h1>

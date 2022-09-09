@@ -1,5 +1,4 @@
 import { type JSX } from "preact";
-import { tw } from "@/lib/twind.ts";
 
 type Props = {
 	isLast?: boolean;
@@ -11,7 +10,7 @@ export default function SlideItem(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
 		<div
 			{...props}
-			class={tw`
+			class={`
 				${props.isLast ? "!pr-4 md:pr-0" : ""} 
 				${props.equal ? "flex-1" : ""}
 				pl-4

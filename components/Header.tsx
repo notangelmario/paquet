@@ -1,5 +1,4 @@
 import { type JSX } from "preact";
-import { tw } from "@/lib/twind.ts";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
@@ -9,7 +8,7 @@ export type Props = {
 export default function Header(props: Props & JSX.IntrinsicElements["h1"]) {
 	return (
 		<div
-			class={tw`flex flex-row gap-1 items-center mt-16`}
+			class="flex flex-row gap-1 items-center mt-16"
 		>
 			{props.icon && (
 				<Icon
@@ -21,7 +20,7 @@ export default function Header(props: Props & JSX.IntrinsicElements["h1"]) {
 			)}
 			<h1
 				{...props}
-				class={`${tw`text-5xl font-light`} ${props.class || ""}`}
+				class={`text-5xl font-light ${props.class || ""}`}
 			>
 				{props.children}
 			</h1>

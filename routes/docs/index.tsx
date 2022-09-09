@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";

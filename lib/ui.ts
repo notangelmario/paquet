@@ -1,4 +1,4 @@
-import { apply } from "@/lib/twind.ts";
+import { apply } from "twind";
 import { css } from "twind/css";
 
 export const btn = apply`

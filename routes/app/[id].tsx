@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -29,23 +28,21 @@ export default function App({ data }: PageProps<DataProps>) {
 			<Navbar back />
 			<Container style={{ paddingTop: 64 }}>
 				<Stack>
-					<div class={tw`flex flex-row flex-wrap gap-4`}>
+					<div class="flex flex-row flex-wrap gap-4">
 						<img
-							class={tw`
-								rounded w-20 h-20
-							`}
+							class="rounded w-20 h-20"
 							src={data.app.icon_large}
 						/>
-						<div class={tw`flex-1`}>
-							<h2 class={tw`text-3xl`}>
+						<div class="flex-1">
+							<h2 class="text-3xl">
 								{data.app.name}
 							</h2>
-							<p class={tw`opacity-50`}>
+							<p class="opacity-50">
 								{data.app.author} &middot;{" "}
 								{getCategory(data.app.category)?.name}
 							</p>
 						</div>
-						<div class={tw`min-w-full sm:min-w-[30%]`}>
+						<div class="min-w-full sm:min-w-[30%]">
 							<a
 								href={data.app.url}
 								target="_blank"
@@ -61,7 +58,7 @@ export default function App({ data }: PageProps<DataProps>) {
 						</div>
 					</div>
 					<div>
-						<h3 class={tw`text-2xl`}>
+						<h3 class="text-2xl">
 							About
 						</h3>
 						<p>
@@ -73,7 +70,7 @@ export default function App({ data }: PageProps<DataProps>) {
 			</Container>
 
 			{(data.app?.github_url || data.app?.gitlab_url) && (
-				<Container class={tw`mt-4`}>
+				<Container class="mt-4">
 					<AppLinks
 						github={data.app?.github_url || undefined}
 						gitlab={data.app?.gitlab_url || undefined}
@@ -83,7 +80,7 @@ export default function App({ data }: PageProps<DataProps>) {
 			)}
 
 			{data.app.features && (
-				<div class={tw`mt-4`}>
+				<div class="mt-4">
 					<Features
 						features={data.app.features}
 					/>
@@ -97,7 +94,7 @@ export default function App({ data }: PageProps<DataProps>) {
 				(
 					<>
 						<Container>
-							<h3 class={tw`text-2xl mt-4`}>
+							<h3 class="text-2xl mt-4">
 								Other apps
 							</h3>
 						</Container>

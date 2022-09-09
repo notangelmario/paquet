@@ -1,7 +1,6 @@
 import { join } from "$std/path/mod.ts";
 import { render } from "gfm";
 import "https://esm.sh/prismjs@1.28.0/components/prism-json.js?no-check";
-import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import { Handler, PageProps } from "$fresh/server.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -27,7 +26,7 @@ export default function Changelog({ data }: PageProps<DataProps>) {
 			</Head>
 			<Navbar back />
 			<Container
-				class={tw`mt-16`}
+				class="mt-16"
 			>
 				<p>
 					<Icon
@@ -37,9 +36,9 @@ export default function Changelog({ data }: PageProps<DataProps>) {
 						inline
 						class="opacity-50"
 					/>{" "}
-					<span class={tw`opacity-50`}>Read this page on{" "}</span>
+					<span class="opacity-50">Read this page on{" "}</span>
 					<a
-						class={tw`text-primary`}
+						class="text-primary"
 						href={data.githubUrl}
 					>
 						GitHub
@@ -50,7 +49,7 @@ export default function Changelog({ data }: PageProps<DataProps>) {
 				data-color-mode="auto"
 				data-light-theme="light"
 				data-dark-theme="dark"
-				class={tw`markdown-body !bg-white dark:!bg-dark`}
+				class="markdown-body !bg-white dark:!bg-dark"
 				dangerouslySetInnerHTML={{ __html: data.content }}
 			/>
 		</>

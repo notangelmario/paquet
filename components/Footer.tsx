@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import Container from "@/components/Container.tsx";
 
 const LINKS = [
@@ -19,26 +18,26 @@ const LINKS = [
 export default function Footer() {
 	return (
 		<footer
-			class={tw`bg-paper-light dark:bg-paper-dark rounded-t p-4 mt-4`}
+			class="bg-paper-light dark:bg-paper-dark rounded-t p-4 mt-4"
 		>
 			<Container>
 				<h2
-					class={tw`text-3xl`}
+					class="text-3xl"
 				>
 					<img
 						src="/icons/paquet.svg"
 						alt=""
-						class={tw`inline-block w-8 h-8 align-middle dark:(filter invert)`}
+						class="inline-block w-8 h-8 align-middle dark:(filter invert)"
 					/>{" "}
 					Paquet
 				</h2>
 				<p
-					class={tw`opacity-50`}
+					class="opacity-50"
 				>
 					The web app shop
 				</p>
 				<div
-					class={tw`mt-4 flex flex-row gap-4`}
+					class="mt-4 flex flex-row gap-4"
 				>
 					<a
 						href="https://github.com/notangelmario/paquet"
@@ -49,7 +48,7 @@ export default function Footer() {
 						<img
 							src="/icons/github.svg"
 							alt="GitHub"
-							class={tw`w-8 h-8 dark:(filter invert)`}
+							class="w-8 h-8 dark:(filter invert)"
 						/>
 					</a>
 					<a
@@ -61,7 +60,7 @@ export default function Footer() {
 						<img
 							src="/icons/supabase.svg"
 							alt="Made with Supabase"
-							class={tw`w-8 h-8 dark:(filter invert)`}
+							class="w-8 h-8 dark:(filter invert)"
 						/>
 					</a>
 					<a
@@ -73,26 +72,26 @@ export default function Footer() {
 						<img
 							src="/icons/discord.svg"
 							alt="Discord"
-							class={tw`w-8 h-8 dark:(filter invert)`}
+							class="w-8 h-8 dark:(filter invert)"
 						/>
 					</a>
 				</div>
 				<div
-					class={tw`my-4 flex flex-row`}
+					class="my-4 flex flex-row"
 				>
 					{LINKS.map((link, idx) => (
 						<>
 							<a
 								key={link.href}
 								href={link.href}
-								class={tw`opacity-50 hover:underline`}
+								class="opacity-50 hover:underline"
 							>
 								{link.title}
 							</a>
 							{idx !== LINKS.length - 1 &&
 								(
 									<span
-										class={tw`opacity-50 mx-2`}
+										class="opacity-50 mx-2"
 									>
 										&middot;
 									</span>

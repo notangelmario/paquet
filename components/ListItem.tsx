@@ -1,5 +1,4 @@
 import { type JSX } from "preact";
-import { tw } from "@/lib/twind.ts";
 import { btn } from "@/lib/ui.ts";
 import Icon from "@/components/Icon.tsx";
 import Divider from "@/components/Divider.tsx";
@@ -20,10 +19,10 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 		<>
 			<div
 				{...props}
-				class={tw`
-						${props.button && btn} 
+				class={`
 						flex items-center p-4
 
+						${props.button && btn} 
 						${props.class || ""}
 					`}
 			>
@@ -31,9 +30,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 					? props.icon
 						? (
 							<div
-								class={tw`
-									flex justify-center items-center w-12 h-12 mr-4
-								`}
+								class="flex justify-center items-center w-12 h-12 mr-4"
 							>
 								<Icon
 									name={props.icon}
@@ -49,7 +46,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 								width="48px"
 								height="48px"
 								{...props.imageProps}
-								class={tw` 
+								class={` 
 									w-12 h-12 rounded 
 									mr-4 
 									${props.imageProps?.class || ""}
@@ -59,10 +56,10 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 					: null}
 
 				<div>
-					<h2 class={tw`text-lg`}>
+					<h2 class="text-lg">
 						{props.title}
 					</h2>
-					<p class={tw`text-sm opacity-50`}>
+					<p class="text-sm opacity-50">
 						{props.subtitle}
 					</p>
 				</div>

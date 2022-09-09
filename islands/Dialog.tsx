@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { StateUpdater, useEffect } from "preact/hooks";
 import Card from "@/components/Card.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -29,17 +28,15 @@ export default function Dialog(props: Props) {
 
 	return (
 		<div
-			class={tw`
-				${
-				props.open
+			class={`
+				fixed top-0 left-0 right-0 bottom-0 flex justify-center items-end
+				bg-black bg-opacity-50 z-50
+				transition-opacity duration-150 ease-in-out
+
+				${props.open
 					? "opacity-100 pointer-events-auto"
 					: "opacity-0 pointer-events-none"
-			}
-				fixed top-0 left-0 right-0 bottom-0 flex justify-center items-end
-				
-				bg-black bg-opacity-50 z-50
-
-				transition-opacity duration-150 ease-in-out
+				}
 			`}
 			onClick={(e) => {
 				if (e.target !== e.currentTarget) return;
@@ -47,20 +44,20 @@ export default function Dialog(props: Props) {
 			}}
 		>
 			<Card
-				class={tw`
+				class={`
 					text-black dark:text-white
 					!bg-white dark:!bg-dark
 					w-full max-w-md mx-auto
 					!rounded-b-none
+					transition-transform duration-150 ease-in-out
+
 
 					${props.open ? "translate-y-0" : "translate-y-1/2"}
-
-					transition-transform duration-150 ease-in-out
 				`}
 			>
 				<Stack>
 					<h1
-						class={tw`text-3xl`}
+						class="text-3xl"
 					>
 						{props.title}
 					</h1>

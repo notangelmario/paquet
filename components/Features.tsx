@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { FEATURES } from "@/lib/features.ts";
 import type { App } from "@/types/App.ts";
 import Container from "@/components/Container.tsx";
@@ -15,7 +14,7 @@ export default function Features(props: Props) {
 		<>
 			<Container>
 				<h3
-					class={tw`text-2xl mb-2`}
+					class="text-2xl mb-2"
 				>
 					Features
 				</h3>
@@ -39,7 +38,7 @@ export default function Features(props: Props) {
 							`}
 						>
 							<div
-								class={tw`
+								class={`
 									flex flex-shrink-0 justify-center items-center
 									rounded-full w-12 h-12
 
@@ -60,7 +59,7 @@ export default function Features(props: Props) {
 							</div>
 
 							<p
-								class={tw`text-xs`}
+								class="text-xs"
 							>
 								{name}
 							</p>

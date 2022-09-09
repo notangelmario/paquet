@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
@@ -70,7 +69,7 @@ export default function App(props: AppProps) {
 				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}
-			<main class={tw`dark:text-white`} onTouchStart="">
+			<main class="dark:text-white" onTouchStart="">
 				<props.Component />
 			</main>
 			<Footer />

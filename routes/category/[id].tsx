@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -50,7 +49,7 @@ export default function Category({ data }: PageProps<DataProps>) {
 					</a>
 				))}
 			</Container>
-			<Container class={tw`mt-4`}>
+			<Container class="mt-4">
 				<FewApps />
 			</Container>
 		</>

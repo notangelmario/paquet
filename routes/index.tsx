@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { App } from "@/types/App.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -75,7 +74,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 					<div>
 						<Container>
 							<h2
-								class={tw`text-2xl`}
+								class="text-2xl"
 							>
 								Random picks
 							</h2>
@@ -102,7 +101,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 					<div>
 						<Container>
 							<h2
-								class={tw`text-2xl`}
+								class="text-2xl"
 							>
 								Looking for {getCategory(data.randomCategory.category)?.name}?
 							</h2>
@@ -125,7 +124,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 					</div>
 				}
 
-				<Container class={tw`mt-4`}>
+				<Container class="mt-4">
 					<FewApps />
 				</Container>
 			</Stack>

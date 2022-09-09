@@ -1,9 +1,7 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
-import { Configuration, setup } from "twind";
-export * from "twind";
+import { Options } from "$fresh/plugins/twind.ts";
 
-export const config: Configuration = {
-	mode: "silent",
+export default {
+	selfURL: import.meta.url,
 	darkMode: "media",
 	theme: {
 		extend: {
@@ -30,7 +28,4 @@ export const config: Configuration = {
 			},
 		},
 	},
-};
-if (IS_BROWSER) setup(config);
-
-export default config;
+} as Options;

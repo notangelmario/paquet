@@ -1,5 +1,4 @@
 import { cloneElement, type JSX, toChildArray, VNode } from "preact";
-import { tw } from "@/lib/twind.ts";
 
 type Props = {
 	snap?: boolean;
@@ -11,7 +10,7 @@ export default function SlideContainer(
 	return (
 		<div
 			{...props}
-			class={tw`flex flex-row overflow-x-scroll md:container ${
+			class={`flex flex-row overflow-x-scroll md:container ${
 				props.class || ""
 			}`}
 			style={{

@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
@@ -27,9 +26,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 				back
 			/>
 			<Container
-				class={tw`
-					mt-16
-				`}
+				class="mt-16"
 			>
 				<form
 					action="/search"
@@ -39,7 +36,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 						text={url.searchParams.get("q") || ""}
 					/>
 					{data.error && (
-						<p class={tw`text-red-500`}>
+						<p class="text-red-500">
 							<Icon
 								name="error"
 								width={18}

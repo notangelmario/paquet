@@ -1,5 +1,3 @@
-import { tw } from "@/lib/twind.ts";
-
 export interface Props {
 	width?: number;
 	height?: number;
@@ -12,7 +10,7 @@ export interface Props {
 export default function Icon(props: Props) {
 	return (
 		<img
-			class={tw`w-8 h-8 ${!props.error ? "dark:(filter invert)" : ""} ${
+			class={`w-8 h-8 ${!props.error ? "dark:(filter invert)" : ""} ${
 				props.inline ? "inline align-middle" : ""
 			} ${props.class || ""}`}
 			style={{

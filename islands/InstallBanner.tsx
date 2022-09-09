@@ -9,7 +9,6 @@ import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import Button from "@/components/Button.tsx";
 import Card from "@/components/Card.tsx";
-import { tw } from "@/lib/twind.ts";
 import Stack from "@/components/Stack.tsx";
 import { useInstalled } from "@/hooks/useInstalled.ts";
 import Dialog from "@/islands/Dialog.tsx";
@@ -65,10 +64,10 @@ export default function InstallBanner() {
 	return IS_BROWSER && !installed
 		? (
 			<Card
-				class={tw`!bg-gradient-to-tr from-primary to-secondary !text-white`}
+				class="!bg-gradient-to-tr from-primary to-secondary !text-white"
 			>
 				<Stack>
-					<h2 class={tw`text-xl`}>Welcome to Paquet!</h2>
+					<h2 class="text-xl">Welcome to Paquet!</h2>
 					<p>
 						It looks like Paquet isn't installed yet. You can
 						install it by clicking the button below.
@@ -112,5 +111,5 @@ export default function InstallBanner() {
 				/>
 			</Card>
 		)
-		: <div class={tw`-mb-2`} />;
+		: <div class="-mb-2" />;
 }

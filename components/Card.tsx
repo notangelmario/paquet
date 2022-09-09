@@ -1,5 +1,4 @@
 import { type JSX } from "preact";
-import { tw } from "@/lib/twind.ts";
 
 export type Props = {
 	disableGutters?: boolean;
@@ -8,12 +7,12 @@ export type Props = {
 export default function Card(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
 		<div
-			class={`${tw`
-					bg-paper-light
-					dark:bg-paper-dark
-					${!props.disableGutters && "p-4"}
-					rounded
-				`} 
+			class={`
+				bg-paper-light
+				dark:bg-paper-dark
+				rounded
+				
+				${!props.disableGutters && "p-4"}
 				${props.class || ""}
 			`}
 		>

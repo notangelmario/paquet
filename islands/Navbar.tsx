@@ -1,5 +1,4 @@
 import { useEffect, useState } from "preact/hooks";
-import { tw } from "@/lib/twind.ts";
 import { useScroll } from "@/hooks/useScroll.ts";
 import { iconBtn } from "@/lib/ui.ts";
 import Icon from "@/components/Icon.tsx";
@@ -40,22 +39,21 @@ export default function Navbar(props: Props) {
 
 	return (
 		<div
-			class={tw`
+			class={`
 					fixed flex w-full bg-white dark:bg-dark
 					-top-px left-0 right-0
 					items-center content-center
 					
 					border-opacity-25 border-black dark:(border-white border-opacity-25)
+					px-2 py-2 z-30
 
 					${trigger && "border-b-1"}
-
-					px-2 py-2 z-30
 				`}
 		>
 			<div>
 				{props.back && (
 					<button
-						class={tw(iconBtn)}
+						class={iconBtn}
 						onClick={goBack}
 					>
 						<Icon
@@ -66,9 +64,9 @@ export default function Navbar(props: Props) {
 					</button>
 				)}
 			</div>
-			<div class={tw`flex flex-row ml-auto items-center gap-2`}>
+			<div class="flex flex-row ml-auto items-center gap-2">
 				{props.rightIcon && (
-					<a class={tw(iconBtn)} href={props.rightIconHref}>
+					<a class={iconBtn} href={props.rightIconHref}>
 						<Icon
 							name={props.rightIcon}
 							width={24}

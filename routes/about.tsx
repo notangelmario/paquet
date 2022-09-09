@@ -1,4 +1,3 @@
-import { tw } from "@/lib/twind.ts";
 import { Head } from "$fresh/runtime.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
@@ -26,7 +25,7 @@ export default function About() {
 						for your device. Paquet is a web app shop where you can
 						find and install web apps.
 					</p>
-					<ul class={tw`list-outside list-disc pl-4`}>
+					<ul class="list-outside list-disc pl-4">
 						<li>No UI framework overhead</li>
 						<li>Deployed on the edge in over 30 regions</li>
 						<li>Built with Deno and Fresh for performance</li>
@@ -37,12 +36,12 @@ export default function About() {
 					</ul>
 					<img
 						src="/illustrations/app-installation.svg"
-						class={tw`h-64`}
+						class="h-64"
 					/>
 					<p>
 						Web apps have multiple advantages over native apps:
 					</p>
-					<ul class={tw`list-outside list-disc pl-4`}>
+					<ul class="list-outside list-disc pl-4">
 						<li>
 							Most of the time, they are open source.
 						</li>
@@ -79,7 +78,7 @@ export default function About() {
 					</Card>
 					<img
 						src="/illustrations/progressive-app.svg"
-						class={tw`h-64`}
+						class="h-64"
 					/>
 				</Stack>
 			</Container>

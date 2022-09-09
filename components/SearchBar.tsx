@@ -1,5 +1,4 @@
 import { type JSX } from "preact";
-import { tw } from "@/lib/twind.ts";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
@@ -16,7 +15,7 @@ export default function SearchBar(
 	return (
 		<div
 			{...props}
-			class={tw`
+			class={`
 				flex flex-row
 				items-center justify-between
 				w-full rounded
@@ -38,7 +37,7 @@ export default function SearchBar(
 				type="text"
 				placeholder="Search for an app..."
 				{...props?.inputProps}
-				class={tw`
+				class={`
 					p-2 w-full
 					bg-transparent
 					border-none
