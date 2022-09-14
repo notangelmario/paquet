@@ -54,4 +54,6 @@ Developer documentation is available both on [GitHub](/docs/getting-started.md) 
 
 Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
 
-<a href="https://fresh.deno.dev" aria-label="Made with Fresh"><picture><source srcset="https://fresh.deno.dev/fresh-badge-dark.svg" media="(prefers-color-scheme: dark)"/><img width="197" height="37" src="https://fresh.deno.dev/fresh-badge.svg"/></picture></a>
+***
+
+Made with ❤️ by [Fructo](https://github.com/fructoland)
