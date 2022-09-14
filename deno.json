@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    // "jsx": "react-jsx",
-    // "jsxImportSource": "preact",
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
@@ -13,7 +11,7 @@
     "dev": "deno run -A --watch=src/static/,src/routes/ src/dev.ts",
     "cache": "deno cache --reload src/main.ts",
     "lint": "deno lint",
-    "format": "deno fmt",
+    "format": "deno fmt"
   },
   "importMap": "./src/import_map.json",
   "lint": {

@@ -14,8 +14,8 @@ const LINKS = [
 		href: "/settings",
 	},
 	{
-		title: "Developers",
-		href: "/developers",
+		title: "Documentation",
+		href: "/docs",
 	},
 ];
 
