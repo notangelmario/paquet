@@ -44,7 +44,7 @@ export default function Footer() {
 					class={tw`mt-4 flex flex-row gap-4`}
 				>
 					<a
-						href="https://github.com/notangelmario/paquet"
+						href="https://github.com/fructo/paquet"
 						target="_blank"
 						rel="noreferrer noopener"
 						aria-label="GitHub"

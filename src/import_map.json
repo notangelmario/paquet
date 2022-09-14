@@ -14,6 +14,6 @@
 		"supabase": "https://esm.sh/@supabase/supabase-js@1.35.6",
 		"zod": "https://deno.land/x/zod@v3.18.0/mod.ts",
 		"gfm": "https://deno.land/x/gfm@0.1.22/mod.ts",
-		"fresh-seo": "https://github.com/notangelmario/fresh-seo/raw/main/mod.ts"
+		"fresh-seo": "https://deno.land/x/fresh_seo@0.1.2"
 	}
 }
