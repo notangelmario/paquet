@@ -44,7 +44,7 @@ export default function Footer() {
 					class={tw`mt-4 flex flex-row gap-4`}
 				>
 					<a
-						href="https://github.com/fructo/paquet"
+						href="https://github.com/fructoland/paquet"
 						target="_blank"
 						rel="noreferrer noopener"
 						aria-label="GitHub"
@@ -103,20 +103,6 @@ export default function Footer() {
 						</>
 					))}
 				</div>
-				<a href="https://fresh.deno.dev" aria-label="Fresh">
-					{/* Neat trick to change between light mode and dark mode */}
-					<picture>
-						<source
-							srcset="https://fresh.deno.dev/fresh-badge-dark.svg"
-							media="(prefers-color-scheme: dark)"
-						/>
-						<img
-							width="197"
-							height="37"
-							src="https://fresh.deno.dev/fresh-badge.svg"
-						/>
-					</picture>
-				</a>
 			</Container>
 		</footer>
 	);
