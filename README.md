@@ -12,7 +12,7 @@
 
 Welcome to your new web app shop!
 
-👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md&title=)
+👋 Submit a new app 👉 [here](https://github.com/fructoland/paquet/issues/new?labels=new+app&template=app-request.md&title=)
 
 > ⚠ Keep in mind that Paquet is not yet stable and lots of things might change
 
@@ -54,4 +54,6 @@ Developer documentation is available both on [GitHub](/docs/getting-started.md) 
 
 Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
 
-<a href="https://fresh.deno.dev" aria-label="Made with Fresh"><picture><source srcset="https://fresh.deno.dev/fresh-badge-dark.svg" media="(prefers-color-scheme: dark)"/><img width="197" height="37" src="https://fresh.deno.dev/fresh-badge.svg"/></picture></a>
+***
+
+Made with ❤️ by [Fructo](https://github.com/fructoland)

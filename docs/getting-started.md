@@ -1,7 +1,7 @@
 # Getting started
 
 :wave: Hi! Here is how you can add your app to Paquet. Adding a new app
-is done by submiting an issue on our [GitHub repo](https://github.com/notangelmario/paquet).
+is done by submiting an issue on our [GitHub repo](https://github.com/fructoland/paquet).
 
 ## Using `manifest.json` (wip)
 

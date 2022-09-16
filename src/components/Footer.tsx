@@ -14,8 +14,8 @@ const LINKS = [
 		href: "/settings",
 	},
 	{
-		title: "Developers",
-		href: "/developers",
+		title: "Documentation",
+		href: "/docs",
 	},
 ];
 
@@ -35,16 +35,11 @@ export default function Footer() {
 					/>{" "}
 					Paquet
 				</h2>
-				<p
-					class={tw`opacity-50`}
-				>
-					The web app shop
-				</p>
 				<div
 					class={tw`mt-4 flex flex-row gap-4`}
 				>
 					<a
-						href="https://github.com/notangelmario/paquet"
+						href="https://github.com/fructoland/paquet"
 						target="_blank"
 						rel="noreferrer noopener"
 						aria-label="GitHub"
@@ -103,20 +98,9 @@ export default function Footer() {
 						</>
 					))}
 				</div>
-				<a href="https://fresh.deno.dev" aria-label="Fresh">
-					{/* Neat trick to change between light mode and dark mode */}
-					<picture>
-						<source
-							srcset="https://fresh.deno.dev/fresh-badge-dark.svg"
-							media="(prefers-color-scheme: dark)"
-						/>
-						<img
-							width="197"
-							height="37"
-							src="https://fresh.deno.dev/fresh-badge.svg"
-						/>
-					</picture>
-				</a>
+				<p>
+					Made with <span role="img">❤</span> by <a href="https://fructo.land" rel="noreferrer noopener" class="hover:underline">Fructo</a>
+				</p>
 			</Container>
 		</footer>
 	);
