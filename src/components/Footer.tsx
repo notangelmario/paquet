@@ -35,11 +35,6 @@ export default function Footer() {
 					/>{" "}
 					Paquet
 				</h2>
-				<p
-					class={tw`opacity-50`}
-				>
-					The web app shop
-				</p>
 				<div
 					class={tw`mt-4 flex flex-row gap-4`}
 				>
@@ -103,6 +98,9 @@ export default function Footer() {
 						</>
 					))}
 				</div>
+				<p>
+					Made with <span role="img">❤</span> by <a href="https://fructo.land" rel="noreferrer noopener" class="hover:underline">Fructo</a>
+				</p>
 			</Container>
 		</footer>
 	);
