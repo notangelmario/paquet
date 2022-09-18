@@ -28,7 +28,7 @@ export const AppSchema = z.object({
 		.or(z.string().url().endsWith(".json")).nullable(),
 	manifest_hash: z.string().regex(/^[a-f0-9]{64}$/gi),
 
-	additional: z.object({
+	extra: z.object({
 		features: z.array(z.string()),
 
 		github_url: z.string().url().startsWith("https://github.com/").nullable(),
