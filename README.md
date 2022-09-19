@@ -7,9 +7,6 @@
 
 # [📦 Paquet](https://paquet.shop)
 
-[![Discord](https://img.shields.io/badge/discord-join-success?style=for-the-badge&logo=discord)](https://discord.paquet.shop)
-[![Web app](https://img.shields.io/website?style=for-the-badge&label=Web%20app&url=https%3A%2F%2Fpaquet.shop)](https://paquet.shop)
-
 Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/fructoland/paquet/issues/new?labels=new+app&template=app-request.md&title=)

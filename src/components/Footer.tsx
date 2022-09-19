@@ -62,18 +62,6 @@ export default function Footer() {
 							class={tw`w-8 h-8 dark:(filter invert)`}
 						/>
 					</a>
-					<a
-						href="https://discord.paquet.shop"
-						target="_blank"
-						rel="noreferrer noopener"
-						aria-label="Discord"
-					>
-						<img
-							src="/icons/discord.svg"
-							alt="Discord"
-							class={tw`w-8 h-8 dark:(filter invert)`}
-						/>
-					</a>
 				</div>
 				<div
 					class={tw`my-4 flex flex-row`}
