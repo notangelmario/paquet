@@ -48,7 +48,7 @@ ol.nested li:before {
 
 @media (prefers-color-scheme: dark) {
 	[data-color-mode=auto][data-dark-theme=dark] {
-		--color-canvas-subtle: #323232
+		--color-canvas-subtle: #212121
 	}
 }
 
