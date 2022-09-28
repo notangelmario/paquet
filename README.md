@@ -21,6 +21,7 @@ Welcome to your new web app shop!
 * 🌐 Hosted on the edge
 * 🚀 Encourage app performance
 * 🔒 Security is a top priority
+* 🎈 Easy to contribute
 
 ## 🧰 Tools
 Paquet is built with a modern toolset in mind:
