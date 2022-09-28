@@ -1,0 +1,29 @@
+{
+	"id": "towergame.app",
+	"name": "Tower Game",
+	"description": "Stack blocks and build the tallest tower!",
+	"author": "iamkun",
+	"icon_small": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/da1ffe29-9214-4d65-8423-8cc755c23645/icon-small.webp",
+	"icon_large": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/da1ffe29-9214-4d65-8423-8cc755c23645/icon-large.webp",
+	"category": "games",
+	"github_url": null,
+	"gitlab_url": null,
+	"features": [
+		[
+			"mobile",
+			true
+		],
+		[
+			"desktop",
+			true
+		],
+		[
+			"offline",
+			true
+		],
+		[
+			"openSource",
+			true
+		]
+	]
+}

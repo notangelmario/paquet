@@ -1,0 +1,25 @@
+{
+	"id": "calculator-game-reactjs.vercel.app",
+	"name": "Calculator The Game",
+	"description": "Get to the desired number by using the buttons a limited number of times.",
+	"author": "Jorge Rubiano",
+	"icon_small": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/86a49ab8-8d1e-4307-a124-56c43d8c4479/icon-small.webp",
+	"icon_large": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/86a49ab8-8d1e-4307-a124-56c43d8c4479/icon-large.webp",
+	"category": "games",
+	"github_url": null,
+	"gitlab_url": null,
+	"features": [
+		[
+			"mobile",
+			true
+		],
+		[
+			"desktop",
+			true
+		],
+		[
+			"openSource",
+			true
+		]
+	]
+}

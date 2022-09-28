@@ -1,0 +1,25 @@
+{
+	"id": "cuzzle-react.vercel.app",
+	"name": "Cuzzle",
+	"description": "Cuzzle ReactJS - game developed by Jorge Rubiano @ostjh",
+	"author": "Jorge Rubiano",
+	"icon_small": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/13b9a66f-6699-476b-87f2-c656c63f6f6f/icon-small.webp",
+	"icon_large": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/13b9a66f-6699-476b-87f2-c656c63f6f6f/icon-large.webp",
+	"category": "games",
+	"github_url": null,
+	"gitlab_url": null,
+	"features": [
+		[
+			"mobile",
+			true
+		],
+		[
+			"desktop",
+			true
+		],
+		[
+			"openSource",
+			true
+		]
+	]
+}

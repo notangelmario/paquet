@@ -1,0 +1,21 @@
+{
+	"id": "google.com-maps",
+	"name": "Google Maps",
+	"description": "Find local businesses, view maps and get driving directions in Google Maps.",
+	"author": "Google",
+	"icon_small": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/0c058152-ed3c-4b3a-a441-1721ecf39272/icon-small.webp",
+	"icon_large": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/0c058152-ed3c-4b3a-a441-1721ecf39272/icon-large.webp",
+	"category": "travel",
+	"github_url": null,
+	"gitlab_url": null,
+	"features": [
+		[
+			"mobile",
+			true
+		],
+		[
+			"desktop",
+			true
+		]
+	]
+}

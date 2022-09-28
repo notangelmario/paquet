@@ -1,0 +1,21 @@
+{
+	"id": "twitter.com",
+	"name": "Twitter",
+	"description": "Get breaking news, politics, trending music, world events, sports scores, and the latest global news stories as they unfold - all with less data.",
+	"author": "Twitter, Inc.",
+	"icon_small": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/1a7292fc-4339-41bb-b510-d8a200dddb67/icon-small.webp",
+	"icon_large": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/1a7292fc-4339-41bb-b510-d8a200dddb67/icon-large.webp",
+	"category": "social",
+	"github_url": null,
+	"gitlab_url": null,
+	"features": [
+		[
+			"mobile",
+			true
+		],
+		[
+			"desktop",
+			true
+		]
+	]
+}

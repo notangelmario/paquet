@@ -1,0 +1,29 @@
+{
+	"id": "snapdrop.net",
+	"name": "Snapdrop",
+	"description": "Instantly share images, videos, PDFs, and links with people nearby. Peer2Peer and Open Source. No Setup, No Signup.",
+	"author": "RobinLinus",
+	"icon_small": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/b3dff2a6-6e0b-4f2c-a4e0-bcbd258d739e/icon-small.webp",
+	"icon_large": "https://nttddjadlxijwiweezhx.supabase.co/storage/v1/object/public/apps/b3dff2a6-6e0b-4f2c-a4e0-bcbd258d739e/icon-large.webp",
+	"category": "utilities",
+	"github_url": "https://github.com/RobinLinus/snapdrop",
+	"gitlab_url": null,
+	"features": [
+		[
+			"mobile",
+			true
+		],
+		[
+			"desktop",
+			true
+		],
+		[
+			"offline",
+			true
+		],
+		[
+			"openSource",
+			true
+		]
+	]
+}
