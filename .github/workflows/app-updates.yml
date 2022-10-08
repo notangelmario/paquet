@@ -30,7 +30,7 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Run tests
+      - name: Update apps
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
