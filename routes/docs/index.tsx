@@ -46,9 +46,7 @@ export default function Documentation() {
 						<Card disableGutters>
 							{DOCS.map((doc) => (
 								<a
-									href={`/docs/${
-										doc.filename.slice(0, -3)
-									}`}
+									href={`/docs/${doc.filename.slice(0, -3)}`}
 									key={doc.filename}
 								>
 									<ListItem

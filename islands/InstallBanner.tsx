@@ -14,7 +14,6 @@ import { useInstalled } from "@/hooks/useInstalled.ts";
 import Dialog from "@/islands/Dialog.tsx";
 import { useBrowser } from "@/hooks/useBrowser.ts";
 
-
 export default function InstallBanner() {
 	const clientBrowser = useBrowser();
 	const installed = useInstalled();
@@ -63,9 +62,7 @@ export default function InstallBanner() {
 
 	return IS_BROWSER && !installed
 		? (
-			<Card
-				class="!bg-gradient-to-tr from-primary to-secondary !text-white"
-			>
+			<Card class="!bg-gradient-to-tr from-primary to-secondary !text-white">
 				<Stack>
 					<h2 class="text-xl">Welcome to Paquet!</h2>
 					<p>

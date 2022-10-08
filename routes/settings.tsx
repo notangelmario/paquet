@@ -8,7 +8,6 @@ import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
 
-
 export default function Settings() {
 	return (
 		<>

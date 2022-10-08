@@ -1,9 +1,9 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "indent": ["error", "tab"],
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"indent": ["error", "tab"],
 		"quotes": ["error", "double"],
 		"semi": ["error", "always"],
 		"comma-dangle": ["error", "never"]
-  }
+	}
 }

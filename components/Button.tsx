@@ -27,7 +27,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 						props.red ? "text-red-500" : "text-current"
 					}`
 					: `${props.red ? "bg-red-500" : "bg-primary"} text-white`
-				}
+			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.disabled ? "opacity-25 cursor-not-allowed" : ""}

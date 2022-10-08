@@ -15,9 +15,7 @@ export default function AppError() {
 						class="w-full max-w-xs mt-2"
 						src="/illustrations/app-error.svg"
 					/>
-					<h1
-						class="text-5xl"
-					>
+					<h1 class="text-5xl">
 						Oops...
 					</h1>
 					<p>

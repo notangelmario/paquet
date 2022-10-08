@@ -7,9 +7,7 @@ export type Props = {
 
 export default function Header(props: Props & JSX.IntrinsicElements["h1"]) {
 	return (
-		<div
-			class="flex flex-row gap-1 items-center mt-16"
-		>
+		<div class="flex flex-row gap-1 items-center mt-16">
 			{props.icon && (
 				<Icon
 					name={props.icon}

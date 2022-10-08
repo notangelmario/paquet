@@ -33,10 +33,11 @@ export default function Dialog(props: Props) {
 				bg-black bg-opacity-50 z-50
 				transition-opacity duration-150 ease-in-out
 
-				${props.open
+				${
+				props.open
 					? "opacity-100 pointer-events-auto"
 					: "opacity-0 pointer-events-none"
-				}
+			}
 			`}
 			onClick={(e) => {
 				if (e.target !== e.currentTarget) return;
@@ -56,9 +57,7 @@ export default function Dialog(props: Props) {
 				`}
 			>
 				<Stack>
-					<h1
-						class="text-3xl"
-					>
+					<h1 class="text-3xl">
 						{props.title}
 					</h1>
 					<p

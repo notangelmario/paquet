@@ -33,6 +33,8 @@ export const CATEGORIES: Category[] = [
 	},
 ];
 
-export const getCategory = (categoryId: Category["id"]): Category | undefined => {
-	return CATEGORIES.find((category) => category.id === categoryId)
-}
+export const getCategory = (
+	categoryId: Category["id"],
+): Category | undefined => {
+	return CATEGORIES.find((category) => category.id === categoryId);
+};

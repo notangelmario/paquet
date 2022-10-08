@@ -10,7 +10,7 @@ export const FeatureSchema = z.object({
 	id: z.string(),
 	icon: z.string(),
 	name: z.string(),
-})
+});
 
 export const AppSchema = z.object({
 	id: z.string().uuid(),
@@ -21,7 +21,6 @@ export const AppSchema = z.object({
 	manifest_url: z.string().url().endsWith(".webmanifest")
 		.or(z.string().url().endsWith(".json")).nullable(),
 	manifest_hash: z.string(),
-
 
 	icon_small: z.string().url(),
 	icon_large: z.string().url(),
@@ -39,7 +38,7 @@ export const AppSchema = z.object({
 	github_url: z.string().url().startsWith("https://github.com/").nullable(),
 	gitlab_url: z.string().url().startsWith("https://gitlab.com/").nullable(),
 
-	approved: z.boolean().default(false)
+	approved: z.boolean().default(false),
 });
 
 export type App = z.infer<typeof AppSchema>;

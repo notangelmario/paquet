@@ -25,9 +25,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 			<Navbar
 				back
 			/>
-			<Container
-				class="mt-16"
-			>
+			<Container class="mt-16">
 				<form
 					action="/search"
 					method="GET"

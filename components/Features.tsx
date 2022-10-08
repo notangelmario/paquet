@@ -13,9 +13,7 @@ export default function Features(props: Props) {
 	return (
 		<>
 			<Container>
-				<h3
-					class="text-2xl mb-2"
-				>
+				<h3 class="text-2xl mb-2">
 					Features
 				</h3>
 			</Container>
@@ -58,9 +56,7 @@ export default function Features(props: Props) {
 								/>
 							</div>
 
-							<p
-								class="text-xs"
-							>
+							<p class="text-xs">
 								{name}
 							</p>
 						</div>

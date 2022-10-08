@@ -17,13 +17,9 @@ const LINKS = [
 
 export default function Footer() {
 	return (
-		<footer
-			class="bg-paper-light dark:bg-paper-dark rounded-t p-4 mt-4"
-		>
+		<footer class="bg-paper-light dark:bg-paper-dark rounded-t p-4 mt-4">
 			<Container>
-				<h2
-					class="text-3xl"
-				>
+				<h2 class="text-3xl">
 					<img
 						src="/icons/paquet.svg"
 						alt=""
@@ -31,9 +27,7 @@ export default function Footer() {
 					/>{" "}
 					Paquet
 				</h2>
-				<div
-					class="mt-4 flex flex-row gap-4"
-				>
+				<div class="mt-4 flex flex-row gap-4">
 					<a
 						href="https://github.com/fructoland/paquet"
 						target="_blank"
@@ -59,9 +53,7 @@ export default function Footer() {
 						/>
 					</a>
 				</div>
-				<div
-					class="my-4 flex flex-row"
-				>
+				<div class="my-4 flex flex-row">
 					{LINKS.map((link, idx) => (
 						<>
 							<a
@@ -73,9 +65,7 @@ export default function Footer() {
 							</a>
 							{idx !== LINKS.length - 1 &&
 								(
-									<span
-										class="opacity-50 mx-2"
-									>
+									<span class="opacity-50 mx-2">
 										&middot;
 									</span>
 								)}
@@ -83,7 +73,14 @@ export default function Footer() {
 					))}
 				</div>
 				<p>
-					Made with <span role="img">❤</span> by <a href="https://fructo.land" rel="noreferrer noopener" class="hover:underline">Fructo</a>
+					Made with <span role="img">❤</span> by{" "}
+					<a
+						href="https://fructo.land"
+						rel="noreferrer noopener"
+						class="hover:underline"
+					>
+						Fructo
+					</a>
 				</p>
 			</Container>
 		</footer>

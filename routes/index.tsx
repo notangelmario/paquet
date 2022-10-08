@@ -19,9 +19,9 @@ import SlideItem from "@/components/SlideItem.tsx";
 type DataProps = {
 	randomApps?: App[];
 	randomCategory?: {
-		category: string,
-		apps: App[]
-	},
+		category: string;
+		apps: App[];
+	};
 };
 
 export default function Home({ data }: PageProps<DataProps>) {
@@ -71,58 +71,69 @@ export default function Home({ data }: PageProps<DataProps>) {
 				</SlideContainer>
 
 				{data.randomApps &&
-					<div>
-						<Container>
-							<h2
-								class="text-2xl"
-							>
-								Random picks
-							</h2>
-						</Container>
-						<Container disableGutters>
-							{data.randomApps.map((app: App, idx: number) => (
-								<a href={`/app/${app.id}`}>
-									<ListItem
-										button
-										key={app.id}
-										image={app.icon_small}
-										title={app.name}
-										subtitle={getCategory(app.category)?.name}
-										divider={data.randomApps &&
-											idx !== data.randomApps.length - 1}
-									/>
-								</a>
-							))}
-						</Container>
-					</div>
-				}
+					(
+						<div>
+							<Container>
+								<h2 class="text-2xl">
+									Random picks
+								</h2>
+							</Container>
+							<Container disableGutters>
+								{data.randomApps.map((
+									app: App,
+									idx: number,
+								) => (
+									<a href={`/app/${app.id}`}>
+										<ListItem
+											button
+											key={app.id}
+											image={app.icon_small}
+											title={app.name}
+											subtitle={getCategory(app.category)
+												?.name}
+											divider={data.randomApps &&
+												idx !==
+													data.randomApps.length - 1}
+										/>
+									</a>
+								))}
+							</Container>
+						</div>
+					)}
 
 				{data.randomCategory &&
-					<div>
-						<Container>
-							<h2
-								class="text-2xl"
-							>
-								Looking for {getCategory(data.randomCategory.category)?.name}?
-							</h2>
-						</Container>
-						<Container disableGutters>
-							{data.randomCategory.apps.map((app: App, idx: number) => (
-								<a href={`/app/${app.id}`}>
-									<ListItem
-										button
-										key={app.id}
-										image={app.icon_small}
-										title={app.name}
-										subtitle={app.author}
-										divider={data.randomCategory?.apps &&
-											idx !== data.randomCategory.apps.length - 1}
-									/>
-								</a>
-							))}
-						</Container>
-					</div>
-				}
+					(
+						<div>
+							<Container>
+								<h2 class="text-2xl">
+									Looking for{" "}
+									{getCategory(data.randomCategory.category)
+										?.name}?
+								</h2>
+							</Container>
+							<Container disableGutters>
+								{data.randomCategory.apps.map((
+									app: App,
+									idx: number,
+								) => (
+									<a href={`/app/${app.id}`}>
+										<ListItem
+											button
+											key={app.id}
+											image={app.icon_small}
+											title={app.name}
+											subtitle={app.author}
+											divider={data.randomCategory
+												?.apps &&
+												idx !==
+													data.randomCategory.apps
+															.length - 1}
+										/>
+									</a>
+								))}
+							</Container>
+						</div>
+					)}
 
 				<Container class="mt-4">
 					<FewApps />
@@ -133,16 +144,20 @@ export default function Home({ data }: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const randomCategoryId: string = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
+	const randomCategoryId: string =
+		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 	const { data: randomCategoryApps } = await supabase.from<App>("random_apps")
 		.select("id, name, icon_small, author, category")
 		.eq("category", randomCategoryId)
 		.limit(5);
 
-	const randomCategory: DataProps["randomCategory"] = randomCategoryApps?.length ? {
-		category: randomCategoryId,
-		apps: randomCategoryApps
-	} : undefined;
+	const randomCategory: DataProps["randomCategory"] =
+		randomCategoryApps?.length
+			? {
+				category: randomCategoryId,
+				apps: randomCategoryApps,
+			}
+			: undefined;
 
 	const { data: randomApps } = await supabase.from<App>("random_apps")
 		.select(
