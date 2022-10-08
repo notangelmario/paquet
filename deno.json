@@ -12,6 +12,7 @@
     "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A main.ts",
     "dev": "deno run -A --watch=static/,routes/ dev.ts",
     "cache": "deno cache --reload main.ts",
+    "update": "deno run --allow-read --allow-env --allow-net scripts/update.ts",
     "lint": "deno lint",
     "format": "deno fmt"
   },

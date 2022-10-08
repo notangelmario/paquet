@@ -20,6 +20,8 @@ export const AppSchema = z.object({
 	url: z.string().url(),
 	manifest_url: z.string().url().endsWith(".webmanifest")
 		.or(z.string().url().endsWith(".json")).nullable(),
+	manifest_hash: z.string(),
+
 
 	icon_small: z.string().url(),
 	icon_large: z.string().url(),
