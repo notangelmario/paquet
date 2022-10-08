@@ -41,14 +41,7 @@ Here is an example:
     "background_color": "#ffffff",
     "display": "standalone",
     "start_url": "/?utm_source=pwa",
-    "scope": "/",
-    "paquet_author_id": "b2e7f76c-34c7-4314-8754-575cc2950072",
-    "paquet_features": {
-    	"mobile": true,
-    	"desktop": true,
-    	"offline": true,
-    	"open": true
-    }
+    "scope": "/"
 }
 ```
 
@@ -58,8 +51,6 @@ The values Paquet uses in your app listing are:
 * `categories`
 * `icons`
 * `screenshots` (soon)
-* `paquet_features`
-* `paquet_author_id`
 
 ### `name`
 
@@ -90,15 +81,3 @@ Paquet grabs the highest quality icon present. Maskable icons are prioritized.
 ### `screenshots`
 
 Not yet implemented.
-
-### `paquet_features`
-
-Currently there are 4 highlighted features that can be specified:
-* mobile - Optimized for mobile devices
-* desktop - Optimized for desktops and other large screen devices
-* offline - Has an offline fallback
-* open - The app is open source
-
-### `paquet_author_id`
-
-The id of the author. This is required for confirming identity.

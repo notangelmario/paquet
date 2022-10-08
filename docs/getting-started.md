@@ -16,9 +16,12 @@ Here are the keys we use when displaying your app listing on Paquet:
 * `icons`
 * `screenshots` (soon)
 
-Also we use some non-standard keys to specify additional details:
-
-* `paquet_features`
-* `paquet_author_id`
-
 You can find more about manifest keys on the [manifest documentation](/docs/manifest.md)
+
+## Updating
+
+Paquet will periodically fetch new content using your manifest so you don't have to
+worry about submitting a new issue each time you update your app.
+
+We check for app updates pretty frequently so your users will notice the 
+changes you made pretty fast.
