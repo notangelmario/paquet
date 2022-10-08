@@ -19,14 +19,14 @@ for (const app of apps) {
 
 	if (!manifestUrl) continue;
 
-	console.log("Found ", app.name);
+	console.log("Found", app.name);
 
 	const manifest = await fetch(manifestUrl).then((res) => res.json());
 
 	const hash = await digest(JSON.stringify(manifest));
 
 	if (hash !== app?.manifest_hash) {
-		console.log("Updating ", app.name);
+		console.log("Updating", app.name);
 
 		await supabase.from<App>("apps")
 			.update({
