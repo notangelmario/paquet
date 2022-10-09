@@ -51,6 +51,13 @@ for (const app of apps) {
 							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
+					if (icon.sizes === "256x256" && !icon_large.length) {
+						if (icon.src.startsWith("http")) {
+							icon_large = icon.src;
+						} else {
+							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+						}
+					}
 					if (icon.sizes === "128x128" && !icon_small.length) {
 						if (icon.src.startsWith("http")) {
 							icon_small = icon.src;
@@ -68,17 +75,20 @@ for (const app of apps) {
 				}
 			} else continue;
 
-			if (!icon_large.length || !icon_small.length) continue
+			if (!icon_large.length || !icon_small.length) {
+				console.log("Icons not generated properly!");
+				continue
+			}
 
 			await supabase.from<App>("apps")
 				.update({
-					name: manifest?.name,
-					description: manifest?.description,
-					category: category,
-					author: manifest?.author,
-					manifest_hash: hash,
-					icon_large: icon_large,
-					icon_small: icon_small
+					name: manifest?.name || undefined,
+					description: manifest?.description || undefined,
+					category: category || undefined,
+					author: manifest?.author || undefined,
+					manifest_hash: hash || undefined,
+					icon_large: icon_large || undefined,
+					icon_small: icon_small || undefined
 				})
 				.eq("id", app.id);
 		} catch (e) {
