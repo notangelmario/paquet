@@ -27,15 +27,63 @@ for (const app of apps) {
 
 	if (hash !== app?.manifest_hash) {
 		console.log("Updating", app.name);
+		
+		let category = "";
+		let icon_large = "";
+		let icon_small = "";
 
-		await supabase.from<App>("apps")
-			.update({
-				name: manifest?.name,
-				description: manifest?.description,
-				author: manifest?.author,
-				manifest_hash: hash,
-			})
-			.eq("id", app.id);
+		try {
+			if (manifest.categories) {
+				category = (manifest.categories[0] as string).toLowerCase();
+			}
+
+			if (manifest.icons) {
+				for (const icon of manifest.icons) {
+					const manifestParent = manifestUrl.split("/");
+					manifestParent.pop();
+
+
+
+					if (icon.sizes === "512x512" && !icon_large.length) {
+						if (icon.src.startsWith("http")) {
+							icon_large = icon.src;
+						} else {
+							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+						}
+					}
+					if (icon.sizes === "128x128" && !icon_small.length) {
+						if (icon.src.startsWith("http")) {
+							icon_small = icon.src;
+						} else {
+							icon_small = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+						}
+					}
+					if (icon.sizes === "192x192" && !icon_small.length) {
+						if (icon.src.startsWith("http")) {
+							icon_small = icon.src;
+						} else {
+							icon_small = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+						}
+					}
+				}
+			} else continue;
+
+			if (!icon_large.length || !icon_small.length) continue
+
+			await supabase.from<App>("apps")
+				.update({
+					name: manifest?.name,
+					description: manifest?.description,
+					category: category,
+					author: manifest?.author,
+					manifest_hash: hash,
+					icon_large: icon_large,
+					icon_small: icon_small
+				})
+				.eq("id", app.id);
+		} catch (e) {
+			console.log(e);
+		}	
 	}
 }
 
@@ -45,4 +93,8 @@ async function digest(message: string) {
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
 	const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 	return hashHex;
+}
+
+function slashSlashes(string: string) {
+	return string.replace(/^\/|\/$/g, '');
 }
