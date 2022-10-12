@@ -58,6 +58,13 @@ for (const app of apps) {
 							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
+					if (icon.sizes === "192x192" && !icon_large.length) {
+						if (icon.src.startsWith("http")) {
+							icon_large = icon.src;
+						} else {
+							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+						}
+					}
 					if (icon.sizes === "128x128" && !icon_small.length) {
 						if (icon.src.startsWith("http")) {
 							icon_small = icon.src;
@@ -76,7 +83,7 @@ for (const app of apps) {
 			} else continue;
 
 			if (!icon_large.length || !icon_small.length) {
-				console.log("Icons not generated properly!");
+				console.warn("Icons not generated properly!");
 				continue
 			}
 
