@@ -13,6 +13,7 @@ import Features from "@/components/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
+import Icon from "../../components/Icon.tsx";
 
 type DataProps = {
 	app: App;
@@ -38,7 +39,19 @@ export default function App({ data }: PageProps<DataProps>) {
 								{data.app.name}
 							</h2>
 							<p class="opacity-50">
-								{data.app.author} &middot;{" "}
+								{data.app.author}
+								{data.app.verified &&
+									<> 
+										{" "}
+										<Icon
+											class="inline"
+											width={16}
+											height={16}
+											name="verified"
+										/>
+									</>
+								}
+								{" "}&middot;{" "}
 								{getCategory(data.app.category)?.name}
 							</p>
 						</div>
@@ -125,7 +138,7 @@ export default function App({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
-			"id, name, author, description, url, icon_large, features, category, github_url, gitlab_url",
+			"id, name, author, description, url, icon_large, features, category, github_url, gitlab_url, verified",
 		)
 		.eq("id", ctx.params.id)
 		.single();

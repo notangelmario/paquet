@@ -47,7 +47,7 @@ export default function Dialog(props: Props) {
 			<Card
 				class={`
 					text-black dark:text-white
-					!bg-white dark:!bg-dark
+					bg-white dark:bg-dark
 					w-full max-w-md mx-auto
 					!rounded-b-none
 					transition-transform duration-150 ease-in-out

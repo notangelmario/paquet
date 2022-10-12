@@ -27,6 +27,7 @@ export const AppSchema = z.object({
 
 	description: z.string().min(1).max(500),
 	category: z.string(),
+	verified: z.boolean(),
 
 	features: z.object({
 		desktop: z.boolean().default(false).optional(),
