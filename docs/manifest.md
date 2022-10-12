@@ -47,6 +47,7 @@ Here is an example:
 
 The values Paquet uses in your app listing are:
 * `name`
+* `author`
 * `description`
 * `categories`
 * `icons`
@@ -55,6 +56,12 @@ The values Paquet uses in your app listing are:
 ### `name`
 
 This is the name that is going to be used when showing your app.
+
+## `author`
+
+This is the name of the author. It is prefered to use the same
+names across multiple apps published to Paquet to share 
+verification status
 
 ### `description`
 
@@ -73,10 +80,19 @@ Here is a list of available categories:
 * development
 
 > Mind that if Paquet does not find any of the specified categories, the app will not be listed
+> in the category pages
 
 ### `icons`
 
-Paquet grabs the highest quality icon present. Maskable icons are prioritized.
+Paquet dynamically grab the high resolution icon and the low resolution icon.
+
+Paquet prioritized 512x512 and 128x128 icons, but 192x192 and 256x256 icons are
+also accepted.
+
+> Keep in mind that in future versions, Paquet will prioritize
+> 256x256 icons and 128x128 icons.
+
+> If the icons are not found the app will not be approved.
 
 ### `screenshots`
 

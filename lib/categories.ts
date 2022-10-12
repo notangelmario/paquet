@@ -36,5 +36,13 @@ export const CATEGORIES: Category[] = [
 export const getCategory = (
 	categoryId: Category["id"],
 ): Category | undefined => {
-	return CATEGORIES.find((category) => category.id === categoryId);
+	const foundCategory = CATEGORIES.find((category) => category.id === categoryId);
+	
+	if (foundCategory) return foundCategory;
+
+	let customCategory = categoryId[0].toUpperCase + categoryId.slice(1);
+	customCategory = customCategory.replace("_", " ");
+	customCategory = customCategory.replace("-", " ");
+
+	return customCategory;
 };
