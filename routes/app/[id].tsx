@@ -14,6 +14,7 @@ import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
 import Icon from "../../components/Icon.tsx";
+import Screenshots from "../../components/Screenshots.tsx";
 
 type DataProps = {
 	app: App;
@@ -82,6 +83,13 @@ export default function App({ data }: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 
+			{data.app.screenshots &&
+				<Screenshots 
+					class="mt-4"
+					screenshots={data.app.screenshots}
+				/>
+			}
+
 			{(data.app?.github_url || data.app?.gitlab_url) && (
 				<Container class="mt-4">
 					<AppLinks
@@ -138,7 +146,7 @@ export default function App({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
-			"id, name, author, description, url, icon_large, features, category, github_url, gitlab_url, verified",
+			"id, name, author, description, url, icon_large, screenshots, features, category, github_url, gitlab_url, verified",
 		)
 		.eq("id", ctx.params.id)
 		.single();

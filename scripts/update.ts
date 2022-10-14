@@ -1,6 +1,7 @@
 import "dotenv";
 import { createClient } from "supabase";
 import { App } from "@/types/App.ts";
+import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
 const supabase = createClient(
 	Deno.env.get("SUPABASE_URL")!,
@@ -21,14 +22,23 @@ for (const app of apps) {
 
 	console.log("Found", app.name);
 
-	const manifest = await fetch(manifestUrl).then((res) => res.json());
+	const manifest: WebAppManifest | undefined = await fetch(manifestUrl).then((res) => res.json());
 
 	const hash = await digest(JSON.stringify(manifest));
 
-	if (hash !== app?.manifest_hash) {
+	if (!manifest) {
+		console.log("Couldn't fetch manifest");
+		break;
+	}
+
+	if (hash === app?.manifest_hash) {
 		console.log("Updating", app.name);
 		
+		const manifestParent = manifestUrl.split("/");
+		manifestParent.pop();
+
 		let category = "";
+		const screenshots: string[] = [];
 		let icon_large = "";
 		let icon_small = "";
 
@@ -37,12 +47,18 @@ for (const app of apps) {
 				category = (manifest.categories[0] as string).toLowerCase();
 			}
 
+			if (manifest.screenshots) {
+				for (const screenshot of manifest.screenshots) {
+					if (screenshot.src.startsWith("http")) {
+						screenshots.push(screenshot.src);
+					} else {
+						screenshots.push(slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(screenshot.src))
+					}
+				}
+			}
+
 			if (manifest.icons) {
 				for (const icon of manifest.icons) {
-					const manifestParent = manifestUrl.split("/");
-					manifestParent.pop();
-
-
 
 					if (icon.sizes === "512x512" && !icon_large.length) {
 						if (icon.src.startsWith("http")) {
@@ -65,6 +81,7 @@ for (const app of apps) {
 							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
+					
 					if (icon.sizes === "128x128" && !icon_small.length) {
 						if (icon.src.startsWith("http")) {
 							icon_small = icon.src;
@@ -92,7 +109,9 @@ for (const app of apps) {
 					name: manifest?.name || undefined,
 					description: manifest?.description || undefined,
 					category: category || undefined,
-					author: manifest?.author || undefined,
+					// deno-lint-ignore no-explicit-any
+					author: (manifest as unknown as any)?.author || undefined,
+					screenshots: screenshots.length ? screenshots : undefined,
 					manifest_hash: hash || undefined,
 					icon_large: icon_large || undefined,
 					icon_small: icon_small || undefined

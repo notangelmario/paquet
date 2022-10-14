@@ -12,6 +12,8 @@ export const FeatureSchema = z.object({
 	name: z.string(),
 });
 
+// We use nullable instead of optional because Supabase
+// does not support undefined
 export const AppSchema = z.object({
 	id: z.string().uuid(),
 
@@ -24,6 +26,7 @@ export const AppSchema = z.object({
 
 	icon_small: z.string().url(),
 	icon_large: z.string().url(),
+	screenshots: z.array(z.string().url()).nullable(),
 
 	description: z.string().min(1).max(500),
 	category: z.string(),
