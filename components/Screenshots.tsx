@@ -10,7 +10,6 @@ interface Props {
 export default function Screenshots(props: Props) {
 	return (
 		<SlideContainer
-			snap
 			class={props.class}
 		>
 			{props.screenshots.map((screenshot, idx) => (
