@@ -31,7 +31,7 @@ for (const app of apps) {
 		break;
 	}
 
-	if (hash === app?.manifest_hash) {
+	if (hash !== app?.manifest_hash) {
 		console.log("Updating", app.name);
 		
 		const manifestParent = manifestUrl.split("/");
