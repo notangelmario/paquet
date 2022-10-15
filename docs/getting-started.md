@@ -11,10 +11,11 @@ details.
 Here are the keys we use when displaying your app listing on Paquet:
 
 * `name`
+* `author`
 * `description`
 * `categories`
 * `icons`
-* `screenshots` (soon)
+* `screenshots`
 
 You can find more about manifest keys on the [manifest documentation](/docs/manifest.md)
 

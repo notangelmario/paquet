@@ -51,7 +51,7 @@ The values Paquet uses in your app listing are:
 * `description`
 * `categories`
 * `icons`
-* `screenshots` (soon)
+* `screenshots`
 
 ### `name`
 
@@ -96,4 +96,4 @@ also accepted.
 
 ### `screenshots`
 
-Not yet implemented.
+We fetch for all screenshots no matter the size.
