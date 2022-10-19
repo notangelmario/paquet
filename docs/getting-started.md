@@ -3,7 +3,12 @@
 :wave: Hi! Here is how you can add your app to Paquet. Adding a new app
 is done by submiting an issue on our [GitHub repo](https://github.com/fructoland/paquet).
 
-## Using `manifest.json` (wip)
+## Using `manifest.json`
+
+### Requirements:
+* Service worker
+* Web app manifest
+* App icons
 
 You can use your `manifest.json` or `site.webmanifest` to specify the app listing
 details.
