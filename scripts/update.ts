@@ -31,7 +31,7 @@ for (const app of apps) {
 		break;
 	}
 
-	if (hash !== app?.manifest_hash) {
+	if (hash !== app?.manifest_hash || Deno.args[0] === "--force" ) {
 		console.log("Updating", app.name);
 		
 		const manifestParent = manifestUrl.split("/");
@@ -39,8 +39,9 @@ for (const app of apps) {
 
 		let category = "";
 		const screenshots: string[] = [];
-		let icon_large = "";
-		let icon_small = "";
+		const icons: string[] = [];
+		let icon_large_url = "";
+		let icon_small_url = "";
 
 		try {
 			if (manifest.categories) {
@@ -48,61 +49,115 @@ for (const app of apps) {
 			}
 
 			if (manifest.screenshots) {
-				for (const screenshot of manifest.screenshots) {
+				for (let i = 0; i < manifest.screenshots.length; i++) {
+					const screenshot = manifest.screenshots[i];
+					let url;
+
 					if (screenshot.src.startsWith("http")) {
-						screenshots.push(screenshot.src);
+						url = screenshot.src;
 					} else {
-						screenshots.push(slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(screenshot.src))
+						url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(screenshot.src);
+					}
+
+					const res = await fetch(url);
+
+					const { error } = await supabase.storage
+						.from("apps")
+						.upload(`${app.id}/screenshots/${i}.png`, await res.blob(), {
+							upsert: true
+						});
+
+					if (!error) {
+						const { data } = await supabase.storage
+							.from("apps")
+							.getPublicUrl(`${app.id}/screenshots/${i}.png`);
+						
+						if (data) {
+							screenshots.push(data?.publicURL)
+						} else {
+							console.error("Could not get public url!")
+						}
+					} else {
+						console.log(error);
 					}
 				}
 			}
 
 			if (manifest.icons) {
 				for (const icon of manifest.icons) {
-
-					if (icon.sizes === "512x512" && !icon_large.length) {
+					if (icon.sizes === "512x512" && !icon_large_url.length) {
 						if (icon.src.startsWith("http")) {
-							icon_large = icon.src;
+							icon_large_url = icon.src;
 						} else {
-							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+							icon_large_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
-					if (icon.sizes === "256x256" && !icon_large.length) {
+					if (icon.sizes === "256x256" && !icon_large_url.length) {
 						if (icon.src.startsWith("http")) {
-							icon_large = icon.src;
+							icon_large_url = icon.src;
 						} else {
-							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+							icon_large_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
-					if (icon.sizes === "192x192" && !icon_large.length) {
+					if (icon.sizes === "192x192" && !icon_large_url.length) {
 						if (icon.src.startsWith("http")) {
-							icon_large = icon.src;
+							icon_large_url = icon.src;
 						} else {
-							icon_large = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+							icon_large_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
 					
-					if (icon.sizes === "128x128" && !icon_small.length) {
+					if (icon.sizes === "128x128" && !icon_small_url.length) {
 						if (icon.src.startsWith("http")) {
-							icon_small = icon.src;
+							icon_small_url = icon.src;
 						} else {
-							icon_small = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+							icon_small_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
-					if (icon.sizes === "192x192" && !icon_small.length) {
+					if (icon.sizes === "192x192" && !icon_small_url.length) {
 						if (icon.src.startsWith("http")) {
-							icon_small = icon.src;
+							icon_small_url = icon.src;
 						} else {
-							icon_small = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+							icon_small_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 						}
 					}
 				}
 			} else continue;
 
-			if (!icon_large.length || !icon_small.length) {
+			if (!icon_large_url.length || !icon_small_url.length) {
 				console.warn("Icons not generated properly!");
 				continue
 			}
+
+			const iconsToFetch = [icon_small_url, icon_large_url];
+
+			for (let i = 0; i < iconsToFetch.length; i++) {
+				const icon = iconsToFetch[i];
+
+				const res = await fetch(icon);
+
+				const { error } = await supabase.storage
+					.from("apps")
+					.upload(`${app.id}/icons/${i}.png`, await res.blob(), {
+						upsert: true
+					});
+
+				if (!error) {
+					const { data } = await supabase.storage
+						.from("apps")
+						.getPublicUrl(`${app.id}/icons/${i}.png`);
+					
+					if (data) {
+						icons.push(data?.publicURL)
+					} else {
+						console.error("Could not get public url!")
+					}
+				} else {
+					console.log(error);
+				}
+			}
+			
+
 
 			await supabase.from<App>("apps")
 				.update({
@@ -113,8 +168,8 @@ for (const app of apps) {
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,
 					manifest_hash: hash || undefined,
-					icon_large: icon_large || undefined,
-					icon_small: icon_small || undefined
+					icon_large: icons[1] || undefined,
+					icon_small: icons[0] || undefined
 				})
 				.eq("id", app.id);
 		} catch (e) {
