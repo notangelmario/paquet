@@ -67,7 +67,7 @@ export default function InstallBanner() {
 	};
 
 	return (
-		<Card class={`${installed === true ? "" : "hidden"} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
+		<Card class={`${installed !== false ? "hidden" : ""} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
 			<Stack>
 				<h2 class="text-xl">Welcome to Paquet!</h2>
 				<p>
