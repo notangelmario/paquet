@@ -5,19 +5,28 @@ declare global {
 	}
 }
 
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import Button from "@/components/Button.tsx";
 import Card from "@/components/Card.tsx";
 import Stack from "@/components/Stack.tsx";
-import { useInstalled } from "@/hooks/useInstalled.ts";
 import Dialog from "@/islands/Dialog.tsx";
 import { useBrowser } from "@/hooks/useBrowser.ts";
 
 export default function InstallBanner() {
+	const [installed, setInstalled] = useState<boolean | undefined>(undefined);
 	const clientBrowser = useBrowser();
-	const installed = useInstalled();
 	const [dialogOpen, setDialogOpen] = useState(false);
+
+	useEffect(() => {
+		setInstalled(window.matchMedia("(display-mode: standalone)").matches);
+		console.log(window.matchMedia("(display-mode: standalone)").matches);
+
+		window.matchMedia("(display-mode: standalone)").addEventListener("change", (e) => {
+			setInstalled(e.matches);
+			console.log(e.matches);
+		})
+	}, []);
 
 	const onClickInstall = () => {
 		if (window.installPrompt) {
@@ -60,53 +69,51 @@ export default function InstallBanner() {
 		`;
 	};
 
-	return IS_BROWSER && !installed
-		? (
-			<Card class="!bg-gradient-to-tr from-primary to-secondary !text-white">
-				<Stack>
-					<h2 class="text-xl">Welcome to Paquet!</h2>
-					<p>
-						It looks like Paquet isn't installed yet. You can
-						install it by clicking the button below.
-					</p>
+	return (
+		<Card class={`${IS_BROWSER ? installed === true ? "" : "hidden" : "hidden"} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
+			<Stack>
+				<h2 class="text-xl">Welcome to Paquet!</h2>
+				<p>
+					It looks like Paquet isn't installed yet. You can
+					install it by clicking the button below.
+				</p>
+				<Button
+					fullWidth
+					outlined
+					onClick={onClickInstall}
+					icon="install_mobile"
+					iconProps={{
+						class: "filter invert",
+					}}
+				>
+					Install
+				</Button>
+				<a href="/about">
 					<Button
 						fullWidth
 						outlined
-						onClick={onClickInstall}
-						icon="install_mobile"
+						icon="info"
 						iconProps={{
 							class: "filter invert",
 						}}
 					>
-						Install
+						About
 					</Button>
-					<a href="/about">
-						<Button
-							fullWidth
-							outlined
-							icon="info"
-							iconProps={{
-								class: "filter invert",
-							}}
-						>
-							About
-						</Button>
-					</a>
-				</Stack>
-				<Dialog
-					title="Install Paquet"
-					content={installInstructions(clientBrowser)}
-					open={dialogOpen}
-					setOpen={setDialogOpen}
-					buttons={[
-						{
-							outlined: true,
-							text: "OK",
-							onClick: () => setDialogOpen(false),
-						},
-					]}
-				/>
-			</Card>
-		)
-		: <div class="-mb-2" />;
+				</a>
+			</Stack>
+			<Dialog
+				title="Install Paquet"
+				content={installInstructions(clientBrowser)}
+				open={dialogOpen}
+				setOpen={setDialogOpen}
+				buttons={[
+					{
+						outlined: true,
+						text: "OK",
+						onClick: () => setDialogOpen(false),
+					},
+				]}
+			/>
+		</Card>
+	)
 }

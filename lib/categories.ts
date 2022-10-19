@@ -27,9 +27,9 @@ export const CATEGORIES: Category[] = [
 		name: "Development",
 	},
 	{
-		id: "travel",
-		icon: "flight",
-		name: "Travel",
+		id: "lifestyle",
+		icon: "heart",
+		name: "Lifestyle",
 	},
 ];
 
@@ -40,9 +40,13 @@ export const getCategory = (
 	
 	if (foundCategory) return foundCategory;
 
-	let customCategory = categoryId[0].toUpperCase + categoryId.slice(1);
+	let customCategory = categoryId[0].toUpperCase() + categoryId.slice(1);
 	customCategory = customCategory.replace("_", " ");
 	customCategory = customCategory.replace("-", " ");
 
-	return customCategory;
+	return {
+		icon: "",
+		id: categoryId,
+		name: customCategory
+	};
 };

@@ -3,6 +3,7 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@/lib/supabase.ts";
+import { getCategory } from "@/lib/categories.ts";
 import { z, ZodError } from "zod";
 import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
@@ -58,7 +59,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 								key={app.id}
 								image={app.icon_small}
 								title={app.name}
-								subtitle={app.category}
+								subtitle={getCategory(app.category)?.name}
 								divider={idx !== data.apps.length - 1}
 							/>
 						</a>
