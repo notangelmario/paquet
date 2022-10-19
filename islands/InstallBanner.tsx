@@ -6,7 +6,6 @@ declare global {
 }
 
 import { useState, useEffect } from "preact/hooks";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import Button from "@/components/Button.tsx";
 import Card from "@/components/Card.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -68,7 +67,7 @@ export default function InstallBanner() {
 	};
 
 	return (
-		<Card class={`${IS_BROWSER ? installed === true ? "hidden" : "" : "hidden"} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
+		<Card class={`${installed === true ? "" : "hidden"} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
 			<Stack>
 				<h2 class="text-xl">Welcome to Paquet!</h2>
 				<p>
