@@ -68,7 +68,7 @@ export default function InstallBanner() {
 	};
 
 	return (
-		<Card class={`${IS_BROWSER ? installed === true ? "" : "hidden" : "hidden"} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
+		<Card class={`${IS_BROWSER ? installed === true ? "hidden" : "" : "hidden"} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
 			<Stack>
 				<h2 class="text-xl">Welcome to Paquet!</h2>
 				<p>
