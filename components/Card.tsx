@@ -7,6 +7,7 @@ export type Props = {
 export default function Card(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
 		<div
+			{...props}
 			class={`
 				bg-paper-light
 				dark:bg-paper-dark
@@ -15,8 +16,6 @@ export default function Card(props: Props & JSX.IntrinsicElements["div"]) {
 				${!props.disableGutters && "p-4"}
 				${props.class || ""}
 			`}
-		>
-			{props.children}
-		</div>
+		></div>
 	);
 }
