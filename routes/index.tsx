@@ -2,8 +2,8 @@ import type { PageProps } from "$fresh/server.ts";
 import type { App } from "@/types/App.ts";
 import type { Handler } from "@/types/Handler.ts";
 import { Head } from "$fresh/runtime.ts";
-import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
+import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 import { supabase } from "@/lib/supabase.ts";
 import { CATEGORIES, getCategory } from "@/lib/categories.ts";
@@ -15,8 +15,10 @@ import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
+import ImageCard from "@/components/ImageCard.tsx";
 
 type DataProps = {
+	randomCards?: App[];
 	randomApps?: App[];
 	randomCategory?: {
 		category: string;
@@ -36,10 +38,42 @@ export default function Home({ data }: PageProps<DataProps>) {
 			/>
 			<Stack>
 				<Container>
+					<Header
+						icon="home"
+					>
+						Home
+					</Header>
+				</Container>
+				<SlideContainer
+					snap
+				>
+					{data.randomCards?.map((app, idx) => (
+						<SlideItem 
+							key={idx}
+							isLast={data.randomApps && idx === data.randomApps.length - 1}
+						>
+							<a
+								href={`/app/${app.id}`}
+							>
+								<ImageCard
+									class="flex flex-col gap-y-4 w-64"
+									// Weird stuff man
+									image={(app.screenshots!)[0]}
+								>
+									<img 
+										src={app.icon_small}
+										class="rounded w-16 h-16"
+									/>
+									<h2 class="text-2xl">
+										{app.name}
+									</h2>
+								</ImageCard>
+							</a>
+						</SlideItem>
+					))}
+				</SlideContainer>
+				<Container>
 					<Stack>
-						<Header icon="home">
-							Home
-						</Header>
 						<form
 							action="/search"
 							method="GET"
@@ -164,8 +198,16 @@ export const handler: Handler = async (_, ctx) => {
 			"id, name, icon_small, category",
 		)
 		.limit(5);
+	
+	const { data: randomCards } = await supabase.from<App>("random_apps")
+		.select(
+			"id, name, icon_small, screenshots",
+		)
+		.not("screenshots", "is", null)
+		.limit(5);
 
 	return ctx.render({
+		randomCards,
 		randomApps,
 		randomCategory,
 	} as DataProps);

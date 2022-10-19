@@ -20,11 +20,9 @@ export default function InstallBanner() {
 
 	useEffect(() => {
 		setInstalled(window.matchMedia("(display-mode: standalone)").matches);
-		console.log(window.matchMedia("(display-mode: standalone)").matches);
 
 		window.matchMedia("(display-mode: standalone)").addEventListener("change", (e) => {
 			setInstalled(e.matches);
-			console.log(e.matches);
 		})
 	}, []);
 
