@@ -1,7 +1,7 @@
 import manifest from "@/fresh.gen.ts";
 import type { Handlers } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
-import { SitemapContext } from "fresh-seo";
+import { SitemapContext } from "fresh_seo";
 import { supabase } from "@/lib/supabase.ts";
 
 const excludedRoutes = [

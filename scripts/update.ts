@@ -2,6 +2,7 @@ import "dotenv";
 import { createClient } from "supabase";
 import { App } from "@/types/App.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
+import { resize } from "deno_image";
 
 const supabase = createClient(
 	Deno.env.get("SUPABASE_URL")!,
@@ -39,9 +40,7 @@ for (const app of apps) {
 
 		let category = "";
 		const screenshots: string[] = [];
-		const icons: string[] = [];
-		let icon_large_url = "";
-		let icon_small_url = "";
+		let icon_url = "";
 
 		try {
 			if (manifest.categories) {
@@ -85,79 +84,38 @@ for (const app of apps) {
 
 			if (manifest.icons) {
 				for (const icon of manifest.icons) {
-					if (icon.sizes === "512x512" && !icon_large_url.length) {
-						if (icon.src.startsWith("http")) {
-							icon_large_url = icon.src;
-						} else {
-							icon_large_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
-						}
-					}
-					if (icon.sizes === "256x256" && !icon_large_url.length) {
-						if (icon.src.startsWith("http")) {
-							icon_large_url = icon.src;
-						} else {
-							icon_large_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
-						}
-					}
-					if (icon.sizes === "192x192" && !icon_large_url.length) {
-						if (icon.src.startsWith("http")) {
-							icon_large_url = icon.src;
-						} else {
-							icon_large_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
-						}
-					}
-					
-					if (icon.sizes === "128x128" && !icon_small_url.length) {
-						if (icon.src.startsWith("http")) {
-							icon_small_url = icon.src;
-						} else {
-							icon_small_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
-						}
-					}
-					if (icon.sizes === "192x192" && !icon_small_url.length) {
-						if (icon.src.startsWith("http")) {
-							icon_small_url = icon.src;
-						} else {
-							icon_small_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+					for (const size of ["512x512", "256x256", "192x192"]) {
+						if (icon.sizes === size && !icon_url.length) {
+							if (icon.src.startsWith("http")) {
+								icon_url = icon.src;
+							} else {
+								icon_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+							}
 						}
 					}
 				}
 			} else continue;
 
-			if (!icon_large_url.length || !icon_small_url.length) {
-				console.warn("Icons not generated properly!");
+			if (!icon_url.length) {
+				console.error("Icon not found!");
 				continue
 			}
 
-			const iconsToFetch = [icon_small_url, icon_large_url];
 
-			for (let i = 0; i < iconsToFetch.length; i++) {
-				const icon = iconsToFetch[i];
+			const res = await fetch(icon_url);
+			const uint = new Uint8Array(await res.arrayBuffer())
 
-				const res = await fetch(icon);
+			const icon_large = await resize(uint, { width: 256, height: 256 });
+			const icon_small = await resize(uint, { width: 64, height: 64 });
 
-				const { error } = await supabase.storage
-					.from("apps")
-					.upload(`${app.id}/icons/${i}.png`, await res.blob(), {
-						upsert: true
-					});
+			const icon_large_url = await uploadAndGetUrl(app.id, icon_large, "icon_large");
+			const icon_small_url = await uploadAndGetUrl(app.id, icon_small, "icon_small");
+				
 
-				if (!error) {
-					const { data } = await supabase.storage
-						.from("apps")
-						.getPublicUrl(`${app.id}/icons/${i}.png`);
-					
-					if (data) {
-						icons.push(data?.publicURL)
-					} else {
-						console.error("Could not get public url!")
-					}
-				} else {
-					console.log(error);
-				}
+			if (!icon_large_url || !icon_small_url) {
+				console.error("Icons not generated properly!")
+				continue;
 			}
-			
-
 
 			await supabase.from<App>("apps")
 				.update({
@@ -168,8 +126,8 @@ for (const app of apps) {
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,
 					manifest_hash: hash || undefined,
-					icon_large: icons[1] || undefined,
-					icon_small: icons[0] || undefined
+					icon_large: icon_large_url || undefined,
+					icon_small: icon_small_url || undefined
 				})
 				.eq("id", app.id);
 		} catch (e) {
@@ -184,6 +142,30 @@ async function digest(message: string) {
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
 	const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 	return hashHex;
+}
+
+async function uploadAndGetUrl(id: string, uint: Uint8Array, name: string) {
+	const { error } = await supabase.storage
+		.from("apps")
+		.upload(`${id}/icons/${name}.png`, uint, {
+			upsert: true
+		});
+
+	if (!error) {
+		const { data } = await supabase.storage
+			.from("apps")
+			.getPublicUrl(`${id}/icons/${name}.png`);
+		
+		if (data) {
+			return data.publicURL;
+		} else {
+			console.error("Could not get public url!");
+			return null;
+		}
+	} else {
+		console.log(error);
+		return null;
+	}
 }
 
 function slashSlashes(string: string) {
