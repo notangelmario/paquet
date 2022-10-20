@@ -32,7 +32,7 @@ for (const app of apps) {
 		break;
 	}
 
-	if (hash !== app?.manifest_hash || Deno.args[0] === "--force" ) {
+	if (hash !== app?.manifest_hash || Deno.args[0] === "--force") {
 		console.log("Updating", app.name);
 		
 		const manifestParent = manifestUrl.split("/");
@@ -40,7 +40,8 @@ for (const app of apps) {
 
 		let category = "";
 		const screenshots: string[] = [];
-		let icon_url = "";
+		let icon_large_url = "";
+		let icon_small_url = "";
 
 		try {
 			if (manifest.categories) {
@@ -48,36 +49,11 @@ for (const app of apps) {
 			}
 
 			if (manifest.screenshots) {
-				for (let i = 0; i < manifest.screenshots.length; i++) {
-					const screenshot = manifest.screenshots[i];
-					let url;
-
+				for (const screenshot of manifest.screenshots) {
 					if (screenshot.src.startsWith("http")) {
-						url = screenshot.src;
+						screenshots.push(screenshot.src);
 					} else {
-						url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(screenshot.src);
-					}
-
-					const res = await fetch(url);
-
-					const { error } = await supabase.storage
-						.from("apps")
-						.upload(`${app.id}/screenshots/${i}.png`, await res.blob(), {
-							upsert: true
-						});
-
-					if (!error) {
-						const { data } = await supabase.storage
-							.from("apps")
-							.getPublicUrl(`${app.id}/screenshots/${i}.png`);
-						
-						if (data) {
-							screenshots.push(data?.publicURL)
-						} else {
-							console.error("Could not get public url!")
-						}
-					} else {
-						console.log(error);
+						screenshots.push(slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(screenshot.src))
 					}
 				}
 			}
@@ -85,37 +61,36 @@ for (const app of apps) {
 			if (manifest.icons) {
 				for (const icon of manifest.icons) {
 					for (const size of ["512x512", "256x256", "192x192"]) {
-						if (icon.sizes === size && !icon_url.length) {
+						if (icon.sizes === size && !icon_large_url.length) {
 							if (icon.src.startsWith("http")) {
-								icon_url = icon.src;
+								icon_large_url = icon.src;
 							} else {
-								icon_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+								icon_large_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+							}
+						}
+					}
+					for (const size of ["192x192", "128x128"]) {
+						if (icon.sizes === size && !icon_small_url.length) {
+							if (icon.src.startsWith("http")) {
+								icon_small_url = icon.src;
+							} else {
+								icon_small_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
 							}
 						}
 					}
 				}
 			} else continue;
 
-			if (!icon_url.length) {
-				console.error("Icon not found!");
+			if (!icon_large_url.length || !icon_large_url.length) {
+				console.warn("Icons not generated properly!");
 				continue
 			}
 
+			const icon_small_blob = await fetch(icon_small_url).then((res) => res.blob())
+			const icon_large_blob = await fetch(icon_large_url).then((res) => res.blob())
 
-			const res = await fetch(icon_url);
-			const uint = new Uint8Array(await res.arrayBuffer())
-
-			const icon_large = await resize(uint, { width: 256, height: 256 });
-			const icon_small = await resize(uint, { width: 64, height: 64 });
-
-			const icon_large_url = await uploadAndGetUrl(app.id, icon_large, "icon_large");
-			const icon_small_url = await uploadAndGetUrl(app.id, icon_small, "icon_small");
-				
-
-			if (!icon_large_url || !icon_small_url) {
-				console.error("Icons not generated properly!")
-				continue;
-			}
+			const icon_large = await uploadAndGetUrl(app.id, icon_large_blob, "icon_large");
+			const icon_small = await uploadAndGetUrl(app.id, icon_small_blob, "icon_small");
 
 			await supabase.from<App>("apps")
 				.update({
@@ -126,8 +101,8 @@ for (const app of apps) {
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,
 					manifest_hash: hash || undefined,
-					icon_large: icon_large_url || undefined,
-					icon_small: icon_small_url || undefined
+					icon_large: icon_large || undefined,
+					icon_small: icon_small || undefined
 				})
 				.eq("id", app.id);
 		} catch (e) {
