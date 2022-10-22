@@ -4,7 +4,7 @@ import type { Handler } from "@/types/Handler.ts";
 import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
 
-import { type App, AppSchema } from "@/types/App.ts";
+import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -33,7 +33,7 @@ export default function App({ data }: PageProps<DataProps>) {
 					<div class="flex flex-row flex-wrap gap-4">
 						<img
 							class="rounded w-20 h-20"
-							src={data.app.icon_large}
+							src={data.app.icon}
 						/>
 						<div class="flex-1">
 							<h2 class="text-3xl">
@@ -146,24 +146,13 @@ export default function App({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const { data: app } = await supabase.from<App>("apps")
 		.select(
-			"id, name, author, description, url, icon_large, screenshots, features, category, github_url, gitlab_url, verified",
+			"id, name, author, description, url, icon, screenshots, features, category, github_url, gitlab_url, verified",
 		)
 		.eq("id", ctx.params.id)
 		.single();
 
 	if (!app) {
 		return new Response("Not found", {
-			status: 307,
-			headers: {
-				Location: "/app/error",
-			},
-		});
-	}
-
-	const appValidation = AppSchema.partial().safeParse(app);
-
-	if (!appValidation.success) {
-		return new Response("Invalid app details", {
 			status: 307,
 			headers: {
 				Location: "/app/error",

@@ -4,17 +4,14 @@ import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
-import { z, ZodError } from "zod";
 import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
-import Icon from "@/components/Icon.tsx";
 
 type DataProps = {
 	apps: App[];
-	error?: ZodError<string>;
 };
 
 export default function Search({ data, url }: PageProps<DataProps>) {
@@ -34,18 +31,6 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 					<SearchBar
 						text={url.searchParams.get("q") || ""}
 					/>
-					{data.error && (
-						<p class="text-red-500">
-							<Icon
-								name="error"
-								width={18}
-								height={18}
-								error
-								inline
-							/>{" "}
-							{data.error.issues[0].message}
-						</p>
-					)}
 				</form>
 			</Container>
 			<Container
@@ -74,14 +59,9 @@ export const handler: Handler = async (req, ctx) => {
 	const searchParams = new URLSearchParams(req.url.split("?")[1]);
 	const query = searchParams.get("q");
 
-	const querySchema = z.string().min(3).max(50);
-
-	const queryValidation = querySchema.safeParse(query);
-
-	if (!queryValidation.success) {
+	if (!query) {
 		return ctx.render({
 			apps: [],
-			error: queryValidation.error,
 		});
 	}
 

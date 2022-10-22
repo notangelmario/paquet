@@ -1,50 +1,47 @@
-import { z } from "zod";
+export interface Category {
+	id: string,
+	icon: string,
+	name: string,
+}
 
-export const CategorySchema = z.object({
-	id: z.string(),
-	icon: z.string(),
-	name: z.string(),
-});
+export interface Feature {
+	id: string,
+	icon: string,
+	name: string,
+}
 
-export const FeatureSchema = z.object({
-	id: z.string(),
-	icon: z.string(),
-	name: z.string(),
-});
-
-// We use nullable instead of optional because Supabase
+// We use null instead of optional because Supabase
 // does not support undefined
-export const AppSchema = z.object({
-	id: z.string().uuid(),
 
-	name: z.string().min(1).max(50),
-	author: z.string().min(1).max(50),
-	url: z.string().url(),
-	manifest_url: z.string().url().endsWith(".webmanifest")
-		.or(z.string().url().endsWith(".json")).nullable(),
-	manifest_hash: z.string(),
+export interface App {
+	id: string,
 
-	icon_small: z.string().url(),
-	icon_large: z.string().url(),
-	screenshots: z.array(z.string().url()).nullable(),
+	name: string,
+	author: string,
+	url: string,
+	manifest_url: string,
+	manifest_hash: string,
 
-	description: z.string().min(1).max(500),
-	category: z.string(),
-	verified: z.boolean(),
+	/** @deprecated deprecated in favor of icon */
+	icon_small: string,
+	/** @deprecated deprecated in favor of icon */
+	icon_large: string,
+	icon: string,
+	screenshots: string[] | null,
 
-	features: z.object({
-		desktop: z.boolean().default(false).optional(),
-		mobile: z.boolean().default(false).optional(),
-		offline: z.boolean().default(false).optional(),
-		openSource: z.boolean().default(false).optional(),
-	}).nullable(),
+	description: string,
+	category: string,
+	verified: boolean,
 
-	github_url: z.string().url().startsWith("https://github.com/").nullable(),
-	gitlab_url: z.string().url().startsWith("https://gitlab.com/").nullable(),
+	features: {
+		desktop?: boolean,
+		mobile?: boolean,
+		offline?: boolean,
+		openSource?: boolean,
+	} | null,
 
-	approved: z.boolean().default(false),
-});
+	github_url: string | null,
+	gitlab_url: string | null,
 
-export type App = z.infer<typeof AppSchema>;
-export type Category = z.infer<typeof CategorySchema>;
-export type Feature = z.infer<typeof FeatureSchema>;
+	approved: boolean,
+}

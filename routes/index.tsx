@@ -61,7 +61,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 									image={(app.screenshots!)[0]}
 								>
 									<img 
-										src={app.icon_small}
+										src={app.icon}
 										class="rounded w-16 h-16"
 									/>
 									<h2 class="text-2xl">
@@ -121,7 +121,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 										<ListItem
 											button
 											key={app.id}
-											image={app.icon_small}
+											image={app.icon}
 											title={app.name}
 											subtitle={getCategory(app.category)
 												?.name}
@@ -154,7 +154,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 										<ListItem
 											button
 											key={app.id}
-											image={app.icon_small}
+											image={app.icon}
 											title={app.name}
 											subtitle={app.author}
 											divider={data.randomCategory
@@ -181,7 +181,7 @@ export const handler: Handler = async (_, ctx) => {
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 	const { data: randomCategoryApps } = await supabase.from<App>("random_apps")
-		.select("id, name, icon_small, author, category")
+		.select("id, name, icon, author, category")
 		.eq("category", randomCategoryId)
 		.limit(5);
 
@@ -195,13 +195,13 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: randomApps } = await supabase.from<App>("random_apps")
 		.select(
-			"id, name, icon_small, category",
+			"id, name, icon, category",
 		)
 		.limit(5);
 	
 	const { data: randomCards } = await supabase.from<App>("random_apps")
 		.select(
-			"id, name, icon_small, screenshots",
+			"id, name, icon, screenshots",
 		)
 		.not("screenshots", "is", null)
 		.limit(5);

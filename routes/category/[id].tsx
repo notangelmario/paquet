@@ -41,7 +41,7 @@ export default function Category({ data }: PageProps<DataProps>) {
 					>
 						<ListItem
 							button
-							image={app.icon_small}
+							image={app.icon}
 							title={app.name}
 							subtitle={app.author}
 							divider={idx !== data.apps.length - 1}
@@ -70,7 +70,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: apps } = await supabase
 		.from<App>("apps")
-		.select("id, name, icon_small, author")
+		.select("id, name, icon, author")
 		.eq("category", category);
 
 	if (!apps) {
