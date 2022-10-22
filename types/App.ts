@@ -19,19 +19,19 @@ export interface App {
 	name: string,
 	author: string,
 	url: string,
-	manifest_url: string,
-	manifest_hash: string,
+	screenshots: string[] | null,
 
+	description: string,
+	category: string,
+	
 	/** @deprecated deprecated in favor of icon */
 	icon_small: string,
 	/** @deprecated deprecated in favor of icon */
 	icon_large: string,
 	icon: string,
-	screenshots: string[] | null,
 
-	description: string,
-	category: string,
-	verified: boolean,
+	manifest_url: string,
+	manifest_hash: string,
 
 	features: {
 		desktop?: boolean,
@@ -39,6 +39,8 @@ export interface App {
 		offline?: boolean,
 		openSource?: boolean,
 	} | null,
+
+	verified: boolean,
 
 	github_url: string | null,
 	gitlab_url: string | null,

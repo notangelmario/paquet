@@ -2,7 +2,6 @@ import "dotenv";
 import { createClient } from "supabase";
 import { App } from "@/types/App.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
-// import { resize } from "deno_image";
 
 const supabase = createClient(
 	Deno.env.get("SUPABASE_URL")!,
