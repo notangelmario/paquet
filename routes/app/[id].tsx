@@ -42,17 +42,17 @@ export default function App({ data }: PageProps<DataProps>) {
 							<p class="opacity-50">
 								{data.app.author}
 								{data.app.verified &&
-									<> 
-										{" "}
-										<Icon
-											class="inline"
-											width={16}
-											height={16}
-											name="verified"
-										/>
-									</>
-								}
-								{" "}&middot;{" "}
+									(
+										<>
+											{" "}
+											<Icon
+												class="inline"
+												width={16}
+												height={16}
+												name="verified"
+											/>
+										</>
+									)} &middot;{" "}
 								{getCategory(data.app.category)?.name}
 							</p>
 						</div>
@@ -84,11 +84,12 @@ export default function App({ data }: PageProps<DataProps>) {
 			</Container>
 
 			{data.app.screenshots &&
-				<Screenshots 
-					class="mt-4"
-					screenshots={data.app.screenshots}
-				/>
-			}
+				(
+					<Screenshots
+						class="mt-4"
+						screenshots={data.app.screenshots}
+					/>
+				)}
 
 			{(data.app?.github_url || data.app?.gitlab_url) && (
 				<Container class="mt-4">

@@ -17,6 +17,7 @@ export default function Card(props: Props & JSX.IntrinsicElements["div"]) {
 				${!props.disableGutters && "p-4"}
 				${props.class || ""}
 			`}
-		></div>
+		>
+		</div>
 	);
 }

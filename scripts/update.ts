@@ -26,7 +26,9 @@ for (const app of apps) {
 
 	console.log("Found", app.name);
 
-	const manifest: WebAppManifest | undefined = await fetch(manifestUrl).then((res) => res.json());
+	const manifest: WebAppManifest | undefined = await fetch(manifestUrl).then((
+		res,
+	) => res.json());
 
 	const hash = await digest(JSON.stringify(manifest));
 
@@ -37,7 +39,7 @@ for (const app of apps) {
 
 	if (hash !== app?.manifest_hash || Deno.args[0] === "--force") {
 		console.log("Updating", app.name);
-		
+
 		const manifestParent = manifestUrl.split("/");
 		manifestParent.pop();
 
@@ -56,21 +58,27 @@ for (const app of apps) {
 					if (screenshot.src.startsWith("http")) {
 						screenshots_source.push(screenshot.src);
 					} else if (screenshot.src.startsWith("/")) {
-						screenshots_source.push(slashSlashes(app.url) + "/" + slashSlashes(screenshot.src)); 
+						screenshots_source.push(
+							slashSlashes(app.url) + "/" +
+								slashSlashes(screenshot.src),
+						);
 					} else {
-						screenshots_source.push(slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(screenshot.src));
+						screenshots_source.push(
+							slashSlashes(manifestParent.join("/")) + "/" +
+								slashSlashes(screenshot.src),
+						);
 					}
 				}
 			}
 
 			if (manifest.icons) {
-				let icons: WebAppManifest["icons"] = []
+				let icons: WebAppManifest["icons"] = [];
 				const maskable_icons = manifest.icons
 					.filter((a) => {
 						if (!a.sizes) return false;
 
 						if (!ICONS_SIZES.includes(a.sizes)) return false;
-						return a.purpose?.startsWith("maskable")
+						return a.purpose?.startsWith("maskable");
 					});
 
 				if (maskable_icons.length) {
@@ -85,9 +93,12 @@ for (const app of apps) {
 							if (icon.src.startsWith("http")) {
 								icon_url = icon.src;
 							} else if (icon.src.startsWith("/")) {
-								icon_url = slashSlashes(app.url) + "/" + slashSlashes(icon.src); 
+								icon_url = slashSlashes(app.url) + "/" +
+									slashSlashes(icon.src);
 							} else {
-								icon_url = slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src)
+								icon_url =
+									slashSlashes(manifestParent.join("/")) +
+									"/" + slashSlashes(icon.src);
 							}
 						}
 					}
@@ -100,32 +111,37 @@ for (const app of apps) {
 			if (!icon_url.length) {
 				console.warn("Icons not fetched properly!");
 				appsWithError.push(app.name);
-				continue
+				continue;
 			}
 
 			console.log(icon_url);
 			const icon_blob = await fetch(icon_url, {
 				headers: {
-					"Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8"
-				}
-			}).then(res => res.blob());
+					"Accept":
+						"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+				},
+			}).then((res) => res.blob());
 
 			const icon = await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
 
 			for (let i = 0; i < screenshots_source.length; i++) {
 				const blob = await fetch(screenshots_source[i], {
 					headers: {
-						"Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8"
-					}
+						"Accept":
+							"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+					},
 				}).then((res) => res.blob());
-				
-				const screenshot = await uploadAndGetUrl(app.id, blob, `screenshots/${i}`);
+
+				const screenshot = await uploadAndGetUrl(
+					app.id,
+					blob,
+					`screenshots/${i}`,
+				);
 
 				if (screenshot) {
 					screenshots.push(screenshot);
 				}
 			}
-
 
 			await supabase.from<App>("apps")
 				.update({
@@ -142,7 +158,7 @@ for (const app of apps) {
 		} catch (e) {
 			console.log(e);
 			appsWithError.push(app.name);
-		}	
+		}
 	}
 }
 
@@ -153,7 +169,9 @@ async function digest(message: string) {
 	const msgUint8 = new TextEncoder().encode(message);
 	const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
-	const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+	const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join(
+		"",
+	);
 	return hashHex;
 }
 
@@ -161,14 +179,14 @@ async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
 	const { error } = await supabase.storage
 		.from("apps")
 		.upload(`${id}/${name}.png`, uint, {
-			upsert: true
+			upsert: true,
 		});
 
 	if (!error) {
 		const { data } = await supabase.storage
 			.from("apps")
 			.getPublicUrl(`${id}/${name}.png`);
-		
+
 		if (data) {
 			return data.publicURL;
 		} else {
@@ -182,5 +200,5 @@ async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
 }
 
 function slashSlashes(string: string) {
-	return string.replace(/^\/|\/$/g, '');
+	return string.replace(/^\/|\/$/g, "");
 }

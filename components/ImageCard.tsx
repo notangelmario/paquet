@@ -7,10 +7,8 @@ interface Props {
 
 export default function ImageCard(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
-		<Card
-			class="relative"
-		>
-			<img 
+		<Card class="relative">
+			<img
 				src={props.image}
 				class="absolute top-0 left-0 w-full h-full opacity-25 object-cover"
 			/>
@@ -20,5 +18,5 @@ export default function ImageCard(props: Props & JSX.IntrinsicElements["div"]) {
 				{props.children}
 			</div>
 		</Card>
-	)
+	);
 }

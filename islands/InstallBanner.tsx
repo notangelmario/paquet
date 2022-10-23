@@ -5,7 +5,7 @@ declare global {
 	}
 }
 
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import Button from "@/components/Button.tsx";
 import Card from "@/components/Card.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -20,9 +20,12 @@ export default function InstallBanner() {
 	useEffect(() => {
 		setInstalled(window.matchMedia("(display-mode: standalone)").matches);
 
-		window.matchMedia("(display-mode: standalone)").addEventListener("change", (e) => {
-			setInstalled(e.matches);
-		})
+		window.matchMedia("(display-mode: standalone)").addEventListener(
+			"change",
+			(e) => {
+				setInstalled(e.matches);
+			},
+		);
 	}, []);
 
 	const onClickInstall = () => {
@@ -67,12 +70,16 @@ export default function InstallBanner() {
 	};
 
 	return (
-		<Card class={`${installed !== false ? "hidden" : ""} !bg-gradient-to-tr from-primary to-secondary !text-white`}>
+		<Card
+			class={`${
+				installed !== false ? "hidden" : ""
+			} !bg-gradient-to-tr from-primary to-secondary !text-white`}
+		>
 			<Stack>
 				<h2 class="text-xl">Welcome to Paquet!</h2>
 				<p>
-					It looks like Paquet isn't installed yet. You can
-					install it by clicking the button below.
+					It looks like Paquet isn't installed yet. You can install it
+					by clicking the button below.
 				</p>
 				<Button
 					fullWidth
@@ -112,5 +119,5 @@ export default function InstallBanner() {
 				]}
 			/>
 		</Card>
-	)
+	);
 }

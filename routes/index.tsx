@@ -38,9 +38,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 			/>
 			<Stack>
 				<Container>
-					<Header
-						icon="home"
-					>
+					<Header icon="home">
 						Home
 					</Header>
 				</Container>
@@ -48,9 +46,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 					snap
 				>
 					{data.randomCards?.map((app, idx) => (
-						<SlideItem 
+						<SlideItem
 							key={idx}
-							isLast={data.randomApps && idx === data.randomApps.length - 1}
+							isLast={data.randomApps &&
+								idx === data.randomApps.length - 1}
 						>
 							<a
 								href={`/app/${app.id}`}
@@ -60,7 +59,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 									// Weird stuff man
 									image={(app.screenshots!)[0]}
 								>
-									<img 
+									<img
 										src={app.icon}
 										class="rounded w-16 h-16"
 									/>
@@ -198,7 +197,7 @@ export const handler: Handler = async (_, ctx) => {
 			"id, name, icon, category",
 		)
 		.limit(5);
-	
+
 	const { data: randomCards } = await supabase.from<App>("random_apps")
 		.select(
 			"id, name, icon, screenshots",
