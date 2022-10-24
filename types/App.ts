@@ -33,12 +33,7 @@ export interface App {
 	manifest_url: string;
 	manifest_hash: string;
 
-	features: {
-		desktop?: boolean;
-		mobile?: boolean;
-		offline?: boolean;
-		openSource?: boolean;
-	} | null;
+	features: string[] | null;
 
 	verified: boolean;
 

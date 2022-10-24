@@ -13,8 +13,8 @@ import Features from "@/components/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
-import Icon from "../../components/Icon.tsx";
-import Screenshots from "../../components/Screenshots.tsx";
+import Icon from "@/components/Icon.tsx";
+import Screenshots from "@/components/Screenshots.tsx";
 
 type DataProps = {
 	app: App;

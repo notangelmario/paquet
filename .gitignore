@@ -10,3 +10,6 @@
 
 # Sublime
 *.sublime-workspace
+
+# Temp
+app_features.json
