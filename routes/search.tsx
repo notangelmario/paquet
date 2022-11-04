@@ -12,6 +12,7 @@ import SearchBar from "@/components/SearchBar.tsx";
 
 type DataProps = {
 	apps: App[];
+	moreApps: App[];
 };
 
 export default function Search({ data, url }: PageProps<DataProps>) {
@@ -23,7 +24,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 			<Navbar
 				back
 			/>
-			<Container class="mt-16">
+			<Container class="mt-16 mb-4">
 				<form
 					action="/search"
 					method="GET"
@@ -34,22 +35,40 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 				</form>
 			</Container>
 			<Container
+				class="mb-4"
 				disableGutters
 			>
-				<Stack>
-					{data.apps.map((app: App, idx: number) => (
-						<a href={`/app/${app.id}`}>
-							<ListItem
-								button
-								key={app.id}
-								image={app.icon_small}
-								title={app.name}
-								subtitle={getCategory(app.category)?.name}
-								divider={idx !== data.apps.length - 1}
-							/>
-						</a>
-					))}
-				</Stack>
+				{data.apps.map((app: App, idx: number) => (
+					<a href={`/app/${app.id}`}>
+						<ListItem
+							button
+							key={app.id}
+							image={app.icon}
+							title={app.name}
+							subtitle={getCategory(app.category)?.name}
+							divider={idx !== data.apps.length - 1}
+						/>
+					</a>
+				))}
+			</Container>
+			<Container>
+				<h2 class="text-2xl">
+					More apps
+				</h2>
+			</Container>
+			<Container disableGutters>
+				{data.moreApps && data.moreApps.map((app: App, idx: number) => (
+					<a href={`/app/${app.id}`}>
+						<ListItem
+							button
+							key={app.id}
+							image={app.icon}
+							title={app.name}
+							subtitle={getCategory(app.category)?.name}
+							divider={idx !== data.moreApps.length - 1}
+						/>
+					</a>
+				))}
 			</Container>
 		</>
 	);
@@ -67,9 +86,27 @@ export const handler: Handler = async (req, ctx) => {
 
 	const { data: apps } = await supabase.rpc("search_app", {
 		search_term: query,
-	}).select("id, name, icon_small, category");
+	}).select("id, name, icon, category");
+
+
+	let moreApps: App[] = [];
+	if (apps && apps.length < 10) {
+		const { data } = await supabase
+			.from("random_apps")
+			.select("id, name, category, icon")
+			// Unsolved bug from supabase requires us to use this
+			// method to exclude apps from the search
+			// See https://github.com/supabase/supabase/discussions/2055#discussioncomment-923451
+			.not("id", "in", `(${apps.map((app) => app.id).join(",")})`)
+			.limit(5);
+
+		if (data && data.length > 0) {
+			moreApps = data;
+		}
+	}
 
 	return ctx.render({
 		apps,
+		moreApps
 	});
 };
