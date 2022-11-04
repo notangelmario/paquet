@@ -2,10 +2,6 @@ import Container from "@/components/Container.tsx";
 
 const LINKS = [
 	{
-		title: "About",
-		href: "/about",
-	},
-	{
 		title: "Settings",
 		href: "/settings",
 	},
@@ -49,6 +45,18 @@ export default function Footer() {
 						<img
 							src="/icons/supabase.svg"
 							alt="Made with Supabase"
+							class="w-8 h-8 dark:(filter invert)"
+						/>
+					</a>
+					<a
+						href="https://discord.gg/DXKe9aSZh6"
+						target="_blank"
+						rel="noreferrer noopener"
+						aria-label="Discord"
+					>
+						<img
+							src="/icons/discord.svg"
+							alt="Discord"
 							class="w-8 h-8 dark:(filter invert)"
 						/>
 					</a>

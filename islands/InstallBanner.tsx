@@ -92,18 +92,6 @@ export default function InstallBanner() {
 				>
 					Install
 				</Button>
-				<a href="/about">
-					<Button
-						fullWidth
-						outlined
-						icon="info"
-						iconProps={{
-							class: "filter invert",
-						}}
-					>
-						About
-					</Button>
-				</a>
 			</Stack>
 			<Dialog
 				title="Install Paquet"
