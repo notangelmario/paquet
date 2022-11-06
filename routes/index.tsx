@@ -13,6 +13,7 @@ import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
 import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
+import Announcement from "@/components/Announcement.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/ImageCard.tsx";
@@ -80,6 +81,11 @@ export default function Home({ data }: PageProps<DataProps>) {
 							<SearchBar />
 						</form>
 						<InstallBanner />
+						<Announcement>
+							Paquet will move from <a href="https://paquet.shop" class="text-primary">paquet.shop</a> to {" "}
+							<a href="https://paquet.fructo.land" class="text-primary">paquet.fructo.land</a>. Make sure
+							to reinstall the app using the new address.
+						</Announcement>
 					</Stack>
 				</Container>
 				<SlideContainer
