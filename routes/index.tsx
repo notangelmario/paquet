@@ -83,8 +83,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 						<InstallBanner />
 						<Announcement>
 							Paquet will move from <a href="https://paquet.shop" class="text-primary">paquet.shop</a> to {" "}
-							<a href="https://paquet.fructo.land" class="text-primary">paquet.fructo.land</a>. Make sure
-							to reinstall the app using the new address.
+							<a href="https://paquet.fructo.land" class="text-primary">paquet.fructo.land</a> on June 25th 2022.
+							The original address will become unactive. Make sure to reinstall the app using the new address.
 						</Announcement>
 					</Stack>
 				</Container>
