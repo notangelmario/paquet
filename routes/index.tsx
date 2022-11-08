@@ -185,7 +185,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (req, ctx) => {
-	const newOrigin = new URL(req.url).origin === "paquet.fructo.land";
+	const newOrigin = new URL(req.url).hostname === "paquet.fructo.land";
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 	const { data: randomCategoryApps } = await supabase.from<App>("random_apps")
