@@ -19,6 +19,7 @@ import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/ImageCard.tsx";
 
 type DataProps = {
+	newOrigin: boolean;
 	randomCards?: App[];
 	randomApps?: App[];
 	randomCategory?: {
@@ -81,11 +82,12 @@ export default function Home({ data }: PageProps<DataProps>) {
 							<SearchBar />
 						</form>
 						<InstallBanner />
-						<Announcement>
-							Paquet will move from <a href="https://paquet.shop" class="text-primary">paquet.shop</a> to {" "}
-							<a href="https://paquet.fructo.land" class="text-primary">paquet.fructo.land</a> on June 25th 2022.
-							The original address will become unactive. Make sure to reinstall the app using the new address.
-						</Announcement>
+						{ !data.newOrigin &&
+							<Announcement> Paquet will move from <a href="https://paquet.shop" class="text-primary">paquet.shop</a> to {" "}
+								<a href="https://paquet.fructo.land" class="text-primary">paquet.fructo.land</a> on June 25th 2022.
+								The original address will become unactive. Make sure to reinstall the app using the new address.
+							</Announcement>
+						}
 					</Stack>
 				</Container>
 				<SlideContainer
@@ -182,7 +184,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handler = async (_, ctx) => {
+export const handler: Handler = async (req, ctx) => {
+	const newOrigin = new URL(req.url).origin === "paquet.fructo.land";
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 	const { data: randomCategoryApps } = await supabase.from<App>("random_apps")
@@ -212,6 +215,7 @@ export const handler: Handler = async (_, ctx) => {
 		.limit(5);
 
 	return ctx.render({
+		newOrigin,
 		randomCards,
 		randomApps,
 		randomCategory,
