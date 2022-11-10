@@ -37,4 +37,6 @@ export interface App {
 	gitlab_url: string | null;
 
 	approved: boolean;
+	
+	addedOn: number;
 }

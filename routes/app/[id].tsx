@@ -15,6 +15,7 @@ import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
 import Icon from "@/components/Icon.tsx";
 import Screenshots from "@/components/Screenshots.tsx";
+import VerifiedBanner from "@/components/VerifiedBanner.tsx";
 
 type DataProps = {
 	app: App;
@@ -39,7 +40,9 @@ export default function App({ data }: PageProps<DataProps>) {
 							<h2 class="text-3xl">
 								{data.app.name}
 							</h2>
-							<p class="opacity-50">
+							<p 
+								class="opacity-50" 
+							>
 								{data.app.author}
 								{data.app.verified &&
 									(
@@ -79,6 +82,12 @@ export default function App({ data }: PageProps<DataProps>) {
 							{data.app.description}
 						</p>
 					</div>
+					{data.app.verified && (
+						<VerifiedBanner 
+							appName={data.app.name}
+						/>
+					)}
+
 					<Divider inset />
 				</Stack>
 			</Container>

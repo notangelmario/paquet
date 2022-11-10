@@ -4,7 +4,6 @@ import type { Handler } from "@/types/Handler.ts";
 import type { App } from "@/types/App.ts";
 import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
-import Stack from "@/components/Stack.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
@@ -38,7 +37,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 				class="mb-4"
 				disableGutters
 			>
-				{data.apps.map((app: App, idx: number) => (
+				{data.apps.length ? data.apps.map((app: App, idx: number) => (
 					<a href={`/app/${app.id}`}>
 						<ListItem
 							button
@@ -49,7 +48,9 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 							divider={idx !== data.apps.length - 1}
 						/>
 					</a>
-				))}
+				)) : (
+					<p class="text-center opacity-50">No results found</p>
+				)}
 			</Container>
 			<Container>
 				<h2 class="text-2xl">

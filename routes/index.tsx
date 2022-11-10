@@ -175,7 +175,6 @@ export default function Home({ data }: PageProps<DataProps>) {
 							</Container>
 						</div>
 					)}
-
 				<Container class="mt-4">
 					<FewApps />
 				</Container>
