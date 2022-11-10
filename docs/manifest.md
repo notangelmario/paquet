@@ -69,7 +69,8 @@ This is the description that will be shown on your app listing.
 
 ### `categories`
 
-This is usually an array of categories. Paquet only fetches the first value that matches any of the list of available categories.
+This is usually an array of categories. ~Paquet only fetches the first value that matches any of the list of available categories~.
+Paquet now fetches and uses the first category found in the list of available categories.
 
 Here is a list of available categories:
 * utilities

@@ -1,5 +1,6 @@
 import "dotenv";
 import { createClient } from "supabase";
+import { CATEGORIES } from "@/lib/categories.ts";
 import { App } from "@/types/App.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
@@ -50,7 +51,12 @@ for (const app of apps) {
 
 		try {
 			if (manifest.categories) {
-				category = (manifest.categories[0] as string).toLowerCase();
+				for (const manifestCategory of manifest.categories) {
+					if (CATEGORIES.find((c) => c.id === manifestCategory)) {
+						category = manifestCategory;
+						break;
+					}
+				}
 			}
 
 			if (manifest.screenshots) {

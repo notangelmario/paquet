@@ -24,10 +24,6 @@ export interface App {
 	description: string;
 	category: string;
 
-	/** @deprecated deprecated in favor of icon */
-	icon_small: string;
-	/** @deprecated deprecated in favor of icon */
-	icon_large: string;
 	icon: string;
 
 	manifest_url: string;
