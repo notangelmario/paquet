@@ -62,4 +62,4 @@ Developer documentation teaches you how you can add your own app to Paquet or bu
 
 ---
 
-Made with ❤️ by [Fructo](https://github.com/fructoland)
+Made with ❤️ by [Fructoland](https://github.com/fructoland)

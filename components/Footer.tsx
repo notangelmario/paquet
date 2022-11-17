@@ -87,7 +87,7 @@ export default function Footer() {
 						rel="noreferrer noopener"
 						class="hover:underline"
 					>
-						Fructo
+						Fructoland
 					</a>
 				</p>
 			</Container>
