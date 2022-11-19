@@ -25,7 +25,7 @@ export default function Footer() {
 				</h2>
 				<div class="mt-4 flex flex-row gap-4">
 					<a
-						href="https://github.com/fructoland/paquet"
+						href="https://github.com/notangelmario/paquet"
 						target="_blank"
 						rel="noreferrer noopener"
 						aria-label="GitHub"
@@ -45,18 +45,6 @@ export default function Footer() {
 						<img
 							src="/icons/supabase.svg"
 							alt="Made with Supabase"
-							class="w-8 h-8 dark:(filter invert)"
-						/>
-					</a>
-					<a
-						href="https://discord.gg/DXKe9aSZh6"
-						target="_blank"
-						rel="noreferrer noopener"
-						aria-label="Discord"
-					>
-						<img
-							src="/icons/discord.svg"
-							alt="Discord"
 							class="w-8 h-8 dark:(filter invert)"
 						/>
 					</a>
@@ -83,11 +71,11 @@ export default function Footer() {
 				<p>
 					Made with <span role="img">❤</span> by{" "}
 					<a
-						href="https://fructo.land"
+						href="https://angelmario.eu"
 						rel="noreferrer noopener"
 						class="hover:underline"
 					>
-						Fructoland
+						Mario
 					</a>
 				</p>
 			</Container>
