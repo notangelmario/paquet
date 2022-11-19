@@ -9,7 +9,7 @@
 
 Welcome to your new web app shop!
 
-👋 Submit a new app 👉 [here](https://github.com/fructoland/paquet/issues/new?labels=new+app&template=app-request.md)
+👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
 > ⚠ Keep in mind that Paquet is not yet stable and lots of things might change
 
@@ -59,7 +59,3 @@ Developer documentation is available both on [GitHub](/docs/getting-started.md) 
 [Paquet](https://paquet.shop/docs/getting-started)
 
 Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
-
----
-
-Made with ❤️ by [Fructoland](https://github.com/fructoland)
