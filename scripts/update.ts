@@ -27,9 +27,17 @@ for (const app of apps) {
 
 	console.log("Found", app.name);
 
-	const manifest: WebAppManifest | undefined = await fetch(manifestUrl).then((
-		res,
-	) => res.json());
+	let manifest: WebAppManifest | undefined;
+
+	try {
+		manifest = await fetch(manifestUrl).then((
+			res,
+		) => res.json());
+	} catch (err) {
+		console.error("Could not fetch manifest", err);
+		appsWithError.push(app.name);
+		continue;
+	}
 
 	const hash = await digest(JSON.stringify(manifest));
 

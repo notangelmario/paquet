@@ -7,6 +7,11 @@ export const CATEGORIES: Category[] = [
 		name: "Utilities",
 	},
 	{
+		id: "productivity",
+		icon: "work",
+		name: "Productivity",
+	},
+	{
 		id: "games",
 		icon: "videogame_asset",
 		name: "Games",

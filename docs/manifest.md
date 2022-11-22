@@ -73,6 +73,8 @@ This is usually an array of categories.
 Paquet now fetches and uses the first category found in the list of available categories.
 
 Here is a list of available categories:
+
+* productivity
 * utilities
 * social
 * games
@@ -85,15 +87,12 @@ Here is a list of available categories:
 
 ### `icons`
 
-Paquet dynamically grab the high resolution icon and the low resolution icon.
+Paquet will fetch the first maskable icon that is 128x128 pixels.
 
-Paquet prioritized 512x512 and 128x128 icons, but 192x192 and 256x256 icons are
-also accepted.
+Paquet will fetch the first maskable icon that is 128x128 pixels.
 
-> Keep in mind that in future versions, Paquet will prioritize
-> 256x256 icons and 128x128 icons.
-
-> If the icons are not found the app will not be approved.
+If this icon is not found, Paquet will search for 192x192, 256x256, 512x512.
+The first found will be set as icon.
 
 ### `screenshots`
 
