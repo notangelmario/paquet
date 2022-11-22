@@ -1,15 +1,19 @@
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import type { App } from "@/types/App.ts";
+import type { App, Category } from "@/types/App.ts";
 import { supabase } from "@/lib/supabase.ts";
-import { getCategory } from "@/lib/categories.ts";
+import { getCategory, searchCategory } from "@/lib/categories.ts";
 import ListItem from "@/components/ListItem.tsx";
+import Button from "@/components/Button.tsx";
+import SlideItem from "@/components/SlideItem.tsx";
+import SlideContainer from "@/components/SlideContainer.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
 
 type DataProps = {
+	categories: Category[];
 	apps: App[];
 	moreApps: App[];
 };
@@ -33,6 +37,28 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 					/>
 				</form>
 			</Container>
+			{data.categories.length > 0 && (
+				<SlideContainer
+					snap
+				>
+					{data.categories.map((category, idx) => (
+						<SlideItem
+							key={category.id}
+							isLast={data.categories && idx === data.categories.length - 1}
+						>
+							<a
+								href={`/category/${category.id}`}
+							>
+								<Button
+									icon={category.icon}
+								>
+									{category.name}
+								</Button>
+							</a>
+						</SlideItem>
+					))}
+				</SlideContainer>
+			)}
 			<Container
 				class="mb-4"
 				disableGutters
@@ -80,8 +106,11 @@ export const handler: Handler = async (req, ctx) => {
 	const query = searchParams.get("q");
 
 	if (!query) {
-		return ctx.render({
-			apps: [],
+		return new Response("No query provided", {
+			status: 307,
+			headers: {
+				Location: "/",
+			},
 		});
 	}
 
@@ -89,6 +118,7 @@ export const handler: Handler = async (req, ctx) => {
 		search_term: query,
 	}).select("id, name, icon, category");
 
+	const categories = searchCategory(query);
 
 	let moreApps: App[] = [];
 	if (apps && apps.length < 10) {
@@ -107,6 +137,7 @@ export const handler: Handler = async (req, ctx) => {
 	}
 
 	return ctx.render({
+		categories,
 		apps,
 		moreApps
 	});

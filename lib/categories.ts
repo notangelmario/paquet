@@ -57,3 +57,11 @@ export const getCategory = (
 		name: customCategory,
 	};
 };
+
+export const searchCategory = (search: string): Category[] => {
+	const searchTerms = search.toLowerCase().split(" ");
+
+	return CATEGORIES.filter((category) => {
+		return searchTerms.every((word) => category.name.toLowerCase().includes(word));
+	});
+};

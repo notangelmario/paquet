@@ -35,7 +35,7 @@ export default function SearchBar(
 				name="q"
 				value={props?.text}
 				type="text"
-				placeholder="Search for an app..."
+				placeholder="Search..."
 				{...props?.inputProps}
 				class={`
 					p-2 w-full
