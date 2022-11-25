@@ -12,7 +12,6 @@ export interface Feature {
 
 // We use null instead of optional because Supabase
 // does not support undefined
-
 export interface App {
 	id: string;
 

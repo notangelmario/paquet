@@ -13,12 +13,12 @@ import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
 import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
-import Announcement from "@/components/Announcement.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/ImageCard.tsx";
 
 type DataProps = {
+	newApps?: App[];
 	randomCards?: App[];
 	randomApps?: App[];
 	randomCategory?: {
@@ -104,6 +104,37 @@ export default function Home({ data }: PageProps<DataProps>) {
 					))}
 				</SlideContainer>
 
+				{data.newApps &&
+					(
+						<div>
+							<Container>
+								<h2 class="text-2xl">
+									New apps
+								</h2>
+							</Container>
+							<Container disableGutters>
+								{data.newApps.map((
+									app: App,
+									idx: number,
+								) => (
+									<a href={`/app/${app.id}`}>
+										<ListItem
+											button
+											key={app.id}
+											image={app.icon}
+											title={app.name}
+											subtitle={getCategory(app.category)
+												?.name}
+											divider={data.newApps &&
+												idx !==
+													data.newApps.length - 1}
+										/>
+									</a>
+								))}
+							</Container>
+						</div>
+					)}
+
 				{data.randomApps &&
 					(
 						<div>
@@ -176,13 +207,22 @@ export default function Home({ data }: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handler = async (req, ctx) => {
+export const handler: Handler = async (_, ctx) => {
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 	const { data: randomCategoryApps } = await supabase.from<App>("random_apps")
 		.select("id, name, icon, author, category")
 		.eq("category", randomCategoryId)
 		.limit(5);
+
+	// Get all apps that are newer than a month
+	// addedOn is a supabase date type
+	const daysAgo = 30;
+	const date = new Date(new Date().setDate(new Date().getDate() - daysAgo));
+	const { data: newApps } = await supabase.from<App>("apps")
+		.select("id, name, icon, category, addedOn")
+		.order("addedOn", { ascending: false })
+		.gte("addedOn", date.toDateString());
 
 	const randomCategory: DataProps["randomCategory"] =
 		randomCategoryApps?.length
@@ -206,6 +246,7 @@ export const handler: Handler = async (req, ctx) => {
 		.limit(5);
 
 	return ctx.render({
+		newApps,
 		randomCards,
 		randomApps,
 		randomCategory,
