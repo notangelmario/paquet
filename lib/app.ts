@@ -1,7 +1,7 @@
 import "dotenv";
 
 export const APP = {
-	version: "0.10.10",
+	version: "0.10.11",
 	codename: "Rodia",
 };
 
