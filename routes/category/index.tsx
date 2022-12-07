@@ -14,7 +14,7 @@ export default function CategoryPage() {
 			</Head>
 			<Navbar back/>
 			<Container>
-				<Header>
+				<Header icon="apps" class="mb-2">
 					Categories
 				</Header>
 			</Container>
