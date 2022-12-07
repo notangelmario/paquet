@@ -1,6 +1,0 @@
-.gradle/
-build/
-
-*.apk
-*.idsig
-*.keystore
