@@ -67,13 +67,6 @@ export default function App(props: AppProps) {
 
 				<link rel="stylesheet" href="/fonts.css" />
 				<link rel="stylesheet" href="/global.css" />
-
-				<script
-					async
-					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5781740956227669"
-					crossOrigin="anonymous"
-				>
-				</script>
 			</Head>
 			{/* @ts-ignore */}
 			<main class="dark:text-white" onTouchStart="">
