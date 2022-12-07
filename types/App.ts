@@ -16,7 +16,9 @@ export interface App {
 	id: string;
 
 	name: string;
+
 	author: string;
+
 	url: string;
 	screenshots: string[] | null;
 
@@ -30,6 +32,7 @@ export interface App {
 
 	features: string[] | null;
 
+	/** @deprecated */
 	verified: boolean;
 
 	github_url: string | null;

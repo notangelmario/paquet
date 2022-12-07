@@ -15,7 +15,6 @@ import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
 import Icon from "@/components/Icon.tsx";
 import Screenshots from "@/components/Screenshots.tsx";
-import VerifiedBanner from "@/components/VerifiedBanner.tsx";
 
 type DataProps = {
 	app: App;
@@ -43,19 +42,8 @@ export default function App({ data }: PageProps<DataProps>) {
 							<p 
 								class="opacity-50" 
 							>
-								{data.app.author}
-								{data.app.verified &&
-									(
-										<>
-											{" "}
-											<Icon
-												class="inline"
-												width={16}
-												height={16}
-												name="verified"
-											/>
-										</>
-									)} &middot;{" "}
+								{data.app.author}{" "}
+								&middot;{" "}
 								{getCategory(data.app.category)?.name}
 							</p>
 						</div>

@@ -13,6 +13,7 @@ import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
 import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
+import Announcement from "@/components/Announcement.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/ImageCard.tsx";
