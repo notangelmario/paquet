@@ -33,5 +33,6 @@
 	"background_color": "#ffffff",
 	"display": "standalone",
 	"start_url": "/?utm_source=pwa",
+    "orientation": "portrait",
 	"scope": "/"
 }

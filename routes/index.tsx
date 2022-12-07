@@ -81,6 +81,17 @@ export default function Home({ data }: PageProps<DataProps>) {
 							<SearchBar />
 						</form>
 						<InstallBanner />
+						<a
+							href="https://angelmario.eu/blog/young-entrepreneurship"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Announcement>
+								🥳 Paquet won a contest at a <b>youth exchange</b> project
+								about young entrepreneurship. Read more about it
+								here!
+							</Announcement>
+						</a>
 					</Stack>
 				</Container>
 				<SlideContainer
