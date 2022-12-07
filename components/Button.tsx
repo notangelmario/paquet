@@ -1,11 +1,11 @@
-import { type JSX } from "preact";
+import type {  JSX } from "preact";
 import { btn } from "@/lib/ui.ts";
+import { tw } from "twind";
 import Icon, { Props as IconProps } from "@/components/Icon.tsx";
 
 export type Props = {
 	icon?: string;
 	iconProps?: IconProps;
-	brand?: boolean;
 	fullWidth?: boolean;
 	children?: string;
 	outlined?: boolean;
@@ -17,7 +17,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 		<button
 			{...props}
 			class={`
-				${!props.disabled && btn}
+				${!props.disabled && tw(btn)}
 				rounded px-8 py-2 text-base
 				${props.red ? "border-red-500" : "border-current"}
 				
@@ -27,7 +27,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 						props.red ? "text-red-500" : "text-current"
 					}`
 					: `${props.red ? "bg-red-500" : "bg-primary"} text-white`
-			}
+				}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.disabled ? "opacity-25 cursor-not-allowed" : ""}

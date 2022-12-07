@@ -48,7 +48,7 @@ export default function Dialog(props: Props) {
 				class={`
 					text-black dark:text-white
 					bg-white dark:bg-dark
-					w-full max-w-md mx-auto
+					w-full max-w-xl mx-auto
 					!rounded-b-none
 					transition-transform duration-150 ease-in-out
 

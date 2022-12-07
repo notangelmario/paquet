@@ -75,13 +75,6 @@ export default function Home({ data }: PageProps<DataProps>) {
 				</SlideContainer>
 				<Container>
 					<Stack>
-						<form
-							action="/search"
-							method="GET"
-						>
-							<SearchBar />
-						</form>
-						<InstallBanner />
 						<a
 							href="https://angelmario.eu/blog/young-entrepreneurship"
 							target="_blank"
@@ -93,15 +86,33 @@ export default function Home({ data }: PageProps<DataProps>) {
 								here!
 							</Announcement>
 						</a>
+						<form
+							action="/search"
+							method="GET"
+						>
+							<SearchBar />
+						</form>
 					</Stack>
 				</Container>
 				<SlideContainer
 					snap
 				>
+					<SlideItem>
+						<a
+							href="/category"
+						>
+							<Button
+								icon="apps"
+								outlined
+							>
+								All
+							</Button>
+						</a>
+					</SlideItem>
 					{CATEGORIES.map((category, idx) => (
 						<SlideItem
 							key={category.id}
-							isLast={CATEGORIES && idx === CATEGORIES.length - 1}
+							isLast={idx === CATEGORIES.length - 1}
 						>
 							<a
 								href={`/category/${category.id}`}
@@ -146,6 +157,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 							</Container>
 						</div>
 					)}
+
+				<Container>
+					<InstallBanner />
+				</Container>
 
 				{data.randomApps &&
 					(

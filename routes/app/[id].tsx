@@ -13,7 +13,6 @@ import Features from "@/components/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
-import Icon from "@/components/Icon.tsx";
 import Screenshots from "@/components/Screenshots.tsx";
 
 type DataProps = {
@@ -70,12 +69,6 @@ export default function App({ data }: PageProps<DataProps>) {
 							{data.app.description}
 						</p>
 					</div>
-					{data.app.verified && (
-						<VerifiedBanner 
-							appName={data.app.name}
-						/>
-					)}
-
 					<Divider inset />
 				</Stack>
 			</Container>
