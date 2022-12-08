@@ -4,6 +4,7 @@ type Props = {
 	isLast?: boolean;
 	snap?: boolean;
 	equal?: boolean;
+	disableGutters?: boolean;
 };
 
 export default function SlideItem(props: Props & JSX.IntrinsicElements["div"]) {
@@ -11,15 +12,15 @@ export default function SlideItem(props: Props & JSX.IntrinsicElements["div"]) {
 		<div
 			{...props}
 			class={`
-				${props.isLast ? "!pr-4 md:pr-0" : ""} 
+				${props.isLast ? `${!props.disableGutters ? "!pr-4" : ""} md:pr-0` : ""} 
 				${props.equal ? "flex-1" : ""}
-				pl-4
+				${!props.disableGutters ? "pl-4" : ""}
 
 				${props.class || ""}
 			`}
 			style={{
-				...props.style as Record<string, string>,
 				scrollSnapAlign: props.snap ? "start" : undefined,
+				...props.style as Record<string, string>,
 			}}
 		/>
 	);

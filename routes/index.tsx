@@ -135,16 +135,20 @@ export default function Home({ data }: PageProps<DataProps>) {
 								</h2>
 							</Container>
 							<SlideContainer snap>
-								{data.newApps.reduce(function (rows, key, index) { 
-    								return (index % 2 == 0 ? rows.push([key]) 
-									: rows[rows.length-1].push(key)) 
-									&& rows}, [])
+								{/* This sorts every 2 elements */}
+								{data.newApps.reduce(
+									function(accumulator, _, currentIndex, array) {
+										if (currentIndex % 2 === 0)
+											accumulator.push(array.slice(currentIndex, currentIndex + 2) as never);
+										return accumulator;
+									}, [])
 									.map((
 									row: App[],
 									idx: number,
 								) => (
 									<SlideItem
 										key={idx}
+										disableGutters
 										isLast={
 											data.newApps &&
 											idx ===
