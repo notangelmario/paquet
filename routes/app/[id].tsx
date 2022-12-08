@@ -38,11 +38,8 @@ export default function App({ data }: PageProps<DataProps>) {
 							<h2 class="text-3xl">
 								{data.app.name}
 							</h2>
-							<p 
-								class="opacity-50" 
-							>
-								{data.app.author}{" "}
-								&middot;{" "}
+							<p class="opacity-50">
+								{data.app.author} &middot;{" "}
 								{getCategory(data.app.category)?.name}
 							</p>
 						</div>

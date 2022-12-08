@@ -44,7 +44,8 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 					{data.categories.map((category, idx) => (
 						<SlideItem
 							key={category.id}
-							isLast={data.categories && idx === data.categories.length - 1}
+							isLast={data.categories &&
+								idx === data.categories.length - 1}
 						>
 							<a
 								href={`/category/${category.id}`}
@@ -63,20 +64,20 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 				class="mb-4"
 				disableGutters
 			>
-				{data.apps.length ? data.apps.map((app: App, idx: number) => (
-					<a href={`/app/${app.id}`}>
-						<ListItem
-							button
-							key={app.id}
-							image={app.icon}
-							title={app.name}
-							subtitle={getCategory(app.category)?.name}
-							divider={idx !== data.apps.length - 1}
-						/>
-					</a>
-				)) : (
-					<p class="text-center opacity-50">No results found</p>
-				)}
+				{data.apps.length
+					? data.apps.map((app: App, idx: number) => (
+						<a href={`/app/${app.id}`}>
+							<ListItem
+								button
+								key={app.id}
+								image={app.icon}
+								title={app.name}
+								subtitle={getCategory(app.category)?.name}
+								divider={idx !== data.apps.length - 1}
+							/>
+						</a>
+					))
+					: <p class="text-center opacity-50">No results found</p>}
 			</Container>
 			<Container>
 				<h2 class="text-2xl">
@@ -84,18 +85,19 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 				</h2>
 			</Container>
 			<Container disableGutters>
-				{data.moreApps && data.moreApps.map((app: App, idx: number) => (
-					<a href={`/app/${app.id}`}>
-						<ListItem
-							button
-							key={app.id}
-							image={app.icon}
-							title={app.name}
-							subtitle={getCategory(app.category)?.name}
-							divider={idx !== data.moreApps.length - 1}
-						/>
-					</a>
-				))}
+				{data.moreApps &&
+					data.moreApps.map((app: App, idx: number) => (
+						<a href={`/app/${app.id}`}>
+							<ListItem
+								button
+								key={app.id}
+								image={app.icon}
+								title={app.name}
+								subtitle={getCategory(app.category)?.name}
+								divider={idx !== data.moreApps.length - 1}
+							/>
+						</a>
+					))}
 			</Container>
 		</>
 	);
@@ -139,6 +141,6 @@ export const handler: Handler = async (req, ctx) => {
 	return ctx.render({
 		categories,
 		apps,
-		moreApps
+		moreApps,
 	});
 };

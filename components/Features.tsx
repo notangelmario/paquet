@@ -27,7 +27,10 @@ export default function Features(props: Props) {
 						<div
 							class={`
 								${
-								props.features && !props.features?.find((value) => value === id)?.length
+								props.features &&
+									!props.features?.find((value) =>
+										value === id
+									)?.length
 									? "opacity-50"
 									: ""
 							}
@@ -41,7 +44,10 @@ export default function Features(props: Props) {
 									rounded-full w-12 h-12
 
 									${
-									props.features && props.features?.find((value) => value === id)?.length
+									props.features &&
+										props.features?.find((value) =>
+											value === id
+										)?.length
 										? "bg-secondary"
 										: "bg-black dark:bg-white"
 								}

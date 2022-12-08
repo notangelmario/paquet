@@ -78,8 +78,8 @@ export default function InstallBanner() {
 			<Stack>
 				<h2 class="text-xl">Hello there!</h2>
 				<p>
-					It looks like Paquet isn't installed yet. Access your web app
-					library easier by clicking the button below.
+					It looks like Paquet isn't installed yet. Access your web
+					app library easier by clicking the button below.
 				</p>
 				<Button
 					fullWidth

@@ -62,6 +62,8 @@ export const searchCategory = (search: string): Category[] => {
 	const searchTerms = search.toLowerCase().split(" ");
 
 	return CATEGORIES.filter((category) => {
-		return searchTerms.every((word) => category.name.toLowerCase().includes(word));
+		return searchTerms.every((word) =>
+			category.name.toLowerCase().includes(word)
+		);
 	});
 };

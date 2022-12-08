@@ -13,14 +13,14 @@ Welcome to your new web app shop!
 
 > ⚠ Keep in mind that Paquet is not yet stable and lots of things might change
 
-******
+---
 
 ### 🥳 Congrats!
 
 Paquet won a contest at a **youth exchange** project
 about young entrepreneurship. [Read more about it here!](https://angelmario.eu/blog/young-entrepreneurship)
 
-******
+---
 
 ### About
 

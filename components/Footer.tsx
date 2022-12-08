@@ -68,7 +68,11 @@ export default function Footer() {
 						</>
 					))}
 				</div>
-				<a href="https://angelmario.eu" target="_blank" class="hover:underline">
+				<a
+					href="https://angelmario.eu"
+					target="_blank"
+					class="hover:underline"
+				>
 					Made with <span role="img">❤</span> by Savin Angel-Mario
 				</a>
 			</Container>

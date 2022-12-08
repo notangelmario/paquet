@@ -81,9 +81,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 							rel="noopener noreferrer"
 						>
 							<Announcement>
-								🥳 Paquet won a contest at a <b>youth exchange</b> project
-								about young entrepreneurship. Read more about it
-								here!
+								🥳 Paquet won a contest at a{" "}
+								<b>youth exchange</b>{" "}
+								project about young entrepreneurship. Read more
+								about it here!
 							</Announcement>
 						</a>
 						<form
@@ -98,9 +99,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 					snap
 				>
 					<SlideItem>
-						<a
-							href="/category"
-						>
+						<a href="/category">
 							<Button
 								icon="apps"
 								outlined
