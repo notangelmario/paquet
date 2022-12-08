@@ -134,33 +134,50 @@ export default function Home({ data }: PageProps<DataProps>) {
 									New apps
 								</h2>
 							</Container>
-							<Container disableGutters>
-								{data.newApps.map((
-									app: App,
+							<SlideContainer snap>
+								{data.newApps.reduce(function (rows, key, index) { 
+    								return (index % 2 == 0 ? rows.push([key]) 
+									: rows[rows.length-1].push(key)) 
+									&& rows}, [])
+									.map((
+									row: App[],
 									idx: number,
 								) => (
-									<a href={`/app/${app.id}`}>
-										<ListItem
-											button
-											key={app.id}
-											image={app.icon}
-											title={app.name}
-											subtitle={getCategory(app.category)
-												?.name}
-											divider={data.newApps &&
-												idx !==
-													data.newApps.length - 1}
-										/>
-									</a>
+									<SlideItem
+										key={idx}
+										isLast={
+											data.newApps &&
+											idx ===
+											data.newApps.length - 1
+										}
+									>
+										{row.map((app, idx) => (
+											<a 
+												href={`/app/${app.id}`}
+												key={idx}
+											>
+												<ListItem
+													button
+													key={app.id}
+													style={{ width: 256 }}
+													image={app.icon}
+													title={app.name}
+													subtitle={getCategory(app.category)
+														?.name}
+													divider={idx === 0}
+												/>
+											</a>
+										))}
+									</SlideItem>
 								))}
-							</Container>
+							</SlideContainer>
 						</div>
 					)}
 			</Stack>
 			<Container>
 				<InstallBanner />
 			</Container>
-			<Stack class="mt-2">
+			<Stack>
 
 				{data.randomApps &&
 					(

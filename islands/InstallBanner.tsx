@@ -73,7 +73,7 @@ export default function InstallBanner() {
 		<Card
 			class={`${
 				installed !== false ? "hidden" : ""
-			} !bg-gradient-to-tr from-primary to-secondary !text-white`}
+			} !bg-gradient-to-tr from-primary to-secondary !text-white my-2`}
 		>
 			<Stack>
 				<h2 class="text-xl">Hello there!</h2>

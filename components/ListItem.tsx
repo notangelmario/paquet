@@ -1,4 +1,5 @@
-import { type JSX } from "preact";
+import type { JSX } from "preact";
+import { tw } from "twind";
 import { btn } from "@/lib/ui.ts";
 import Icon from "@/components/Icon.tsx";
 import Divider from "@/components/Divider.tsx";
@@ -10,7 +11,7 @@ export type Props = {
 
 	title?: string;
 	subtitle?: string;
-	imageProps?: h.JSX.IntrinsicElements["img"];
+	imageProps?: JSX.IntrinsicElements["img"];
 	divider?: boolean;
 };
 
@@ -22,7 +23,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 				class={`
 						flex items-center p-4
 
-						${props.button && btn} 
+						${props.button && tw(btn)} 
 						${props.class || ""}
 					`}
 			>
