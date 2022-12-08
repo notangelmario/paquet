@@ -156,10 +156,11 @@ export default function Home({ data }: PageProps<DataProps>) {
 							</Container>
 						</div>
 					)}
-
-				<Container>
-					<InstallBanner />
-				</Container>
+			</Stack>
+			<Container>
+				<InstallBanner />
+			</Container>
+			<Stack class="mt-2">
 
 				{data.randomApps &&
 					(
