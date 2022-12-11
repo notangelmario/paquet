@@ -1,3 +1,6 @@
+:root {
+	color-scheme: light dark;
+}
 
 html,
 body {
@@ -51,13 +54,36 @@ main {
 	}
 }
 
-*:not(body) {
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
+*::-webkit-scrollbar {
+	width: .75rem;
+	height: .75rem;
 }
 
-*:not(body)::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
+*::-webkit-scrollbar-track {
+	background: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: #ddd;
+	transition: background 0.2s ease-in-out;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+	*::-webkit-scrollbar-track {
+		background: #121212;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background: #212121;
+	}
+
+	*::-webkit-scrollbar-thumb:hover {
+		background: #333;
+	}
 }
 
 ::selection {

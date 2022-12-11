@@ -8,9 +8,10 @@ export default {
 			colors: {
 				primary: "#8267be",
 				secondary: "#D77fa1",
+				light: "#fff",
 				dark: "#121212",
 				paper: {
-					light: "#f0f0f0",
+					light: "#ddd",
 					dark: "#212121",
 				},
 			},

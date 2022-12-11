@@ -116,7 +116,7 @@ export default function App({ data }: PageProps<DataProps>) {
 									<ListItem
 										button
 										title={app.name}
-										image={app.icon_small}
+										image={app.icon}
 										subtitle={app.author}
 										divider={idx !==
 											(data.otherApps?.length as number) -
@@ -149,7 +149,7 @@ export const handler: Handler = async (_, ctx) => {
 	}
 
 	const { data: otherApps } = await supabase.from("random_apps")
-		.select("id, name, author, icon_small")
+		.select("id, name, author, icon")
 		.eq("category", app.category)
 		.neq("id", app.id)
 		.limit(3);
