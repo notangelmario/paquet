@@ -3,7 +3,6 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
-// import Vibrant from "vibrant";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -19,7 +18,6 @@ import GradientPageOverlay from "@/components/GradientPageOverlay.tsx";
 
 
 type DataProps = {
-	accentColor: string | undefined;
 	app: App;
 	otherApps?: App[];
 };
@@ -34,8 +32,8 @@ export default function App({ data }: PageProps<DataProps>) {
 				transparentTop
 				back
 			/>
-			{data.accentColor &&
-				<GradientPageOverlay accentColor={data.accentColor} />
+			{data.app.accent_color &&
+				<GradientPageOverlay accentColor={data.app.accent_color} />
 			}
 			<Container class="pt-16">
 				<Stack>
@@ -67,7 +65,7 @@ export default function App({ data }: PageProps<DataProps>) {
 									icon="open_in_new"
 									fullWidth
 									style={{
-										backgroundColor: data.accentColor
+										backgroundColor: data.app.accent_color
 									}}
 								>
 									Open
@@ -151,7 +149,7 @@ export default function App({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const { data: app } = await supabase.from("apps")
 		.select(
-			"id, name, author, description, url, icon, screenshots, features, category, github_url, gitlab_url",
+			"id, name, author, description, url, icon, accent_color, screenshots, features, category, github_url, gitlab_url",
 		)
 		.eq("id", ctx.params.id)
 		.single();
@@ -187,7 +185,6 @@ export const handler: Handler = async (_, ctx) => {
 		.limit(3);
 
 	return ctx.render({
-		accentColor,
 		app,
 		otherApps,
 	} as DataProps);

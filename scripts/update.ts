@@ -2,6 +2,7 @@ import "dotenv";
 import { createClient } from "supabase";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { App } from "@/types/App.ts";
+import Vibrant from "npm:node-vibrant"
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
 const supabase = createClient(
@@ -11,7 +12,7 @@ const supabase = createClient(
 
 const ICONS_SIZES = ["128x128", "192x192", "256x256", "512x512"];
 
-const { data: apps } = await supabase.from<App>("apps")
+const { data: apps } = await supabase.from("apps")
 	.select("*");
 
 if (!apps) {
@@ -56,6 +57,7 @@ for (const app of apps) {
 		const screenshots_source: string[] = [];
 		const screenshots: string[] = [];
 		let icon_url = "";
+		let accent_color = "";
 
 		try {
 			if (manifest.categories) {
@@ -88,7 +90,7 @@ for (const app of apps) {
 			if (manifest.icons) {
 				let icons: WebAppManifest["icons"] = [];
 				const maskable_icons = manifest.icons
-					.filter((a) => {
+					.filter((a: WebAppManifest["icons"]) => {
 						if (!a.sizes) return false;
 
 						if (!ICONS_SIZES.includes(a.sizes)) return false;
@@ -129,12 +131,26 @@ for (const app of apps) {
 			}
 
 			console.log(icon_url);
+
 			const icon_blob = await fetch(icon_url, {
 				headers: {
 					"Accept":
 						"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
 				},
 			}).then((res) => res.blob());
+
+			try {
+				const iconColorPalette = await Vibrant.from(icon_url).getPalette();
+				
+				if (iconColorPalette.Vibrant) {
+					accent_color = iconColorPalette.Vibrant?.hex;
+				}
+			} catch {
+				console.warn("Could not get accent color");
+				appsWithError.push(app.name);
+				continue;
+			}
+
 
 			const icon = await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
 
@@ -157,7 +173,7 @@ for (const app of apps) {
 				}
 			}
 
-			await supabase.from<App>("apps")
+			await supabase.from("apps")
 				.update({
 					name: manifest?.name || undefined,
 					description: manifest?.description || undefined,
@@ -165,6 +181,7 @@ for (const app of apps) {
 					// deno-lint-ignore no-explicit-any
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,
+					accent_color: accent_color || undefined,
 					manifest_hash: hash || undefined,
 					icon: icon || undefined,
 				})
@@ -197,12 +214,12 @@ async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
 		});
 
 	if (!error) {
-		const { data } = await supabase.storage
+		const { data } = supabase.storage
 			.from("apps")
 			.getPublicUrl(`${id}/${name}.png`);
 
 		if (data) {
-			return data.publicURL;
+			return data.publicUrl;
 		} else {
 			console.error("Could not get public url!");
 			return null;

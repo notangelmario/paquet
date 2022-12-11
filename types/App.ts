@@ -26,6 +26,7 @@ export interface App {
 	category: string;
 
 	icon: string;
+	accent_color: string;
 
 	manifest_url: string;
 	manifest_hash: string;

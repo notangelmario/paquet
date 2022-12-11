@@ -395,6 +395,7 @@
     "https://esm.sh/twind@0.16.19/css": "f7bcd9e008faecf6735732628346a3ac0ade29329fca7f7e14fd3fb23bd88fff",
     "https://esm.sh/twind@0.16.19/sheets": "7c6e0103d8f5fdbb0da85d37b3db997ce7200e27a415351645dfa3bfa178383f",
     "https://esm.sh/ua-parser-js@1.0.2": "a63e6b131c368ccc3a530d784d2f2ea39392ff23bb7a3abf68f4898aadd0e1f3",
+    "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts": "2edf0849603b9673588489bbfd2db6b035a2ae3341484dfce5089125ac732a60",
     "https://esm.sh/v99/@supabase/functions-js@2.0.0/deno/functions-js.js": "3ee50410300b1ff8fe902a37becba4778a3d22ebc750e1c0244fb4f80f1cf133",
     "https://esm.sh/v99/@supabase/functions-js@2.0.0/dist/module/FunctionsClient.d.ts": "ef3d2f4fb207809a3b0eec96066238a25489388c6b38e066be70dfd6c41c65df",
     "https://esm.sh/v99/@supabase/functions-js@2.0.0/dist/module/index.d.ts": "77215ae20a49e5cd6c18054f53e479ffcd70dcea12e7bf6a6a0df86ff9a486f7",
