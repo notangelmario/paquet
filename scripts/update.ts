@@ -2,7 +2,7 @@ import "dotenv";
 import type { App } from "@/types/App.ts";
 import { createClient } from "supabase";
 import { CATEGORIES } from "@/lib/categories.ts";
-import Vibrant from "npm:node-vibrant"
+import Vibrant from "npm:node-vibrant";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
 const supabase = createClient(
@@ -12,14 +12,13 @@ const supabase = createClient(
 
 const ICONS_SIZES = ["128x128", "192x192", "256x256", "512x512"];
 
-
 let apps: App[] = [];
 
 if (Deno.args[0]) {
 	if (Deno.args[0] !== "--force") {
 		const { data } = await supabase.from("apps")
 			.select("*")
-			.eq("id", Deno.args[0])
+			.eq("id", Deno.args[0]);
 
 		if (data) {
 			apps = data;
@@ -37,10 +36,9 @@ if (Deno.args[0]) {
 	}
 }
 
-
 const appsWithError: string[] = [];
 
-console.log("Updating...")
+console.log("Updating...");
 
 await Promise.all(apps.map(async (app) => {
 	const manifestUrl = app.manifest_url;
@@ -67,7 +65,6 @@ await Promise.all(apps.map(async (app) => {
 	}
 
 	if (hash !== app?.manifest_hash || "--force" in Deno.args) {
-
 		const manifestParent = manifestUrl.split("/");
 		manifestParent.pop();
 
@@ -108,7 +105,7 @@ await Promise.all(apps.map(async (app) => {
 			if (manifest.icons) {
 				let icons: WebAppManifest["icons"] = [];
 				const maskable_icons = manifest.icons
-					.filter(a => {
+					.filter((a) => {
 						if (!a.sizes) return false;
 
 						if (!ICONS_SIZES.includes(a.sizes)) return false;
@@ -156,8 +153,9 @@ await Promise.all(apps.map(async (app) => {
 			}).then((res) => res.blob());
 
 			try {
-				const iconColorPalette = await Vibrant.from(icon_url).getPalette();
-				
+				const iconColorPalette = await Vibrant.from(icon_url)
+					.getPalette();
+
 				if (iconColorPalette.Vibrant) {
 					accent_color = iconColorPalette.Vibrant?.hex;
 				}
@@ -166,7 +164,6 @@ await Promise.all(apps.map(async (app) => {
 				appsWithError.push(app.name);
 				return;
 			}
-
 
 			const icon = await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
 
@@ -208,7 +205,6 @@ await Promise.all(apps.map(async (app) => {
 		}
 	}
 }));
-
 
 console.log(`\n${appsWithError.length} apps with errors`);
 console.log(appsWithError.join(", "));

@@ -16,7 +16,6 @@ import AppLinks from "@/components/AppLinks.tsx";
 import Screenshots from "@/components/Screenshots.tsx";
 import GradientPageOverlay from "@/components/GradientPageOverlay.tsx";
 
-
 type DataProps = {
 	app: App;
 	otherApps?: App[];
@@ -28,13 +27,12 @@ export default function App({ data }: PageProps<DataProps>) {
 			<Head>
 				<title>{data.app.name} &middot; Paquet</title>
 			</Head>
-			<Navbar 
+			<Navbar
 				transparentTop
 				back
 			/>
 			{data.app.accent_color &&
-				<GradientPageOverlay accentColor={data.app.accent_color} />
-			}
+				<GradientPageOverlay accentColor={data.app.accent_color} />}
 			<Container class="pt-16">
 				<Stack>
 					<div class="flex flex-row flex-wrap gap-4">
@@ -48,7 +46,7 @@ export default function App({ data }: PageProps<DataProps>) {
 							</h2>
 							<p class="opacity-50">
 								{data.app.author} &middot;{" "}
-								<a 
+								<a
 									href={`/category/${data.app.category}`}
 								>
 									{getCategory(data.app.category)?.name}
@@ -65,7 +63,7 @@ export default function App({ data }: PageProps<DataProps>) {
 									icon="open_in_new"
 									fullWidth
 									style={{
-										backgroundColor: data.app.accent_color
+										backgroundColor: data.app.accent_color,
 									}}
 								>
 									Open
@@ -154,8 +152,6 @@ export const handler: Handler = async (_, ctx) => {
 		.eq("id", ctx.params.id)
 		.single();
 
-
-
 	if (!app) {
 		return new Response("Not found", {
 			status: 307,
@@ -164,19 +160,6 @@ export const handler: Handler = async (_, ctx) => {
 			},
 		});
 	}
-
-	let accentColor: string | undefined;
-	// try {
-	// 	const iconPalette = await Vibrant.from(app.icon).getPalette();
-
-	// 	if (iconPalette && iconPalette.Vibrant?.hex) {
-	// 		accentColor = iconPalette.Vibrant.hex
-	// 	}
-	// } catch(e) {
-	// 	console.log("Couldn't get color from icon");
-	// 	console.log(e);
-	// }
-
 
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon")

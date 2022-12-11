@@ -1,7 +1,7 @@
 import "dotenv";
 
 export const APP = {
-	version: "1.0.2",
+	version: "1.0.3",
 	codename: "Andreea",
 };
 

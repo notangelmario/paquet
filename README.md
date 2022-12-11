@@ -40,7 +40,7 @@ Paquet is built with a modern toolset in mind:
 - [Twind](https://twind.dev)
 - [Supabase](https://supabase.com)
 
-## 🔨 Run
+## 🔨 Tasks
 
 To cache all required dependencies:
 
@@ -58,6 +58,18 @@ To run the app in production mode:
 
 ```
 deno task prod
+```
+
+To update all apps:
+
+```
+deno task update [appId] [--force]
+```
+
+To manage dependencies:
+
+```
+deno task npm:[add|remove|update]
 ```
 
 ## 📄 Developer Documentation

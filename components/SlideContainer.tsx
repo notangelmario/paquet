@@ -1,4 +1,3 @@
-
 export default function SlideContainer(props: JSX.IntrinsicElements["div"]) {
 	return (
 		<div

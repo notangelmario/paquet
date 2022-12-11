@@ -131,43 +131,56 @@ export default function Home({ data }: PageProps<DataProps>) {
 							<SlideContainer>
 								{/* This sorts every 2 elements */}
 								{data.newApps.reduce(
-									function(accumulator, _, currentIndex, array) {
-										if (currentIndex % 2 === 0)
-											accumulator.push(array.slice(currentIndex, currentIndex + 2) as never);
-										return accumulator;
-									}, [])
-									.map((
-									row: App[],
-									idx: number,
-								) => (
-									<SlideItem
-										key={idx}
-										disableGutters
-										isLast={
-											data.newApps &&
-											idx ===
-											data.newApps.length - 1
+									function (
+										accumulator,
+										_,
+										currentIndex,
+										array,
+									) {
+										if (currentIndex % 2 === 0) {
+											accumulator.push(
+												array.slice(
+													currentIndex,
+													currentIndex + 2,
+												) as never,
+											);
 										}
-									>
-										{row.map((app, idx) => (
-											<a 
-												href={`/app/${app.id}`}
-												key={idx}
-											>
-												<ListItem
-													button
-													key={app.id}
-													style={{ width: 300 }}
-													image={app.icon}
-													title={app.name}
-													subtitle={getCategory(app.category)
-														?.name}
-													divider={idx === 0}
-												/>
-											</a>
-										))}
-									</SlideItem>
-								))}
+										return accumulator;
+									},
+									[],
+								)
+									.map((
+										row: App[],
+										idx: number,
+									) => (
+										<SlideItem
+											key={idx}
+											disableGutters
+											isLast={data.newApps &&
+												idx ===
+													data.newApps.length - 1}
+										>
+											{row.map((app, idx) => (
+												<a
+													href={`/app/${app.id}`}
+													key={idx}
+												>
+													<ListItem
+														button
+														key={app.id}
+														style={{ width: 300 }}
+														image={app.icon}
+														title={app.name}
+														subtitle={getCategory(
+															app.category,
+														)
+															?.name}
+														divider={idx === 0}
+													/>
+												</a>
+											))}
+										</SlideItem>
+									))}
 							</SlideContainer>
 						</div>
 					)}
@@ -176,7 +189,6 @@ export default function Home({ data }: PageProps<DataProps>) {
 				<InstallBanner />
 			</Container>
 			<Stack>
-
 				{data.randomApps &&
 					(
 						<div>
@@ -253,39 +265,38 @@ export const handler: Handler = async (_, ctx) => {
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 
-	const { data: randomCategoryApps } = await supabase.from("random_apps")
-		.select("id, name, icon, author, category")
-		.eq("category", randomCategoryId)
-		.limit(5);
-
-	// Get all apps that are newer than a month
-	// addedOn is a supabase date type
 	const daysAgo = 30;
 	const date = new Date(new Date().setDate(new Date().getDate() - daysAgo));
-	const { data: newApps } = await supabase.from("apps")
-		.select("id, name, icon, category, addedOn")
-		.order("addedOn", { ascending: false })
-		.gte("addedOn", date.toDateString());
+
+	const [
+		{ data: randomCategoryApps },
+		{ data: newApps },
+		{ data: randomApps },
+		{ data: randomCards },
+	] = await Promise.all([
+		supabase.from("random_apps")
+			.select("id, name, icon, author, category")
+			.eq("category", randomCategoryId)
+			.limit(5),
+		supabase.from("apps")
+			.select("id, name, icon, category, addedOn")
+			.order("addedOn", { ascending: false })
+			.gte("addedOn", date.toDateString()),
+		supabase.from("random_apps")
+			.select("id, name, icon, category")
+			.limit(5),
+		supabase.from("random_apps")
+			.select("id, name, icon, screenshots")
+			.not("screenshots", "is", null)
+			.limit(5),
+	]);
 
 	const randomCategory = randomCategoryApps?.length
-			? {
-				category: randomCategoryId,
-				apps: randomCategoryApps,
-			}
-			: undefined;
-
-	const { data: randomApps } = await supabase.from("random_apps")
-		.select(
-			"id, name, icon, category",
-		)
-		.limit(5);
-
-	const { data: randomCards } = await supabase.from("random_apps")
-		.select(
-			"id, name, icon, screenshots",
-		)
-		.not("screenshots", "is", null)
-		.limit(5);
+		? {
+			category: randomCategoryId,
+			apps: randomCategoryApps,
+		}
+		: undefined;
 
 	return ctx.render({
 		newApps,

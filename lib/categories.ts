@@ -4,42 +4,42 @@ export const CATEGORIES: Category[] = [
 	{
 		id: "news",
 		icon: "newspaper",
-		name: "News"
+		name: "News",
 	},
 	{
 		id: "social",
 		icon: "group",
-		name: "Social"
+		name: "Social",
 	},
 	{
 		id: "utilities",
 		icon: "build",
-		name: "Utilities"
+		name: "Utilities",
 	},
 	{
 		id: "productivity",
 		icon: "work",
-		name: "Productivity"
+		name: "Productivity",
 	},
 	{
 		id: "games",
 		icon: "videogame_asset",
-		name: "Games"
+		name: "Games",
 	},
 	{
 		id: "music",
 		icon: "music_note",
-		name: "Music"
+		name: "Music",
 	},
 	{
 		id: "development",
 		icon: "code",
-		name: "Development"
+		name: "Development",
 	},
 	{
 		id: "lifestyle",
 		icon: "heart",
-		name: "Lifestyle"
+		name: "Lifestyle",
 	},
 ];
 
