@@ -14,7 +14,6 @@ import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
 import Screenshots from "@/components/Screenshots.tsx";
-import DynamicStatusbarAppPage from "@/islands/DynamicStatusbarAppPage.tsx";
 
 interface DataProps {
 	app: App;
@@ -27,9 +26,9 @@ export default function App({ data }: PageProps<DataProps>) {
 			<Head>
 				<title>{data.app.name} &middot; Paquet</title>
 			</Head>
-			<DynamicStatusbarAppPage accentColor={data.app.accent_color} />
 			<Navbar
 				transparentTop
+				color={data.app.accent_color}
 				back
 			/>
 			<div
