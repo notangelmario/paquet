@@ -18,8 +18,9 @@ import * as $11 from "./routes/search.tsx";
 import * as $12 from "./routes/settings.tsx";
 import * as $13 from "./routes/sitemap.xml.ts";
 import * as $$0 from "./islands/Dialog.tsx";
-import * as $$1 from "./islands/InstallBanner.tsx";
-import * as $$2 from "./islands/Navbar.tsx";
+import * as $$1 from "./islands/DynamicStatusbarAppPage.tsx";
+import * as $$2 from "./islands/InstallBanner.tsx";
+import * as $$3 from "./islands/Navbar.tsx";
 
 const manifest = {
 	routes: {
@@ -40,8 +41,9 @@ const manifest = {
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,
-		"./islands/InstallBanner.tsx": $$1,
-		"./islands/Navbar.tsx": $$2,
+		"./islands/DynamicStatusbarAppPage.tsx": $$1,
+		"./islands/InstallBanner.tsx": $$2,
+		"./islands/Navbar.tsx": $$3,
 	},
 	baseUrl: import.meta.url,
 	config,
