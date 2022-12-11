@@ -1,7 +1,6 @@
 import "dotenv";
 import { createClient } from "supabase";
 import { CATEGORIES } from "@/lib/categories.ts";
-import { App } from "@/types/App.ts";
 import Vibrant from "npm:node-vibrant"
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
@@ -21,12 +20,12 @@ if (!apps) {
 
 const appsWithError: string[] = [];
 
-for (const app of apps) {
+console.log("Updating...")
+
+await Promise.all(apps.map(async (app) => {
 	const manifestUrl = app.manifest_url;
 
-	if (!manifestUrl) continue;
-
-	console.log("Found", app.name);
+	if (!manifestUrl) return;
 
 	let manifest: WebAppManifest | undefined;
 
@@ -37,18 +36,17 @@ for (const app of apps) {
 	} catch (err) {
 		console.error("Could not fetch manifest", err);
 		appsWithError.push(app.name);
-		continue;
+		return;
 	}
 
 	const hash = await digest(JSON.stringify(manifest));
 
 	if (!manifest) {
 		console.log("Couldn't fetch manifest");
-		break;
+		return;
 	}
 
 	if (hash !== app?.manifest_hash || Deno.args[0] === "--force") {
-		console.log("Updating", app.name);
 
 		const manifestParent = manifestUrl.split("/");
 		manifestParent.pop();
@@ -90,7 +88,7 @@ for (const app of apps) {
 			if (manifest.icons) {
 				let icons: WebAppManifest["icons"] = [];
 				const maskable_icons = manifest.icons
-					.filter((a: WebAppManifest["icons"]) => {
+					.filter(a => {
 						if (!a.sizes) return false;
 
 						if (!ICONS_SIZES.includes(a.sizes)) return false;
@@ -121,16 +119,14 @@ for (const app of apps) {
 				}
 			} else {
 				appsWithError.push(app.name);
-				continue;
+				return;
 			}
 
 			if (!icon_url.length) {
 				console.warn("Icons not fetched properly!");
 				appsWithError.push(app.name);
-				continue;
+				return;
 			}
-
-			console.log(icon_url);
 
 			const icon_blob = await fetch(icon_url, {
 				headers: {
@@ -148,7 +144,7 @@ for (const app of apps) {
 			} catch {
 				console.warn("Could not get accent color");
 				appsWithError.push(app.name);
-				continue;
+				return;
 			}
 
 
@@ -191,7 +187,8 @@ for (const app of apps) {
 			appsWithError.push(app.name);
 		}
 	}
-}
+}));
+
 
 console.log(`\n${appsWithError.length} apps with errors`);
 console.log(appsWithError.join(", "));
