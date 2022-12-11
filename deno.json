@@ -1,52 +1,55 @@
 {
-	"compilerOptions": {
-		"allowJs": false,
-		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"strictFunctionTypes": true,
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact"
-	},
-	"tasks": {
-		"prod": "DENO_DEPLOYMENT_ID=1234 deno run -A main.ts",
-		"dev": "deno run -A --watch=static/,routes/ dev.ts",
-		"cache": "deno cache --reload main.ts",
-		"update": "deno run --allow-read --allow-env --allow-net scripts/update.ts",
-		"lint": "deno lint",
-		"format": "deno fmt"
-	},
-	"importMap": "./import_map.json",
-	"lint": {
-		"files": {
-			"exclude": [
-				"static",
-				"docs",
-				"resources"
-			]
-		},
-		"rules": {
-			"tags": [
-				"recommended"
-			],
-			"include": [
-				"ban-untagged-todo"
-			]
-		}
-	},
-	"fmt": {
-		"files": {
-			"exclude": [
-				"static",
-				"docs",
-				"resources"
-			]
-		},
-		"options": {
-			"useTabs": true,
-			"indentWidth": 4,
-			"singleQuote": false,
-			"proseWrap": "preserve"
-		}
-	}
+  "compilerOptions": {
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictFunctionTypes": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "tasks": {
+    "prod": "DENO_DEPLOYMENT_ID=1234 deno run -A main.ts",
+    "dev": "deno run -A --watch=static/,routes/ dev.ts",
+    "cache": "deno cache --reload main.ts",
+    "update": "deno run --allow-read --allow-env --allow-net scripts/update.ts",
+    "lint": "deno lint",
+    "format": "deno fmt",
+    "npm:add": "deno run -A https://esm.sh/v99 add",
+    "npm:update": "deno run -A https://esm.sh/v99 update",
+    "npm:remove": "deno run -A https://esm.sh/v99 remove"
+  },
+  "importMap": "./import_map.json",
+  "lint": {
+    "files": {
+      "exclude": [
+        "static",
+        "docs",
+        "resources"
+      ]
+    },
+    "rules": {
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "ban-untagged-todo"
+      ]
+    }
+  },
+  "fmt": {
+    "files": {
+      "exclude": [
+        "static",
+        "docs",
+        "resources"
+      ]
+    },
+    "options": {
+      "useTabs": true,
+      "indentWidth": 4,
+      "singleQuote": false,
+      "proseWrap": "preserve"
+    }
+  }
 }

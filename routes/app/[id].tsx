@@ -3,7 +3,7 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
-import Vibrant from "vibrant";
+// import Vibrant from "vibrant";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -168,15 +168,16 @@ export const handler: Handler = async (_, ctx) => {
 	}
 
 	let accentColor: string | undefined;
-	try {
-		const iconPalette = await Vibrant.from(app.icon).getPalette();
+	// try {
+	// 	const iconPalette = await Vibrant.from(app.icon).getPalette();
 
-		if (iconPalette && iconPalette.Vibrant?.hex) {
-			accentColor = iconPalette.Vibrant.hex
-		}
-	} catch {
-		console.log("Couldn't get color from icon");
-	}
+	// 	if (iconPalette && iconPalette.Vibrant?.hex) {
+	// 		accentColor = iconPalette.Vibrant.hex
+	// 	}
+	// } catch(e) {
+	// 	console.log("Couldn't get color from icon");
+	// 	console.log(e);
+	// }
 
 
 	const { data: otherApps } = await supabase.from("random_apps")
