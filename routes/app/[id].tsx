@@ -40,9 +40,7 @@ export default function App({ data }: PageProps<DataProps>) {
 					`,
 				}}
 			>
-				<Container 
-					class="pt-16"
-				>
+				<Container class="pt-16">
 					<Stack>
 						<div class="flex flex-row flex-wrap gap-4">
 							<img
@@ -72,7 +70,8 @@ export default function App({ data }: PageProps<DataProps>) {
 										icon="open_in_new"
 										fullWidth
 										style={{
-											backgroundColor: data.app.accent_color,
+											backgroundColor:
+												data.app.accent_color,
 										}}
 									>
 										Open

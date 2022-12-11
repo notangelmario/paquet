@@ -26,7 +26,9 @@ export default function Navbar(props: Props) {
 
 	useEffect(() => {
 		if (props.color) {
-			const metaTags = document.querySelectorAll("meta[name=theme-color]");
+			const metaTags = document.querySelectorAll(
+				"meta[name=theme-color]",
+			);
 			metaTags.forEach((meta) => meta.remove());
 
 			const metaTag = document.createElement("meta");
@@ -68,9 +70,9 @@ export default function Navbar(props: Props) {
 				props.transparentTop && !trigger
 					? "bg-transparent"
 					: !props.color
-						? "bg-white dark:!bg-dark"
-						: `bg-[${lightAccent}] dark:!bg-[${darkAccent}]`
-				}
+					? "bg-white dark:!bg-dark"
+					: `bg-[${lightAccent}] dark:!bg-[${darkAccent}]`
+			}
 				fixed flex w-full 
 				-top-px left-0 right-0
 				items-center content-center
@@ -112,10 +114,11 @@ export default function Navbar(props: Props) {
 	);
 }
 
-
-
 const hexToDecimal = (hex: string) => parseInt(hex, 16);
-const decimalToHex = (decimal: number) => decimal.toString(16).length < 2 ? `0${decimal.toString(16)}` : decimal.toString(16);
+const decimalToHex = (decimal: number) =>
+	decimal.toString(16).length < 2
+		? `0${decimal.toString(16)}`
+		: decimal.toString(16);
 
 // Please don't touch this. It took me 2 hours to make
 // When I made it I knew how it worked. Now I don't.
@@ -134,9 +137,11 @@ function combineColors(c1: string, c2: string) {
 	const c2b = hexToDecimal(c2.replace("#", "").slice(4, 6));
 	// const c2a = hexToDecimal(c2.replace("#", "").slice(6, 8));
 
-	const afterOpacity = (fg: number[], o: number,bg=[255,255,255]) => fg.map((colFg,idx)=> Math.round(o*colFg+(1-o)*bg[idx]));
+	const afterOpacity = (fg: number[], o: number, bg = [255, 255, 255]) =>
+		fg.map((colFg, idx) => Math.round(o * colFg + (1 - o) * bg[idx]));
 
 	const newColor = afterOpacity([c1r, c1g, c1b], c1a / 255, [c2r, c2g, c2b]);
 
-	return "#" + decimalToHex(newColor[0]) + decimalToHex(newColor[1]) + decimalToHex(newColor[2]);
+	return "#" + decimalToHex(newColor[0]) + decimalToHex(newColor[1]) +
+		decimalToHex(newColor[2]);
 }
