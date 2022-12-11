@@ -1,4 +1,5 @@
 import "dotenv";
+import type { App } from "@/types/App.ts";
 import { createClient } from "supabase";
 import { CATEGORIES } from "@/lib/categories.ts";
 import Vibrant from "npm:node-vibrant"
@@ -11,12 +12,31 @@ const supabase = createClient(
 
 const ICONS_SIZES = ["128x128", "192x192", "256x256", "512x512"];
 
-const { data: apps } = await supabase.from("apps")
-	.select("*");
 
-if (!apps) {
-	Deno.exit();
+let apps: App[] = [];
+
+if (Deno.args[0]) {
+	if (Deno.args[0] !== "--force") {
+		const { data } = await supabase.from("apps")
+			.select("*")
+			.eq("id", Deno.args[0])
+
+		if (data) {
+			apps = data;
+		} else {
+			console.error("Could not get apps!");
+			Deno.exit(1);
+		}
+	} else {
+		const { data: apps } = await supabase.from("apps")
+			.select("*");
+
+		if (!apps) {
+			Deno.exit();
+		}
+	}
 }
+
 
 const appsWithError: string[] = [];
 
@@ -46,7 +66,7 @@ await Promise.all(apps.map(async (app) => {
 		return;
 	}
 
-	if (hash !== app?.manifest_hash || Deno.args[0] === "--force") {
+	if (hash !== app?.manifest_hash || "--force" in Deno.args) {
 
 		const manifestParent = manifestUrl.split("/");
 		manifestParent.pop();
