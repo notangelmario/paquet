@@ -2,39 +2,44 @@ import type { Category } from "@/types/App.ts";
 
 export const CATEGORIES: Category[] = [
 	{
-		id: "utilities",
-		icon: "build",
-		name: "Utilities",
-	},
-	{
-		id: "productivity",
-		icon: "work",
-		name: "Productivity",
-	},
-	{
-		id: "games",
-		icon: "videogame_asset",
-		name: "Games",
-	},
-	{
-		id: "music",
-		icon: "music_note",
-		name: "Music",
+		id: "news",
+		icon: "newspaper",
+		name: "News"
 	},
 	{
 		id: "social",
 		icon: "group",
-		name: "Social",
+		name: "Social"
+	},
+	{
+		id: "utilities",
+		icon: "build",
+		name: "Utilities"
+	},
+	{
+		id: "productivity",
+		icon: "work",
+		name: "Productivity"
+	},
+	{
+		id: "games",
+		icon: "videogame_asset",
+		name: "Games"
+	},
+	{
+		id: "music",
+		icon: "music_note",
+		name: "Music"
 	},
 	{
 		id: "development",
 		icon: "code",
-		name: "Development",
+		name: "Development"
 	},
 	{
 		id: "lifestyle",
 		icon: "heart",
-		name: "Lifestyle",
+		name: "Lifestyle"
 	},
 ];
 
