@@ -40,41 +40,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 			/>
 			<Stack>
 				<Container>
-					<Header icon="home">
-						Home
-					</Header>
-				</Container>
-				<SlideContainer
-					snap
-				>
-					{data.randomCards?.map((app, idx) => (
-						<SlideItem
-							key={idx}
-							isLast={data.randomApps &&
-								idx === data.randomApps.length - 1}
-						>
-							<a
-								href={`/app/${app.id}`}
-							>
-								<ImageCard
-									class="flex flex-col gap-y-4 w-64"
-									// Weird stuff man
-									image={(app.screenshots!)[0]}
-								>
-									<img
-										src={app.icon}
-										class="rounded w-16 h-16"
-									/>
-									<h2 class="text-2xl">
-										{app.name}
-									</h2>
-								</ImageCard>
-							</a>
-						</SlideItem>
-					))}
-				</SlideContainer>
-				<Container>
 					<Stack>
+						<Header icon="home">
+							Home
+						</Header>
 						<a
 							href="https://angelmario.eu/blog/young-entrepreneurship"
 							target="_blank"
@@ -95,9 +64,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 						</form>
 					</Stack>
 				</Container>
-				<SlideContainer
-					snap
-				>
+				<SlideContainer>
 					<SlideItem>
 						<a href="/category">
 							<Button
@@ -126,6 +93,33 @@ export default function Home({ data }: PageProps<DataProps>) {
 					))}
 				</SlideContainer>
 
+				<SlideContainer>
+					{data.randomCards?.map((app, idx) => (
+						<SlideItem
+							key={idx}
+							isLast={data.randomApps &&
+								idx === data.randomApps.length - 1}
+						>
+							<a
+								href={`/app/${app.id}`}
+							>
+								<ImageCard
+									class="flex flex-col gap-y-4 w-64"
+									// Weird stuff man
+									image={(app.screenshots!)[0]}
+								>
+									<img
+										src={app.icon}
+										class="rounded w-16 h-16"
+									/>
+									<h2 class="text-2xl">
+										{app.name}
+									</h2>
+								</ImageCard>
+							</a>
+						</SlideItem>
+					))}
+				</SlideContainer>
 				{data.newApps &&
 					(
 						<div>
@@ -134,7 +128,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 									New apps
 								</h2>
 							</Container>
-							<SlideContainer snap>
+							<SlideContainer>
 								{/* This sorts every 2 elements */}
 								{data.newApps.reduce(
 									function(accumulator, _, currentIndex, array) {
@@ -163,7 +157,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 												<ListItem
 													button
 													key={app.id}
-													style={{ width: 256 }}
+													style={{ width: 300 }}
 													image={app.icon}
 													title={app.name}
 													subtitle={getCategory(app.category)
@@ -258,7 +252,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
-	const { data: randomCategoryApps } = await supabase.from<App>("random_apps")
+
+	const { data: randomCategoryApps } = await supabase.from("random_apps")
 		.select("id, name, icon, author, category")
 		.eq("category", randomCategoryId)
 		.limit(5);
@@ -267,26 +262,25 @@ export const handler: Handler = async (_, ctx) => {
 	// addedOn is a supabase date type
 	const daysAgo = 30;
 	const date = new Date(new Date().setDate(new Date().getDate() - daysAgo));
-	const { data: newApps } = await supabase.from<App>("apps")
+	const { data: newApps } = await supabase.from("apps")
 		.select("id, name, icon, category, addedOn")
 		.order("addedOn", { ascending: false })
 		.gte("addedOn", date.toDateString());
 
-	const randomCategory: DataProps["randomCategory"] =
-		randomCategoryApps?.length
+	const randomCategory = randomCategoryApps?.length
 			? {
 				category: randomCategoryId,
 				apps: randomCategoryApps,
 			}
 			: undefined;
 
-	const { data: randomApps } = await supabase.from<App>("random_apps")
+	const { data: randomApps } = await supabase.from("random_apps")
 		.select(
 			"id, name, icon, category",
 		)
 		.limit(5);
 
-	const { data: randomCards } = await supabase.from<App>("random_apps")
+	const { data: randomCards } = await supabase.from("random_apps")
 		.select(
 			"id, name, icon, screenshots",
 		)

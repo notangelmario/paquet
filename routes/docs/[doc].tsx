@@ -14,7 +14,7 @@ type DataProps = {
 	title: string;
 };
 
-export default function Changelog({ data }: PageProps<DataProps>) {
+export default function DocPage({ data }: PageProps<DataProps>) {
 	return (
 		<>
 			<Head>

@@ -1,12 +1,5 @@
-import { cloneElement, type JSX, toChildArray, VNode } from "preact";
 
-type Props = {
-	snap?: boolean;
-};
-
-export default function SlideContainer(
-	props: Props & JSX.IntrinsicElements["div"],
-) {
+export default function SlideContainer(props: JSX.IntrinsicElements["div"]) {
 	return (
 		<div
 			{...props}
@@ -14,13 +7,11 @@ export default function SlideContainer(
 				props.class || ""
 			}`}
 			style={{
+				scrollSnapType: "x mandatory",
 				...props.style as Record<string, string>,
-				scrollSnapType: props.snap ? "x mandatory" : undefined,
 			}}
 		>
-			{toChildArray(props.children).map((child) => (
-				cloneElement(child as VNode, { snap: props.snap })
-			))}
+			{props.children}
 		</div>
 	);
 }

@@ -69,7 +69,7 @@ export const handler: Handler = async (_, ctx) => {
 	}
 
 	const { data: apps } = await supabase
-		.from<App>("apps")
+		.from("apps")
 		.select("id, name, icon, author")
 		.eq("category", category);
 

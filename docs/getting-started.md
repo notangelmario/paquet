@@ -3,11 +3,16 @@
 :wave: Hi! Here is how you can add your app to Paquet. Adding a new app
 is done by submiting an issue on our [GitHub repo](https://github.com/notangelmario/paquet).
 
+> Verification on apps has been removed, because all apps are checked
+> during the listing process.
+
+
 ## Using `manifest.json`
 
 ### Requirements:
-* Service worker
 * Web app manifest
+* Service worker
+* Name
 * App icons
 
 You can use your `manifest.json` or `site.webmanifest` to specify the app listing

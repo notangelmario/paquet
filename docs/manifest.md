@@ -1,10 +1,8 @@
 # Manifest
 
-> Keep in mind that this is still work in progress and might change!
-
 You can specify your app details on Paquet, using your `manifest.json` or `site.webmanifest` file.
 
-Here is an example:
+Here is a `manifest.json` example:
 
 ```json
 {
@@ -89,11 +87,12 @@ Here is a list of available categories:
 
 Paquet will fetch the first maskable icon that is 128x128 pixels.
 
-Paquet will fetch the first maskable icon that is 128x128 pixels.
-
 If this icon is not found, Paquet will search for 192x192, 256x256, 512x512.
-The first found will be set as icon.
+The first found will be set as icon. The accent color will be grabbed from
+the icon.
 
 ### `screenshots`
 
-We fetch for all screenshots no matter the size.
+We fetch for all screenshots no matter the size. We recomend
+you to add screenshots for all suported devices. Screenshots
+will also improve your visibility on Paquet.

@@ -2,7 +2,6 @@ import { type JSX } from "preact";
 
 type Props = {
 	isLast?: boolean;
-	snap?: boolean;
 	equal?: boolean;
 	disableGutters?: boolean;
 };
@@ -19,7 +18,7 @@ export default function SlideItem(props: Props & JSX.IntrinsicElements["div"]) {
 				${props.class || ""}
 			`}
 			style={{
-				scrollSnapAlign: props.snap ? "start" : undefined,
+				scrollSnapAlign: "start",
 				...props.style as Record<string, string>,
 			}}
 		/>

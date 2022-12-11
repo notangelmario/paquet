@@ -1,8 +1,8 @@
 import "dotenv";
 
 export const APP = {
-	version: "0.11.1",
-	codename: "Rodia",
+	version: "1.0.0",
+	codename: "Andreea",
 };
 
 export const DEV = !Deno.env.get("DENO_DEPLOYMENT_ID");

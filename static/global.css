@@ -74,6 +74,7 @@ main {
 *::-webkit-scrollbar-thumb {
 	background: #ddd;
 	transition: background 0.2s ease-in-out;
+	border-radius: 0.95rem;
 }
 
 *::-webkit-scrollbar-thumb:hover {

@@ -3,6 +3,7 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
+import Vibrant from "vibrant";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -14,8 +15,11 @@ import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
 import Screenshots from "@/components/Screenshots.tsx";
+import GradientPageOverlay from "@/components/GradientPageOverlay.tsx";
+
 
 type DataProps = {
+	accentColor: string | undefined;
 	app: App;
 	otherApps?: App[];
 };
@@ -26,8 +30,14 @@ export default function App({ data }: PageProps<DataProps>) {
 			<Head>
 				<title>{data.app.name} &middot; Paquet</title>
 			</Head>
-			<Navbar back />
-			<Container style={{ paddingTop: 64 }}>
+			<Navbar 
+				transparentTop
+				back
+			/>
+			{data.accentColor &&
+				<GradientPageOverlay accentColor={data.accentColor} />
+			}
+			<Container class="pt-16">
 				<Stack>
 					<div class="flex flex-row flex-wrap gap-4">
 						<img
@@ -40,7 +50,11 @@ export default function App({ data }: PageProps<DataProps>) {
 							</h2>
 							<p class="opacity-50">
 								{data.app.author} &middot;{" "}
-								{getCategory(data.app.category)?.name}
+								<a 
+									href={`/category/${data.app.category}`}
+								>
+									{getCategory(data.app.category)?.name}
+								</a>
 							</p>
 						</div>
 						<div class="min-w-full sm:min-w-[30%]">
@@ -52,6 +66,9 @@ export default function App({ data }: PageProps<DataProps>) {
 								<Button
 									icon="open_in_new"
 									fullWidth
+									style={{
+										backgroundColor: data.accentColor
+									}}
 								>
 									Open
 								</Button>
@@ -132,12 +149,14 @@ export default function App({ data }: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const { data: app } = await supabase.from<App>("apps")
+	const { data: app } = await supabase.from("apps")
 		.select(
-			"id, name, author, description, url, icon, screenshots, features, category, github_url, gitlab_url, verified",
+			"id, name, author, description, url, icon, screenshots, features, category, github_url, gitlab_url",
 		)
 		.eq("id", ctx.params.id)
 		.single();
+
+
 
 	if (!app) {
 		return new Response("Not found", {
@@ -148,6 +167,18 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
+	let accentColor: string | undefined;
+	try {
+		const iconPalette = await Vibrant.from(app.icon).getPalette();
+
+		if (iconPalette && iconPalette.Vibrant?.hex) {
+			accentColor = iconPalette.Vibrant.hex
+		}
+	} catch {
+		console.log("Couldn't get color from icon");
+	}
+
+
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon")
 		.eq("category", app.category)
@@ -155,6 +186,7 @@ export const handler: Handler = async (_, ctx) => {
 		.limit(3);
 
 	return ctx.render({
+		accentColor,
 		app,
 		otherApps,
 	} as DataProps);
