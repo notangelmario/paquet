@@ -52,6 +52,14 @@ main {
 		-ms-user-select: initial;
 		user-select: initial;
 	}
+
+	*::-webkit-scrollbar {
+		display: none;
+	}
+
+	* {
+		scrollbar-width: none;
+	}
 }
 
 *::-webkit-scrollbar {
