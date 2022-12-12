@@ -35,8 +35,16 @@ export default function Home({ data }: PageProps<DataProps>) {
 				<title>Paquet</title>
 			</Head>
 			<Navbar
-				rightIcon="settings"
-				rightIconHref="/settings"
+				right={[
+					{
+						icon: "apps",
+						href: "/library",
+					},
+					{
+						icon: "settings",
+						href: "/settings",
+					}
+				]}
 			/>
 			<Stack>
 				<Container>

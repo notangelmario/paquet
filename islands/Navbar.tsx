@@ -8,8 +8,10 @@ export type Props = {
 	transparentTop?: boolean;
 	color?: string;
 	back?: boolean;
-	rightIcon?: string;
-	rightIconHref?: string;
+	right: {
+		icon: string;
+		href: string;
+	}[]
 };
 
 export default function Navbar(props: Props) {
@@ -109,15 +111,15 @@ export default function Navbar(props: Props) {
 				)}
 			</div>
 			<div class="flex flex-row ml-auto items-center gap-2">
-				{props.rightIcon && (
-					<a class={tw(iconBtn)} href={props.rightIconHref}>
+				{props.right && props.right.map(({ icon, href }) => (
+					<a class={tw(iconBtn)} href={href}>
 						<Icon
-							name={props.rightIcon}
+							name={icon}
 							width={24}
 							height={24}
 						/>
 					</a>
-				)}
+				))}
 			</div>
 		</div>
 	);
