@@ -26,9 +26,7 @@ export default function Navbar(props: Props) {
 
 	useEffect(() => {
 		if (props.color) {
-			const metaTags = document.querySelectorAll(
-				"meta[name=theme-color]",
-			);
+			const metaTags = document.querySelectorAll("meta[name=theme-color]");
 			metaTags.forEach((meta) => meta.remove());
 
 			const metaTag = document.createElement("meta");
@@ -44,6 +42,19 @@ export default function Navbar(props: Props) {
 			document.head.appendChild(metaTag2);
 		}
 	}, []);
+
+	useEffect(() => {
+		const darkMetaTag = document.querySelector("meta[name=theme-color][media='(prefers-color-scheme: dark)']");
+		const lightMetaTag = document.querySelector("meta[name=theme-color][media='(prefers-color-scheme: light)']");
+
+		if (props.transparentTop && !trigger) {
+			darkMetaTag?.setAttribute("content", darkAccent);
+			lightMetaTag?.setAttribute("content", lightAccent);
+		} else if (props.transparentTop && trigger) {
+			darkMetaTag?.setAttribute("content", "#121212");
+			lightMetaTag?.setAttribute("content", "#ffffff");
+		}
+	}, [trigger]);
 
 	useEffect(() => {
 		if (!visitedRoot && globalThis.location.pathname === "/") {
@@ -69,9 +80,7 @@ export default function Navbar(props: Props) {
 				${
 				props.transparentTop && !trigger
 					? "bg-transparent"
-					: !props.color
-					? "bg-white dark:!bg-dark"
-					: `bg-[${lightAccent}] dark:!bg-[${darkAccent}]`
+					: "bg-white dark:!bg-dark"
 			}
 				fixed flex w-full 
 				-top-px left-0 right-0
