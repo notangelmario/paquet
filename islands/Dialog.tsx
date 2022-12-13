@@ -8,13 +8,12 @@ export type Props = {
 	setOpen: StateUpdater<boolean>;
 	title?: string;
 	content?: string;
-	buttons?: [
-		{
-			text: string;
-			outlined?: boolean;
-			onClick?: () => void;
-		},
-	];
+	buttons?: {
+		text: string;
+		icon?: string;
+		outlined?: boolean;
+		onClick?: () => void;
+	}[]
 };
 
 export default function Dialog(props: Props) {
@@ -31,6 +30,7 @@ export default function Dialog(props: Props) {
 			class={`
 				fixed top-0 left-0 right-0 bottom-0 flex justify-center items-end
 				bg-black bg-opacity-50 z-50
+				!m-0
 				transition-opacity duration-150 ease-in-out
 
 				${
@@ -69,6 +69,7 @@ export default function Dialog(props: Props) {
 						<Button
 							key={i}
 							outlined={button.outlined}
+							icon={button.icon}
 							onClick={button.onClick}
 						>
 							{button.text}

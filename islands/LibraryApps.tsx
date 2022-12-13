@@ -1,60 +1,81 @@
-import { useEffect, useState } from "preact/hooks";
-import type { App } from "@/types/App.ts";
+// import { useEffect } from "preact/hooks";
+import Stack from "@/components/Stack.tsx";
+import { useLibrary } from "@/hooks/useLibrary.ts";
 import { btn } from "@/lib/ui.ts";
 import { tw } from "twind";
 
+interface Props {
+	offline?: boolean
+}
 
-export default function LibraryApps() {
-	const [apps, setApps] = useState<App[]>([]);
-	
-	useEffect(() => {
-		const apps = JSON.parse(localStorage.getItem("library") || "")["apps"] as App[];
+export default function LibraryApps({ }: Props) {
+	const { apps, setApps, loading } = useLibrary();
 
-		if (apps) {
-			setApps(apps);
-		}
-	}, []);
-
-	const removeApp = (app: App) => {
-		apps.splice(apps.indexOf(app), 1);
-		localStorage.setItem("library", JSON.stringify({ apps }));
+	const removeApp = (id: string) => {
+		setApps(apps.filter((a) => a.id !== id));
 	}
+	// Update apps
+	// useEffect(() => {
+	// 	if (offline) return
 
-	return (
-		<div
-			class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
-		>
-			{apps.map(app => (
-				<a
-					key={app.id}
-					href={app.url}
-					target="_blank"
-					rel="noopener noreferrer"
-					class={tw`${btn} flex flex-col space-y-2 justify-center items-center p-4 text-center`}
+
+	// }, [])
+
+	return loading ? <div/> : (
+		<div>
+			{apps.length ? (
+				<div
+					class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
 				>
+					{apps.map(app => (
+						<a
+							key={app.id}
+							href={app.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class={tw`${btn} flex flex-col space-y-2 justify-center items-center p-4 text-center`}
+						>
+							<img
+								src={app.icon}
+								alt={app.name}
+								class="rounded"
+								width={64}
+								height={64}
+							/>
+							<p
+								class="text-xl"
+							>
+								{app.name}
+							</p>
+							<a 
+								href="#" 
+								class="underline opacity-50"
+								onClick={e => {
+									e.preventDefault();
+									removeApp(app.id);
+								}}
+							>
+								Remove
+							</a>
+						</a>
+					))}
+				</div>)
+			:
+			(
+				<Stack>
 					<img
-						src={app.icon}
-						alt={app.name}
-						width={64}
-						height={64}
+						src="/illustrations/void.svg"
+						alt=""
+						class="h-64"
 					/>
 					<p
-						class="text-xl"
+						class="text-center"
 					>
-						{app.name}
+						You have no apps in your library yet.
+						Add any app you like here for easier access.
 					</p>
-					<a 
-						href="#" 
-						class="underline opacity-50"
-						onClick={e => {
-							e.preventDefault();
-							removeApp(app);
-						}}
-					>
-						Remove
-					</a>
-				</a>
-			))}
+				</Stack>
+			)}
 		</div>
-	)
+	);
 }

@@ -14,6 +14,7 @@ import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/AppLinks.tsx";
 import Screenshots from "@/components/Screenshots.tsx";
+import AddToLibrary from "@/islands/AddToLibrary.tsx";
 
 interface DataProps {
 	app: App;
@@ -60,7 +61,7 @@ export default function App({ data }: PageProps<DataProps>) {
 									</a>
 								</p>
 							</div>
-							<div class="min-w-full sm:min-w-[30%]">
+							<div class="min-w-full space-y-2 sm:min-w-[30%]">
 								<a
 									href={data.app.url}
 									target="_blank"
@@ -77,6 +78,7 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
+								<AddToLibrary app={data.app}/>
 							</div>
 						</div>
 						<div>

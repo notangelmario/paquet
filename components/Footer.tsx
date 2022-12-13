@@ -1,15 +1,5 @@
 import Container from "@/components/Container.tsx";
 
-const LINKS = [
-	{
-		title: "Settings",
-		href: "/settings",
-	},
-	{
-		title: "Documentation",
-		href: "/docs",
-	},
-];
 
 export default function Footer() {
 	return (
@@ -23,7 +13,7 @@ export default function Footer() {
 					/>{" "}
 					Paquet
 				</h2>
-				<div class="mt-4 flex flex-row gap-4">
+				<div class="my-4 flex flex-row gap-4 opacity-50">
 					<a
 						href="https://github.com/notangelmario/paquet"
 						target="_blank"
@@ -48,25 +38,6 @@ export default function Footer() {
 							class="w-8 h-8 dark:(filter invert)"
 						/>
 					</a>
-				</div>
-				<div class="my-4 flex flex-row">
-					{LINKS.map((link, idx) => (
-						<>
-							<a
-								key={link.href}
-								href={link.href}
-								class="opacity-50 hover:underline"
-							>
-								{link.title}
-							</a>
-							{idx !== LINKS.length - 1 &&
-								(
-									<span class="opacity-50 mx-2">
-										&middot;
-									</span>
-								)}
-						</>
-					))}
 				</div>
 				<a
 					href="https://angelmario.eu"

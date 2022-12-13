@@ -5,7 +5,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Icon from "@/components/Icon.tsx";
-import LibraryApps from "../islands/LibraryApps.tsx";
+import LibraryApps from "@/islands/LibraryApps.tsx";
 
 
 export default function Library(props: PageProps) {
@@ -21,7 +21,7 @@ export default function Library(props: PageProps) {
 			/>
 			<Container>
 				<Stack>
-					<Header icon="apps">
+					<Header icon="dashboard">
 						Library
 					</Header>
 					{isOffline ? (

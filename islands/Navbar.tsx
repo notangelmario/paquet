@@ -8,7 +8,7 @@ export type Props = {
 	transparentTop?: boolean;
 	color?: string;
 	back?: boolean;
-	right: {
+	right?: {
 		icon: string;
 		href: string;
 	}[]

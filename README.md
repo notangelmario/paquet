@@ -69,7 +69,7 @@ deno task update [appId] [--force]
 To manage dependencies:
 
 ```
-deno task npm:[add|remove|update]
+deno task esm:[add|remove|update]
 ```
 
 ## 📄 Developer Documentation

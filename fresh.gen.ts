@@ -18,10 +18,11 @@ import * as $11 from "./routes/offline.tsx";
 import * as $12 from "./routes/search.tsx";
 import * as $13 from "./routes/settings.tsx";
 import * as $14 from "./routes/sitemap.xml.ts";
-import * as $$0 from "./islands/Dialog.tsx";
-import * as $$1 from "./islands/InstallBanner.tsx";
-import * as $$2 from "./islands/LibraryApps.tsx";
-import * as $$3 from "./islands/Navbar.tsx";
+import * as $$0 from "./islands/AddToLibrary.tsx";
+import * as $$1 from "./islands/Dialog.tsx";
+import * as $$2 from "./islands/InstallBanner.tsx";
+import * as $$3 from "./islands/LibraryApps.tsx";
+import * as $$4 from "./islands/Navbar.tsx";
 
 const manifest = {
 	routes: {
@@ -42,10 +43,11 @@ const manifest = {
 		"./routes/sitemap.xml.ts": $14,
 	},
 	islands: {
-		"./islands/Dialog.tsx": $$0,
-		"./islands/InstallBanner.tsx": $$1,
-		"./islands/LibraryApps.tsx": $$2,
-		"./islands/Navbar.tsx": $$3,
+		"./islands/AddToLibrary.tsx": $$0,
+		"./islands/Dialog.tsx": $$1,
+		"./islands/InstallBanner.tsx": $$2,
+		"./islands/LibraryApps.tsx": $$3,
+		"./islands/Navbar.tsx": $$4,
 	},
 	baseUrl: import.meta.url,
 	config,

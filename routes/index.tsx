@@ -37,7 +37,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 			<Navbar
 				right={[
 					{
-						icon: "apps",
+						icon: "dashboard",
 						href: "/library",
 					},
 					{

@@ -15,9 +15,9 @@
 		"update": "deno run --allow-read --allow-env --allow-net scripts/update.ts",
 		"lint": "deno lint",
 		"format": "deno fmt",
-		"npm:add": "deno run -A https://esm.sh/v99 add",
-		"npm:update": "deno run -A https://esm.sh/v99 update",
-		"npm:remove": "deno run -A https://esm.sh/v99 remove"
+		"esm:add": "deno run -A https://esm.sh/v99 add",
+		"esm:update": "deno run -A https://esm.sh/v99 update",
+		"esm:remove": "deno run -A https://esm.sh/v99 remove"
 	},
 	"importMap": "./import_map.json",
 	"lint": {
