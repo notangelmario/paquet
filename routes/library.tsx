@@ -30,6 +30,7 @@ export default function Library(props: PageProps) {
 						>
 							<Icon
 								name="info"
+								data-fresh-disable-lock={isOffline}
 								inline
 								width={18}
 								height={18}

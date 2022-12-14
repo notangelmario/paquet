@@ -1,5 +1,26 @@
-const cacheName = "my-cache-name";
-const filesToCache = ["/library", ""];
+const cacheName = "v1";
+const filesToCache = [
+	"/registerSw.js",
+	"/library?offline=true", 
+	"/manifest.json",
+	"/global.css",
+	"/fonts.css",
+	"/fonts/poppins-v20-latin-100.woff",
+	"/fonts/poppins-v20-latin-100.woff2",
+	"/fonts/poppins-v20-latin-300.woff",
+	"/fonts/poppins-v20-latin-300.woff2",
+	"/fonts/poppins-v20-latin-500.woff",
+	"/fonts/poppins-v20-latin-500.woff2",
+	"/fonts/poppins-v20-latin-700.woff",
+	"/fonts/poppins-v20-latin-700.woff2",
+	"/fonts/poppins-v20-latin-regular.woff",
+	"/fonts/poppins-v20-latin-regular.woff2",
+	"/favicon-32x32.png",
+	"/favicon-16x16.png",
+	"/icons/dashboard.svg",
+	"/icons/info.svg",
+	"/illustrations/void.svg"
+];
 
 self.addEventListener('install', event => {
   // Perform install steps
@@ -19,10 +40,11 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
 	return event.respondWith(
 		// If fetch fails, try to get from cache
-		// If request tries to access index.html, get library from cache
+		// If request tries to access homepage, get library from cache
 		fetch(event.request).catch(() => {
-			if (event.request.url.endsWith("index.html")) {
-				return caches.match("/library");
+			console.log(event.request.url);
+			if (event.request.url.endsWith("/")) {
+				return caches.match("/library?offline=true");
 			}
 			return caches.match(event.request);
 		})

@@ -1,3 +1,5 @@
+import type { JSX } from "preact";
+
 export interface Props {
 	width?: number;
 	height?: number;
@@ -7,9 +9,10 @@ export interface Props {
 	error?: boolean;
 }
 
-export default function Icon(props: Props) {
+export default function Icon(props: Props & JSX.IntrinsicElements["img"]) {
 	return (
 		<img
+			{...props}
 			class={`w-8 h-8 ${!props.error ? "dark:(filter invert)" : ""} ${
 				props.inline ? "inline align-middle" : ""
 			} ${props.class || ""}`}

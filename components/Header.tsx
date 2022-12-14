@@ -1,4 +1,4 @@
-import { type JSX } from "preact";
+import type { JSX } from "preact";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
@@ -11,6 +11,7 @@ export default function Header(props: Props & JSX.IntrinsicElements["h1"]) {
 			{props.icon && (
 				<Icon
 					name={props.icon}
+					data-disable-fresh-lock
 					width={48}
 					height={48}
 					inline
