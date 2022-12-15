@@ -1,5 +1,6 @@
-// import { useEffect } from "preact/hooks";
+import { useState } from "preact/hooks";
 import Stack from "@/components/Stack.tsx";
+import Dialog from "@/islands/Dialog.tsx";
 import { useLibrary } from "@/hooks/useLibrary.ts";
 import { btn } from "@/lib/ui.ts";
 import { tw } from "twind";
@@ -9,11 +10,22 @@ interface Props {
 }
 
 export default function LibraryApps({ }: Props) {
+	const [ confirmDialog, setConfirmDialog ] = useState(false);
+	const [ toDeleteId, setToDeleteId ] = useState("");
+	const [ toDeleteName, setToDeleteName ] = useState("");
 	const { apps, setApps, loading } = useLibrary();
 
 	const removeApp = (id: string) => {
-		setApps(apps.filter((a) => a.id !== id));
+		setToDeleteId(id);
+		setToDeleteName(apps.find(app => app.id === id)?.name || "");
+		setConfirmDialog(true);
 	}
+
+	const confirmToDelete = () => {
+		if (!toDeleteId) return;
+		setApps(apps.filter((a) => a.id !== toDeleteId));
+	}
+	
 	// Update apps
 	// useEffect(() => {
 	// 	if (offline) return
@@ -25,7 +37,7 @@ export default function LibraryApps({ }: Props) {
 		<div>
 			{apps.length ? (
 				<div
-					class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
+					class="grid grid-cols-3 gap-4 items-start md:grid-cols-6 lg:grid-cols-8"
 				>
 					{apps.map(app => (
 						<a
@@ -59,6 +71,24 @@ export default function LibraryApps({ }: Props) {
 							</a>
 						</a>
 					))}
+					<Dialog
+						title="Are you sure?"
+						content={`Are you sure you want to remove ${toDeleteName} from your library? You can add it back anytime.`}
+						open={confirmDialog}
+						setOpen={setConfirmDialog}
+						buttons={[
+							{
+								text: "Confirm",
+								red: true,
+								onClick: confirmToDelete
+							},
+							{
+								text: "Cancel",
+								outlined: true,
+								onClick: () => setConfirmDialog(false)
+							}
+						]}
+					/>
 				</div>)
 			:
 			(

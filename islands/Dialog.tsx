@@ -11,6 +11,7 @@ export type Props = {
 	buttons?: {
 		text: string;
 		icon?: string;
+		red?: boolean;
 		outlined?: boolean;
 		onClick?: () => void;
 	}[]
@@ -69,6 +70,7 @@ export default function Dialog(props: Props) {
 						<Button
 							key={i}
 							outlined={button.outlined}
+							red={button.red}
 							icon={button.icon}
 							onClick={button.onClick}
 						>

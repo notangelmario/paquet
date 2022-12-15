@@ -1,9 +1,6 @@
 import { Handler } from "@/types/Handler.ts";
 import { CSS as gfmCSS } from "gfm";
 
-// TODO(lucacasonato): hash the file and use the hash as the filename, and serve
-// with high-cacheability headers.
-
 const CSS = `${gfmCSS}
 
 ol.nested {

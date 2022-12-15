@@ -2,7 +2,7 @@ import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
 
-export default function App(props: AppProps) {
+export default function App({ Component }: AppProps) {
 	return (
 		<html>
 			<Head>
@@ -29,7 +29,6 @@ export default function App(props: AppProps) {
 					href="/favicon-16x16.png"
 				/>
 				<link rel="manifest" href="/manifest.json" />
-				{/* @ts-ignore */}
 				<link
 					rel="mask-icon"
 					href="/safari-pinned-tab.svg"
@@ -69,8 +68,8 @@ export default function App(props: AppProps) {
 				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}
-			<main class="dark:text-white" onTouchStart="">
-				<props.Component />
+			<main onTouchStart="">
+				<Component />
 			</main>
 			<Footer />
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (

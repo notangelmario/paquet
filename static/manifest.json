@@ -29,6 +29,13 @@
 			"purpose": "maskable"
 		}
 	],
+	"shortcuts": [
+		{
+			"name": "Library",
+			"url": "/library",
+			"description": "Browse the Paquet library"
+		}
+	],
 	"theme_color": "#8267be",
 	"background_color": "#ffffff",
 	"display": "standalone",

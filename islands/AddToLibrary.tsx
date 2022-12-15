@@ -12,6 +12,7 @@ interface Props {
 export default function AddToLibrary({ app }: Props) {
 	const { apps, setApps } = useLibrary();
 	const [ dialogOpen, setDialogOpen ] = useState(false)
+	const [ confirmDeleteDialog, setConfirmDeleteDialog ] = useState(false);
 
 	const addToLibrary = (app: App) => {
 		if (!apps.find((a) => a.id === app.id)) {
@@ -28,17 +29,21 @@ export default function AddToLibrary({ app }: Props) {
 				data: [app.icon]
 			});
 		} else {
-			setApps(apps.filter((a) => a.id !== app.id));
-			navigator.serviceWorker.controller?.postMessage({
-				type: "WIPE_URLS",
-				data: [app.icon]
-			});
+			setConfirmDeleteDialog(true);
 		}
 	};
 
 	const isAppInLibrary = useMemo(() => {
 		return apps.find((a) => a.id === app.id);
 	}, [apps, app]);
+
+	const confirmDelete = () => {
+		setApps(apps.filter((a) => a.id !== app.id));
+		navigator.serviceWorker.controller?.postMessage({
+			type: "WIPE_URLS",
+			data: [app.icon]
+		});
+	}
 
 	return (
 		<>
@@ -65,6 +70,24 @@ export default function AddToLibrary({ app }: Props) {
 						text: "Ok",
 						outlined: true,
 						onClick: () => setDialogOpen(false)
+					}
+				]}
+			/>
+			<Dialog
+				title="Are you sure?"
+				content={`Are you sure you want to remove ${app.name} from your library? You can add it back anytime.`}
+				open={confirmDeleteDialog}
+				setOpen={setConfirmDeleteDialog}
+				buttons={[
+					{
+						text: "Confirm",
+						red: true,
+						onClick: confirmDelete
+					},
+					{
+						text: "Cancel",
+						outlined: true,
+						onClick: () => setConfirmDeleteDialog(false)
 					}
 				]}
 			/>

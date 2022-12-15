@@ -54,12 +54,6 @@ To run the app in development mode:
 deno task dev
 ```
 
-To run the app in production mode:
-
-```
-deno task prod
-```
-
 To update all apps:
 
 ```
