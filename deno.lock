@@ -537,7 +537,10 @@
     "https://esm.sh/v99/websocket@1.0.34/deno/websocket.js": "34ab64d82668fd7ab6292f9fbec4aa2c8f9099416d512e517108bb6e5a0a1605"
   },
   "npm": {
-    "specifiers": { "node-vibrant": "node-vibrant@3.2.1-alpha.1" },
+    "specifiers": {
+      "node-vibrant": "node-vibrant@3.2.1-alpha.1",
+      "webp-converter": "webp-converter@2.3.3"
+    },
     "packages": {
       "@babel/runtime@7.20.6": {
         "integrity": "sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==",
@@ -903,6 +906,14 @@
       "utif@2.0.1": {
         "integrity": "sha512-Z/S1fNKCicQTf375lIP9G8Sa1H/phcysstNrrSdZKj1f9g58J4NMgb5IgiEZN9/nLMPDwF0W7hdOe9Qq2IYoLg==",
         "dependencies": { "pako": "pako@1.0.11" }
+      },
+      "uuid@8.3.2": {
+        "integrity": "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==",
+        "dependencies": {}
+      },
+      "webp-converter@2.3.3": {
+        "integrity": "sha512-2p4XvPCIQ/CbUztEFA9vdkILVrRTdMtMxFpQTxlnPc3qx14MV5wnpVvK7m6pG70QdeL+Ser0+Tp843ONwh8VbQ==",
+        "dependencies": { "uuid": "uuid@8.3.2" }
       },
       "xhr@2.6.0": {
         "integrity": "sha512-/eCGLb5rxjx5e3mF1A7s+pLlR6CGyqWN91fv1JgER5mVWg1MZmlhBvy9kjcsOdRk8RrIujotWyJamfyrp+WIcA==",
