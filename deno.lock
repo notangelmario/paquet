@@ -366,6 +366,7 @@
     "https://deno.land/x/jpegts@1.1/lib/image.ts": "32255e99b6c1bf4e72e13367516a0d878ba9d195d81fac1f145ce4c11e951962",
     "https://deno.land/x/jpegts@1.1/lib/pixel.ts": "19f7f28f09514157be87d01d1d12915cc17c787d8c1707899d2f5570ac6a12fe",
     "https://deno.land/x/jpegts@1.1/mod.ts": "2014257f7269bcc822a4d6eb871e5002b347f13a641c12d45c1a61586374f127",
+    "https://deno.land/x/prefetch@0.0.6/mod.ts": "d7c7652ef220611404952e84c7a265f5997173d86828b586ddd6c75d0eef734b",
     "https://deno.land/x/rutt@0.0.13/mod.ts": "af981cfb95131152bf50fc9140fc00cb3efb6563df2eded1d408361d8577df20",
     "https://deno.land/x/ts_morph@16.0.0/common/DenoRuntime.ts": "537800e840d0994f9055164e11bf33eadf96419246af0d3c453793c3ae67bdb3",
     "https://deno.land/x/ts_morph@16.0.0/common/mod.ts": "01985d2ee7da8d1caee318a9d07664774fbee4e31602bc2bb6bb62c3489555ed",

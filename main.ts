@@ -8,8 +8,15 @@ import manifest from "@/fresh.gen.ts";
 
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "@/twind.config.ts";
+import prefetchPlugin from "prefetch";
+
 
 await start(manifest, {
-	plugins: [twindPlugin(twindConfig)],
+	plugins: [
+		twindPlugin(twindConfig),
+		prefetchPlugin({
+			limit: 4,
+		})
+	],
 	port: 3000,
 });
