@@ -19,6 +19,9 @@ const filesToCache = [
 	"/favicon-16x16.png",
 	"/icons/dashboard.svg",
 	"/icons/info.svg",
+	"/icons/github.svg",
+	"/icons/supabase.svg",
+	"/icons/paquet.svg",
 	"/illustrations/void.svg"
 ];
 
@@ -44,9 +47,23 @@ self.addEventListener("fetch", event => {
 		fetch(event.request).catch(() => {
 			console.log(event.request.url);
 			if (event.request.url.endsWith("/")) {
+				console.log(localStorage.getItem("library"));
 				return caches.match("/library?offline=true");
 			}
 			return caches.match(event.request);
 		})
 	);
+});
+
+self.addEventListener("message", event => {
+	if (event.data.type === "CACHE_URLS") {
+		caches.open(cacheName).then(cache => {
+			return cache.addAll(event.data.data);
+		});
+	}
+	if (event.data.type === "WIPE_URLS") {
+		caches.open(cacheName).then(cache => {
+			return cache.delete(event.data.data);
+		});
+	}
 });

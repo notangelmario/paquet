@@ -1,7 +1,17 @@
 if (navigator.serviceWorker) {
 	navigator.serviceWorker.register('/sw.js', {
 		scope: '/'
-	}).then(function(reg) {
+	}).then((reg) => {
+		reg.installing?.postMessage({
+			type: "CACHE_URLS",
+			data: [
+				...performance.getEntriesByType('resource').filter((entry) => {
+					return entry.name.indexOf('/_frsh/') !== -1;
+				}).map((entry) => {
+					return entry.name;
+				}),
+			]
+		});
 		console.log(reg.scope, 'register');
 		console.log('Service worker change, registered the service worker');
 	});
