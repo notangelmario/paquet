@@ -13,6 +13,7 @@
 		"cache": "deno cache --reload main.ts",
 		"update": "deno run --allow-read --allow-env --allow-net scripts/update.ts",
 		"lint": "deno lint",
+		"check": "deno check main.ts",
 		"format": "deno fmt",
 		"esm:add": "deno run -A https://esm.sh/v99 add",
 		"esm:update": "deno run -A https://esm.sh/v99 update",

@@ -1,10 +1,10 @@
-import { type JSX } from "preact";
+import type { JSX } from "preact";
 
-type Props = {
+interface Props {
 	isLast?: boolean;
 	equal?: boolean;
 	disableGutters?: boolean;
-};
+}
 
 export default function SlideItem(props: Props & JSX.IntrinsicElements["div"]) {
 	return (
