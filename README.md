@@ -66,6 +66,11 @@ To manage dependencies:
 deno task esm:[add|remove|update]
 ```
 
+To type check, lint, and format the source code:
+```
+deno task check
+```
+
 ## 📄 Developer Documentation
 
 Developer documentation is available both on [GitHub](/docs/getting-started.md) and
