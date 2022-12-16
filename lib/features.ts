@@ -21,4 +21,9 @@ export const FEATURES: Feature[] = [
 		name: "Open source",
 		icon: "code",
 	},
+	{
+		id: "auth",
+		name: "Requires authentication",
+		icon: "lock",
+	}
 ];

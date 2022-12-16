@@ -123,7 +123,7 @@ export default function App({ data }: PageProps<DataProps>) {
 				</div>
 			)}
 
-			{data.otherApps &&
+			{data.otherApps?.length ?
 				(
 					<>
 						<Container>
@@ -150,7 +150,7 @@ export default function App({ data }: PageProps<DataProps>) {
 							))}
 						</Container>
 					</>
-				)}
+				) : null}
 		</>
 	);
 }
