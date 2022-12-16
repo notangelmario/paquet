@@ -287,6 +287,8 @@ export const handler: Handler = async (_, ctx) => {
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 
+	// This is used to determine for how long an app is considered
+	// to be new.
 	const daysAgo = 30;
 	const date = new Date(new Date().setDate(new Date().getDate() - daysAgo));
 

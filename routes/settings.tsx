@@ -50,14 +50,6 @@ export default function Settings() {
 							subtitle={`${APP.version} - ${APP.codename}`}
 						/>
 					</Card>
-					<a
-						href="https://angelmario.eu"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="mt-8 opacity-75 text-center"
-					>
-						Made with ❤ by<br/>Savin Angel-Mario
-					</a>
 				</Stack>
 			</Container>
 		</>

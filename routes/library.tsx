@@ -19,6 +19,12 @@ export default function Library(props: PageProps) {
 			{!isOffline ? (
 				<Navbar 
 					back
+					right={[
+						{
+							icon: "settings",
+							href: "/settings",
+						}
+					]}
 				/>
 			) : null}
 			<Container>

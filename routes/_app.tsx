@@ -1,5 +1,6 @@
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
+import Footer from "@/components/Footer.tsx";
 
 export default function App({ Component }: AppProps) {
 	return (
@@ -56,6 +57,7 @@ export default function App({ Component }: AppProps) {
 					property="og:description"
 					content="Check out Paquet to find the best web apps on the open web."
 				/>
+				<meta name="keywords" content="apps, PWA, web apps, shop, store, app store, app shop" />
 				<meta property="og:title" content="Paquet - The web app shop" />
 				<meta property="og:url" content="https://paquet.shop" />
 				<meta
@@ -67,9 +69,10 @@ export default function App({ Component }: AppProps) {
 				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}
-			<main class="mb-4" onTouchStart="">
+			<main onTouchStart="">
 				<Component />
 			</main>
+			<Footer />
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
 				<script src="/registerSw.js"></script>
 			)}
