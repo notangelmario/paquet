@@ -43,6 +43,7 @@ export default function AddToLibrary({ app }: Props) {
 			type: "WIPE_URLS",
 			data: [app.icon]
 		});
+		setConfirmDeleteDialog(false);
 	}
 
 	return (

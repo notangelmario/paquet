@@ -8,6 +8,7 @@ import Container from "@/components/Container.tsx";
 import { supabase } from "@/lib/supabase.ts";
 import { CATEGORIES, getCategory } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
+import Icon from "@/components/Icon.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
@@ -18,7 +19,10 @@ import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/ImageCard.tsx";
 
-type DataProps = {
+import LibraryApps from "@/islands/LibraryApps.tsx";
+import OfflineLibraryNotice from "@/islands/OfflineLibraryNotice.tsx";
+
+interface DataProps {
 	newApps?: App[];
 	randomCards?: App[];
 	randomApps?: App[];
@@ -26,7 +30,7 @@ type DataProps = {
 		category: string;
 		apps: App[];
 	};
-};
+}
 
 export default function Home({ data }: PageProps<DataProps>) {
 	return (
@@ -133,6 +137,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 						<div>
 							<Container>
 								<h2 class="text-2xl">
+									<Icon
+										name="star"
+										inline
+									/>{" "}
 									New apps
 								</h2>
 							</Container>
@@ -264,6 +272,12 @@ export default function Home({ data }: PageProps<DataProps>) {
 				<Container class="mt-4">
 					<FewApps />
 				</Container>
+				{/* Those are esential here to cache them when in homepage */}
+				{/* This is a fix until we have a proper solution from fresh */}
+				<div class="hidden">
+					<OfflineLibraryNotice />
+					<LibraryApps />
+				</div>
 			</Stack>
 		</>
 	);

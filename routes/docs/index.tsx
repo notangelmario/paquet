@@ -32,7 +32,7 @@ export default function Documentation() {
 	return (
 		<>
 			<Head>
-				<title>Documentation &middot; Paquet</title>
+				<title>Docs &middot; Paquet</title>
 			</Head>
 			<Navbar
 				back
@@ -40,25 +40,27 @@ export default function Documentation() {
 			<Container>
 				<Stack>
 					<Header icon="code">
-						Documentation
+						Docs
 					</Header>
-					<div>
-						<Card disableGutters>
-							{DOCS.map((doc) => (
-								<a
-									href={`/docs/${doc.filename.slice(0, -3)}`}
-									key={doc.filename}
-								>
-									<ListItem
-										button
-										icon={doc.icon}
-										title={doc.title}
-										subtitle={doc.description}
-									/>
-								</a>
-							))}
-						</Card>
-					</div>
+					<p>
+						Here you can find documentation on how to add,
+						adapt and integrate your app with Paquet.
+					</p>
+					<Card disableGutters>
+						{DOCS.map((doc) => (
+							<a
+								href={`/docs/${doc.filename.slice(0, -3)}`}
+								key={doc.filename}
+							>
+								<ListItem
+									button
+									icon={doc.icon}
+									title={doc.title}
+									subtitle={doc.description}
+								/>
+							</a>
+						))}
+					</Card>
 				</Stack>
 			</Container>
 		</>

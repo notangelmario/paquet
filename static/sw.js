@@ -22,22 +22,34 @@ const filesToCache = [
 	"/icons/github.svg",
 	"/icons/supabase.svg",
 	"/icons/paquet.svg",
-	"/illustrations/void.svg"
+	"/illustrations/apps.svg"
 ];
 
 self.addEventListener('install', event => {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(cacheName)
-      .then(cache => {
-        console.log("Cache opened");
-		return cache.addAll(filesToCache);
-      })
-  );
+  	// Perform install steps
+	// And skip waiting to activate the service worker immediately
+	event.waitUntil(
+		caches.open(cacheName)
+    		.then(cache => {
+				return cache.addAll(filesToCache);
+      		})
+			.then(() => self.skipWaiting())
+			.catch(err => console.log(err))
+	);
 });
 
 self.addEventListener("activate", event => {
-	event.waitUntil(self.clients.claim());
+	event.waitUntil(
+		caches.keys().then(cacheNames => {
+			return Promise.all(
+				cacheNames.map(cache => {
+					if (cache !== cacheName) {
+						return caches.delete(cache);
+					}
+				})
+			);
+		})
+	);
 });
 
 self.addEventListener("fetch", event => {
@@ -45,9 +57,9 @@ self.addEventListener("fetch", event => {
 		// If fetch fails, try to get from cache
 		// If request tries to access homepage, get library from cache
 		fetch(event.request).catch(() => {
-			console.log(event.request.url);
-			if (event.request.url.endsWith("/")) {
-				console.log(localStorage.getItem("library"));
+			// if request tries to get any html page, get library from cache
+			// pages do not have .html extension, check for accept header
+			if (event.request.headers.get("accept").includes("text/html")) {
 				return caches.match("/library?offline=true");
 			}
 			return caches.match(event.request);
@@ -58,11 +70,13 @@ self.addEventListener("fetch", event => {
 self.addEventListener("message", event => {
 	if (event.data.type === "CACHE_URLS") {
 		caches.open(cacheName).then(cache => {
+			console.log("Caching urls", event.data.data);
 			return cache.addAll(event.data.data);
 		});
 	}
 	if (event.data.type === "WIPE_URLS") {
 		caches.open(cacheName).then(cache => {
+			console.log("Wiping urls", event.data.data);
 			return cache.delete(event.data.data);
 		});
 	}

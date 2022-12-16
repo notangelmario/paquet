@@ -94,7 +94,7 @@ export default function LibraryApps({ }: Props) {
 			(
 				<Stack>
 					<img
-						src="/illustrations/void.svg"
+						src="/illustrations/apps.svg"
 						data-fresh-disable-lock
 						alt=""
 						class="h-64"

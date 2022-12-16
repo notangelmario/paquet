@@ -1,6 +1,5 @@
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import Footer from "@/components/Footer.tsx";
 
 export default function App({ Component }: AppProps) {
 	return (
@@ -68,10 +67,9 @@ export default function App({ Component }: AppProps) {
 				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}
-			<main onTouchStart="">
+			<main class="mb-4" onTouchStart="">
 				<Component />
 			</main>
-			<Footer />
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
 				<script src="/registerSw.js"></script>
 			)}

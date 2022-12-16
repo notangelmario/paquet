@@ -2,12 +2,14 @@ import { useState } from "preact/hooks";
 import Icon from "@/components/Icon.tsx";
 import Dialog from "@/islands/Dialog.tsx";
 
+interface Props {
+	offline?: boolean
+}
 
-
-export default function OfflineLibraryNotice() {
+export default function OfflineLibraryNotice({ offline }: Props) {
 	const [showDialog, setShowDialog] = useState(false);
 
-	return (
+	return !offline ? <div/> : (
 		<>
 			<p
 				class="opacity-50 hover:cursor-pointer"

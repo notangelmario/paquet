@@ -16,17 +16,17 @@ export default function Library(props: PageProps) {
 			<Head>
 				<title>Library &middot; Paquet</title>
 			</Head>
-			<Navbar 
-				back={!isOffline}
-			/>
+			{!isOffline ? (
+				<Navbar 
+					back
+				/>
+			) : null}
 			<Container>
 				<Stack>
 					<Header icon="dashboard">
 						Library
 					</Header>
-					{isOffline ? (
-						<OfflineLibraryNotice />	
-					) : null}
+					<OfflineLibraryNotice offline={isOffline}/>	
 					<LibraryApps />
 				</Stack>
 			</Container>
