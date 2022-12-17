@@ -159,8 +159,9 @@ await Promise.all(apps.map(async (app) => {
 				if (iconColorPalette.Vibrant) {
 					accent_color = iconColorPalette.Vibrant?.hex;
 				}
-			} catch {
+			} catch(e) {
 				console.warn("Could not get accent color");
+				console.warn(e);
 				appsWithError.push(app.name);
 				return;
 			}
