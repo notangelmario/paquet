@@ -12,7 +12,6 @@
 		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.6/",
 		"preact": "https://esm.sh/preact@10.11.3",
 		"preact/": "https://esm.sh/preact@10.11.3/",
-		"prefetch": "https://deno.land/x/prefetch@0.0.6/mod.ts",
 		"twind": "https://esm.sh/twind@0.16.19",
 		"twind/": "https://esm.sh/twind@0.16.19/",
 		"ua-parser-js": "https://esm.sh/ua-parser-js@1.0.2"
