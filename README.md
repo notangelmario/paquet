@@ -7,7 +7,7 @@
 
 # [📦 Paquet](https://paquet.shop)
 
-[![Discord](https://img.shields.io/discord/1031892991478071306)](https://discord.com/invite/DXke9aSZh6)
+[![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord)](https://discord.com/invite/DXke9aSZh6)
 
 Welcome to your new web app shop!
 
