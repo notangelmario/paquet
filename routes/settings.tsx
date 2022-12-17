@@ -33,7 +33,7 @@ export default function Settings() {
 					</Card>
 					<Divider />
 					<Card disableGutters>
-						<a
+					<a
 							href="https://github.com/notangelmario/paquet"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -42,6 +42,17 @@ export default function Settings() {
 								icon="github"
 								title="GitHub"
 								subtitle="notangelmario/paquet"
+							/>
+						</a>
+						<a
+							href="https://discord.com/invite/DXke9aSZh6"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<ListItem
+								icon="discord"
+								title="Discord"
+								subtitle="Join our server!"
 							/>
 						</a>
 						<ListItem

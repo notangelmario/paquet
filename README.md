@@ -7,6 +7,8 @@
 
 # [📦 Paquet](https://paquet.shop)
 
+[![Discord](https://img.shields.io/discord/1031892991478071306)](https://discord.com/invite/DXke9aSZh6)
+
 Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
