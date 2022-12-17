@@ -153,11 +153,11 @@ export default function Home({ data }: PageProps<DataProps>) {
 										currentIndex,
 										array,
 									) {
-										if (currentIndex % 2 === 0) {
+										if (currentIndex % 3 === 0) {
 											accumulator.push(
 												array.slice(
 													currentIndex,
-													currentIndex + 2,
+													currentIndex + 3,
 												) as never,
 											);
 										}
@@ -166,7 +166,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 									[],
 								)
 									.map((
-										row: App[],
+										col: App[],
 										idx: number,
 									) => (
 										<SlideItem
@@ -176,7 +176,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 												idx ===
 													data.newApps.length - 1}
 										>
-											{row.map((app, idx) => (
+											{col.map((app, idx) => (
 												<a
 													href={`/app/${app.id}`}
 													key={idx}
@@ -191,7 +191,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 															app.category,
 														)
 															?.name}
-														divider={idx === 0}
+														divider={idx !== 2}
 													/>
 												</a>
 											))}
