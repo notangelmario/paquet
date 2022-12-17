@@ -56,7 +56,7 @@ To run the app in development mode:
 deno task dev
 ```
 
-To update all apps:
+To update apps:
 
 ```
 deno task update [appId] [--force]
