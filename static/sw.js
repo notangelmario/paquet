@@ -1,4 +1,4 @@
-const cacheName = "v1";
+const cacheName = "v2";
 const filesToCache = [
 	"/registerSw.js",
 	"/library?offline=true", 
@@ -18,7 +18,7 @@ const filesToCache = [
 	"/favicon-32x32.png",
 	"/favicon-16x16.png",
 	"/icons/dashboard.svg",
-	"/icons/info.svg",
+	"/icons/cloud_off.svg",
 	"/icons/github.svg",
 	"/icons/supabase.svg",
 	"/icons/paquet.svg",
