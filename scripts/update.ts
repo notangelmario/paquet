@@ -123,13 +123,18 @@ await Promise.all(apps.map(async (app) => {
 						if (icon.sizes === size && !icon_url) {
 							if (icon.src.startsWith("http")) {
 								icon_url = icon.src;
+
+							// Aparently some apps use "//" at the beginning
+							// and the browser actually understands it????
+							} else if (icon.src.startsWith("//")) {
+								icon_url = "https://" + icon.src
+
 							} else if (icon.src.startsWith("/")) {
-								icon_url = slashSlashes(app.url) + "/" +
-									slashSlashes(icon.src);
+								icon_url = slashSlashes(app.url) + "/" + slashSlashes(icon.src);
+
 							} else {
 								icon_url =
-									slashSlashes(manifestParent.join("/")) +
-									"/" + slashSlashes(icon.src);
+									slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src);
 							}
 						}
 					}
@@ -162,6 +167,7 @@ await Promise.all(apps.map(async (app) => {
 			} catch(e) {
 				console.warn("Could not get accent color");
 				console.warn(e);
+				console.log(icon_url)
 				appsWithError.push(app.name);
 				return;
 			}
