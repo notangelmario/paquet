@@ -17,11 +17,6 @@ export const FEATURES: Feature[] = [
 		icon: "cloud_off",
 	},
 	{
-		id: "openSource",
-		name: "Open source",
-		icon: "code",
-	},
-	{
 		id: "auth",
 		name: "Requires authentication",
 		icon: "lock",
