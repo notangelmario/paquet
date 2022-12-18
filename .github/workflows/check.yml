@@ -6,7 +6,7 @@ permissions:
   contents: read
 
 jobs:
-  update:
+  check:
     runs-on: ubuntu-latest
 
     steps:
