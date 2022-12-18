@@ -12,6 +12,11 @@ export const CATEGORIES: Category[] = [
 		name: "Social",
 	},
 	{
+		id: "entertainment",
+		icon: "movie",
+		name: "Entertainment",
+	},
+	{
 		id: "utilities",
 		icon: "build",
 		name: "Utilities",
