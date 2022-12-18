@@ -23,7 +23,10 @@ export interface App {
 	screenshots: string[] | null;
 
 	description: string;
+	/** @deprecated */
 	category: string;
+
+	categories: string[];
 
 	icon: string;
 	accent_color: string;

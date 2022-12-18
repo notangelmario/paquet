@@ -1,3 +1,5 @@
+import type { JSX } from "preact";
+
 export type Props = {
 	inset?: boolean;
 };

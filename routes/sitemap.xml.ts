@@ -1,6 +1,5 @@
 import manifest from "@/fresh.gen.ts";
 import type { Handlers } from "@/types/Handler.ts";
-import type { App } from "@/types/App.ts";
 import { SitemapContext } from "fresh_seo";
 import { supabase } from "@/lib/supabase.ts";
 
@@ -14,7 +13,7 @@ export const handler: Handlers = {
 		const sitemap = new SitemapContext("https://paquet.shop", manifest);
 		const docs = Deno.readDir("docs");
 
-		const { data: apps } = await supabase.from<App>("apps")
+		const { data: apps } = await supabase.from("apps")
 			.select("*");
 
 		if (!apps) {

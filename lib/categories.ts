@@ -1,6 +1,6 @@
 import type { Category } from "@/types/App.ts";
 
-export const CATEGORIES: Category[] = [
+export const CATEGORIES = [
 	{
 		id: "news",
 		icon: "newspaper",
@@ -46,7 +46,7 @@ export const CATEGORIES: Category[] = [
 		icon: "heart",
 		name: "Lifestyle",
 	},
-];
+] as const;
 
 export const getCategory = (
 	categoryId: Category["id"],

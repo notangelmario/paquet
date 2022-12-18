@@ -38,9 +38,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 				</form>
 			</Container>
 			{data.categories.length > 0 && (
-				<SlideContainer
-					snap
-				>
+				<SlideContainer>
 					{data.categories.map((category, idx) => (
 						<SlideItem
 							key={category.id}
@@ -134,7 +132,7 @@ export const handler: Handler = async (req, ctx) => {
 			.limit(5);
 
 		if (data && data.length > 0) {
-			moreApps = data;
+			moreApps = data as App[];
 		}
 	}
 

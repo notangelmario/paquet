@@ -1,0 +1,24 @@
+name: Check commit
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v3
+
+      - name: Setup Deno
+        # uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@004814556e37c54a2f6e31384c9e18e983317366
+        with:
+          deno-version: v1.x
+
+      - name: Run check task
+        run: deno task check
+
