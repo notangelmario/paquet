@@ -71,7 +71,7 @@ export const handler: Handler = async (_, ctx) => {
 	const { data: apps } = await supabase
 		.from("apps")
 		.select("id, name, icon, author")
-		.eq("category", category);
+		.contains("categories", category);
 
 	if (!apps) {
 		return new Response("Not found", {

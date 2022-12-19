@@ -187,10 +187,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 														style={{ width: 300 }}
 														image={app.icon}
 														title={app.name}
-														subtitle={getCategory(
-															app.category,
-														)
-															?.name}
+														subtitle={app.categories?.map(category => getCategory(category)?.name).join(", ")}
 														divider={idx !== 2}
 													/>
 												</a>
@@ -224,8 +221,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 											key={app.id}
 											image={app.icon}
 											title={app.name}
-											subtitle={getCategory(app.category)
-												?.name}
+											subtitle={app.categories?.map(category => getCategory(category)?.name).join(", ")}
 											divider={data.randomApps &&
 												idx !==
 													data.randomApps.length - 1}
@@ -299,15 +295,15 @@ export const handler: Handler = async (_, ctx) => {
 		{ data: randomCards },
 	] = await Promise.all([
 		supabase.from("random_apps")
-			.select("id, name, icon, author, category")
-			.eq("category", randomCategoryId)
+			.select("id, name, icon, author, categories")
+			.contains("categories", [randomCategoryId])
 			.limit(5),
 		supabase.from("apps")
-			.select("id, name, icon, category, addedOn")
+			.select("id, name, icon, categories, addedOn")
 			.order("addedOn", { ascending: false })
 			.gte("addedOn", date.toDateString()),
 		supabase.from("random_apps")
-			.select("id, name, icon, category")
+			.select("id, name, icon, categories")
 			.limit(5),
 		supabase.from("random_apps")
 			.select("id, name, icon, screenshots")

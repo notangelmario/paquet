@@ -11,7 +11,7 @@ export type Props = {
 	right?: {
 		icon: string;
 		href: string;
-	}[]
+	}[],
 };
 
 export default function Navbar(props: Props) {
@@ -82,11 +82,11 @@ export default function Navbar(props: Props) {
 				${
 				props.transparentTop && !trigger
 					? "bg-transparent"
-					: "bg-white dark:!bg-dark"
+					: "bg-light dark:!bg-dark"
 			}
 				fixed flex w-full 
 				-top-px left-0 right-0
-				items-center content-center
+				items-center 
 
 				transition-colors
 					

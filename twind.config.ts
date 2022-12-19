@@ -18,9 +18,6 @@ export default {
 			borderRadius: {
 				DEFAULT: "0.95rem",
 			},
-			backdropBlur: {
-				DEFAULT: "16px",
-			},
 			container: {
 				center: true,
 			},
