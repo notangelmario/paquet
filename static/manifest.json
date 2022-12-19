@@ -33,6 +33,7 @@
 		{
 			"name": "Library",
 			"url": "/library",
+			"icon": "/shortcuts/library.png",
 			"description": "Browse the Paquet library"
 		}
 	],
@@ -40,6 +41,6 @@
 	"background_color": "#ffffff",
 	"display": "standalone",
 	"start_url": "/?utm_source=pwa",
-    "orientation": "portrait",
+	"orientation": "portrait",
 	"scope": "/"
 }
