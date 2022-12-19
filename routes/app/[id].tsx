@@ -89,9 +89,9 @@ export default function App({ data }: PageProps<DataProps>) {
 					</Stack>
 				</Container>
 				<SlideContainer class="mt-4">
-					{data.app.categories.map((category, idx) => (
+					{data.app.categories.map((category, idx) => getCategory(category)?.id ? (
 						<SlideItem
-							isLast={data.app.categories && idx === data.app.categories.length}
+							isLast={idx === data.app.categories.filter((a) => getCategory(a)).length}
 						>
 							<Button
 								outlined
@@ -100,7 +100,7 @@ export default function App({ data }: PageProps<DataProps>) {
 								{getCategory(category)?.name}
 							</Button>
 						</SlideItem>
-					))}
+					) : null)}
 				</SlideContainer>
 				<Container>
 					<Divider inset />
