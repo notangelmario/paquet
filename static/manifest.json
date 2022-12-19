@@ -33,7 +33,7 @@
 		{
 			"name": "Library",
 			"url": "/library",
-			"icon": "/shortcuts/library.png",
+			"icons": [{ "src": "/shortcuts/library.png", "sizes": "96x96"}],
 			"description": "Browse the Paquet library"
 		}
 	],
