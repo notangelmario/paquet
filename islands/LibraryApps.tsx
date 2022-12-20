@@ -24,6 +24,7 @@ export default function LibraryApps({ }: Props) {
 	const confirmToDelete = () => {
 		if (!toDeleteId) return;
 		setApps(apps.filter((a) => a.id !== toDeleteId));
+		setConfirmDialog(false);
 	}
 	
 	// Update apps
