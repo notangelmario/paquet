@@ -5,6 +5,7 @@
 	height="150px"
 />
 
+
 # [📦 Paquet](https://paquet.shop)
 
 [![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord)](https://discord.com/invite/DXke9aSZh6)
