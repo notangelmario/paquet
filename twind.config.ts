@@ -15,8 +15,8 @@ export default {
 				},
 				dark: {
 					DEFAULT: "#212121",
-					dark: "#1c1c1c",
-					light: "#262626",
+					dark: "#191919",
+					light: "#292929",
 				},
 			},
 			borderRadius: {
