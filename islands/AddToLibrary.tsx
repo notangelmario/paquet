@@ -4,15 +4,14 @@ import Button from "@/components/Button.tsx";
 import { useLibrary } from "@/hooks/useLibrary.ts";
 import Dialog from "@/islands/Dialog.tsx";
 
-
 interface Props {
 	app: App;
 }
 
 export default function AddToLibrary({ app }: Props) {
 	const { apps, setApps } = useLibrary();
-	const [ dialogOpen, setDialogOpen ] = useState(false)
-	const [ confirmDeleteDialog, setConfirmDeleteDialog ] = useState(false);
+	const [dialogOpen, setDialogOpen] = useState(false);
+	const [confirmDeleteDialog, setConfirmDeleteDialog] = useState(false);
 
 	const addToLibrary = (app: App) => {
 		if (!apps.find((a) => a.id === app.id)) {
@@ -20,13 +19,13 @@ export default function AddToLibrary({ app }: Props) {
 				id: app.id,
 				name: app.name,
 				icon: app.icon,
-				url: app.url
+				url: app.url,
 			}]);
 			setDialogOpen(true);
 
 			navigator.serviceWorker.controller?.postMessage({
 				type: "CACHE_URLS",
-				data: [app.icon]
+				data: [app.icon],
 			});
 		} else {
 			setConfirmDeleteDialog(true);
@@ -41,10 +40,10 @@ export default function AddToLibrary({ app }: Props) {
 		setApps(apps.filter((a) => a.id !== app.id));
 		navigator.serviceWorker.controller?.postMessage({
 			type: "WIPE_URLS",
-			data: [app.icon]
+			data: [app.icon],
 		});
 		setConfirmDeleteDialog(false);
-	}
+	};
 
 	return (
 		<>
@@ -65,13 +64,13 @@ export default function AddToLibrary({ app }: Props) {
 					{
 						text: "Open library",
 						icon: "dashboard",
-						onClick: () => window.location.href = "/library"
+						onClick: () => window.location.href = "/library",
 					},
 					{
 						text: "Ok",
 						outlined: true,
-						onClick: () => setDialogOpen(false)
-					}
+						onClick: () => setDialogOpen(false),
+					},
 				]}
 			/>
 			<Dialog
@@ -83,15 +82,15 @@ export default function AddToLibrary({ app }: Props) {
 					{
 						text: "Confirm",
 						red: true,
-						onClick: confirmDelete
+						onClick: confirmDelete,
 					},
 					{
 						text: "Cancel",
 						outlined: true,
-						onClick: () => setConfirmDeleteDialog(false)
-					}
+						onClick: () => setConfirmDeleteDialog(false),
+					},
 				]}
 			/>
 		</>
-	)
+	);
 }

@@ -71,9 +71,7 @@ export default function InstallBanner() {
 
 	return (
 		<Card
-			class={`${
-				installed !== false ? "hidden" : ""
-			} !bg-gradient-to-tr from-primary to-secondary !text-white my-2`}
+			class={`${installed !== false ? "hidden" : ""} my-2`}
 		>
 			<Stack>
 				<h2 class="text-xl">Hello there!</h2>
@@ -86,9 +84,6 @@ export default function InstallBanner() {
 					outlined
 					onClick={onClickInstall}
 					icon="install_mobile"
-					iconProps={{
-						class: "filter invert",
-					}}
 				>
 					Install
 				</Button>

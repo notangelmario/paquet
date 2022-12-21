@@ -25,5 +25,5 @@ export const FEATURES: Feature[] = [
 		id: "openSource",
 		name: "Open source",
 		icon: "code",
-	}
+	},
 ];

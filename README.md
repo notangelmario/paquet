@@ -69,6 +69,7 @@ deno task esm:[add|remove|update]
 ```
 
 To type check, lint, and format the source code:
+
 ```
 deno task check
 ```

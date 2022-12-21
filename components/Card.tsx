@@ -9,8 +9,8 @@ export default function Card(props: Props) {
 		<div
 			{...props}
 			class={`
-				bg-paper-light
-				dark:bg-paper-dark
+				shadow-outset-light
+				dark:shadow-outset-dark
 				rounded
 				overflow-hidden
 				

@@ -7,7 +7,6 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
-import Divider from "@/components/Divider.tsx";
 
 export default function Settings() {
 	return (
@@ -31,14 +30,15 @@ export default function Settings() {
 							/>
 						</a>
 					</Card>
-					<Divider />
 					<Card disableGutters>
-					<a
+						<a
 							href="https://github.com/notangelmario/paquet"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							<ListItem
+								button
+								divider
 								icon="github"
 								title="GitHub"
 								subtitle="notangelmario/paquet"
@@ -50,6 +50,8 @@ export default function Settings() {
 							rel="noopener noreferrer"
 						>
 							<ListItem
+								button
+								divider
 								icon="discord"
 								title="Discord"
 								subtitle="Join our server!"

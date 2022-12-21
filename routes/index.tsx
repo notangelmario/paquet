@@ -9,12 +9,12 @@ import { supabase } from "@/lib/supabase.ts";
 import { CATEGORIES, getCategory } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Icon from "@/components/Icon.tsx";
+import Card from "@/components/Card.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
 import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
-import Announcement from "@/components/Announcement.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/ImageCard.tsx";
@@ -47,7 +47,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 					{
 						icon: "settings",
 						href: "/settings",
-					}
+					},
 				]}
 			/>
 			<Stack>
@@ -61,12 +61,12 @@ export default function Home({ data }: PageProps<DataProps>) {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<Announcement>
+							<Card>
 								🥳 Paquet won a contest at a{" "}
 								<b>youth exchange</b>{" "}
 								project about young entrepreneurship. Read more
 								about it here!
-							</Announcement>
+							</Card>
 						</a>
 						<form
 							action="/search"
@@ -187,7 +187,12 @@ export default function Home({ data }: PageProps<DataProps>) {
 														style={{ width: 300 }}
 														image={app.icon}
 														title={app.name}
-														subtitle={app.categories?.map(category => getCategory(category)?.name).join(", ")}
+														subtitle={app.categories
+															?.map((category) =>
+																getCategory(
+																	category,
+																)?.name
+															).join(", ")}
 														divider={idx !== 2}
 													/>
 												</a>
@@ -221,7 +226,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 											key={app.id}
 											image={app.icon}
 											title={app.name}
-											subtitle={app.categories?.map(category => getCategory(category)?.name).join(", ")}
+											subtitle={app.categories?.map(
+												(category) =>
+													getCategory(category)?.name,
+											).join(", ")}
 											divider={data.randomApps &&
 												idx !==
 													data.randomApps.length - 1}
@@ -289,7 +297,7 @@ export const handler: Handler = async (_, ctx) => {
 	const date = new Date(new Date().setDate(new Date().getDate() - daysAgo));
 
 	const [
-		{ data: randomCategoryApps },
+		{ data: randomCategoryApps, error },
 		{ data: newApps },
 		{ data: randomApps },
 		{ data: randomCards },
@@ -310,6 +318,8 @@ export const handler: Handler = async (_, ctx) => {
 			.not("screenshots", "is", null)
 			.limit(5),
 	]);
+
+	console.log(error);
 
 	const randomCategory = randomCategoryApps?.length
 		? {

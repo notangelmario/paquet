@@ -1,5 +1,5 @@
 import type { JSX } from "preact";
-import { btn } from "@/lib/ui.ts";
+import { btn, btnOutset } from "@/lib/ui.ts";
 import { tw } from "twind";
 import Icon, { Props as IconProps } from "@/components/Icon.tsx";
 
@@ -17,16 +17,16 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 		<button
 			{...props}
 			class={`
-				${!props.disabled && tw(btn)}
-				rounded px-8 py-2 text-base
+				${!props.disabled && props.outlined ? tw(btnOutset) : tw(btn)}
+				relative rounded px-8 py-2 text-base
 				${props.red ? "border-red-500" : "border-current"}
 				
 				${
 				props.outlined
-					? `bg-transparent border ${
+					? `bg-light border shadow-outset-light dark:(bg-dark shadow-outset-dark) ${
 						props.red ? "text-red-500" : "text-current"
 					}`
-					: `${props.red ? "bg-red-500" : "bg-primary"} text-white`
+					: `${props.red ? "bg-red-500" : "bg-primary"} text-light`
 			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				

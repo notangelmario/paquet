@@ -14,7 +14,7 @@ export type Props = {
 		red?: boolean;
 		outlined?: boolean;
 		onClick?: () => void;
-	}[]
+	}[];
 };
 
 export default function Dialog(props: Props) {

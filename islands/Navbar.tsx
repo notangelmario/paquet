@@ -11,12 +11,12 @@ export type Props = {
 	right?: {
 		icon: string;
 		href: string;
-	}[],
+	}[];
 };
 
 export default function Navbar(props: Props) {
-	const darkAccent = combineColors(props.color + "50", "#121212");
-	const lightAccent = combineColors(props.color + "50", "#ffffff");
+	const darkAccent = combineColors(props.color + "50", "#212121");
+	const lightAccent = combineColors(props.color + "50", "#dddddd");
 
 	const [visitedRoot, setVisitedRoot] = useState(
 		!!globalThis.sessionStorage?.getItem("visitedRoot"),
@@ -28,7 +28,9 @@ export default function Navbar(props: Props) {
 
 	useEffect(() => {
 		if (props.color) {
-			const metaTags = document.querySelectorAll("meta[name=theme-color]");
+			const metaTags = document.querySelectorAll(
+				"meta[name=theme-color]",
+			);
 			metaTags.forEach((meta) => meta.remove());
 
 			const metaTag = document.createElement("meta");
@@ -46,15 +48,19 @@ export default function Navbar(props: Props) {
 	}, []);
 
 	useEffect(() => {
-		const darkMetaTag = document.querySelector("meta[name=theme-color][media='(prefers-color-scheme: dark)']");
-		const lightMetaTag = document.querySelector("meta[name=theme-color][media='(prefers-color-scheme: light)']");
+		const darkMetaTag = document.querySelector(
+			"meta[name=theme-color][media='(prefers-color-scheme: dark)']",
+		);
+		const lightMetaTag = document.querySelector(
+			"meta[name=theme-color][media='(prefers-color-scheme: light)']",
+		);
 
 		if (props.transparentTop && !trigger) {
 			darkMetaTag?.setAttribute("content", darkAccent);
 			lightMetaTag?.setAttribute("content", lightAccent);
 		} else if (props.transparentTop && trigger) {
-			darkMetaTag?.setAttribute("content", "#121212");
-			lightMetaTag?.setAttribute("content", "#ffffff");
+			darkMetaTag?.setAttribute("content", "#212121");
+			lightMetaTag?.setAttribute("content", "#dddddd");
 		}
 	}, [trigger]);
 
@@ -89,11 +95,9 @@ export default function Navbar(props: Props) {
 				items-center 
 
 				transition-colors
-					
-				border-opacity-25 border-black dark:(border-white border-opacity-25)
 				px-2 py-2 z-30
 
-				${trigger ? "border-b-1" : ""}
+				${trigger ? "shadow-lg" : ""}
 			`}
 		>
 			<div>
@@ -111,15 +115,16 @@ export default function Navbar(props: Props) {
 				)}
 			</div>
 			<div class="flex flex-row ml-auto items-center gap-2">
-				{props.right && props.right.map(({ icon, href }) => (
-					<a class={tw(iconBtn)} href={href}>
-						<Icon
-							name={icon}
-							width={24}
-							height={24}
-						/>
-					</a>
-				))}
+				{props.right &&
+					props.right.map(({ icon, href }) => (
+						<a class={tw(iconBtn)} href={href}>
+							<Icon
+								name={icon}
+								width={24}
+								height={24}
+							/>
+						</a>
+					))}
 			</div>
 		</div>
 	);

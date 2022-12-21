@@ -3,6 +3,7 @@ import type { App } from "@/types/App.ts";
 import { createClient } from "supabase";
 import { CATEGORIES } from "@/lib/categories.ts";
 import Vibrant from "npm:node-vibrant";
+import Jimp from "npm:jimp";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
 const supabase = createClient(
@@ -55,7 +56,7 @@ await Promise.all(apps.map(async (app) => {
 		manifest = await fetch(manifestUrl, {
 			headers: {
 				Accept: "application/json",
-			}
+			},
 		}).then((
 			res,
 		) => res.json());
@@ -71,7 +72,6 @@ await Promise.all(apps.map(async (app) => {
 		console.log("Couldn't fetch manifest");
 		return;
 	}
-
 
 	if (hash !== app?.manifest_hash || Deno.args.includes("--force")) {
 		const manifestParent = manifestUrl.split("/");
@@ -133,17 +133,18 @@ await Promise.all(apps.map(async (app) => {
 							if (icon.src.startsWith("http")) {
 								icon_url = icon.src;
 
-							// Aparently some apps use "//" at the beginning
-							// and the browser actually understands it????
+								// Aparently some apps use "//" at the beginning
+								// and the browser actually understands it????
 							} else if (icon.src.startsWith("//")) {
-								icon_url = "https://" + icon.src
-
+								icon_url = "https://" + icon.src.slice(2);
 							} else if (icon.src.startsWith("/")) {
-								icon_url = slashSlashes(new URL(app.url).origin) + "/" + slashSlashes(icon.src);
-
+								icon_url =
+									slashSlashes(new URL(app.url).origin) +
+									"/" + slashSlashes(icon.src);
 							} else {
 								icon_url =
-									slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src);
+									slashSlashes(manifestParent.join("/")) +
+									"/" + slashSlashes(icon.src);
 							}
 						}
 					}
@@ -159,12 +160,18 @@ await Promise.all(apps.map(async (app) => {
 				return;
 			}
 
-			const icon_blob = await fetch(icon_url, {
-				headers: {
-					"Accept":
-						"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
-				},
-			}).then((res) => res.blob());
+			const icon_blob = await Jimp.read(icon_url)
+				.then((image) => image.resize(96, 96))
+				.then((image) => image.getBufferAsync(Jimp.MIME_PNG))
+				.then((buffer) => new Blob([new Uint8Array(buffer)]))
+				.catch((err) => {
+					console.error("Could not fetch icon", err);
+					console.log(icon_url);
+					appsWithError.push(app.name);
+					return;
+				});
+
+			if (!icon_blob) return;
 
 			try {
 				const iconColorPalette = await Vibrant.from(icon_url)
@@ -173,10 +180,10 @@ await Promise.all(apps.map(async (app) => {
 				if (iconColorPalette.Vibrant) {
 					accent_color = iconColorPalette.Vibrant?.hex;
 				}
-			} catch(e) {
+			} catch (e) {
 				console.warn("Could not get accent color");
 				console.warn(e);
-				console.log(icon_url)
+				console.log(icon_url);
 				appsWithError.push(app.name);
 				return;
 			}
@@ -246,9 +253,12 @@ async function clearAppFromStorage(id: string, folderName: string) {
 
 	if (!folders.includes(folderName)) return;
 
-	const { data:list } = await supabase.storage.from("apps").list(`${id}/${folderName}`);
-	const filesToRemove = list?.map((x) => `${id}/${folderName}/${x.name}`) || [];
-	
+	const { data: list } = await supabase.storage.from("apps").list(
+		`${id}/${folderName}`,
+	);
+	const filesToRemove = list?.map((x) => `${id}/${folderName}/${x.name}`) ||
+		[];
+
 	if (!filesToRemove) return;
 
 	const { error } = await supabase.storage

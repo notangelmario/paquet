@@ -3,13 +3,13 @@ import Icon from "@/components/Icon.tsx";
 import Dialog from "@/islands/Dialog.tsx";
 
 interface Props {
-	offline?: boolean
+	offline?: boolean;
 }
 
 export default function OfflineLibraryNotice({ offline }: Props) {
 	const [showDialog, setShowDialog] = useState(false);
 
-	return !offline ? <div/> : (
+	return !offline ? <div /> : (
 		<>
 			<p
 				class="opacity-50 hover:cursor-pointer"
@@ -24,7 +24,7 @@ export default function OfflineLibraryNotice({ offline }: Props) {
 				/>{" "}
 				Offline
 			</p>
-			<Dialog 
+			<Dialog
 				open={showDialog}
 				setOpen={setShowDialog}
 				title="Offline"
@@ -33,10 +33,10 @@ export default function OfflineLibraryNotice({ offline }: Props) {
 					{
 						text: "Ok",
 						outlined: true,
-						onClick: () => setShowDialog(false)
-					}
+						onClick: () => setShowDialog(false),
+					},
 				]}
 			/>
 		</>
-	)
+	);
 }

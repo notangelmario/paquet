@@ -10,7 +10,7 @@ export default function ImageCard(props: Props & JSX.IntrinsicElements["div"]) {
 		<Card class="relative">
 			<img
 				src={props.image}
-				class="absolute top-0 left-0 w-full h-full opacity-25 object-cover"
+				class="absolute top-0 left-0 w-full h-full opacity-30 object-cover"
 			/>
 			<div
 				class={`relative min-w-max min-h-max ${props.class || ""}`}

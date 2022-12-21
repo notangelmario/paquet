@@ -10,13 +10,13 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	overflow-x: hidden;
-	background-color: "#fff";
+	background-color: #dddddd;
 }
 
 @media (prefers-color-scheme: dark) {
 	html, body {
-		background-color: #121212;
-		color: #fff;
+		background-color: #212121;
+		color: #dddddd;
 	}
 }
 
@@ -69,32 +69,42 @@ main {
 }
 
 *::-webkit-scrollbar-track {
-	background: #fff;
+	background: #dddddd;
 }
 
 *::-webkit-scrollbar-thumb {
-	background: #ddd;
+	background: #cccccc;
 	transition: background 0.2s ease-in-out;
 	border-radius: 0.95rem;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-	background: #ccc;
+	background: #bbbbbb;
 }
 
 @media (prefers-color-scheme: dark) {
 	*::-webkit-scrollbar-track {
-		background: #121212;
-	}
-
-	*::-webkit-scrollbar-thumb {
 		background: #212121;
 	}
 
+	*::-webkit-scrollbar-thumb {
+		background: #323232;
+	}
+
 	*::-webkit-scrollbar-thumb:hover {
-		background: #333;
+		background: #434343;
 	}
 }
+
+body *::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
+body * {
+	scrollbar-width: none;
+}
+
 
 ::selection {
 	background-color: #8267BE;

@@ -8,22 +8,43 @@ export default {
 			colors: {
 				primary: "#8267be",
 				secondary: "#D77fa1",
-				light: "#ffffff",
-				dark: "#121212",
-				paper: {
-					light: "#ddd",
-					dark: "#212121",
+				light: {
+					DEFAULT: "#dddddd",
+					dark: "#bcbcbc",
+					light: "#fefefe",
+				},
+				dark: {
+					DEFAULT: "#212121",
+					dark: "#1c1c1c",
+					light: "#262626",
 				},
 			},
 			borderRadius: {
-				DEFAULT: "0.95rem",
+				DEFAULT: "1.5rem",
 			},
 			container: {
 				center: true,
 			},
-			screens: {
-				"betterhover": { "raw": "(hover: hover)" },
-			},
+			boxShadow: (theme) => ({
+				"outset-light": `8px 8px 16px ${
+					theme("colors.light.dark")
+				}, -8px -8px 16px ${theme("colors.light.light")}`,
+				"outset-dark": `8px 8px 16px ${
+					theme("colors.dark.dark")
+				}, -8px -8px 16px ${theme("colors.dark.light")}`,
+				"inset-light": `inset 8px 8px 16px ${
+					theme("colors.light.dark")
+				}, inset -8px -8px 16px ${theme("colors.light.light")}`,
+				"inset-dark": `inset 8px 8px 16px ${
+					theme("colors.dark.dark")
+				}, inset -8px -8px 16px ${theme("colors.dark.light")}`,
+				"pressed-light": `2px 2px 4px ${
+					theme("colors.light.dark")
+				}, -2px -2px 4px ${theme("colors.light.light")}`,
+				"pressed-dark": `2px 2px 4px ${
+					theme("colors.dark.dark")
+				}, -2px -2px 4px ${theme("colors.dark.light")}`,
+			}),
 		},
 	},
 } as Options;

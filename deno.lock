@@ -774,6 +774,7 @@
   },
   "npm": {
     "specifiers": {
+      "jimp": "jimp@0.16.2_@jimp+custom@0.16.2",
       "node-vibrant": "node-vibrant@3.2.1-alpha.1",
       "webp-converter": "webp-converter@2.3.3"
     },
@@ -833,12 +834,228 @@
           "jpeg-js": "jpeg-js@0.4.4"
         }
       },
+      "@jimp/plugin-blit@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-Z31rRfV80gC/r+B/bOPSVVpJEWXUV248j7MdnMOFLu4vr8DMqXVo9jYqvwU/s4LSTMAMXqm4Jg6E/jQfadPKAg==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-blur@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-ShkJCAzRI+1fAKPuLLgEkixpSpVmKTYaKEFROUcgmrv9AansDXGNCupchqVMTdxf8zPyW8rR1ilvG3OJobufLQ==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-circle@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-6T4z/48F4Z5+YwAVCLOvXQcyGmo0E3WztxCz6XGQf66r4JJK78+zcCDYZFLMx0BGM0091FogNK4QniP8JaOkrA==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-color@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-6oBV0g0J17/7E+aTquvUsgSc85nUbUi+64tIK5eFIDzvjhlqhjGNJYlc46KJMCWIs61qRJayQoZdL/iT/iQuGQ==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2",
+          "tinycolor2": "tinycolor2@1.4.2"
+        }
+      },
+      "@jimp/plugin-contain@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2_@jimp+plugin-scale@0.16.2_@jimp+plugin-resize@0.16.2__@jimp+custom@0.16.2": {
+        "integrity": "sha512-pLcxO3hVN3LCEhMNvpZ9B7xILHVlS433Vv16zFFJxLRqZdYvPLsc+ZzJhjAiHHuEjVblQrktHE3LGeQwGJPo0w==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-blit": "@jimp/plugin-blit@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-scale": "@jimp/plugin-scale@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2__@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-cover@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-resize@0.16.2_@jimp+plugin-scale@0.16.2_@jimp+plugin-resize@0.16.2__@jimp+custom@0.16.2": {
+        "integrity": "sha512-gzWM7VvYeI8msyiwbUZxH+sGQEgO6Vd6adGxZ0CeKX00uQOe5lDzxb1Wjx7sHcJGz8a/5fmAuwz7rdDtpDUbkw==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-crop": "@jimp/plugin-crop@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-scale": "@jimp/plugin-scale@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2__@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-crop@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-qCd3hfMEE+Z2EuuyXewgXRTtKJGIerWzc1zLEJztsUkPz5i73IGgkOL+mrNutZwGaXZbm+8SwUaGb46sxAO6Tw==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-displace@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-6nXdvNNjCdD95v2o3/jPeur903dz08lG4Y8gmr5oL2yVv9LSSbMonoXYrR/ASesdyXqGdXJLU4NL+yZs4zUqbQ==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-dither@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-DERpIzy21ZanMkVsD0Tdy8HQLbD1E41OuvIzaMRoW4183PA6AgGNlrQoFTyXmzjy6FTy1SxaQgTEdouInAWZ9Q==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-fisheye@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-Df7PsGIwiIpQu3EygYCnaJyTfOwvwtYV3cmYJS7yFLtdiFUuod+hlSo5GkwEPLAy+QBxhUbDuUqnsWo4NQtbiQ==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-flip@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-rotate@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-resize@0.16.2": {
+        "integrity": "sha512-+2uC8ioVQUr06mnjSWraskz2L33nJHze35LkQ8ZNsIpoZLkgvfiWatqAs5bj+1jGI/9kxoCFAaT1Is0f+a4/rw==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-rotate": "@jimp/plugin-rotate@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-resize@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-gaussian@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-2mnuDSg4ZEH8zcJig7DZZf4st/cYmQ5UYJKP76iGhZ+6JDACk6uejwAgT5xHecNhkVAaXMdCybA2eknH/9OE1w==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-invert@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-xFvHbVepTY/nus+6yXiYN1iq+UBRkT0MdnObbiQPstUrAsz0Imn6MWISsnAyMvcNxHGrxaxjuU777JT/esM0gg==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-mask@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-AbdO85xxhfgEDdxYKpUotEI9ixiCMaIpfYHD5a5O/VWeimz2kuwhcrzlHGiyq1kKAgRcl0WEneTCZAHVSyvPKA==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-normalize@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-+ItBWFwmB0Od7OfOtTYT1gm543PpHUgU8/DN55z83l1JqS0OomDJAe7BmCppo2405TN6YtVm/csXo7p4iWd/SQ==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-print@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2": {
+        "integrity": "sha512-ifTGEeJ5UZTCiqC70HMeU3iXk/vsOmhWiwVGOXSFXhFeE8ZpDWvlmBsrMYnRrJGuaaogHOIrrQPI+kCdDBSBIQ==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-blit": "@jimp/plugin-blit@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2",
+          "load-bmfont": "load-bmfont@1.4.1"
+        }
+      },
       "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2": {
         "integrity": "sha512-gE4N9l6xuwzacFZ2EPCGZCJ/xR+aX2V7GdMndIl/6kYIw5/eib1SFuF9AZLvIPSFuE1FnGo8+vT0pr++SSbhYg==",
         "dependencies": {
           "@babel/runtime": "@babel/runtime@7.20.6",
           "@jimp/custom": "@jimp/custom@0.16.2",
           "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-rotate@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-resize@0.16.2": {
+        "integrity": "sha512-/CTEYkR1HrgmnE0VqPhhbBARbDAfFX590LWGIpxcYIYsUUGQCadl+8Qo4UX13FH0Nt8UHEtPA+O2x08uPYg9UA==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-blit": "@jimp/plugin-blit@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-crop": "@jimp/plugin-crop@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-scale@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2": {
+        "integrity": "sha512-3inuxfrlquyLaqFdiiiQNJUurR0WbvN5wAf1qcYX2LubG1AG8grayYD6H7XVoxfUGTZXh1kpmeirEYlqA2zxcw==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-scale@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2__@jimp+custom@0.16.2": {
+        "integrity": "sha512-3inuxfrlquyLaqFdiiiQNJUurR0WbvN5wAf1qcYX2LubG1AG8grayYD6H7XVoxfUGTZXh1kpmeirEYlqA2zxcw==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-shadow@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blur@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2": {
+        "integrity": "sha512-Q0aIs2/L6fWMcEh9Ms73u34bT1hyUMw/oxaVoIzOLo6/E8YzCs2Bi63H0/qaPS0MQpEppI++kvosPbblABY79w==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-blur": "@jimp/plugin-blur@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugin-threshold@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-color@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2": {
+        "integrity": "sha512-gyOwmBgjtMPvcuyOhkP6dOGWbQdaTfhcBRN22mYeI/k/Wh/Zh1OI21F6eKLApsVRmg15MoFnkrCz64RROC34sw==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-color": "@jimp/plugin-color@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/utils": "@jimp/utils@0.16.2"
+        }
+      },
+      "@jimp/plugins@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2_@jimp+plugin-scale@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-rotate@0.16.2_@jimp+plugin-blur@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-color@0.16.2__@jimp+custom@0.16.2": {
+        "integrity": "sha512-zCvYtCgctmC0tkYEu+y+kSwSIZBsNznqJ3/3vkpzxdyjd6wCfNY5Qc/68MPrLc1lmdeGo4cOOTYHG7Vc6myzRw==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugin-blit": "@jimp/plugin-blit@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-blur": "@jimp/plugin-blur@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-circle": "@jimp/plugin-circle@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-color": "@jimp/plugin-color@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-contain": "@jimp/plugin-contain@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2_@jimp+plugin-scale@0.16.2_@jimp+plugin-resize@0.16.2__@jimp+custom@0.16.2",
+          "@jimp/plugin-cover": "@jimp/plugin-cover@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-resize@0.16.2_@jimp+plugin-scale@0.16.2_@jimp+plugin-resize@0.16.2__@jimp+custom@0.16.2",
+          "@jimp/plugin-crop": "@jimp/plugin-crop@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-displace": "@jimp/plugin-displace@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-dither": "@jimp/plugin-dither@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-fisheye": "@jimp/plugin-fisheye@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-flip": "@jimp/plugin-flip@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-rotate@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-resize@0.16.2",
+          "@jimp/plugin-gaussian": "@jimp/plugin-gaussian@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-invert": "@jimp/plugin-invert@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-mask": "@jimp/plugin-mask@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-normalize": "@jimp/plugin-normalize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-print": "@jimp/plugin-print@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2",
+          "@jimp/plugin-resize": "@jimp/plugin-resize@0.16.2_@jimp+custom@0.16.2",
+          "@jimp/plugin-rotate": "@jimp/plugin-rotate@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-resize@0.16.2",
+          "@jimp/plugin-scale": "@jimp/plugin-scale@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2",
+          "@jimp/plugin-shadow": "@jimp/plugin-shadow@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blur@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2",
+          "@jimp/plugin-threshold": "@jimp/plugin-threshold@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-color@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2",
+          "timm": "timm@1.7.1"
         }
       },
       "@jimp/png@0.16.2_@jimp+custom@0.16.2": {
@@ -1019,6 +1236,16 @@
       "is-function@1.0.2": {
         "integrity": "sha512-lw7DUp0aWXYg+CBCN+JKkcE0Q2RayZnSvnZBlwgxHBQhqt5pZNVy4Ri7H9GmmXkdu7LUthszM+Tor1u/2iBcpQ==",
         "dependencies": {}
+      },
+      "jimp@0.16.2_@jimp+custom@0.16.2": {
+        "integrity": "sha512-UpItBk81a92f8oEyoGYbO3YK4QcM0hoIyuGHmShoF9Ov63P5Qo7Q/X2xsAgnODmSuDJFOtrPtJd5GSWW4LKdOQ==",
+        "dependencies": {
+          "@babel/runtime": "@babel/runtime@7.20.6",
+          "@jimp/custom": "@jimp/custom@0.16.2",
+          "@jimp/plugins": "@jimp/plugins@0.16.2_@jimp+custom@0.16.2_@jimp+plugin-blit@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-resize@0.16.2_@jimp+plugin-scale@0.16.2_@jimp+plugin-crop@0.16.2_@jimp+plugin-rotate@0.16.2_@jimp+plugin-blur@0.16.2__@jimp+custom@0.16.2_@jimp+plugin-color@0.16.2__@jimp+custom@0.16.2",
+          "@jimp/types": "@jimp/types@0.16.2_@jimp+custom@0.16.2",
+          "regenerator-runtime": "regenerator-runtime@0.13.11"
+        }
       },
       "jpeg-js@0.4.4": {
         "integrity": "sha512-WZzeDOEtTOBK4Mdsar0IqEU5sMr3vSV2RqkAIzUEV2BHnUfKGyswWFPFwK5EeDo93K3FohSHbLAjj0s1Wzd+dg==",

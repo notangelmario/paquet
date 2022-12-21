@@ -17,6 +17,7 @@ import Screenshots from "@/components/Screenshots.tsx";
 import AddToLibrary from "@/islands/AddToLibrary.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
+import Card from "../../components/Card.tsx";
 
 interface DataProps {
 	app: App;
@@ -75,7 +76,7 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								<AddToLibrary app={data.app}/>
+								<AddToLibrary app={data.app} />
 							</div>
 						</div>
 						<div>
@@ -89,20 +90,27 @@ export default function App({ data }: PageProps<DataProps>) {
 					</Stack>
 				</Container>
 				<SlideContainer class="mt-4">
-					{data.app.categories.map((category, idx) => getCategory(category)?.id ? (
-						<SlideItem
-							isLast={idx === data.app.categories.filter((a) => getCategory(a)).length}
-						>
-							<Button
-								outlined
-								icon={getCategory(category)?.icon}
-							>
-								{getCategory(category)?.name}
-							</Button>
-						</SlideItem>
-					) : null)}
+					{data.app.categories.map((category, idx) =>
+						getCategory(category)?.id
+							? (
+								<SlideItem
+									isLast={idx ===
+										data.app.categories.filter((a) =>
+											getCategory(a)
+										).length}
+								>
+									<Button
+										outlined
+										icon={getCategory(category)?.icon}
+									>
+										{getCategory(category)?.name}
+									</Button>
+								</SlideItem>
+							)
+							: null
+					)}
 				</SlideContainer>
-				<Container>
+				<Container class="mt-4">
 					<Divider inset />
 				</Container>
 			</div>
@@ -136,34 +144,38 @@ export default function App({ data }: PageProps<DataProps>) {
 				</div>
 			)}
 
-			{data.otherApps?.length ?
-				(
+			{data.otherApps?.length
+				? (
 					<>
 						<Container>
-							<h3 class="text-2xl mt-4">
-								Other apps
-							</h3>
-						</Container>
-						<Container disableGutters>
-							{data.otherApps.map((app, idx) => (
-								<a
-									key={idx}
-									href={`/app/${app.id}`}
-								>
-									<ListItem
-										button
-										title={app.name}
-										image={app.icon}
-										subtitle={app.author}
-										divider={idx !==
-											(data.otherApps?.length as number) -
-												1}
-									/>
-								</a>
-							))}
+							<Stack>
+								<h3 class="text-2xl mt-4">
+									Other apps
+								</h3>
+								<Card disableGutters>
+									{data.otherApps.map((app, idx) => (
+										<a
+											key={idx}
+											href={`/app/${app.id}`}
+										>
+											<ListItem
+												button
+												title={app.name}
+												image={app.icon}
+												subtitle={app.author}
+												divider={idx !==
+													(data.otherApps
+															?.length as number) -
+														1}
+											/>
+										</a>
+									))}
+								</Card>
+							</Stack>
 						</Container>
 					</>
-				) : null}
+				)
+				: null}
 		</>
 	);
 }
@@ -189,7 +201,7 @@ export const handler: Handler = async (_, ctx) => {
 		.select("id, name, author, icon")
 		.contains("categories", app.categories)
 		.neq("id", app.id)
-		.limit(3);
+		.limit(5);
 
 	return ctx.render({
 		app,

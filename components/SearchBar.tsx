@@ -15,7 +15,7 @@ export default function SearchBar(
 				flex flex-row
 				items-center justify-between
 				w-full rounded
-				bg-paper-light dark:bg-paper-dark
+				shadow-inset-light dark:shadow-inset-dark
 				${props?.class || ""}
 			`}
 		>

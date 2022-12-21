@@ -43,17 +43,18 @@ export default function Documentation() {
 						Docs
 					</Header>
 					<p>
-						Here you can find documentation on how to add,
-						adapt and integrate your app with Paquet.
+						Here you can find documentation on how to add, adapt and
+						integrate your app with Paquet.
 					</p>
 					<Card disableGutters>
-						{DOCS.map((doc) => (
+						{DOCS.map((doc, idx) => (
 							<a
 								href={`/docs/${doc.filename.slice(0, -3)}`}
 								key={doc.filename}
 							>
 								<ListItem
 									button
+									divider={idx !== DOCS.length - 1}
 									icon={doc.icon}
 									title={doc.title}
 									subtitle={doc.description}
