@@ -9,7 +9,7 @@ export type Props = {
 	fullWidth?: boolean;
 	children?: string;
 	outlined?: boolean;
-	red?: boolean;
+	error?: boolean;
 };
 
 export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
@@ -19,15 +19,19 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 			class={`
 				${!props.disabled && props.outlined ? tw(btnOutset) : tw(btn)}
 				relative rounded px-8 py-2 text-base
-				${props.red ? "border-red-500" : "border-current"}
+				${props.error ? "border-error" : "border-current"}
 				
 				${
 				props.outlined
-					? `bg-light border shadow-outset-light dark:(bg-dark shadow-outset-dark) ${
-						props.red ? "text-red-500" : "text-current"
+					? `bg-light border dark:bg-dark ${
+						props.error ? "text-error" : "text-current"
 					}`
-					: `${props.red ? "bg-red-500" : "bg-primary shadow-primary"} text-white`
-				}
+					: `${
+						props.error
+							? "bg-error shadow-error"
+							: "bg-primary shadow-primary"
+					} text-white`
+			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.disabled ? "opacity-25 cursor-not-allowed" : ""}
@@ -41,10 +45,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 					<Icon
 						name={props.icon}
 						color={props.outlined
-							? 
-								props.red 
-								? "#F87171"
-								: undefined 
+							? props.error ? "#ff0000" : undefined
 							: "#ffffff"}
 						size={18}
 						inline

@@ -11,7 +11,7 @@ import Card from "@/components/Card.tsx";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import FewApps from "@/components/FewApps.tsx";
+import FewApps from "@/components/compound/FewApps.tsx";
 import Stack from "@/components/Stack.tsx";
 
 type DataProps = {

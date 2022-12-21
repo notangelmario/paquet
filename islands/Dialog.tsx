@@ -10,7 +10,7 @@ export type Props = {
 	buttons?: {
 		text: string;
 		icon?: string;
-		red?: boolean;
+		error?: boolean;
 		outlined?: boolean;
 		onClick?: () => void;
 	}[];
@@ -47,7 +47,7 @@ export default function Dialog(props: Props) {
 			<div
 				class={`
 					text-black dark:text-white
-					bg-white dark:bg-dark
+					bg-light dark:bg-dark
 					w-full max-w-xl mx-auto
 					!rounded-b-none
 					transition-transform duration-150 ease-in-out
@@ -70,7 +70,7 @@ export default function Dialog(props: Props) {
 						<Button
 							key={i}
 							outlined={button.outlined}
-							red={button.red}
+							error={button.error}
 							icon={button.icon}
 							onClick={button.onClick}
 						>

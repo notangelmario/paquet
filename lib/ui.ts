@@ -3,17 +3,17 @@ import { css } from "twind/css";
 
 export const btn = apply`
 	  	cursor-pointer
-		hover:opacity-75 active:opacity-50
+		active:opacity-50 hover:opacity-75 
 		z-10
 		transition-opacity
 `;
 
 export const btnOutset = apply`
 		cursor-pointer
+		shadow-outset-light
 		active:shadow-pressed-light
-		dark:(shadow-pressed-dark active:shadow-pressed-dark)
-		z-0
-		transition-shadow
+		dark:(shadow-outset-dark active:shadow-pressed-dark)
+		z-0 transition-shadow
 `;
 
 export const iconBtn = apply`
@@ -21,8 +21,8 @@ export const iconBtn = apply`
 		rounded-full
 		block p-2
 		focus:!outline-0
-		hover-hover:opacity-90 active:opacity-80
-		transition-opacity duration-75 ease-in-out origin-center
+		active:opacity-50 hover:opacity-75
+		transition-opacity
 		${
 	css({
 		"& > span": {

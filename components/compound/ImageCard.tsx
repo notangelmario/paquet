@@ -1,5 +1,5 @@
 import type { JSX } from "preact";
-import Card from "./Card.tsx";
+import Card from "@/components/Card.tsx";
 
 interface Props {
 	image: string;

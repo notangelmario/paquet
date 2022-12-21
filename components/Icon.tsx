@@ -62,7 +62,6 @@ export const ICONS = new Map([
 	["cloud-off", CloudOffIcon],
 ]);
 
-
 export interface Props {
 	size?: number;
 	name: string;
@@ -76,7 +75,7 @@ export default function Icon(props: Props) {
 	const Icon = ICONS.get(name);
 
 	if (!Icon) {
-		return <div/>;
+		return <div />;
 	}
 
 	return (

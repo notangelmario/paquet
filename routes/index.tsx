@@ -10,12 +10,12 @@ import { CATEGORIES, getCategory } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import FewApps from "@/components/FewApps.tsx";
+import FewApps from "@/components/compound/FewApps.tsx";
 import InstallBanner from "@/islands/InstallBanner.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
-import ImageCard from "@/components/ImageCard.tsx";
+import ImageCard from "@/components/compound/ImageCard.tsx";
 
 import LibraryApps from "@/islands/LibraryApps.tsx";
 import OfflineLibraryNotice from "@/islands/OfflineLibraryNotice.tsx";
@@ -108,7 +108,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 								>
 									<img
 										src={app.icon}
-										class="rounded w-16 h-16"
+										class="rounded-xl w-16 h-16"
 									/>
 									<h2 class="text-2xl">
 										{app.name}
@@ -279,7 +279,7 @@ export const handler: Handler = async (_, ctx) => {
 	const date = new Date(new Date().setDate(new Date().getDate() - daysAgo));
 
 	const [
-		{ data: randomCategoryApps, error },
+		{ data: randomCategoryApps },
 		{ data: newApps },
 		{ data: randomApps },
 		{ data: randomCards },
@@ -300,8 +300,6 @@ export const handler: Handler = async (_, ctx) => {
 			.not("screenshots", "is", null)
 			.limit(5),
 	]);
-
-	console.log(error);
 
 	const randomCategory = randomCategoryApps?.length
 		? {

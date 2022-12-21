@@ -7,6 +7,8 @@ import { tw } from "twind";
 
 interface Props {
 	offline?: boolean;
+	supabaseUrl: string;
+	supabaseKey: string;
 }
 
 export default function LibraryApps({}: Props) {
@@ -76,7 +78,7 @@ export default function LibraryApps({}: Props) {
 							buttons={[
 								{
 									text: "Confirm",
-									red: true,
+									error: true,
 									onClick: confirmToDelete,
 								},
 								{

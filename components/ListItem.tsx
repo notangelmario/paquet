@@ -45,8 +45,8 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 								height="48px"
 								{...props.imageProps}
 								class={` 
-									w-12 h-12 rounded 
-									mr-4 
+									w-12 h-12 rounded-xl
+									mr-4 bg-light-light dark:bg-dark-light
 									${props.imageProps?.class || ""}
 								`}
 							/>

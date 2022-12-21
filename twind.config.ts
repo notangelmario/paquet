@@ -8,6 +8,7 @@ export default {
 			colors: {
 				primary: "#8267be",
 				secondary: "#D77fa1",
+				error: "#ff0000",
 				light: {
 					DEFAULT: "#dddddd",
 					dark: "#bcbcbc",
@@ -27,10 +28,12 @@ export default {
 			},
 			boxShadow: (theme) => ({
 				"primary": `0 0 8px ${theme("colors.primary")}`,
+				"error": `0 0 8px ${theme("colors.error")}`,
 				"secondary": `0 0 8px ${theme("colors.secondary")}`,
 				"outset-light": `4px 4px 8px ${
 					theme("colors.light.dark")
 				}, -4px -4px 8px ${theme("colors.light.light")}`,
+
 				"outset-dark": `4px 4px 8px ${
 					theme("colors.dark.dark")
 				}, -4px -4px 8px ${theme("colors.dark.light")}`,
@@ -40,12 +43,16 @@ export default {
 				"inset-dark": `inset 4px 4px 8px ${
 					theme("colors.dark.dark")
 				}, inset -4px -4px 8px ${theme("colors.dark.light")}`,
-				"pressed-light": `2px 2px 4px ${
+
+				// We use pressed versions of the outset shadows
+				// becccause transition-shadow does not work with
+				// transitioning from outset to inset
+				"pressed-light": `1px 1px 2px ${
 					theme("colors.light.dark")
-				}, -2px -2px 4px ${theme("colors.light.light")}`,
-				"pressed-dark": `2px 2px 4px ${
+				}, -1px -1px 2px ${theme("colors.light.light")}`,
+				"pressed-dark": `1px 1px 2px ${
 					theme("colors.dark.dark")
-				}, -2px -2px 4px ${theme("colors.dark.light")}`,
+				}, -1px -1px 2px ${theme("colors.dark.light")}`,
 			}),
 		},
 	},

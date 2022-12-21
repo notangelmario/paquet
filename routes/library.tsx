@@ -9,6 +9,8 @@ import OfflineLibraryNotice from "@/islands/OfflineLibraryNotice.tsx";
 
 export default function Library(props: PageProps) {
 	const isOffline = props.url.searchParams.get("offline") === "true";
+	const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+	const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
 
 	return (
 		<>
@@ -33,8 +35,13 @@ export default function Library(props: PageProps) {
 					<Header icon="apps">
 						Library
 					</Header>
-					<OfflineLibraryNotice offline={isOffline} />
-					<LibraryApps />
+					<OfflineLibraryNotice
+						offline={isOffline}
+					/>
+					<LibraryApps
+						supabaseKey={supabaseKey}
+						supabaseUrl={supabaseUrl}
+					/>
 				</Stack>
 			</Container>
 		</>

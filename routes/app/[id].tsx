@@ -9,11 +9,11 @@ import Navbar from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import Button from "@/components/Button.tsx";
-import Features from "@/components/Features.tsx";
+import Features from "@/components/compound/Features.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
-import AppLinks from "@/components/AppLinks.tsx";
-import Screenshots from "@/components/Screenshots.tsx";
+import AppLinks from "@/components/compound/AppLinks.tsx";
+import Screenshots from "@/components/compound/Screenshots.tsx";
 import AddToLibrary from "@/islands/AddToLibrary.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
@@ -46,7 +46,10 @@ export default function App({ data }: PageProps<DataProps>) {
 			>
 				<Container class="pt-16">
 					<Stack>
-						<Card inset class="bg-light dark:bg-dark flex flex-row flex-wrap gap-4">
+						<Card
+							inset
+							class="bg-light dark:bg-dark flex flex-row flex-wrap gap-4"
+						>
 							<img
 								class="rounded w-20 h-20"
 								src={data.app.icon}
@@ -69,13 +72,15 @@ export default function App({ data }: PageProps<DataProps>) {
 										icon="external-link"
 										fullWidth
 										style={{
-											backgroundColor: data.app.accent_color,
-											boxShadow: `0 0 8px ${data.app.accent_color}`,
-											color: "#ffffff"
+											backgroundColor:
+												data.app.accent_color,
+											boxShadow:
+												`0 0 8px ${data.app.accent_color}`,
+											color: "#ffffff",
 										}}
 										iconProps={{
 											name: "external-link",
-											color: "#ffffff"
+											color: "#ffffff",
 										}}
 									>
 										Open

@@ -72,8 +72,12 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 										key={app.id}
 										image={app.icon}
 										title={app.name}
-										subtitle={getCategory(app.category)
-											?.name}
+										subtitle={app.categories
+											?.map((category) =>
+												getCategory(
+													category,
+												)?.name
+											).join(", ")}
 										divider={idx !== data.apps.length - 1}
 									/>
 								</a>
@@ -101,9 +105,12 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 												key={app.id}
 												image={app.icon}
 												title={app.name}
-												subtitle={getCategory(
-													app.category,
-												)?.name}
+												subtitle={app.categories
+													?.map((category) =>
+														getCategory(
+															category,
+														)?.name
+													).join(", ")}
 												divider={idx !==
 													data.moreApps.length - 1}
 											/>
@@ -134,7 +141,7 @@ export const handler: Handler = async (req, ctx) => {
 
 	const { data: apps } = await supabase.rpc("search_app", {
 		search_term: query,
-	}).select("id, name, icon, category");
+	}).select("id, name, icon, categories");
 
 	const categories = searchCategory(query);
 
@@ -142,7 +149,7 @@ export const handler: Handler = async (req, ctx) => {
 	if (apps && apps.length < 10) {
 		const { data } = await supabase
 			.from("random_apps")
-			.select("id, name, category, icon")
+			.select("id, name, categories, icon")
 			// Unsolved bug from supabase requires us to use this
 			// method to exclude apps from the search
 			// See https://github.com/supabase/supabase/discussions/2055#discussioncomment-923451

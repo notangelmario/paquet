@@ -1,5 +1,5 @@
-import SlideContainer from "./SlideContainer.tsx";
-import SlideItem from "./SlideItem.tsx";
+import SlideContainer from "@/components/SlideContainer.tsx";
+import SlideItem from "@/components/SlideItem.tsx";
 
 interface Props {
 	screenshots: string[];

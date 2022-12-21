@@ -81,7 +81,7 @@ export default function AddToLibrary({ app }: Props) {
 				buttons={[
 					{
 						text: "Confirm",
-						red: true,
+						error: true,
 						onClick: confirmDelete,
 					},
 					{

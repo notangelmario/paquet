@@ -23,8 +23,8 @@ export interface App {
 	screenshots: string[] | null;
 
 	description: string;
-	/** @deprecated */
-	category: string;
+	// /** @deprecated */
+	// category: string;
 
 	categories: string[];
 
@@ -35,9 +35,6 @@ export interface App {
 	manifest_hash: string;
 
 	features: string[] | null;
-
-	/** @deprecated */
-	verified: boolean;
 
 	github_url: string | null;
 	gitlab_url: string | null;

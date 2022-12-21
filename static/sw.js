@@ -1,4 +1,4 @@
-const cacheName = "v2";
+const cacheName = "v3";
 const filesToCache = [
 	"/registerSw.js",
 	"/library?offline=true", 

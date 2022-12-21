@@ -16,11 +16,9 @@ export default function OfflineLibraryNotice({ offline }: Props) {
 				onClick={() => setShowDialog(true)}
 			>
 				<Icon
-					name="cloud_off"
-					data-fresh-disable-lock
+					name="cloud-off"
 					inline
-					width={18}
-					height={18}
+					size={18}
 				/>{" "}
 				Offline
 			</p>

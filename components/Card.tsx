@@ -12,10 +12,11 @@ export default function Card(props: Props) {
 			class={`
 				rounded
 				overflow-hidden
-				${props.inset
+				${
+				props.inset
 					? "shadow-inset-light dark:shadow-inset-dark"
 					: "shadow-outset-light dark:shadow-outset-dark"
-				}
+			}
 				
 				${!props.disableGutters && "p-4"}
 				${props.class || ""}
