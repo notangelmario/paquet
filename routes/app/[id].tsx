@@ -17,7 +17,7 @@ import Screenshots from "@/components/Screenshots.tsx";
 import AddToLibrary from "@/islands/AddToLibrary.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
-import Card from "../../components/Card.tsx";
+import Card from "@/components/Card.tsx";
 
 interface DataProps {
 	app: App;
@@ -46,7 +46,7 @@ export default function App({ data }: PageProps<DataProps>) {
 			>
 				<Container class="pt-16">
 					<Stack>
-						<div class="flex flex-row flex-wrap gap-4">
+						<Card inset class="bg-light dark:bg-dark flex flex-row flex-wrap gap-4">
 							<img
 								class="rounded w-20 h-20"
 								src={data.app.icon}
@@ -66,11 +66,16 @@ export default function App({ data }: PageProps<DataProps>) {
 									rel="noopener noreferrer"
 								>
 									<Button
-										icon="open_in_new"
+										icon="external-link"
 										fullWidth
 										style={{
-											backgroundColor:
-												data.app.accent_color,
+											backgroundColor: data.app.accent_color,
+											boxShadow: `0 0 8px ${data.app.accent_color}`,
+											color: "#ffffff"
+										}}
+										iconProps={{
+											name: "external-link",
+											color: "#ffffff"
 										}}
 									>
 										Open
@@ -78,7 +83,7 @@ export default function App({ data }: PageProps<DataProps>) {
 								</a>
 								<AddToLibrary app={data.app} />
 							</div>
-						</div>
+						</Card>
 						<div>
 							<h3 class="text-2xl">
 								About

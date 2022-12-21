@@ -29,8 +29,7 @@ export default function DocPage({ data }: PageProps<DataProps>) {
 				<p>
 					<Icon
 						name="info"
-						width={18}
-						height={18}
+						size={18}
 						inline
 						class="opacity-50"
 					/>{" "}

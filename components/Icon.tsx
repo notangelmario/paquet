@@ -1,29 +1,89 @@
-import type { JSX } from "preact";
+import GitHubIcon from "tabler-icons/brand-github.tsx";
+import DiscordIcon from "tabler-icons/brand-discord.tsx";
+import SearchIcon from "tabler-icons/search.tsx";
+import ArrowLeftIcon from "tabler-icons/arrow-left.tsx";
+import SettingsIcon from "tabler-icons/settings.tsx";
+import AppsIcon from "tabler-icons/apps.tsx";
+import ListIcon from "tabler-icons/list.tsx";
+import InfoCircle from "tabler-icons/info-circle.tsx";
+import CirclePlusIcon from "tabler-icons/circle-plus.tsx";
+import TrashIcon from "tabler-icons/trash.tsx";
+import NewsIcon from "tabler-icons/news.tsx";
+import UsersIcon from "tabler-icons/users.tsx";
+import CodeIcon from "tabler-icons/code.tsx";
+import MovieIcon from "tabler-icons/movie.tsx";
+import MusicIcon from "tabler-icons/music.tsx";
+import ToolIcon from "tabler-icons/tool.tsx";
+import BriefcaseIcon from "tabler-icons/briefcase.tsx";
+import GamepadIcon from "tabler-icons/device-gamepad-2.tsx";
+import HeartIcon from "tabler-icons/heart.tsx";
+import HomeIcon from "tabler-icons/home.tsx";
+import FlagIcon from "tabler-icons/flag.tsx";
+import FileDescriptionIcon from "tabler-icons/file-description.tsx";
+import DownloadIcon from "tabler-icons/download.tsx";
+import ExternalLink from "tabler-icons/external-link.tsx";
+import CheckIcon from "tabler-icons/check.tsx";
+import LaptopIcon from "tabler-icons/device-laptop.tsx";
+import Mobile from "tabler-icons/device-mobile.tsx";
+import LockIcon from "tabler-icons/lock.tsx";
+import SourceCodeIcon from "tabler-icons/source-code.tsx";
+import CloudOffIcon from "tabler-icons/cloud-off.tsx";
+
+export const ICONS = new Map([
+	["github", GitHubIcon],
+	["discord", DiscordIcon],
+	["search", SearchIcon],
+	["back", ArrowLeftIcon],
+	["settings", SettingsIcon],
+	["apps", AppsIcon],
+	["list", ListIcon],
+	["info", InfoCircle],
+	["plus", CirclePlusIcon],
+	["trash", TrashIcon],
+	["news", NewsIcon],
+	["users", UsersIcon],
+	["code", CodeIcon],
+	["movie", MovieIcon],
+	["music", MusicIcon],
+	["tool", ToolIcon],
+	["briefcase", BriefcaseIcon],
+	["gamepad", GamepadIcon],
+	["heart", HeartIcon],
+	["home", HomeIcon],
+	["flag", FlagIcon],
+	["file-description", FileDescriptionIcon],
+	["download", DownloadIcon],
+	["external-link", ExternalLink],
+	["check", CheckIcon],
+	["laptop", LaptopIcon],
+	["mobile", Mobile],
+	["lock", LockIcon],
+	["source-code", SourceCodeIcon],
+	["cloud-off", CloudOffIcon],
+]);
+
 
 export interface Props {
-	width?: number;
-	height?: number;
-	name?: string;
+	size?: number;
+	name: string;
 	class?: string;
 	inline?: boolean;
-	error?: boolean;
+	color?: string;
 }
 
-export default function Icon(props: Props & JSX.IntrinsicElements["img"]) {
+export default function Icon(props: Props) {
+	const { size, name, class: className, inline, color } = props;
+	const Icon = ICONS.get(name);
+
+	if (!Icon) {
+		return <div/>;
+	}
+
 	return (
-		<img
-			{...props}
-			class={`w-8 h-8 ${!props.error ? "dark:(filter invert)" : ""} ${
-				props.inline ? "inline align-middle" : ""
-			} ${props.class || ""}`}
-			style={{
-				width: props.width,
-				height: props.height,
-				filter: props.error
-					? "invert(30%) sepia(43%) saturate(2843%) hue-rotate(335deg) brightness(105%) contrast(90%)"
-					: undefined,
-			}}
-			src={`/icons/${props.name}.svg`}
+		<Icon
+			class={`${inline ? "inline align-middle" : ""} ${className}`}
+			size={size}
+			color={color}
 		/>
 	);
 }

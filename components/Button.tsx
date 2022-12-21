@@ -26,8 +26,8 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 					? `bg-light border shadow-outset-light dark:(bg-dark shadow-outset-dark) ${
 						props.red ? "text-red-500" : "text-current"
 					}`
-					: `${props.red ? "bg-red-500" : "bg-primary"} text-light`
-			}
+					: `${props.red ? "bg-red-500" : "bg-primary shadow-primary"} text-white`
+				}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.disabled ? "opacity-25 cursor-not-allowed" : ""}
@@ -40,10 +40,14 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 				(
 					<Icon
 						name={props.icon}
-						width={18}
-						height={18}
+						color={props.outlined
+							? 
+								props.red 
+								? "#F87171"
+								: undefined 
+							: "#ffffff"}
+						size={18}
 						inline
-						class={!props.outlined ? "filter invert" : undefined}
 						{...props.iconProps}
 					/>
 				)}

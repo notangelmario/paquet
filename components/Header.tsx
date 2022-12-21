@@ -11,15 +11,13 @@ export default function Header(props: Props & JSX.IntrinsicElements["h1"]) {
 			{props.icon && (
 				<Icon
 					name={props.icon}
-					data-disable-fresh-lock
-					width={48}
-					height={48}
+					size={48}
 					inline
 				/>
 			)}
 			<h1
 				{...props}
-				class={`text-5xl font-light ${props.class || ""}`}
+				class={`text-5xl ${props.class || ""}`}
 			>
 				{props.children}
 			</h1>

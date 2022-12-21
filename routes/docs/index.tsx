@@ -19,11 +19,11 @@ export const DOCS: Doc[] = [
 		description: "How to add your app on Paquet",
 		icon: "flag",
 		filename: "getting-started.md",
-	},
+},
 	{
 		title: "Manifest file",
 		description: "How to use your manifest file to edit your app listing",
-		icon: "description",
+		icon: "file-description",
 		filename: "manifest.md",
 	},
 ];

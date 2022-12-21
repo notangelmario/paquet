@@ -3,12 +3,12 @@ import type { Category } from "@/types/App.ts";
 export const CATEGORIES = [
 	{
 		id: "news",
-		icon: "newspaper",
+		icon: "news",
 		name: "News",
 	},
 	{
 		id: "social",
-		icon: "group",
+		icon: "users",
 		name: "Social",
 	},
 	{
@@ -18,22 +18,22 @@ export const CATEGORIES = [
 	},
 	{
 		id: "utilities",
-		icon: "build",
+		icon: "tool",
 		name: "Utilities",
 	},
 	{
 		id: "productivity",
-		icon: "work",
+		icon: "briefcase",
 		name: "Productivity",
 	},
 	{
 		id: "games",
-		icon: "videogame_asset",
+		icon: "gamepad",
 		name: "Games",
 	},
 	{
 		id: "music",
-		icon: "music_note",
+		icon: "music",
 		name: "Music",
 	},
 	{

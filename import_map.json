@@ -10,6 +10,7 @@
 		"@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
 		"supabase": "https://esm.sh/@supabase/supabase-js@2.1.3",
 		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.6/",
+		"tabler-icons/": "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/",
 		"preact": "https://esm.sh/preact@10.11.3",
 		"preact/": "https://esm.sh/preact@10.11.3/",
 		"twind": "https://esm.sh/twind@0.16.19",

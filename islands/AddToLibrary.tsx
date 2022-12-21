@@ -50,7 +50,7 @@ export default function AddToLibrary({ app }: Props) {
 			<Button
 				outlined
 				fullWidth
-				icon={isAppInLibrary ? "done" : "add"}
+				icon={isAppInLibrary ? "check" : "plus"}
 				onClick={() => addToLibrary(app)}
 			>
 				{isAppInLibrary ? "Added to library" : "Add to library"}
@@ -63,7 +63,7 @@ export default function AddToLibrary({ app }: Props) {
 				buttons={[
 					{
 						text: "Open library",
-						icon: "dashboard",
+						icon: "apps",
 						onClick: () => window.location.href = "/library",
 					},
 					{

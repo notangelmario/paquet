@@ -15,7 +15,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
 	html, body {
-		background-color: #212121;
+		background-color: #121212;
 		color: #dddddd;
 	}
 }
@@ -84,27 +84,17 @@ main {
 
 @media (prefers-color-scheme: dark) {
 	*::-webkit-scrollbar-track {
-		background: #212121;
+		background: #121212;
 	}
 
 	*::-webkit-scrollbar-thumb {
-		background: #323232;
+		background: #212121;
 	}
 
 	*::-webkit-scrollbar-thumb:hover {
-		background: #434343;
+		background: #323232;
 	}
 }
-
-body *::-webkit-scrollbar {
-	width: 0;
-	height: 0;
-}
-
-body * {
-	scrollbar-width: none;
-}
-
 
 ::selection {
 	background-color: #8267BE;

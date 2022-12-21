@@ -30,7 +30,7 @@ export default function Library(props: PageProps) {
 				: null}
 			<Container>
 				<Stack>
-					<Header icon="dashboard">
+					<Header icon="apps">
 						Library
 					</Header>
 					<OfflineLibraryNotice offline={isOffline} />

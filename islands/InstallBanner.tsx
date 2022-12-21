@@ -81,9 +81,8 @@ export default function InstallBanner() {
 				</p>
 				<Button
 					fullWidth
-					outlined
 					onClick={onClickInstall}
-					icon="install_mobile"
+					icon="download"
 				>
 					Install
 				</Button>

@@ -21,9 +21,8 @@ export default function SearchBar(
 		>
 			<Icon
 				name="search"
-				class="ml-2 opacity-50"
-				width={18}
-				height={18}
+				class="ml-4 opacity-50"
+				size={18}
 			/>
 			<input
 				autocomplete="off"
@@ -36,6 +35,7 @@ export default function SearchBar(
 					bg-transparent
 					border-none
 					outline-none
+					placeholder-opacity-50
 					text-black dark:text-white
 				`}
 			/>

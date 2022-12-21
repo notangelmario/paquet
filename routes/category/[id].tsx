@@ -7,10 +7,12 @@ import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
 
 import Navbar from "@/islands/Navbar.tsx";
+import Card from "@/components/Card.tsx";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
+import Stack from "@/components/Stack.tsx";
 
 type DataProps = {
 	category: string;
@@ -27,30 +29,30 @@ export default function Category({ data }: PageProps<DataProps>) {
 			</Head>
 			<Navbar back />
 			<Container>
-				<Header
-					icon={getCategory(data.category)?.icon}
-				>
-					{getCategory(data.category)?.name}
-				</Header>
-			</Container>
-			<Container disableGutters>
-				{data.apps.map((app, idx) => (
-					<a
-						href={`/app/${app.id}`}
-						key={app.id}
+				<Stack>
+					<Header
+						icon={getCategory(data.category)?.icon}
 					>
-						<ListItem
-							button
-							image={app.icon}
-							title={app.name}
-							subtitle={app.author}
-							divider={idx !== data.apps.length - 1}
-						/>
-					</a>
-				))}
-			</Container>
-			<Container class="mt-4">
-				<FewApps />
+						{getCategory(data.category)?.name}
+					</Header>
+					<Card disableGutters>
+						{data.apps.map((app, idx) => (
+							<a
+								href={`/app/${app.id}`}
+								key={app.id}
+							>
+								<ListItem
+									button
+									image={app.icon}
+									title={app.name}
+									subtitle={app.author}
+									divider={idx !== data.apps.length - 1}
+								/>
+							</a>
+						))}
+					</Card>
+					<FewApps />
+				</Stack>
 			</Container>
 		</>
 	);

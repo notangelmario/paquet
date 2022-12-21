@@ -15,7 +15,7 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
-	const darkAccent = combineColors(props.color + "50", "#212121");
+	const darkAccent = combineColors(props.color + "50", "#121212");
 	const lightAccent = combineColors(props.color + "50", "#dddddd");
 
 	const [visitedRoot, setVisitedRoot] = useState(
@@ -59,7 +59,7 @@ export default function Navbar(props: Props) {
 			darkMetaTag?.setAttribute("content", darkAccent);
 			lightMetaTag?.setAttribute("content", lightAccent);
 		} else if (props.transparentTop && trigger) {
-			darkMetaTag?.setAttribute("content", "#212121");
+			darkMetaTag?.setAttribute("content", "#121212");
 			lightMetaTag?.setAttribute("content", "#dddddd");
 		}
 	}, [trigger]);
@@ -97,7 +97,7 @@ export default function Navbar(props: Props) {
 				transition-colors
 				px-2 py-2 z-30
 
-				${trigger ? "shadow-lg" : ""}
+				${trigger ? "shadow-xl" : ""}
 			`}
 		>
 			<div>
@@ -107,9 +107,8 @@ export default function Navbar(props: Props) {
 						onClick={goBack}
 					>
 						<Icon
-							name="arrow_back"
-							width={24}
-							height={24}
+							name="back"
+							size={24}
 						/>
 					</button>
 				)}
@@ -120,8 +119,7 @@ export default function Navbar(props: Props) {
 						<a class={tw(iconBtn)} href={href}>
 							<Icon
 								name={icon}
-								width={24}
-								height={24}
+								size={24}
 							/>
 						</a>
 					))}

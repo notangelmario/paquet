@@ -8,8 +8,6 @@ import Container from "@/components/Container.tsx";
 import { supabase } from "@/lib/supabase.ts";
 import { CATEGORIES, getCategory } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
-import Icon from "@/components/Icon.tsx";
-import Card from "@/components/Card.tsx";
 import Button from "@/components/Button.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/FewApps.tsx";
@@ -41,7 +39,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 			<Navbar
 				right={[
 					{
-						icon: "dashboard",
+						icon: "apps",
 						href: "/library",
 					},
 					{
@@ -56,18 +54,6 @@ export default function Home({ data }: PageProps<DataProps>) {
 						<Header icon="home">
 							Home
 						</Header>
-						<a
-							href="https://angelmario.eu/blog/young-entrepreneurship"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<Card>
-								🥳 Paquet won a contest at a{" "}
-								<b>youth exchange</b>{" "}
-								project about young entrepreneurship. Read more
-								about it here!
-							</Card>
-						</a>
 						<form
 							action="/search"
 							method="GET"
@@ -80,7 +66,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 					<SlideItem>
 						<a href="/category">
 							<Button
-								icon="apps"
+								icon="list"
 								outlined
 							>
 								All
@@ -137,10 +123,6 @@ export default function Home({ data }: PageProps<DataProps>) {
 						<div>
 							<Container>
 								<h2 class="text-2xl">
-									<Icon
-										name="star"
-										inline
-									/>{" "}
 									New apps
 								</h2>
 							</Container>
