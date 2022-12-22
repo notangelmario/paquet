@@ -3,7 +3,6 @@ import Button from "@/components/Button.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 
-
 interface Props {
 	categoryIds: string[];
 }
@@ -16,9 +15,8 @@ export default function SlideCategories({ categoryIds }: Props) {
 					? (
 						<SlideItem
 							isLast={idx ===
-								categoryIds.filter((a) =>
-									getCategory(a)
-								).length}
+								categoryIds.filter((a) => getCategory(a))
+									.length}
 						>
 							<a href={`/category/${categoryId}`}>
 								<Button
@@ -33,5 +31,5 @@ export default function SlideCategories({ categoryIds }: Props) {
 					: null
 			)}
 		</SlideContainer>
-	)
+	);
 }
