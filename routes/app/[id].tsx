@@ -2,7 +2,6 @@ import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import { supabase } from "@/lib/supabase.ts";
-import { getCategory } from "@/lib/categories.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -15,9 +14,8 @@ import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/compound/AppLinks.tsx";
 import Screenshots from "@/components/compound/Screenshots.tsx";
 import AddToLibrary from "@/islands/AddToLibrary.tsx";
-import SlideContainer from "@/components/SlideContainer.tsx";
-import SlideItem from "@/components/SlideItem.tsx";
 import Card from "@/components/Card.tsx";
+import SlideCategories from "@/components/compound/SlideCategories.tsx";
 
 interface DataProps {
 	app: App;
@@ -44,7 +42,7 @@ export default function App({ data }: PageProps<DataProps>) {
 					`,
 				}}
 			>
-				<Container class="pt-16">
+				<Container class="pt-16 mb-4">
 					<Stack>
 						<Card
 							inset
@@ -99,27 +97,9 @@ export default function App({ data }: PageProps<DataProps>) {
 						</div>
 					</Stack>
 				</Container>
-				<SlideContainer class="mt-4">
-					{data.app.categories.map((category, idx) =>
-						getCategory(category)?.id
-							? (
-								<SlideItem
-									isLast={idx ===
-										data.app.categories.filter((a) =>
-											getCategory(a)
-										).length}
-								>
-									<Button
-										outlined
-										icon={getCategory(category)?.icon}
-									>
-										{getCategory(category)?.name}
-									</Button>
-								</SlideItem>
-							)
-							: null
-					)}
-				</SlideContainer>
+				<SlideCategories
+					categoryIds={data.app.categories}
+				/>
 				<Container class="mt-4">
 					<Divider inset />
 				</Container>
