@@ -161,7 +161,7 @@ await Promise.all(apps.map(async (app) => {
 			}
 
 			const icon_blob = await Jimp.read(icon_url)
-				.then((image) => image.resize(96, 96))
+				.then((image) => image.resize(128, 128))
 				.then((image) => image.getBufferAsync(Jimp.MIME_PNG))
 				.then((buffer) => new Blob([new Uint8Array(buffer)]))
 				.catch((err) => {
