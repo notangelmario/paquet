@@ -53,11 +53,11 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 						)
 					: null}
 
-				<div>
-					<h2 class="text-lg">
+				<div class="overflow-hidden">
+					<h2 class="text-lg truncate">
 						{props.title}
 					</h2>
-					<p class="text-sm opacity-50">
+					<p class="text-sm opacity-50 truncate">
 						{props.subtitle}
 					</p>
 				</div>
