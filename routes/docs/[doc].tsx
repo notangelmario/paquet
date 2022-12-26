@@ -29,8 +29,7 @@ export default function DocPage({ data }: PageProps<DataProps>) {
 				<p>
 					<Icon
 						name="info"
-						width={18}
-						height={18}
+						size={18}
 						inline
 						class="opacity-50"
 					/>{" "}
@@ -47,7 +46,7 @@ export default function DocPage({ data }: PageProps<DataProps>) {
 				data-color-mode="auto"
 				data-light-theme="light"
 				data-dark-theme="dark"
-				class="markdown-body !bg-white dark:!bg-dark"
+				class="markdown-body !bg-light dark:!bg-dark"
 				dangerouslySetInnerHTML={{ __html: data.content }}
 			/>
 		</>

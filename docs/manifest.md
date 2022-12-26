@@ -68,20 +68,18 @@ This is the description that will be shown on your app listing.
 ### `categories`
 
 This is usually an array of categories.
-Paquet now fetches and uses the first category found in the list of available categories.
+Paquet fetches this manifest property and reflects it to your app
 
 Here is a list of available categories:
 
 * productivity
+* entertainment
 * utilities
 * social
 * games
 * music
-* travel
+* lifestyle
 * development
-
-> Mind that if Paquet does not find any of the specified categories, the app will not be listed
-> in the category pages
 
 ### `icons`
 

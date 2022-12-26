@@ -15,15 +15,14 @@ export default function SearchBar(
 				flex flex-row
 				items-center justify-between
 				w-full rounded
-				bg-paper-light dark:bg-paper-dark
+				shadow-inset-light dark:shadow-inset-dark
 				${props?.class || ""}
 			`}
 		>
 			<Icon
 				name="search"
-				class="ml-2 opacity-50"
-				width={18}
-				height={18}
+				class="ml-4 opacity-50"
+				size={18}
 			/>
 			<input
 				autocomplete="off"
@@ -36,6 +35,7 @@ export default function SearchBar(
 					bg-transparent
 					border-none
 					outline-none
+					placeholder-opacity-50
 					text-black dark:text-white
 				`}
 			/>

@@ -7,35 +7,43 @@ import Stack from "@/components/Stack.tsx";
 import LibraryApps from "@/islands/LibraryApps.tsx";
 import OfflineLibraryNotice from "@/islands/OfflineLibraryNotice.tsx";
 
-
 export default function Library(props: PageProps) {
 	const isOffline = props.url.searchParams.get("offline") === "true";
+	const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+	const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
 
 	return (
 		<>
 			<Head>
 				<title>Library &middot; Paquet</title>
 			</Head>
-			{!isOffline ? (
-				<Navbar 
-					back
-					right={[
-						{
-							icon: "settings",
-							href: "/settings",
-						}
-					]}
-				/>
-			) : null}
+			{!isOffline
+				? (
+					<Navbar
+						back
+						right={[
+							{
+								icon: "settings",
+								href: "/settings",
+							},
+						]}
+					/>
+				)
+				: null}
 			<Container>
 				<Stack>
-					<Header icon="dashboard">
+					<Header icon="apps">
 						Library
 					</Header>
-					<OfflineLibraryNotice offline={isOffline}/>	
-					<LibraryApps />
+					<OfflineLibraryNotice
+						offline={isOffline}
+					/>
+					<LibraryApps
+						supabaseKey={supabaseKey}
+						supabaseUrl={supabaseUrl}
+					/>
 				</Stack>
 			</Container>
 		</>
-	)
+	);
 }

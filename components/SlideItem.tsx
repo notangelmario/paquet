@@ -1,4 +1,6 @@
 import type { JSX } from "preact";
+import { tw } from "twind";
+import { css } from "twind/css";
 
 interface Props {
 	isLast?: boolean;
@@ -16,6 +18,7 @@ export default function SlideItem(props: Props & JSX.IntrinsicElements["div"]) {
 					? `${!props.disableGutters ? "!pr-4" : ""} md:pr-0`
 					: ""
 			} 
+				${tw(css`& * { box-shadow: none !important; }`)}
 				${props.equal ? "flex-1" : ""}
 				${!props.disableGutters ? "pl-4" : ""}
 

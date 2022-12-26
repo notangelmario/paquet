@@ -1,14 +1,12 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { useState, useEffect } from "preact/hooks";
-
+import { useEffect, useState } from "preact/hooks";
 
 export interface RequiredAppData {
-	id: string,
-	name: string,
-	icon: string,
-	url: string
+	id: string;
+	name: string;
+	icon: string;
+	url: string;
 }
-
 
 export const useLibrary = () => {
 	const [loading, setLoading] = useState(true);
@@ -16,7 +14,10 @@ export const useLibrary = () => {
 
 	useEffect(() => {
 		if (IS_BROWSER) {
-			setApps(JSON.parse(localStorage.getItem("library") || "{}")?.["apps"] || []);
+			setApps(
+				JSON.parse(localStorage.getItem("library") || "{}")?.["apps"] ||
+					[],
+			);
 		}
 		setLoading(false);
 	}, []);
@@ -32,6 +33,6 @@ export const useLibrary = () => {
 	return {
 		apps,
 		setApps,
-		loading
-	}
-}
+		loading,
+	};
+};

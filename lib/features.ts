@@ -4,17 +4,17 @@ export const FEATURES: Feature[] = [
 	{
 		id: "desktop",
 		name: "Desktop optimized",
-		icon: "computer",
+		icon: "laptop",
 	},
 	{
 		id: "mobile",
 		name: "Mobile optimized",
-		icon: "smartphone",
+		icon: "mobile",
 	},
 	{
 		id: "offline",
 		name: "Works offline",
-		icon: "cloud_off",
+		icon: "cloud-off",
 	},
 	{
 		id: "auth",
@@ -24,6 +24,6 @@ export const FEATURES: Feature[] = [
 	{
 		id: "openSource",
 		name: "Open source",
-		icon: "code",
-	}
+		icon: "source-code",
+	},
 ];

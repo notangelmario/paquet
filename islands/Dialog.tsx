@@ -1,5 +1,4 @@
 import { StateUpdater, useEffect } from "preact/hooks";
-import Card from "@/components/Card.tsx";
 import Stack from "@/components/Stack.tsx";
 import Button from "@/components/Button.tsx";
 
@@ -11,10 +10,10 @@ export type Props = {
 	buttons?: {
 		text: string;
 		icon?: string;
-		red?: boolean;
+		error?: boolean;
 		outlined?: boolean;
 		onClick?: () => void;
-	}[]
+	}[];
 };
 
 export default function Dialog(props: Props) {
@@ -45,13 +44,14 @@ export default function Dialog(props: Props) {
 				props.setOpen(false);
 			}}
 		>
-			<Card
+			<div
 				class={`
 					text-black dark:text-white
-					bg-white dark:bg-dark
+					bg-light dark:bg-dark
 					w-full max-w-xl mx-auto
 					!rounded-b-none
 					transition-transform duration-150 ease-in-out
+					p-8 shadow-xl rounded-t
 
 
 					${props.open ? "translate-y-0" : "translate-y-1/2"}
@@ -70,7 +70,7 @@ export default function Dialog(props: Props) {
 						<Button
 							key={i}
 							outlined={button.outlined}
-							red={button.red}
+							error={button.error}
 							icon={button.icon}
 							onClick={button.onClick}
 						>
@@ -78,7 +78,7 @@ export default function Dialog(props: Props) {
 						</Button>
 					))}
 				</Stack>
-			</Card>
+			</div>
 		</div>
 	);
 }

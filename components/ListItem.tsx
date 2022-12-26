@@ -30,11 +30,10 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 				{props.icon || props.image
 					? props.icon
 						? (
-							<div class="flex justify-center items-center w-12 h-12 mr-4">
+							<div class="flex justify-center flex-shrink-0 items-center w-12 h-12 mr-4">
 								<Icon
 									name={props.icon}
-									width={28}
-									height={28}
+									size={28}
 								/>
 							</div>
 						)
@@ -46,8 +45,8 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 								height="48px"
 								{...props.imageProps}
 								class={` 
-									w-12 h-12 rounded 
-									mr-4 
+									w-12 h-12 rounded-xl
+									mr-4 bg-light-light dark:bg-dark-light
 									${props.imageProps?.class || ""}
 								`}
 							/>

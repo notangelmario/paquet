@@ -47,15 +47,14 @@ export default function Features(props: Props) {
 											value === id
 										)?.length
 										? "bg-secondary"
-										: "bg-black dark:bg-white"
+										: "bg-light-dark"
 								}
 								`}
 							>
 								<Icon
 									name={icon}
-									width={24}
-									height={24}
-									class="filter dark:!invert-0 invert"
+									size={24}
+									color="#ffffff"
 								/>
 							</div>
 

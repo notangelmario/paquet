@@ -14,15 +14,6 @@ Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
----
-
-### 🥳 Congrats!
-
-Paquet won a contest at a **youth exchange** project
-about young entrepreneurship. [Read more about it here!](https://angelmario.eu/blog/young-entrepreneurship)
-
----
-
 ### About
 
 - ⚡ Optimized for speed
@@ -70,6 +61,7 @@ deno task esm:[add|remove|update]
 ```
 
 To type check, lint, and format the source code:
+
 ```
 deno task check
 ```

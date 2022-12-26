@@ -55,3 +55,7 @@ if (navigator.serviceWorker) {
 if (window.matchMedia("(display-mode: standalone)").matches) {
 	console.log("Don't worry about this message, we are just checking if the app is running in standalone mode");
 }
+
+window.addEventListener('beforeinstallprompt', (e) => {
+	window.installPrompt = e;
+});

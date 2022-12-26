@@ -10,6 +10,7 @@ export default function App({ Component }: AppProps) {
 					name="viewport"
 					content="width=device-width, initial-scale=1, user-scalable=0"
 				/>
+				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<link rel="apple-touch-icon" href="/icon.png" />
 				<link
 					rel="apple-touch-icon"
@@ -45,7 +46,7 @@ export default function App({ Component }: AppProps) {
 				<meta
 					name="theme-color"
 					media="(prefers-color-scheme: light)"
-					content="#ffffff"
+					content="#dddddd"
 				/>
 				<meta
 					name="description"
@@ -57,7 +58,10 @@ export default function App({ Component }: AppProps) {
 					property="og:description"
 					content="Check out Paquet to find the best web apps on the open web."
 				/>
-				<meta name="keywords" content="apps, PWA, web apps, shop, store, app store, app shop" />
+				<meta
+					name="keywords"
+					content="apps, PWA, web apps, shop, store, app store, app shop"
+				/>
 				<meta property="og:title" content="Paquet - The web app shop" />
 				<meta property="og:url" content="https://paquet.shop" />
 				<meta

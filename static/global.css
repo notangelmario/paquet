@@ -10,13 +10,13 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	overflow-x: hidden;
-	background-color: "#fff";
+	background-color: #dddddd;
 }
 
 @media (prefers-color-scheme: dark) {
 	html, body {
 		background-color: #121212;
-		color: #fff;
+		color: #dddddd;
 	}
 }
 
@@ -69,17 +69,17 @@ main {
 }
 
 *::-webkit-scrollbar-track {
-	background: #fff;
+	background: #dddddd;
 }
 
 *::-webkit-scrollbar-thumb {
-	background: #ddd;
+	background: #cccccc;
 	transition: background 0.2s ease-in-out;
 	border-radius: 0.95rem;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-	background: #ccc;
+	background: #bbbbbb;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -92,7 +92,7 @@ main {
 	}
 
 	*::-webkit-scrollbar-thumb:hover {
-		background: #333;
+		background: #323232;
 	}
 }
 

@@ -1,4 +1,4 @@
-const cacheName = "v2";
+const cacheName = "v3";
 const filesToCache = [
 	"/registerSw.js",
 	"/library?offline=true", 
@@ -17,11 +17,6 @@ const filesToCache = [
 	"/fonts/poppins-v20-latin-regular.woff2",
 	"/favicon-32x32.png",
 	"/favicon-16x16.png",
-	"/icons/dashboard.svg",
-	"/icons/cloud_off.svg",
-	"/icons/github.svg",
-	"/icons/supabase.svg",
-	"/icons/paquet.svg",
 	"/illustrations/apps.svg"
 ];
 

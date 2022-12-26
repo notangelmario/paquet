@@ -3,6 +3,7 @@ import type { App } from "@/types/App.ts";
 import { createClient } from "supabase";
 import { CATEGORIES } from "@/lib/categories.ts";
 import Vibrant from "npm:node-vibrant";
+import Jimp from "npm:jimp";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
 const supabase = createClient(
@@ -10,11 +11,13 @@ const supabase = createClient(
 	Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
 
+const IMAGES_URL = "https://images.paquet.shop/apps";
+
 const ICONS_SIZES = ["128x128", "192x192", "256x256", "512x512"];
 
 let apps: App[] = [];
 
-if (Deno.args[0]) {
+if (Deno.args.length) {
 	if (Deno.args[0] !== "--force") {
 		const { data } = await supabase.from("apps")
 			.select("*")
@@ -27,12 +30,14 @@ if (Deno.args[0]) {
 			Deno.exit(1);
 		}
 	} else {
-		const { data: apps } = await supabase.from("apps")
+		const { data } = await supabase.from("apps")
 			.select("*");
 
-		if (!apps) {
+		if (!data) {
 			Deno.exit();
 		}
+
+		apps = data;
 	}
 }
 
@@ -48,7 +53,11 @@ await Promise.all(apps.map(async (app) => {
 	let manifest: WebAppManifest | undefined;
 
 	try {
-		manifest = await fetch(manifestUrl).then((
+		manifest = await fetch(manifestUrl, {
+			headers: {
+				Accept: "application/json",
+			},
+		}).then((
 			res,
 		) => res.json());
 	} catch (err) {
@@ -64,7 +73,7 @@ await Promise.all(apps.map(async (app) => {
 		return;
 	}
 
-	if (hash !== app?.manifest_hash || "--force" in Deno.args) {
+	if (hash !== app?.manifest_hash || Deno.args.includes("--force")) {
 		const manifestParent = manifestUrl.split("/");
 		manifestParent.pop();
 
@@ -124,17 +133,18 @@ await Promise.all(apps.map(async (app) => {
 							if (icon.src.startsWith("http")) {
 								icon_url = icon.src;
 
-							// Aparently some apps use "//" at the beginning
-							// and the browser actually understands it????
+								// Aparently some apps use "//" at the beginning
+								// and the browser actually understands it????
 							} else if (icon.src.startsWith("//")) {
-								icon_url = "https://" + icon.src
-
+								icon_url = "https://" + icon.src.slice(2);
 							} else if (icon.src.startsWith("/")) {
-								icon_url = slashSlashes(app.url) + "/" + slashSlashes(icon.src);
-
+								icon_url =
+									slashSlashes(new URL(app.url).origin) +
+									"/" + slashSlashes(icon.src);
 							} else {
 								icon_url =
-									slashSlashes(manifestParent.join("/")) + "/" + slashSlashes(icon.src);
+									slashSlashes(manifestParent.join("/")) +
+									"/" + slashSlashes(icon.src);
 							}
 						}
 					}
@@ -150,12 +160,18 @@ await Promise.all(apps.map(async (app) => {
 				return;
 			}
 
-			const icon_blob = await fetch(icon_url, {
-				headers: {
-					"Accept":
-						"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
-				},
-			}).then((res) => res.blob());
+			const icon_blob = await Jimp.read(icon_url)
+				.then((image) => image.resize(96, 96))
+				.then((image) => image.getBufferAsync(Jimp.MIME_PNG))
+				.then((buffer) => new Blob([new Uint8Array(buffer)]))
+				.catch((err) => {
+					console.error("Could not fetch icon", err);
+					console.log(icon_url);
+					appsWithError.push(app.name);
+					return;
+				});
+
+			if (!icon_blob) return;
 
 			try {
 				const iconColorPalette = await Vibrant.from(icon_url)
@@ -164,13 +180,16 @@ await Promise.all(apps.map(async (app) => {
 				if (iconColorPalette.Vibrant) {
 					accent_color = iconColorPalette.Vibrant?.hex;
 				}
-			} catch(e) {
+			} catch (e) {
 				console.warn("Could not get accent color");
 				console.warn(e);
-				console.log(icon_url)
+				console.log(icon_url);
 				appsWithError.push(app.name);
 				return;
 			}
+
+			await clearAppFromStorage(app.id, "icons");
+			await clearAppFromStorage(app.id, "screenshots");
 
 			const icon = await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
 
@@ -201,9 +220,9 @@ await Promise.all(apps.map(async (app) => {
 					// deno-lint-ignore no-explicit-any
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,
-					accent_color: accent_color || undefined,
-					manifest_hash: hash || undefined,
-					icon: icon || undefined,
+					accent_color: accent_color,
+					manifest_hash: hash,
+					icon: icon,
 				})
 				.eq("id", app.id);
 		} catch (e) {
@@ -226,6 +245,31 @@ async function digest(message: string) {
 	return hashHex;
 }
 
+async function clearAppFromStorage(id: string, folderName: string) {
+	const { data: files } = await supabase.storage
+		.from("apps")
+		.list(id);
+	const folders = files?.map((a) => a.name) || [];
+
+	if (!folders.includes(folderName)) return;
+
+	const { data: list } = await supabase.storage.from("apps").list(
+		`${id}/${folderName}`,
+	);
+	const filesToRemove = list?.map((x) => `${id}/${folderName}/${x.name}`) ||
+		[];
+
+	if (!filesToRemove) return;
+
+	const { error } = await supabase.storage
+		.from("apps")
+		.remove(filesToRemove);
+
+	if (error) {
+		console.log(error);
+	}
+}
+
 async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
 	const { error } = await supabase.storage
 		.from("apps")
@@ -234,16 +278,8 @@ async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
 		});
 
 	if (!error) {
-		const { data } = supabase.storage
-			.from("apps")
-			.getPublicUrl(`${id}/${name}.png`);
-
-		if (data) {
-			return data.publicUrl;
-		} else {
-			console.error("Could not get public url!");
-			return null;
-		}
+		const url = `${IMAGES_URL}/${id}/${name}.png`;
+		return url;
 	} else {
 		console.log(error);
 		return null;
