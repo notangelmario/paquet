@@ -49,7 +49,7 @@ export default function App({ data }: PageProps<DataProps>) {
 							class="bg-light dark:bg-dark flex flex-row flex-wrap gap-4"
 						>
 							<img
-								class="rounded w-20 h-20"
+								class="rounded w-20 h-20 shadow-outset-light dark:shadow-outset-dark bg-light-light dark:bg-dark-light"
 								src={data.app.icon}
 							/>
 							<div class="flex-1">
