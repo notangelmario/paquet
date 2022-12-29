@@ -1,9 +1,9 @@
 import "dotenv";
 import type { App } from "@/types/App.ts";
 import { createClient } from "supabase";
-import { CATEGORIES } from "@/lib/categories.ts";
 import Vibrant from "npm:node-vibrant";
 import Jimp from "npm:jimp";
+import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 
 const supabase = createClient(
@@ -77,21 +77,22 @@ await Promise.all(apps.map(async (app) => {
 		const manifestParent = manifestUrl.split("/");
 		manifestParent.pop();
 
-		let category = "";
+		let categories: string[] = [];
 		const screenshots_source: string[] = [];
 		const screenshots: string[] = [];
 		let icon_url = "";
 		let accent_color = "";
 
 		try {
-			if (manifest.categories) {
-				for (const manifestCategory of manifest.categories) {
-					if (CATEGORIES.find((c) => c.id === manifestCategory)) {
-						category = manifestCategory;
-						break;
-					}
-				}
-			}
+            if (Array.isArray(manifest.categories)) {
+                categories = manifest.categories
+                    .filter((x: string) => typeof x === "string")
+                    .filter((x: string) => CATEGORIES.find((c) => c.id === x || c.aliases?.includes(x)))
+                    .map((x: string) => CATEGORIES.find((c) => c.id === x || c.aliases?.includes(x))?.id || x);
+
+                // This eliminates duplicates
+                categories = [...new Set(categories)];
+            }
 
 			if (manifest.screenshots) {
 				for (const screenshot of manifest.screenshots) {
@@ -216,7 +217,7 @@ await Promise.all(apps.map(async (app) => {
 				.update({
 					name: manifest?.name || undefined,
 					description: manifest?.description || undefined,
-					category: category || undefined,
+                    categories: categories.length ? categories : undefined,
 					// deno-lint-ignore no-explicit-any
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,

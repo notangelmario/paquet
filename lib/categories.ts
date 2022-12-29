@@ -45,14 +45,15 @@ export const CATEGORIES = [
 		id: "lifestyle",
 		icon: "heart",
 		name: "Lifestyle",
+        aliases: ["photo", "travel", "trip", "health"]
 	},
-] as const;
+];
 
 export const getCategory = (
 	categoryId: Category["id"],
 ): Category | undefined => {
 	const foundCategory = CATEGORIES.find((category) =>
-		category.id === categoryId
+		category.id === categoryId || category?.aliases?.includes(categoryId)
 	);
 
 	if (foundCategory) return foundCategory;
