@@ -189,7 +189,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon")
-		.contains("categories", app.categories)
+		.containedBy("categories", app.categories)
 		.neq("id", app.id)
 		.limit(5);
 
