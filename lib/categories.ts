@@ -10,36 +10,43 @@ export const CATEGORIES = [
 		id: "social",
 		icon: "users",
 		name: "Social",
+        aliases: ["chat", "messenger", "messaging"]
 	},
 	{
 		id: "entertainment",
 		icon: "movie",
 		name: "Entertainment",
+        aliases: ["music", "video", "movies", "tv", "streaming"]
 	},
 	{
 		id: "utilities",
 		icon: "tool",
 		name: "Utilities",
+        aliases: ["tool", "tools", "utility"]
 	},
 	{
 		id: "productivity",
 		icon: "briefcase",
 		name: "Productivity",
+        aliases: ["work", "business", "office"]
 	},
 	{
 		id: "games",
 		icon: "gamepad",
 		name: "Games",
+        aliases: ["game", "gaming"]
 	},
 	{
 		id: "music",
 		icon: "music",
 		name: "Music",
+        aliases: ["audio", "sound"]
 	},
 	{
 		id: "development",
 		icon: "code",
 		name: "Development",
+        aliases: ["code", "coding", "program", "programming", "developer", "developers"]
 	},
 	{
 		id: "lifestyle",
