@@ -50,7 +50,7 @@ export default function App({ data }: PageProps<DataProps>) {
 						>
 							<img
 								class="rounded w-20 h-20 shadow-outset-light dark:shadow-outset-dark bg-light-light dark:bg-dark-light"
-								src={data.app.icon}
+								src={`/app/${data.app.id}/icon`}
 							/>
 							<div class="flex-1">
 								<h2 class="text-3xl">
@@ -151,7 +151,7 @@ export default function App({ data }: PageProps<DataProps>) {
 											<ListItem
 												button
 												title={app.name}
-												image={app.icon}
+                                                image={`/app/${app.id}/icon`}
 												subtitle={app.author}
 												divider={idx !==
 													(data.otherApps

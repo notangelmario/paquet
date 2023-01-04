@@ -11,7 +11,7 @@ const supabase = createClient(
 	Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
 
-const IMAGES_URL = "https://images.paquet.shop/apps";
+const IMAGES_URL = "https://paquet.shop/app";
 
 const ICONS_SIZES = ["128x128", "192x192", "256x256", "512x512"];
 
@@ -192,7 +192,7 @@ await Promise.all(apps.map(async (app) => {
 			await clearAppFromStorage(app.id, "icons");
 			await clearAppFromStorage(app.id, "screenshots");
 
-			const icon = await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
+			await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
 
 			for (let i = 0; i < screenshots_source.length; i++) {
 				const blob = await fetch(screenshots_source[i], {
@@ -223,7 +223,8 @@ await Promise.all(apps.map(async (app) => {
 					screenshots: screenshots.length ? screenshots : undefined,
 					accent_color: accent_color,
 					manifest_hash: hash,
-					icon: icon,
+					icon: `${IMAGES_URL}/${app.id}/icon`,
+                    icon_original: icon_url
 				})
 				.eq("id", app.id);
 		} catch (e) {
@@ -278,10 +279,7 @@ async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
 			upsert: true,
 		});
 
-	if (!error) {
-		const url = `${IMAGES_URL}/${id}/${name}.png`;
-		return url;
-	} else {
+	if (error) {
 		console.log(error);
 		return null;
 	}
