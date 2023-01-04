@@ -106,6 +106,8 @@ await Promise.all(apps.map(async (app) => {
 				for (const screenshot of manifest.screenshots) {
 					if (screenshot.src.startsWith("http")) {
 						screenshots_source.push(screenshot.src);
+                    } else if (screenshot.src.startsWith("//")) {
+                        screenshots_source.push("https://" + icon.src.slice(2));
 					} else if (screenshot.src.startsWith("/")) {
 						screenshots_source.push(
 							slashSlashes(app.url) + "/" +
@@ -210,15 +212,20 @@ await Promise.all(apps.map(async (app) => {
 					},
 				}).then((res) => res.blob());
 
-				const screenshot = await uploadAndGetUrl(
+                if (!blob) {
+                    console.warn("Could not fetch screenshot(s)");
+                    console.log(screenshots_source[i]);
+                    appsWithError.push(app.name);
+                    return;
+                }
+
+				await uploadAndGetUrl(
 					app.id,
 					blob,
 					`screenshots/${i}`,
 				);
 
-				if (screenshot) {
-                    screenshots.push(`${IMAGES_URL}/${app.id}/screenshot?n=${i}`)
-				}
+                screenshots.push(`${IMAGES_URL}/${app.id}/screenshot?n=${i}`)
 			}
 
 			await supabase.from("apps")
