@@ -1,16 +1,18 @@
 import type { Handler } from "@/types/Handler.ts";
 import { supabase } from "@/lib/supabase.ts";
 
-export const handler: Handler = async (_, ctx) => {
+export const handler: Handler = async (req, ctx) => {
 	const { id } = ctx.params;
+    const url = new URL(req.url);
+    const number = url.searchParams.get("n");
 
-	if (!id) {
+	if (!id || !number || isNaN(parseInt(number))) {
 		return new Response("Not found", { status: 404 });
 	}
 
 	const { data, error } = await supabase
 		.from("apps")
-		.select("icon_original")
+		.select("screenshots, screenshots_original")
 		.eq("id", id)
 		.single();
 
@@ -18,7 +20,7 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Not found", { status: 404 });
 	}
 
-	const res = await fetch(data.icon_original);
+	const res = await fetch(data.screenshots_original[parseInt(number)]);
 
 	if (res.status === 200) {
 		console.log(1);
@@ -27,7 +29,8 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: fallback, error } = supabase.storage
 		.from("apps")
-		.getPublicUrl(`${id}/icons/icon.png`);
+		.getPublicUrl(`${id}/screenshots/${number}.png`);
+
 
     if (error) {
         return new Response("Not found", { status: 404 });

@@ -217,7 +217,7 @@ await Promise.all(apps.map(async (app) => {
 				);
 
 				if (screenshot) {
-					screenshots.push(screenshot);
+                    screenshots.push(`${IMAGES_URL}/${app.id}/screenshot?n=${i}`)
 				}
 			}
 
@@ -229,6 +229,7 @@ await Promise.all(apps.map(async (app) => {
 					// deno-lint-ignore no-explicit-any
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,
+                    screenshots_original: screenshots_source.length ? screenshots_source : undefined,
 					accent_color: accent_color,
 					manifest_hash: hash,
 					icon: `${IMAGES_URL}/${app.id}/icon`,
