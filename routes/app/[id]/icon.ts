@@ -10,7 +10,7 @@ export const handler: Handler = async (_, ctx) => {
 
     const { data, error } = await supabase
         .from("apps")
-        .select("icon")
+        .select("icon_original")
         .eq("id", id)
         .single();
 
@@ -18,9 +18,10 @@ export const handler: Handler = async (_, ctx) => {
         return new Response("Not found", { status: 404 });
     }
 
-    const res = await fetch(data.icon);
+    const res = await fetch(data.icon_original);
     
     if (res.status === 200) {
+        console.log(1);
         return res;
     }
 
