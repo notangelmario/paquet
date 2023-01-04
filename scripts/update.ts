@@ -84,15 +84,23 @@ await Promise.all(apps.map(async (app) => {
 		let accent_color = "";
 
 		try {
-            if (Array.isArray(manifest.categories)) {
-                categories = manifest.categories
-                    .filter((x: string) => typeof x === "string")
-                    .filter((x: string) => CATEGORIES.find((c) => c.id === x || c.aliases?.includes(x)))
-                    .map((x: string) => CATEGORIES.find((c) => c.id === x || c.aliases?.includes(x))?.id || x);
+			if (Array.isArray(manifest.categories)) {
+				categories = manifest.categories
+					.filter((x: string) => typeof x === "string")
+					.filter((x: string) =>
+						CATEGORIES.find((c) =>
+							c.id === x || c.aliases?.includes(x)
+						)
+					)
+					.map((x: string) =>
+						CATEGORIES.find((c) =>
+							c.id === x || c.aliases?.includes(x)
+						)?.id || x
+					);
 
-                // This eliminates duplicates
-                categories = [...new Set(categories)];
-            }
+				// This eliminates duplicates
+				categories = [...new Set(categories)];
+			}
 
 			if (manifest.screenshots) {
 				for (const screenshot of manifest.screenshots) {
@@ -217,14 +225,14 @@ await Promise.all(apps.map(async (app) => {
 				.update({
 					name: manifest?.name || undefined,
 					description: manifest?.description || undefined,
-                    categories: categories.length ? categories : undefined,
+					categories: categories.length ? categories : undefined,
 					// deno-lint-ignore no-explicit-any
 					author: (manifest as unknown as any)?.author || undefined,
 					screenshots: screenshots.length ? screenshots : undefined,
 					accent_color: accent_color,
 					manifest_hash: hash,
 					icon: `${IMAGES_URL}/${app.id}/icon`,
-                    icon_original: icon_url
+					icon_original: icon_url,
 				})
 				.eq("id", app.id);
 		} catch (e) {

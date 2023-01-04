@@ -8,7 +8,7 @@
 		"jsx": "react-jsx",
 		"jsxImportSource": "preact"
 	},
-    "lock": false,
+	"lock": false,
 	"tasks": {
 		"dev": "deno run -A --watch=static/,routes/ dev.ts",
 		"cache": "deno cache --reload main.ts",

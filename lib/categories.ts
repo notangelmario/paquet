@@ -10,49 +10,56 @@ export const CATEGORIES = [
 		id: "social",
 		icon: "users",
 		name: "Social",
-        aliases: ["chat", "messenger", "messaging"]
+		aliases: ["chat", "messenger", "messaging"],
 	},
 	{
 		id: "entertainment",
 		icon: "movie",
 		name: "Entertainment",
-        aliases: ["music", "video", "movies", "tv", "streaming"]
+		aliases: ["music", "video", "movies", "tv", "streaming"],
 	},
 	{
 		id: "utilities",
 		icon: "tool",
 		name: "Utilities",
-        aliases: ["tool", "tools", "utility"]
+		aliases: ["tool", "tools", "utility"],
 	},
 	{
 		id: "productivity",
 		icon: "briefcase",
 		name: "Productivity",
-        aliases: ["work", "business", "office"]
+		aliases: ["work", "business", "office"],
 	},
 	{
 		id: "games",
 		icon: "gamepad",
 		name: "Games",
-        aliases: ["game", "gaming"]
+		aliases: ["game", "gaming"],
 	},
 	{
 		id: "music",
 		icon: "music",
 		name: "Music",
-        aliases: ["audio", "sound"]
+		aliases: ["audio", "sound"],
 	},
 	{
 		id: "development",
 		icon: "code",
 		name: "Development",
-        aliases: ["code", "coding", "program", "programming", "developer", "developers"]
+		aliases: [
+			"code",
+			"coding",
+			"program",
+			"programming",
+			"developer",
+			"developers",
+		],
 	},
 	{
 		id: "lifestyle",
 		icon: "heart",
 		name: "Lifestyle",
-        aliases: ["photo", "travel", "trip", "health"]
+		aliases: ["photo", "travel", "trip", "health"],
 	},
 ];
 

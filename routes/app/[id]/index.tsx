@@ -151,7 +151,7 @@ export default function App({ data }: PageProps<DataProps>) {
 											<ListItem
 												button
 												title={app.name}
-                                                image={data.app.icon}
+												image={data.app.icon}
 												subtitle={app.author}
 												divider={idx !==
 													(data.otherApps
