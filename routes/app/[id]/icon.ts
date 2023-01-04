@@ -25,11 +25,11 @@ export const handler: Handler = async (_, ctx) => {
 		return res;
 	}
 
-	const { data: fallback, error } = supabase.storage
+	const { data: fallback } = supabase.storage
 		.from("apps")
 		.getPublicUrl(`${id}/icons/icon.png`);
 
-    if (error) {
+    if (!fallback) {
         return new Response("Not found", { status: 404 });
     }
 

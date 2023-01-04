@@ -27,12 +27,12 @@ export const handler: Handler = async (req, ctx) => {
 		return res;
 	}
 
-	const { data: fallback, error } = supabase.storage
+	const { data: fallback } = supabase.storage
 		.from("apps")
 		.getPublicUrl(`${id}/screenshots/${number}.png`);
 
 
-    if (error) {
+    if (!fallback) {
         return new Response("Not found", { status: 404 });
     }
 
