@@ -13,18 +13,21 @@ import * as $6 from "./routes/category/[id].tsx";
 import * as $7 from "./routes/category/index.tsx";
 import * as $8 from "./routes/docs/[doc].tsx";
 import * as $9 from "./routes/docs/index.tsx";
-import * as $10 from "./routes/gfm.css.ts";
-import * as $11 from "./routes/index.tsx";
-import * as $12 from "./routes/library.tsx";
-import * as $13 from "./routes/search.tsx";
-import * as $14 from "./routes/settings.tsx";
-import * as $15 from "./routes/sitemap.xml.ts";
+import * as $10 from "./routes/env.json.ts";
+import * as $11 from "./routes/gfm.css.ts";
+import * as $12 from "./routes/index.tsx";
+import * as $13 from "./routes/library.tsx";
+import * as $14 from "./routes/login.tsx";
+import * as $15 from "./routes/search.tsx";
+import * as $16 from "./routes/settings.tsx";
+import * as $17 from "./routes/sitemap.xml.ts";
 import * as $$0 from "./islands/AddToLibrary.tsx";
 import * as $$1 from "./islands/Dialog.tsx";
 import * as $$2 from "./islands/InstallBanner.tsx";
 import * as $$3 from "./islands/LibraryApps.tsx";
 import * as $$4 from "./islands/Navbar.tsx";
 import * as $$5 from "./islands/OfflineLibraryNotice.tsx";
+import * as $$6 from "./islands/UserHandler.tsx";
 
 const manifest = {
 	routes: {
@@ -38,12 +41,14 @@ const manifest = {
 		"./routes/category/index.tsx": $7,
 		"./routes/docs/[doc].tsx": $8,
 		"./routes/docs/index.tsx": $9,
-		"./routes/gfm.css.ts": $10,
-		"./routes/index.tsx": $11,
-		"./routes/library.tsx": $12,
-		"./routes/search.tsx": $13,
-		"./routes/settings.tsx": $14,
-		"./routes/sitemap.xml.ts": $15,
+		"./routes/env.json.ts": $10,
+		"./routes/gfm.css.ts": $11,
+		"./routes/index.tsx": $12,
+		"./routes/library.tsx": $13,
+		"./routes/login.tsx": $14,
+		"./routes/search.tsx": $15,
+		"./routes/settings.tsx": $16,
+		"./routes/sitemap.xml.ts": $17,
 	},
 	islands: {
 		"./islands/AddToLibrary.tsx": $$0,
@@ -52,6 +57,7 @@ const manifest = {
 		"./islands/LibraryApps.tsx": $$3,
 		"./islands/Navbar.tsx": $$4,
 		"./islands/OfflineLibraryNotice.tsx": $$5,
+		"./islands/UserHandler.tsx": $$6,
 	},
 	baseUrl: import.meta.url,
 	config,

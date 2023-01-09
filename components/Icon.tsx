@@ -1,5 +1,6 @@
 import GitHubIcon from "tabler-icons/brand-github.tsx";
 import DiscordIcon from "tabler-icons/brand-discord.tsx";
+import GoogleIcon from "tabler-icons/brand-google.tsx";
 import SearchIcon from "tabler-icons/search.tsx";
 import ArrowLeftIcon from "tabler-icons/arrow-left.tsx";
 import SettingsIcon from "tabler-icons/settings.tsx";
@@ -32,6 +33,7 @@ import CloudOffIcon from "tabler-icons/cloud-off.tsx";
 export const ICONS = new Map([
 	["github", GitHubIcon],
 	["discord", DiscordIcon],
+    ["google", GoogleIcon],
 	["search", SearchIcon],
 	["back", ArrowLeftIcon],
 	["settings", SettingsIcon],

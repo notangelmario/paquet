@@ -21,8 +21,12 @@ export const handler: Handler = async (_, ctx) => {
 	const res = await fetch(data.icon_original);
 
 	if (res.status === 200) {
-		console.log(1);
-		return res;
+        return new Response(res.body, {
+            status: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        });
 	}
 
 	const { data: fallback } = supabase.storage
