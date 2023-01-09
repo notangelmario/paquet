@@ -22,6 +22,7 @@ Welcome to your new web app shop!
 - 🌐 Hosted on the edge
 - 🚀 Encourage app performance
 - 🔒 Security is a top priority
+- 💔 Optimized for non-JavaScript browsers
 - 🎈 Easy to contribute
 
 ## 🧰 Tools

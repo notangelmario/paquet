@@ -13,7 +13,7 @@ import * as $6 from "./routes/category/[id].tsx";
 import * as $7 from "./routes/category/index.tsx";
 import * as $8 from "./routes/docs/[doc].tsx";
 import * as $9 from "./routes/docs/index.tsx";
-import * as $10 from "./routes/env.json.ts";
+import * as $10 from "./routes/env.js.ts";
 import * as $11 from "./routes/gfm.css.ts";
 import * as $12 from "./routes/index.tsx";
 import * as $13 from "./routes/library.tsx";
@@ -26,9 +26,10 @@ import * as $$1 from "./islands/Dialog.tsx";
 import * as $$2 from "./islands/InstallBanner.tsx";
 import * as $$3 from "./islands/LibraryApps.tsx";
 import * as $$4 from "./islands/LoginButtons.tsx";
-import * as $$5 from "./islands/Navbar.tsx";
-import * as $$6 from "./islands/OfflineLibraryNotice.tsx";
-import * as $$7 from "./islands/UserHandler.tsx";
+import * as $$5 from "./islands/LogoutButton.tsx";
+import * as $$6 from "./islands/Navbar.tsx";
+import * as $$7 from "./islands/OfflineLibraryNotice.tsx";
+import * as $$8 from "./islands/UserHandler.tsx";
 
 const manifest = {
 	routes: {
@@ -42,7 +43,7 @@ const manifest = {
 		"./routes/category/index.tsx": $7,
 		"./routes/docs/[doc].tsx": $8,
 		"./routes/docs/index.tsx": $9,
-		"./routes/env.json.ts": $10,
+		"./routes/env.js.ts": $10,
 		"./routes/gfm.css.ts": $11,
 		"./routes/index.tsx": $12,
 		"./routes/library.tsx": $13,
@@ -57,9 +58,10 @@ const manifest = {
 		"./islands/InstallBanner.tsx": $$2,
 		"./islands/LibraryApps.tsx": $$3,
 		"./islands/LoginButtons.tsx": $$4,
-		"./islands/Navbar.tsx": $$5,
-		"./islands/OfflineLibraryNotice.tsx": $$6,
-		"./islands/UserHandler.tsx": $$7,
+		"./islands/LogoutButton.tsx": $$5,
+		"./islands/Navbar.tsx": $$6,
+		"./islands/OfflineLibraryNotice.tsx": $$7,
+		"./islands/UserHandler.tsx": $$8,
 	},
 	baseUrl: import.meta.url,
 	config,

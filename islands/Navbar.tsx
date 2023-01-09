@@ -1,3 +1,4 @@
+import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useScroll } from "@/hooks/useScroll.ts";
 import { iconBtn } from "@/lib/ui.ts";
@@ -101,7 +102,8 @@ export default function Navbar(props: Props) {
 			`}
 		>
 			<div>
-				{props.back && (
+				{/* bug: Flickers on transitions */}
+				{props.back && IS_BROWSER && (
 					<button
 						class={tw(iconBtn)}
 						onClick={goBack}
@@ -112,6 +114,19 @@ export default function Navbar(props: Props) {
 						/>
 					</button>
 				)}
+                {props.back && (
+                    <noscript>
+                        <a
+                            class={tw(iconBtn)}
+                            href="/"
+                        >
+                            <Icon
+                                name="home"
+                                size={24}
+                            />
+                        </a>
+                    </noscript>
+                )}
 			</div>
 			<div class="flex flex-row ml-auto items-center gap-2">
 				{props.right &&

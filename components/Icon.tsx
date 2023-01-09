@@ -29,6 +29,10 @@ import Mobile from "tabler-icons/device-mobile.tsx";
 import LockIcon from "tabler-icons/lock.tsx";
 import SourceCodeIcon from "tabler-icons/source-code.tsx";
 import CloudOffIcon from "tabler-icons/cloud-off.tsx";
+import UserIcon from "tabler-icons/user.tsx";
+import LoginIcon from "tabler-icons/login.tsx";
+import LogoutIcon from "tabler-icons/logout.tsx";
+import JavaScriptIcon from "tabler-icons/brand-javascript.tsx";
 
 export const ICONS = new Map([
 	["github", GitHubIcon],
@@ -62,6 +66,10 @@ export const ICONS = new Map([
 	["lock", LockIcon],
 	["source-code", SourceCodeIcon],
 	["cloud-off", CloudOffIcon],
+    ["user", UserIcon],
+    ["login", LoginIcon],
+    ["logout", LogoutIcon],
+    ["javascript", JavaScriptIcon]
 ]);
 
 export interface Props {

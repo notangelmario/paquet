@@ -1,12 +1,15 @@
+import { IS_BROWSER } from "$fresh/runtime.ts";
 import Button from "@/components/Button.tsx";
-import { useSupabase } from "@/hooks/useSupabase.ts";
+import { supabase } from "@/lib/supabase-client.ts";
+import { Provider } from "https://esm.sh/v102/@supabase/gotrue-js@2.6.1/dist/module/lib/types";
 
 export default function LoginButtons() {
-    const loginWithGitHub = async () => {
-        const supabase = await useSupabase();
-
+    const login = (provider: Provider) => {
         supabase.auth.signInWithOAuth({
-            provider: "github"
+            provider,
+            options: {
+                redirectTo: window.location.origin,
+            }
         })
     }
 
@@ -16,7 +19,8 @@ export default function LoginButtons() {
                 icon="github"
                 outlined
                 fullWidth
-                onClick={loginWithGitHub}
+                onClick={() => login("github")}
+                disabled={!IS_BROWSER}
             >
                 Login with GitHub
             </Button>

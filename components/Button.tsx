@@ -17,7 +17,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 		<button
 			{...props}
 			class={`
-				${!props.disabled && props.outlined ? tw(btnOutset) : tw(btn)}
+				${!props.outlined ? tw(btnOutset) : tw(btn)}
 				relative rounded px-8 py-2 text-base
 				${props.error ? "border-error" : "border-current"}
 				
@@ -34,8 +34,6 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
-				${props.disabled ? "opacity-25 cursor-not-allowed" : ""}
-
 				${props.fullWidth ? "w-full" : ""}
 				${props.class || ""}
 			`}

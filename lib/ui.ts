@@ -3,7 +3,8 @@ import { css } from "twind/css";
 
 export const btn = apply`
 	  	cursor-pointer
-		active:opacity-50 hover:opacity-75 
+		not-disabled:(active:override:opacity-50 hover:opacity-75)
+        disabled:(opacity-25 cursor-not-allowed)
 		z-10
 		transition-opacity
 `;
@@ -11,8 +12,9 @@ export const btn = apply`
 export const btnOutset = apply`
 		cursor-pointer
 		shadow-outset-light
-		active:shadow-pressed-light
-		dark:(shadow-outset-dark active:shadow-pressed-dark)
+		not-disabled:active:shadow-pressed-light
+		not-disabled:dark:(shadow-outset-dark active:shadow-pressed-dark)
+        disabled:(opacity-25 cursor-not-allowed)
 		z-0 transition-shadow
 `;
 
@@ -21,7 +23,8 @@ export const iconBtn = apply`
 		rounded-full
 		block p-2
 		focus:!outline-0
-		active:opacity-50 hover:opacity-75
+		not-disabled:(active:override:opacity-50 hover:opacity-75)
+        disabled:(opacity-25 cursor-not-allowed)
 		transition-opacity
 		${
 	css({

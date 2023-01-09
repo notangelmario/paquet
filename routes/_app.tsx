@@ -82,6 +82,7 @@ export default function App({ Component }: AppProps) {
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
 				<script src="/registerSw.js"></script>
 			)}
+            <script src="/env.js"></script>
 		</html>
 	);
 }

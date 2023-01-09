@@ -7,6 +7,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
+import LogoutButton from "@/islands/LogoutButton.tsx";
 
 interface DataProps {
     user?: {
@@ -29,21 +30,19 @@ export default function Settings(props: PageProps<DataProps>) {
 					</Header>
                     {props.data?.user ? (
                             <Card disableGutters>
-                                <a href="/login">
-                                    <ListItem
-                                        button
-                                        icon="code"
-                                        title="Login"
-                                        subtitle="Login to access more features"
-                                    />
-                                </a>
+                                <ListItem
+                                    icon="user"
+                                    title={props.data.user.name || "Couldn't get your name"}
+                                    subtitle={props.data.user.email}
+                                />
+                                <LogoutButton />
                             </Card>
                         ) : (
                             <Card disableGutters>
                                 <a href="/login">
                                     <ListItem
                                         button
-                                        icon="code"
+                                        icon="login"
                                         title="Login"
                                         subtitle="Login to access more features"
                                     />

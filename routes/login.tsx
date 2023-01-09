@@ -34,6 +34,28 @@ export default function Login() {
                         src="/illustrations/login.svg"
                         class="hidden md:(block mb-4)"
                     />
+                    <noscript>
+                        <p
+                            class="opacity-75 mb-4"
+                        >
+                            <Icon 
+                                name="javascript"
+                                inline
+                                size={18}
+                            />{" "}
+                            You need to enable JavaScript to login. We
+                            want to make sure the login process happens
+                            on your device only, your login info is not
+                            sent anywhere.
+                            <br/><br/>
+                            You can <a 
+                                href="https://github.com/notangelmario/paquet" 
+                                target="_blank"
+                                rel="noreferrer noopenner"
+                                class="text-secondary underline"
+                            >check the open-source repo</a>, just to be safe.
+                        </p>
+                    </noscript>
                     <p
                         class="opacity-50"
                     >
