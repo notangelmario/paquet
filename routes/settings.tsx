@@ -1,4 +1,4 @@
-import "dotenv";
+import { Handler, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -8,7 +8,14 @@ import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
 
-export default function Settings() {
+interface DataProps {
+    user?: {
+        name?: string;
+        email: string;
+    }
+}
+
+export default function Settings(props: PageProps<DataProps>) {
 	return (
 		<>
 			<Head>
@@ -20,6 +27,30 @@ export default function Settings() {
 					<Header icon="settings">
 						Settings
 					</Header>
+                    {props.data?.user ? (
+                            <Card disableGutters>
+                                <a href="/login">
+                                    <ListItem
+                                        button
+                                        icon="code"
+                                        title="Login"
+                                        subtitle="Login to access more features"
+                                    />
+                                </a>
+                            </Card>
+                        ) : (
+                            <Card disableGutters>
+                                <a href="/login">
+                                    <ListItem
+                                        button
+                                        icon="code"
+                                        title="Login"
+                                        subtitle="Login to access more features"
+                                    />
+                                </a>
+                            </Card>
+                        )
+                    }
 					<Card disableGutters>
 						<a href="/docs">
 							<ListItem
@@ -67,4 +98,11 @@ export default function Settings() {
 			</Container>
 		</>
 	);
+}
+
+
+export const handler: Handler = (_, ctx) => {
+    return ctx.render({
+        user: ctx.state.user
+    })
 }

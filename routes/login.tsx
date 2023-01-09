@@ -3,8 +3,8 @@ import Container from "@/components/Container.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Navbar from "@/islands/Navbar.tsx";
-import Button from "@/components/Button.tsx";
 import Icon from "@/components/Icon.tsx";
+import LoginButtons from "@/islands/LoginButtons.tsx";
 
 
 export default function Login() {
@@ -26,13 +26,7 @@ export default function Login() {
                             src="/illustrations/login.svg"
                             class="block md:(hidden mb-4) max-w-md mx-auto"
                         />
-                        <Button
-                            icon="google"
-                            outlined
-                            fullWidth
-                        >
-                            Login with Google
-                        </Button>
+                        <LoginButtons />
                     </Stack>
                 </div>
                 <div class="w-full md:(flex-1 mt-16)">

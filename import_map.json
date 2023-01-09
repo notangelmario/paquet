@@ -1,8 +1,8 @@
 {
 	"imports": {
 		"@/": "./",
-		"$std/": "https://deno.land/std@0.152.0/",
-		"dotenv": "https://deno.land/std@0.167.0/dotenv/load.ts",
+		"$std/": "https://deno.land/std@0.171.0/",
+		"dotenv": "https://deno.land/std@0.171.0/dotenv/load.ts",
 		"$fresh/": "https://deno.land/x/fresh@1.1.2/",
 		"fresh_seo": "https://deno.land/x/fresh_seo@0.1.2/mod.ts",
 		"gfm": "https://deno.land/x/gfm@0.1.22/mod.ts",
