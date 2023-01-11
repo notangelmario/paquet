@@ -20,6 +20,8 @@ import SlideCategories from "@/components/compound/SlideCategories.tsx";
 interface DataProps {
 	app: App;
 	otherApps?: App[];
+	// TODO(@notangelmario): Fix ssrAdded
+	ssrAdded: boolean;
 }
 
 export default function App({ data }: PageProps<DataProps>) {
@@ -84,7 +86,7 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								<AddToLibrary app={data.app} />
+								<AddToLibrary app={data.app} ssrAdded={data.ssrAdded} />
 							</div>
 						</Card>
 						<div>
@@ -187,6 +189,19 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
+	let ssrAdded = false;
+	if (ctx.state.user) {
+		const { data } = await supabase
+			.from("users")
+			.select("library")
+			.eq("id", ctx.state.user.id)
+			.single();
+
+		if (data) {
+			ssrAdded = data.library.includes(app.id);
+		}
+	}
+
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon")
 		.containedBy("categories", app.categories)
@@ -196,5 +211,6 @@ export const handler: Handler = async (_, ctx) => {
 	return ctx.render({
 		app,
 		otherApps,
+		ssrAdded
 	} as DataProps);
 };

@@ -17,9 +17,6 @@ import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/compound/ImageCard.tsx";
 
-import LibraryApps from "@/islands/LibraryApps.tsx";
-import OfflineLibraryNotice from "@/islands/OfflineLibraryNotice.tsx";
-
 interface DataProps {
 	newApps?: App[];
 	randomCards?: App[];
@@ -258,12 +255,6 @@ export default function Home({ data }: PageProps<DataProps>) {
 				<Container class="mt-4">
 					<FewApps />
 				</Container>
-				{/* Those are esential here to cache them when in homepage */}
-				{/* This is a fix until we have a proper solution from fresh */}
-				<div class="hidden">
-					<OfflineLibraryNotice />
-					<LibraryApps />
-				</div>
 			</Stack>
 		</>
 	);

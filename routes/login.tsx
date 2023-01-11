@@ -5,7 +5,7 @@ import Stack from "@/components/Stack.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Icon from "@/components/Icon.tsx";
 import LoginButtons from "@/islands/LoginButtons.tsx";
-
+import { Handler } from "@/types/Handler.ts";
 
 export default function Login() {
     return (
@@ -72,4 +72,18 @@ export default function Login() {
             </Container>
         </>
     )
+}
+
+
+export const handler: Handler = (_, ctx) => {
+    if (ctx.state.user) {
+        return new Response("Already logged in", {
+                status: 307,
+                headers: {
+                    Location: "/"
+                }
+        })
+    }
+
+    return ctx.render();
 }

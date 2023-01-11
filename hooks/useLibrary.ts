@@ -1,5 +1,5 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useEffect, useState } from "preact/hooks";
+import { supabase } from "@/lib/supabase-client.ts";
 
 export interface RequiredAppData {
 	id: string;
@@ -10,25 +10,55 @@ export interface RequiredAppData {
 
 export const useLibrary = () => {
 	const [loading, setLoading] = useState(true);
-	const [apps, setApps] = useState<RequiredAppData[]>([]);
+	const [apps, setAppsRaw] = useState<RequiredAppData[]>([]);
 
 	useEffect(() => {
-		if (IS_BROWSER) {
-			setApps(
-				JSON.parse(localStorage.getItem("library") || "{}")?.["apps"] ||
-					[],
-			);
-		}
-		setLoading(false);
+		(async () => {
+			const { data: { user } } = await supabase.auth.getUser();
+
+			if (!user) {
+				setLoading(false);
+				return;
+			}
+
+			const { data } = await supabase
+				.from("users")
+				.select("library")
+				.eq("id", user.id)
+				.single();
+
+			if (data) {
+				const { data: apps } = await supabase
+					.from("apps")
+					.select("id, name, icon, author, url")
+					.in("id", data.library);
+
+				if (apps) {
+					setAppsRaw(apps);
+				}
+			}
+
+			setLoading(false);
+		})();
 	}, []);
 
-	useEffect(() => {
-		if (!Array.isArray(apps)) {
-			setApps([]);
-		}
+	const setApps = async (apps: RequiredAppData[]) => {
+		const { data: { user } } = await supabase.auth.getUser();
 
-		localStorage.setItem("library", JSON.stringify({ apps: apps || [] }));
-	}, [apps]);
+		if (!user) {
+			return;
+		}
+		
+		const { error } = await supabase
+			.from("users")
+			.update({ library: apps.map(app => app.id) })
+			.eq("id", user.id);
+
+
+		if (!error) {
+			setAppsRaw(apps);
+		}
+	};
 
 	return {
 		apps,

@@ -8,12 +8,10 @@ import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
 import LogoutButton from "@/islands/LogoutButton.tsx";
+import { User } from "@/types/User.ts";
 
 interface DataProps {
-    user?: {
-        name?: string;
-        email: string;
-    }
+    user?: User
 }
 
 export default function Settings(props: PageProps<DataProps>) {
@@ -34,6 +32,7 @@ export default function Settings(props: PageProps<DataProps>) {
                                     icon="user"
                                     title={props.data.user.name || "Couldn't get your name"}
                                     subtitle={props.data.user.email}
+                                    divider
                                 />
                                 <LogoutButton />
                             </Card>
@@ -101,7 +100,5 @@ export default function Settings(props: PageProps<DataProps>) {
 
 
 export const handler: Handler = (_, ctx) => {
-    return ctx.render({
-        user: ctx.state.user
-    })
+    return ctx.render(ctx.state)
 }

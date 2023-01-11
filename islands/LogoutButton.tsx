@@ -1,6 +1,6 @@
-import Button from "@/components/Button.tsx";
 import { supabase } from "@/lib/supabase-client.ts";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import ListItem from "@/components/ListItem.tsx";
 
 export default function LogoutButton() {
     const logout = () => {
@@ -10,16 +10,12 @@ export default function LogoutButton() {
     }
 
     return (
-        <>
-            <Button
-                icon="logout"
-                error
-                onClick={logout}
-                disabled={!IS_BROWSER}
-                class="m-4 mt-0 w-64"
-            >
-                Log out
-            </Button>
-        </>
+        <ListItem
+            icon="logout"
+            button
+            title="Log out"
+            disabled={!IS_BROWSER}
+            onClick={logout}
+        />
     )
 }

@@ -6,9 +6,10 @@ import Dialog from "@/islands/Dialog.tsx";
 
 interface Props {
 	app: App;
+	ssrAdded: boolean;
 }
 
-export default function AddToLibrary({ app }: Props) {
+export default function AddToLibrary({ app, ssrAdded }: Props) {
 	const { apps, setApps } = useLibrary();
 	const [dialogOpen, setDialogOpen] = useState(false);
 	const [confirmDeleteDialog, setConfirmDeleteDialog] = useState(false);
@@ -22,11 +23,6 @@ export default function AddToLibrary({ app }: Props) {
 				url: app.url,
 			}]);
 			setDialogOpen(true);
-
-			navigator.serviceWorker.controller?.postMessage({
-				type: "CACHE_URLS",
-				data: [app.icon],
-			});
 		} else {
 			setConfirmDeleteDialog(true);
 		}
@@ -38,10 +34,6 @@ export default function AddToLibrary({ app }: Props) {
 
 	const confirmDelete = () => {
 		setApps(apps.filter((a) => a.id !== app.id));
-		navigator.serviceWorker.controller?.postMessage({
-			type: "WIPE_URLS",
-			data: [app.icon],
-		});
 		setConfirmDeleteDialog(false);
 	};
 
@@ -50,10 +42,10 @@ export default function AddToLibrary({ app }: Props) {
 			<Button
 				outlined
 				fullWidth
-				icon={isAppInLibrary ? "check" : "plus"}
+				icon={isAppInLibrary ?? ssrAdded ? "check" : "plus"}
 				onClick={() => addToLibrary(app)}
 			>
-				{isAppInLibrary ? "Added to library" : "Add to library"}
+				{isAppInLibrary ?? ssrAdded ? "Added to library" : "Add to library"}
 			</Button>
 			<Dialog
 				title="Library"
