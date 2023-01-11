@@ -9,7 +9,7 @@ import Stack from "@/components/Stack.tsx";
 import { App } from "@/types/App.ts";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import Icon from "../components/Icon.tsx";
+import Icon from "@/components/Icon.tsx";
 
 interface DataProps {
 	apps: App[];

@@ -6,10 +6,10 @@ import Dialog from "@/islands/Dialog.tsx";
 
 interface Props {
 	app: App;
-	ssrAdded: boolean;
+	ssrInLibrary: boolean;
 }
 
-export default function AddToLibrary({ app, ssrAdded }: Props) {
+export default function AddToLibrary({ app, ssrInLibrary }: Props) {
 	const { apps, setApps } = useLibrary();
 	const [dialogOpen, setDialogOpen] = useState(false);
 	const [confirmDeleteDialog, setConfirmDeleteDialog] = useState(false);
@@ -42,10 +42,10 @@ export default function AddToLibrary({ app, ssrAdded }: Props) {
 			<Button
 				outlined
 				fullWidth
-				icon={isAppInLibrary ?? ssrAdded ? "check" : "plus"}
+				icon={isAppInLibrary ?? ssrInLibrary ? "check" : "plus"}
 				onClick={() => addToLibrary(app)}
 			>
-				{isAppInLibrary ?? ssrAdded
+				{isAppInLibrary ?? ssrInLibrary
 					? "Added to library"
 					: "Add to library"}
 			</Button>

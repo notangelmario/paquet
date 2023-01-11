@@ -16,11 +16,12 @@ import Screenshots from "@/components/compound/Screenshots.tsx";
 import AddToLibrary from "@/islands/AddToLibrary.tsx";
 import Card from "@/components/Card.tsx";
 import SlideCategories from "@/components/compound/SlideCategories.tsx";
+import Icon from "@/components/Icon.tsx";
 
 interface DataProps {
 	app: App;
 	otherApps?: App[];
-	ssrAdded: boolean;
+	ssrInLibrary: boolean;
 }
 
 export default function App({ data }: PageProps<DataProps>) {
@@ -87,7 +88,7 @@ export default function App({ data }: PageProps<DataProps>) {
 								</a>
 								<AddToLibrary
 									app={data.app}
-									ssrAdded={data.ssrAdded}
+									ssrInLibrary={data.ssrInLibrary}
 								/>
 							</div>
 						</Card>
@@ -99,6 +100,16 @@ export default function App({ data }: PageProps<DataProps>) {
 								{data.app.description}
 							</p>
 						</div>
+						{data.app.addedOn && (
+							<p class="opacity-50">
+								<Icon
+									name="info"
+									size={18}
+									inline
+								/>{" "}
+								Added on {data.app.addedOn}
+							</p>
+						)}
 					</Stack>
 				</Container>
 				<SlideCategories
@@ -177,7 +188,7 @@ export default function App({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const { data: app } = await supabase.from("apps")
 		.select(
-			"id, name, author, description, url, icon, accent_color, screenshots, features, categories, github_url, gitlab_url",
+			"id, name, author, description, url, icon, accent_color, screenshots, features, categories, github_url, gitlab_url, addedOn",
 		)
 		.eq("id", ctx.params.id)
 		.single();
@@ -191,7 +202,7 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	let ssrAdded = false;
+	let ssrInLibrary = false;
 	if (ctx.state.user) {
 		const supabase = supabaseAs(ctx.state.user.access_token);
 
@@ -202,7 +213,7 @@ export const handler: Handler = async (_, ctx) => {
 			.single();
 
 		if (data) {
-			ssrAdded = data.library.includes(app.id);
+			ssrInLibrary = data.library.includes(app.id);
 		}
 	}
 
@@ -215,6 +226,6 @@ export const handler: Handler = async (_, ctx) => {
 	return ctx.render({
 		app,
 		otherApps,
-		ssrAdded,
+		ssrInLibrary,
 	} as DataProps);
 };
