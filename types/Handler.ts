@@ -5,7 +5,7 @@ import type {
 import { User } from "@/types/User.ts";
 
 type MiddlewareProps = {
-    user?: User;
+	user?: User;
 };
 
 export type Handler = FreshHandler<unknown, MiddlewareProps>;

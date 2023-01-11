@@ -36,32 +36,35 @@ export default function Library(props: PageProps<DataProps>) {
 						Library
 					</Header>
 					<Card disableGutters>
-						{props.data.apps ? 
-							props.data.apps.map((app) => (
+						{props.data.apps
+							? props.data.apps.map((app) => (
 								<a href={`/app/${app.id}`}>
 									<ListItem
 										image={app.icon}
 										title={app.name}
 										subtitle={app.author}
-										divider={app !== props.data.apps[props.data.apps.length - 1]}
+										divider={app !==
+											props.data
+												.apps[
+													props.data.apps.length - 1
+												]}
 									/>
 								</a>
 							))
-							:
-							<p>
-								You don't have any favourite apps yet.
-							</p>
-						}
-						<p
-							class="opacity-50 p-4"
-						>
-							<Icon 
+							: (
+								<p>
+									You don't have any favourite apps yet.
+								</p>
+							)}
+						<p class="opacity-50 p-4">
+							<Icon
 								name="info"
 								inline
 								size={18}
 							/>{" "}
-							Add apps to your library for easier access. Your library
-							syncs automatically between all your devices.
+							Add apps to your library for easier access. Your
+							library syncs automatically between all your
+							devices.
 						</p>
 					</Card>
 				</Stack>
@@ -75,8 +78,8 @@ export const handler: Handler = async (_, ctx) => {
 		return new Response("Unauthorized", {
 			status: 307,
 			headers: {
-				Location: "/login"
-			}
+				Location: "/login",
+			},
 		});
 	}
 
@@ -87,20 +90,23 @@ export const handler: Handler = async (_, ctx) => {
 		.select("library")
 		.eq("id", ctx.state.user.id)
 		.single();
-	
+
 	if (error) {
 		console.log(error);
-		return new Response("Your profile could not be fetched. Please file and issue.", {
-			status: 500
-		});
+		return new Response(
+			"Your profile could not be fetched. Please file and issue.",
+			{
+				status: 500,
+			},
+		);
 	}
 
 	const { data: apps } = await supabase
 		.from("apps")
 		.select("id, name, icon, author")
 		.in("id", user.library);
-	
+
 	return ctx.render({
-		apps
-	})
-}
+		apps,
+	});
+};

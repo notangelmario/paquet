@@ -85,7 +85,10 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								<AddToLibrary app={data.app} ssrAdded={data.ssrAdded} />
+								<AddToLibrary
+									app={data.app}
+									ssrAdded={data.ssrAdded}
+								/>
 							</div>
 						</Card>
 						<div>
@@ -212,6 +215,6 @@ export const handler: Handler = async (_, ctx) => {
 	return ctx.render({
 		app,
 		otherApps,
-		ssrAdded
+		ssrAdded,
 	} as DataProps);
 };

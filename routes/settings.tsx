@@ -11,7 +11,7 @@ import LogoutButton from "@/islands/LogoutButton.tsx";
 import { User } from "@/types/User.ts";
 
 interface DataProps {
-    user?: User
+	user?: User;
 }
 
 export default function Settings(props: PageProps<DataProps>) {
@@ -26,29 +26,31 @@ export default function Settings(props: PageProps<DataProps>) {
 					<Header icon="settings">
 						Settings
 					</Header>
-                    {props.data?.user ? (
-                            <Card disableGutters>
-                                <ListItem
-                                    icon="user"
-                                    title={props.data.user.name || "Couldn't get your name"}
-                                    subtitle={props.data.user.email}
-                                    divider
-                                />
-                                <LogoutButton />
-                            </Card>
-                        ) : (
-                            <Card disableGutters>
-                                <a href="/login">
-                                    <ListItem
-                                        button
-                                        icon="login"
-                                        title="Login"
-                                        subtitle="Login to access more features"
-                                    />
-                                </a>
-                            </Card>
-                        )
-                    }
+					{props.data?.user
+						? (
+							<Card disableGutters>
+								<ListItem
+									icon="user"
+									title={props.data.user.name ||
+										"Couldn't get your name"}
+									subtitle={props.data.user.email}
+									divider
+								/>
+								<LogoutButton />
+							</Card>
+						)
+						: (
+							<Card disableGutters>
+								<a href="/login">
+									<ListItem
+										button
+										icon="login"
+										title="Login"
+										subtitle="Login to access more features"
+									/>
+								</a>
+							</Card>
+						)}
 					<Card disableGutters>
 						<a href="/docs">
 							<ListItem
@@ -98,7 +100,6 @@ export default function Settings(props: PageProps<DataProps>) {
 	);
 }
 
-
 export const handler: Handler = (_, ctx) => {
-    return ctx.render(ctx.state)
-}
+	return ctx.render(ctx.state);
+};

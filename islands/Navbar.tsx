@@ -1,4 +1,3 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useScroll } from "@/hooks/useScroll.ts";
 import { iconBtn } from "@/lib/ui.ts";
@@ -113,30 +112,32 @@ export default function Navbar(props: Props) {
 						/>
 					</button>
 				)}
-                {props.back && (
-                    <noscript>
-						{/* 
+				{props.back && (
+					<noscript>
+						{
+							/*
 							Hide `navbar-back-button` when javascript is disabled
 							Context: IS_BROWSER does not fix this. When handing
 							the island to the browser, the javascript takes a little
 							bit to kick in.
-						*/}
+						*/
+						}
 						<style>
 							{`.navbar-back-button {
 								display: none
 							}`}
 						</style>
-                        <a
-                            class={tw(iconBtn)}
-                            href="/"
-                        >
-                            <Icon
-                                name="home"
-                                size={24}
-                            />
-                        </a>
-                    </noscript>
-                )}
+						<a
+							class={tw(iconBtn)}
+							href="/"
+						>
+							<Icon
+								name="home"
+								size={24}
+							/>
+						</a>
+					</noscript>
+				)}
 			</div>
 			<div class="flex flex-row ml-auto items-center gap-2">
 				{props.right &&

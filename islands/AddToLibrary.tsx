@@ -45,7 +45,9 @@ export default function AddToLibrary({ app, ssrAdded }: Props) {
 				icon={isAppInLibrary ?? ssrAdded ? "check" : "plus"}
 				onClick={() => addToLibrary(app)}
 			>
-				{isAppInLibrary ?? ssrAdded ? "Added to library" : "Add to library"}
+				{isAppInLibrary ?? ssrAdded
+					? "Added to library"
+					: "Add to library"}
 			</Button>
 			<Dialog
 				title="Library"

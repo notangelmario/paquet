@@ -4,26 +4,26 @@ import { supabase } from "@/lib/supabase-client.ts";
 import { Provider } from "https://esm.sh/v102/@supabase/gotrue-js@2.6.1/dist/module/lib/types";
 
 export default function LoginButtons() {
-    const login = (provider: Provider) => {
-        supabase.auth.signInWithOAuth({
-            provider,
-            options: {
-                redirectTo: window.location.origin,
-            }
-        })
-    }
+	const login = (provider: Provider) => {
+		supabase.auth.signInWithOAuth({
+			provider,
+			options: {
+				redirectTo: window.location.origin,
+			},
+		});
+	};
 
-    return (
-        <>
-            <Button
-                icon="github"
-                outlined
-                fullWidth
-                onClick={() => login("github")}
-                disabled={!IS_BROWSER}
-            >
-                Login with GitHub
-            </Button>
-        </>
-    )
+	return (
+		<>
+			<Button
+				icon="github"
+				outlined
+				fullWidth
+				onClick={() => login("github")}
+				disabled={!IS_BROWSER}
+			>
+				Login with GitHub
+			</Button>
+		</>
+	);
 }

@@ -3,8 +3,8 @@ import { supabase } from "@/lib/supabase.ts";
 
 export const handler: Handler = async (req, ctx) => {
 	const { id } = ctx.params;
-    const url = new URL(req.url);
-    const number = url.searchParams.get("n");
+	const url = new URL(req.url);
+	const number = url.searchParams.get("n");
 
 	if (!id || !number || isNaN(parseInt(number))) {
 		return new Response("Not found", { status: 404 });
@@ -31,10 +31,9 @@ export const handler: Handler = async (req, ctx) => {
 		.from("apps")
 		.getPublicUrl(`${id}/screenshots/${number}.png`);
 
-
-    if (!fallback) {
-        return new Response("Not found", { status: 404 });
-    }
+	if (!fallback) {
+		return new Response("Not found", { status: 404 });
+	}
 
 	return new Response(fallback.publicUrl, {
 		headers: {

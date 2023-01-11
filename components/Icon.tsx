@@ -37,7 +37,7 @@ import JavaScriptIcon from "tabler-icons/brand-javascript.tsx";
 export const ICONS = new Map([
 	["github", GitHubIcon],
 	["discord", DiscordIcon],
-    ["google", GoogleIcon],
+	["google", GoogleIcon],
 	["search", SearchIcon],
 	["back", ArrowLeftIcon],
 	["settings", SettingsIcon],
@@ -66,10 +66,10 @@ export const ICONS = new Map([
 	["lock", LockIcon],
 	["source-code", SourceCodeIcon],
 	["cloud-off", CloudOffIcon],
-    ["user", UserIcon],
-    ["login", LoginIcon],
-    ["logout", LogoutIcon],
-    ["javascript", JavaScriptIcon]
+	["user", UserIcon],
+	["login", LoginIcon],
+	["logout", LogoutIcon],
+	["javascript", JavaScriptIcon],
 ]);
 
 export interface Props {

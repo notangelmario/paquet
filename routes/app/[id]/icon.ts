@@ -21,21 +21,21 @@ export const handler: Handler = async (_, ctx) => {
 	const res = await fetch(data.icon_original);
 
 	if (res.status === 200) {
-        return new Response(res.body, {
-            status: 200,
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        });
+		return new Response(res.body, {
+			status: 200,
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+			},
+		});
 	}
 
 	const { data: fallback } = supabase.storage
 		.from("apps")
 		.getPublicUrl(`${id}/icons/icon.png`);
 
-    if (!fallback) {
-        return new Response("Not found", { status: 404 });
-    }
+	if (!fallback) {
+		return new Response("Not found", { status: 404 });
+	}
 
 	return new Response(fallback.publicUrl, {
 		headers: {

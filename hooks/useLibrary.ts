@@ -48,12 +48,11 @@ export const useLibrary = () => {
 		if (!user) {
 			return;
 		}
-		
+
 		const { error } = await supabase
 			.from("users")
-			.update({ library: apps.map(app => app.id) })
+			.update({ library: apps.map((app) => app.id) })
 			.eq("id", user.id);
-
 
 		if (!error) {
 			setAppsRaw(apps);

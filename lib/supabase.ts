@@ -11,14 +11,14 @@ export const supabase = createClient(
 
 export const supabaseAs = (access_token: string) => {
 	return createClient(
-		SUPABASE_URL, 
+		SUPABASE_URL,
 		SUPABASE_ANON_KEY,
 		{
 			global: {
 				headers: {
 					"Authorization": `Bearer ${access_token}`,
-				}
-			}
-		}
+				},
+			},
+		},
 	);
-}
+};
