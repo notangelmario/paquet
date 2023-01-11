@@ -102,10 +102,9 @@ export default function Navbar(props: Props) {
 			`}
 		>
 			<div>
-				{/* bug: Flickers on transitions */}
-				{props.back && IS_BROWSER && (
+				{props.back && (
 					<button
-						class={tw(iconBtn)}
+						class={tw`${iconBtn} navbar-back-button`}
 						onClick={goBack}
 					>
 						<Icon
@@ -116,6 +115,17 @@ export default function Navbar(props: Props) {
 				)}
                 {props.back && (
                     <noscript>
+						{/* 
+							Hide `navbar-back-button` when javascript is disabled
+							Context: IS_BROWSER does not fix this. When handing
+							the island to the browser, the javascript takes a little
+							bit to kick in.
+						*/}
+						<style>
+							{`.navbar-back-button {
+								display: none
+							}`}
+						</style>
                         <a
                             class={tw(iconBtn)}
                             href="/"

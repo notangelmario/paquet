@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { supabase } from "@/lib/supabase.ts";
+import { supabase, supabaseAs } from "@/lib/supabase.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -20,7 +20,6 @@ import SlideCategories from "@/components/compound/SlideCategories.tsx";
 interface DataProps {
 	app: App;
 	otherApps?: App[];
-	// TODO(@notangelmario): Fix ssrAdded
 	ssrAdded: boolean;
 }
 
@@ -191,6 +190,8 @@ export const handler: Handler = async (_, ctx) => {
 
 	let ssrAdded = false;
 	if (ctx.state.user) {
+		const supabase = supabaseAs(ctx.state.user.access_token);
+
 		const { data } = await supabase
 			.from("users")
 			.select("library")
