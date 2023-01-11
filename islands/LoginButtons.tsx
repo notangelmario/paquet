@@ -24,6 +24,15 @@ export default function LoginButtons() {
 			>
 				Login with GitHub
 			</Button>
+			<Button
+				icon="google"
+				outlined
+				fullWidth
+				onClick={() => login("google")}
+				disabled={!IS_BROWSER}
+			>
+				Login with Google
+			</Button>
 		</>
 	);
 }
