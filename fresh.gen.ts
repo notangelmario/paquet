@@ -24,10 +24,11 @@ import * as $17 from "./routes/sitemap.xml.ts";
 import * as $$0 from "./islands/AddToLibrary.tsx";
 import * as $$1 from "./islands/Dialog.tsx";
 import * as $$2 from "./islands/InstallBanner.tsx";
-import * as $$3 from "./islands/LoginButtons.tsx";
-import * as $$4 from "./islands/LogoutButton.tsx";
-import * as $$5 from "./islands/Navbar.tsx";
-import * as $$6 from "./islands/UserHandler.tsx";
+import * as $$3 from "./islands/LibraryApps.tsx";
+import * as $$4 from "./islands/LoginButtons.tsx";
+import * as $$5 from "./islands/LogoutButton.tsx";
+import * as $$6 from "./islands/Navbar.tsx";
+import * as $$7 from "./islands/UserHandler.tsx";
 
 const manifest = {
 	routes: {
@@ -54,10 +55,11 @@ const manifest = {
 		"./islands/AddToLibrary.tsx": $$0,
 		"./islands/Dialog.tsx": $$1,
 		"./islands/InstallBanner.tsx": $$2,
-		"./islands/LoginButtons.tsx": $$3,
-		"./islands/LogoutButton.tsx": $$4,
-		"./islands/Navbar.tsx": $$5,
-		"./islands/UserHandler.tsx": $$6,
+		"./islands/LibraryApps.tsx": $$3,
+		"./islands/LoginButtons.tsx": $$4,
+		"./islands/LogoutButton.tsx": $$5,
+		"./islands/Navbar.tsx": $$6,
+		"./islands/UserHandler.tsx": $$7,
 	},
 	baseUrl: import.meta.url,
 	config,

@@ -30,9 +30,8 @@ export default function Settings(props: PageProps<DataProps>) {
 						? (
 							<Card disableGutters>
 								<ListItem
-									icon="user"
-									title={props.data.user.name ||
-										"Couldn't get your name"}
+									title={props.data.user.name}
+									image={props.data.user.avatar_url}
 									subtitle={props.data.user.email}
 									divider
 								/>

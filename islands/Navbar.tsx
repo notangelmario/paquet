@@ -102,7 +102,7 @@ export default function Navbar(props: Props) {
 			`}
 		>
 			<div>
-				{props.back && 
+				{props.back ? 
 					IS_BROWSER ?
 						<button
 							class={tw(iconBtn)}
@@ -123,7 +123,7 @@ export default function Navbar(props: Props) {
 								size={24}
 							/>
 						</a>
-				}
+				: null}
 			</div>
 			<div class="flex flex-row ml-auto items-center gap-2">
 				{props.right &&

@@ -5,12 +5,13 @@ export interface RequiredAppData {
 	id: string;
 	name: string;
 	icon: string;
+	author: string;
 	url: string;
 }
 
-export const useLibrary = () => {
+export const useLibrary = (ssrApps?: RequiredAppData[]) => {
 	const [loading, setLoading] = useState(true);
-	const [apps, setAppsRaw] = useState<RequiredAppData[]>([]);
+	const [apps, setAppsRaw] = useState<RequiredAppData[]>(ssrApps || []);
 
 	useEffect(() => {
 		(async () => {

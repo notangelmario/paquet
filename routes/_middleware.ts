@@ -14,6 +14,7 @@ export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 				id: data.user.id,
 				email: data.user.email,
 				name: data.user.user_metadata?.full_name,
+				avatar_url: data.user.user_metadata?.avatar_url,
 				access_token,
 			};
 		}

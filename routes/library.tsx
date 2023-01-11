@@ -8,8 +8,8 @@ import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import { App } from "@/types/App.ts";
 import Card from "@/components/Card.tsx";
-import ListItem from "@/components/ListItem.tsx";
 import Icon from "@/components/Icon.tsx";
+import LibraryApps from "@/islands/LibraryApps.tsx";
 
 interface DataProps {
 	apps: App[];
@@ -36,26 +36,7 @@ export default function Library(props: PageProps<DataProps>) {
 						Library
 					</Header>
 					<Card disableGutters>
-						{props.data.apps
-							? props.data.apps.map((app) => (
-								<a href={`/app/${app.id}`}>
-									<ListItem
-										image={app.icon}
-										title={app.name}
-										subtitle={app.author}
-										divider={app !==
-											props.data
-												.apps[
-													props.data.apps.length - 1
-												]}
-									/>
-								</a>
-							))
-							: (
-								<p>
-									You don't have any favourite apps yet.
-								</p>
-							)}
+						<LibraryApps ssrApps={props.data.apps}/>
 						<p class="opacity-50 p-4">
 							<Icon
 								name="info"
@@ -103,7 +84,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: apps } = await supabase
 		.from("apps")
-		.select("id, name, icon, author")
+		.select("id, name, icon, author, url")
 		.in("id", user.library);
 
 	return ctx.render({

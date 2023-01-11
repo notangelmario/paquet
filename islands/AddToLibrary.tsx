@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function AddToLibrary({ app, ssrInLibrary }: Props) {
-	const { apps, setApps } = useLibrary();
+	const { apps, setApps, loading } = useLibrary();
 	const [dialogOpen, setDialogOpen] = useState(false);
 	const [confirmDeleteDialog, setConfirmDeleteDialog] = useState(false);
 
@@ -21,6 +21,7 @@ export default function AddToLibrary({ app, ssrInLibrary }: Props) {
 				name: app.name,
 				icon: app.icon,
 				url: app.url,
+				author: app.author
 			}]);
 			setDialogOpen(true);
 		} else {
@@ -29,6 +30,10 @@ export default function AddToLibrary({ app, ssrInLibrary }: Props) {
 	};
 
 	const isAppInLibrary = useMemo(() => {
+		if (loading) {
+			return ssrInLibrary;
+		}
+
 		return apps.find((a) => a.id === app.id);
 	}, [apps, app]);
 
@@ -42,10 +47,10 @@ export default function AddToLibrary({ app, ssrInLibrary }: Props) {
 			<Button
 				outlined
 				fullWidth
-				icon={isAppInLibrary ?? ssrInLibrary ? "check" : "plus"}
+				icon={isAppInLibrary ? "check" : "plus"}
 				onClick={() => addToLibrary(app)}
 			>
-				{isAppInLibrary ?? ssrInLibrary
+				{isAppInLibrary
 					? "Added to library"
 					: "Add to library"}
 			</Button>
