@@ -1,4 +1,5 @@
 import GitHubIcon from "tabler-icons/brand-github.tsx";
+import GitLabIcon from "tabler-icons/brand-gitlab.tsx";
 import DiscordIcon from "tabler-icons/brand-discord.tsx";
 import GoogleIcon from "tabler-icons/brand-google.tsx";
 import SearchIcon from "tabler-icons/search.tsx";
@@ -36,6 +37,7 @@ import JavaScriptIcon from "tabler-icons/brand-javascript.tsx";
 
 export const ICONS = new Map([
 	["github", GitHubIcon],
+	["gitlab", GitLabIcon],
 	["discord", DiscordIcon],
 	["google", GoogleIcon],
 	["search", SearchIcon],

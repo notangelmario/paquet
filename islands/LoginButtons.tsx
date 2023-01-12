@@ -33,6 +33,15 @@ export default function LoginButtons() {
 			>
 				Login with GitHub
 			</Button>
+			<Button
+				icon="gitlab"
+				outlined
+				fullWidth
+				onClick={() => login("gitlab")}
+				disabled={!IS_BROWSER}
+			>
+				Login with GitLab
+			</Button>
 		</>
 	);
 }

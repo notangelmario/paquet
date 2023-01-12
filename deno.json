@@ -5,10 +5,10 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"strictFunctionTypes": true,
+		"strictNullChecks": true,
 		"jsx": "react-jsx",
 		"jsxImportSource": "preact"
 	},
-	"lock": false,
 	"tasks": {
 		"dev": "deno run -A --watch=static/,routes/ dev.ts",
 		"cache": "deno cache --reload main.ts",

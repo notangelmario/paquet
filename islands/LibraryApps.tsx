@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function LibraryApps({ ssrApps }: Props) {
-	const { apps, setApps } = useLibrary(ssrApps);
+	const { apps } = useLibrary(ssrApps);
 
 	return (
 		<>

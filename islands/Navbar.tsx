@@ -102,28 +102,31 @@ export default function Navbar(props: Props) {
 			`}
 		>
 			<div>
-				{props.back ? 
-					IS_BROWSER ?
-						<button
-							class={tw(iconBtn)}
-							onClick={goBack}
-						>
-							<Icon
-								name="back"
-								size={24}
-							/>
-						</button>
-					:
-						<a 
-							href="/"
-							class={tw(iconBtn)}
-						>
-							<Icon
-								name="back"
-								size={24}
-							/>
-						</a>
-				: null}
+				{props.back
+					? IS_BROWSER
+						? (
+							<button
+								class={tw(iconBtn)}
+								onClick={goBack}
+							>
+								<Icon
+									name="back"
+									size={24}
+								/>
+							</button>
+						)
+						: (
+							<a
+								href="/"
+								class={tw(iconBtn)}
+							>
+								<Icon
+									name="back"
+									size={24}
+								/>
+							</a>
+						)
+					: null}
 			</div>
 			<div class="flex flex-row ml-auto items-center gap-2">
 				{props.right &&

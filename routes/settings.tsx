@@ -7,6 +7,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
+import { providers } from "@/lib/authProviders.ts";
 import LogoutButton from "@/islands/LogoutButton.tsx";
 import { User } from "@/types/User.ts";
 
@@ -32,7 +33,11 @@ export default function Settings(props: PageProps<DataProps>) {
 								<ListItem
 									title={props.data.user.name}
 									image={props.data.user.avatar_url}
-									subtitle={props.data.user.email}
+									subtitle={`${props.data.user.email}<br/>Connected with ${
+										props.data.user.providers.map((val) =>
+											providers.get(val)
+										).join(", ")
+									}`}
 									divider
 								/>
 								<LogoutButton />

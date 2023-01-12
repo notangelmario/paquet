@@ -36,7 +36,7 @@ export default function Library(props: PageProps<DataProps>) {
 						Library
 					</Header>
 					<Card disableGutters>
-						<LibraryApps ssrApps={props.data.apps}/>
+						<LibraryApps ssrApps={props.data.apps} />
 						<p class="opacity-50 p-4">
 							<Icon
 								name="info"

@@ -4,4 +4,5 @@ export interface User {
 	name: string;
 	avatar_url: string;
 	access_token: string;
+	providers: string[];
 }
