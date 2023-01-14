@@ -23,8 +23,13 @@ export const handler: Handler = async (req, ctx) => {
 	const res = await fetch(data.screenshots_original[parseInt(number)]);
 
 	if (res.status === 200) {
-		console.log(1);
-		return res;
+		return new Response(res.body, {
+			status: 200,
+			headers: {
+				...res.headers,
+				"Access-Control-Allow-Origin": "*",
+			},
+		});
 	}
 
 	const { data: fallback } = supabase.storage
