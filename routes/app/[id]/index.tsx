@@ -216,10 +216,9 @@ export const handler: Handler = async (_, ctx) => {
 			ssrInLibrary = data.library.includes(app.id);
 		}
 	}
-
+	
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon")
-		.containedBy("categories", app.categories)
 		.neq("id", app.id)
 		.limit(5);
 

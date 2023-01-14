@@ -24,7 +24,7 @@ export default function Login() {
 						</Header>
 						<img
 							src="/illustrations/login.svg"
-							class="block md:(hidden mb-4) max-w-md mx-auto"
+							class="block w-full md:(hidden mb-4) max-w-md mx-auto"
 						/>
 						<LoginButtons />
 					</Stack>

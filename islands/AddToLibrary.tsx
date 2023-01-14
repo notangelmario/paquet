@@ -1,3 +1,4 @@
+import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useMemo, useState } from "preact/hooks";
 import type { App } from "@/types/App.ts";
 import Button from "@/components/Button.tsx";
@@ -47,6 +48,7 @@ export default function AddToLibrary({ app, ssrInLibrary }: Props) {
 			<Button
 				outlined
 				fullWidth
+				disabled={!IS_BROWSER}
 				icon={isAppInLibrary ? "check" : "plus"}
 				onClick={() => addToLibrary(app)}
 			>
