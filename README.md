@@ -13,6 +13,8 @@ Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
+> App requests will be handled after the migration. See notangelmario/paquet#82.
+
 ### About
 
 - ⚡ Optimized for speed
