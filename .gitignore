@@ -10,3 +10,7 @@
 
 # Sublime
 *.sublime-workspace
+
+# Pocketbase
+pocketbase/*
+!pocketbase/pb_schema.json

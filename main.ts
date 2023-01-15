@@ -13,5 +13,5 @@ await start(manifest, {
 	plugins: [
 		twindPlugin(twindConfig),
 	],
-	port: 3000,
+	port: parseInt(Deno.env.get("PORT") || "3000"),
 });

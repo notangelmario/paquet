@@ -6,7 +6,7 @@ import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
-import { App } from "@/types/App.ts";
+import type { App } from "@/types/App.ts";
 import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
 import LibraryApps from "@/islands/LibraryApps.tsx";
