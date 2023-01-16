@@ -5,7 +5,7 @@ import { Head } from "$fresh/runtime.ts";
 import Stack from "@/components/Stack.tsx";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
-import { supabase } from "@/lib/supabase.ts";
+import { getApps } from "@/lib/pocketbase.ts";
 import { CATEGORIES, getCategory } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
@@ -266,30 +266,30 @@ export const handler: Handler = async (_, ctx) => {
 
 	// This is used to determine for how long an app is considered
 	// to be new.
-	const daysAgo = 30;
+	const daysAgo = 60;
 	const date = new Date(new Date().setDate(new Date().getDate() - daysAgo));
 
 	const [
-		{ data: randomCategoryApps },
-		{ data: newApps },
-		{ data: randomApps },
-		{ data: randomCards },
+		{ apps: randomCategoryApps  },
+		{ apps: newApps },
+		{ apps: randomApps },
+		{ apps: randomCards },
 	] = await Promise.all([
-		supabase.from("random_apps")
-			.select("id, name, icon, author, categories")
-			.contains("categories", [randomCategoryId])
-			.limit(5),
-		supabase.from("apps")
-			.select("id, name, icon, categories, addedOn")
-			.order("addedOn", { ascending: false })
-			.gte("addedOn", date.toDateString()),
-		supabase.from("random_apps")
-			.select("id, name, icon, categories")
-			.limit(5),
-		supabase.from("random_apps")
-			.select("id, name, icon, screenshots")
-			.not("screenshots", "is", null)
-			.limit(5),
+		getApps(1, 5, {
+			sort: "@random",
+			filter: `categories ~ "${randomCategoryId}"`
+		}),
+		getApps(1, 20, {
+			filter: `added_at > "${date.toISOString()}"`,
+			sort: "-added_at"
+		}),
+		getApps(1, 5, {
+			sort: "@random",
+		}),
+		getApps(1, 5, {
+			sort: "@random",
+			filter: `screenshots:length > 0`
+		}),
 	]);
 
 	const randomCategory = randomCategoryApps?.length

@@ -1,8 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { supabase, supabaseAs } from "@/lib/supabase.ts";
-import { getApp, getApps, pocketbase, RecordPocket } from "@/lib/pocketbase.ts";
+import { getApp, getApps } from "@/lib/pocketbase.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -17,7 +16,6 @@ import Screenshots from "@/components/compound/Screenshots.tsx";
 import AddToLibrary from "@/islands/AddToLibrary.tsx";
 import Card from "@/components/Card.tsx";
 import SlideCategories from "@/components/compound/SlideCategories.tsx";
-import Icon from "@/components/Icon.tsx";
 
 interface DataProps {
 	app: App;
@@ -101,16 +99,6 @@ export default function App({ data }: PageProps<DataProps>) {
 								{data.app.description}
 							</p>
 						</div>
-						{data.app.addedOn && (
-							<p class="opacity-50">
-								<Icon
-									name="info"
-									size={18}
-									inline
-								/>{" "}
-								Added on {data.app.added_on}
-							</p>
-						)}
 					</Stack>
 				</Container>
 				<SlideCategories

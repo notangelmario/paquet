@@ -5,10 +5,10 @@
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_app.tsx";
 import * as $1 from "./routes/_middleware.ts";
-import * as $2 from "./routes/app/[id]/icon.ts";
-import * as $3 from "./routes/app/[id]/index.tsx";
-import * as $4 from "./routes/app/[id]/screenshot.ts";
-import * as $5 from "./routes/app/error.tsx";
+import * as $2 from "./routes/app/[id].tsx";
+import * as $3 from "./routes/app/error.tsx";
+import * as $4 from "./routes/auth/callback.ts";
+import * as $5 from "./routes/auth/login.ts";
 import * as $6 from "./routes/category/[id].tsx";
 import * as $7 from "./routes/category/index.tsx";
 import * as $8 from "./routes/docs/[doc].tsx";
@@ -22,22 +22,23 @@ import * as $15 from "./routes/search.tsx";
 import * as $16 from "./routes/settings.tsx";
 import * as $17 from "./routes/sitemap.xml.ts";
 import * as $$0 from "./islands/AddToLibrary.tsx";
-import * as $$1 from "./islands/Dialog.tsx";
-import * as $$2 from "./islands/InstallBanner.tsx";
-import * as $$3 from "./islands/LibraryApps.tsx";
-import * as $$4 from "./islands/LoginButtons.tsx";
-import * as $$5 from "./islands/LogoutButton.tsx";
-import * as $$6 from "./islands/Navbar.tsx";
-import * as $$7 from "./islands/UserHandler.tsx";
+import * as $$1 from "./islands/CallbackLogic.tsx";
+import * as $$2 from "./islands/Dialog.tsx";
+import * as $$3 from "./islands/InstallBanner.tsx";
+import * as $$4 from "./islands/LibraryApps.tsx";
+import * as $$5 from "./islands/LoginButtons.tsx";
+import * as $$6 from "./islands/LogoutButton.tsx";
+import * as $$7 from "./islands/Navbar.tsx";
+import * as $$8 from "./islands/UserHandler.tsx";
 
 const manifest = {
 	routes: {
 		"./routes/_app.tsx": $0,
 		"./routes/_middleware.ts": $1,
-		"./routes/app/[id]/icon.ts": $2,
-		"./routes/app/[id]/index.tsx": $3,
-		"./routes/app/[id]/screenshot.ts": $4,
-		"./routes/app/error.tsx": $5,
+		"./routes/app/[id].tsx": $2,
+		"./routes/app/error.tsx": $3,
+		"./routes/auth/callback.ts": $4,
+		"./routes/auth/login.ts": $5,
 		"./routes/category/[id].tsx": $6,
 		"./routes/category/index.tsx": $7,
 		"./routes/docs/[doc].tsx": $8,
@@ -53,13 +54,14 @@ const manifest = {
 	},
 	islands: {
 		"./islands/AddToLibrary.tsx": $$0,
-		"./islands/Dialog.tsx": $$1,
-		"./islands/InstallBanner.tsx": $$2,
-		"./islands/LibraryApps.tsx": $$3,
-		"./islands/LoginButtons.tsx": $$4,
-		"./islands/LogoutButton.tsx": $$5,
-		"./islands/Navbar.tsx": $$6,
-		"./islands/UserHandler.tsx": $$7,
+		"./islands/CallbackLogic.tsx": $$1,
+		"./islands/Dialog.tsx": $$2,
+		"./islands/InstallBanner.tsx": $$3,
+		"./islands/LibraryApps.tsx": $$4,
+		"./islands/LoginButtons.tsx": $$5,
+		"./islands/LogoutButton.tsx": $$6,
+		"./islands/Navbar.tsx": $$7,
+		"./islands/UserHandler.tsx": $$8,
 	},
 	baseUrl: import.meta.url,
 	config,

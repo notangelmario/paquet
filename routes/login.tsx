@@ -1,13 +1,20 @@
 import { Head } from "$fresh/runtime.ts";
+import { PageProps } from "$fresh/server.ts";
 import Container from "@/components/Container.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Icon from "@/components/Icon.tsx";
-import LoginButtons from "@/islands/LoginButtons.tsx";
 import { Handler } from "@/types/Handler.ts";
+import { AuthMethodsList } from "pocketbase-types";
+import { pocketbase } from "@/lib/pocketbase.ts";
+import LoginButtons from "@/components/compound/LoginButtons.tsx";
 
-export default function Login() {
+interface DataProps {
+	authMethods: AuthMethodsList
+}
+
+export default function Login(props: PageProps<DataProps>) {
 	return (
 		<>
 			<Head>
@@ -26,7 +33,7 @@ export default function Login() {
 							src="/illustrations/login.svg"
 							class="block w-full md:(hidden mb-4) max-w-md mx-auto"
 						/>
-						<LoginButtons />
+						<LoginButtons authMethods={props.data.authMethods} />
 					</Stack>
 				</div>
 				<div class="w-full md:(flex-1 mt-16)">
@@ -73,7 +80,7 @@ export default function Login() {
 	);
 }
 
-export const handler: Handler = (_, ctx) => {
+export const handler: Handler = async (_, ctx) => {
 	if (ctx.state.user) {
 		return new Response("Already logged in", {
 			status: 307,
@@ -83,5 +90,10 @@ export const handler: Handler = (_, ctx) => {
 		});
 	}
 
-	return ctx.render();
+	const authMethods = await pocketbase.collection("users")
+		.listAuthMethods();
+
+	return ctx.render({
+		authMethods
+	});
 };

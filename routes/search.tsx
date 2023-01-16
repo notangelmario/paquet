@@ -2,7 +2,6 @@ import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { App, Category } from "@/types/App.ts";
-import { supabase } from "@/lib/supabase.ts";
 import { getCategory, searchCategory } from "@/lib/categories.ts";
 import ListItem from "@/components/ListItem.tsx";
 import Button from "@/components/Button.tsx";
@@ -13,6 +12,7 @@ import Container from "@/components/Container.tsx";
 import SearchBar from "@/components/SearchBar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Card from "@/components/Card.tsx";
+import { getApps } from "@/lib/pocketbase.ts";
 
 type DataProps = {
 	categories: Category[];
@@ -64,7 +64,7 @@ export default function Search({ data, url }: PageProps<DataProps>) {
 			<Container class="mt-4">
 				<Stack>
 					<Card disableGutters>
-						{data.apps.length
+						{data.apps?.length
 							? data.apps.map((app: App, idx: number) => (
 								<a href={`/app/${app.id}`}>
 									<ListItem
@@ -139,22 +139,18 @@ export const handler: Handler = async (req, ctx) => {
 		});
 	}
 
-	const { data: apps } = await supabase.rpc("search_app", {
-		search_term: query,
-	}).select("id, name, icon, categories");
+	const { apps } = await getApps(1, 20, {
+		filter: `name ~ "${query}"`
+	})
 
 	const categories = searchCategory(query);
 
 	let moreApps: App[] = [];
-	if (apps && apps.length < 10) {
-		const { data } = await supabase
-			.from("random_apps")
-			.select("id, name, categories, icon")
-			// Unsolved bug from supabase requires us to use this
-			// method to exclude apps from the search
-			// See https://github.com/supabase/supabase/discussions/2055#discussioncomment-923451
-			.not("id", "in", `(${apps.map((app) => app.id).join(",")})`)
-			.limit(5);
+	if (apps !== null && apps.length < 10) {
+		const { apps: data } = await getApps(1, 5, {
+			sort: "@random",
+			filter: `id !~ "${apps.map(app => app.id)}"`
+		})
 
 		if (data && data.length > 0) {
 			moreApps = data as App[];

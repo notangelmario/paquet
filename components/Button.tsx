@@ -7,7 +7,6 @@ export type Props = {
 	icon?: string;
 	iconProps?: IconProps;
 	fullWidth?: boolean;
-	children?: string;
 	outlined?: boolean;
 	error?: boolean;
 };

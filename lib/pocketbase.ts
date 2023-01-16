@@ -1,10 +1,13 @@
 // @deno-types="pocketbase-types"
-import PocketBase, { Record as RecordPocket } from "pocketbase";
+import PocketBase, { 
+	Record as RecordPocket,
+} from "pocketbase";
 import { App } from "@/types/App.ts";
 
 const DEV = Deno.env.get("DENO_DEPLOYMENT_ID") === undefined;
 export const pocketbase = new PocketBase(DEV ? "http://localhost:8090" : "https://pocketbase.io");
 
+pocketbase.autoCancellation(false);
 
 export interface AppResult {
 	app: App | null; 
@@ -76,6 +79,6 @@ export const getApps = async (page: number, perPage: number, queryParams?: Recor
 	}
 }
 
-export {
+export type {
 	RecordPocket
 }

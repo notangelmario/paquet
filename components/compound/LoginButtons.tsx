@@ -4,22 +4,14 @@ import { AuthMethodNames } from "@/lib/pocketbase-client.ts";
 
 interface Props {
 	authMethods: AuthMethodsList;
-	origin: string;
 }
 
 export default function LoginButtons(props: Props) {
-	const redirectUrl = `${props.origin}/auth/callback`;
-
-	const login = (provider: AuthProviderInfo) => {
-		sessionStorage.setItem("provider", JSON.stringify(provider));
-	}
-
 	return (
 		<>
 			{props.authMethods.authProviders.map(provider => (
 				<a
-					href={provider.authUrl + redirectUrl}
-					onClick={() => login(provider)}
+					href={`/auth/login?provider=${provider.name}`}
 				>
 					<Button
 						icon={provider.name}
