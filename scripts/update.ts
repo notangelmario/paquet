@@ -1,17 +1,12 @@
 import "dotenv";
 import type { App } from "@/types/App.ts";
-import { createClient } from "supabase";
 import Vibrant from "npm:node-vibrant";
 import Jimp from "npm:jimp";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
+import { pocketbase } from "@/lib/pocketbase.ts";
 
-const supabase = createClient(
-	Deno.env.get("SUPABASE_URL")!,
-	Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-);
-
-const IMAGES_URL = "https://paquet.shop/app";
+pocketbase.admins.authWithPassword(Deno.env.get("ADMIN_EMAIL")!, Deno.env.get("ADMIN_PASSWORD")!);
 
 const ICONS_SIZES = ["128x128", "192x192", "256x256", "512x512"];
 
@@ -19,19 +14,18 @@ let apps: App[] = [];
 
 if (Deno.args.length) {
 	if (Deno.args[0] !== "--force") {
-		const { data } = await supabase.from("apps")
-			.select("*")
-			.eq("id", Deno.args[0]);
+		const data = await pocketbase.collection("apps")
+			.getOne<App>(Deno.args[0]);
 
 		if (data) {
-			apps = data;
+			apps = [data];
 		} else {
 			console.error("Could not get apps!");
 			Deno.exit(1);
 		}
 	} else {
-		const { data } = await supabase.from("apps")
-			.select("*");
+		const data = await pocketbase.collection("apps")
+			.getFullList<App>();
 
 		if (!data) {
 			Deno.exit();
@@ -79,7 +73,7 @@ await Promise.all(apps.map(async (app) => {
 
 		let categories: string[] = [];
 		const screenshots_source: string[] = [];
-		const screenshots: string[] = [];
+		const screenshots: Blob[] = [];
 		let icon_url = "";
 		let accent_color = "";
 
@@ -107,7 +101,7 @@ await Promise.all(apps.map(async (app) => {
 					if (screenshot.src.startsWith("http")) {
 						screenshots_source.push(screenshot.src);
 					} else if (screenshot.src.startsWith("//")) {
-						screenshots_source.push("https://" + icon.src.slice(2));
+						screenshots_source.push("https://" + screenshot.src.slice(2));
 					} else if (screenshot.src.startsWith("/")) {
 						screenshots_source.push(
 							slashSlashes(app.url) + "/" +
@@ -199,11 +193,6 @@ await Promise.all(apps.map(async (app) => {
 				return;
 			}
 
-			await clearAppFromStorage(app.id, "icons");
-			await clearAppFromStorage(app.id, "screenshots");
-
-			await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
-
 			for (let i = 0; i < screenshots_source.length; i++) {
 				const blob = await fetch(screenshots_source[i], {
 					headers: {
@@ -219,32 +208,45 @@ await Promise.all(apps.map(async (app) => {
 					return;
 				}
 
-				await uploadAndGetUrl(
-					app.id,
-					blob,
-					`screenshots/${i}`,
-				);
-
-				screenshots.push(`${IMAGES_URL}/${app.id}/screenshot?n=${i}`);
+				screenshots.push(blob);
 			}
 
-			await supabase.from("apps")
-				.update({
-					name: manifest?.name || undefined,
-					description: manifest?.description || undefined,
-					categories: categories.length ? categories : undefined,
-					// deno-lint-ignore no-explicit-any
-					author: (manifest as unknown as any)?.author || undefined,
-					screenshots: screenshots.length ? screenshots : undefined,
-					screenshots_original: screenshots_source.length
-						? screenshots_source
-						: undefined,
-					accent_color: accent_color,
-					manifest_hash: hash,
-					icon: `${IMAGES_URL}/${app.id}/icon`,
-					icon_original: icon_url,
-				})
-				.eq("id", app.id);
+			// await supabase.from("apps")
+			// .update({
+			// 	name: manifest?.name || undefined,
+			// 	description: manifest?.description || undefined,
+			// 	categories: categories.length ? categories : undefined,
+			// 	// deno-lint-ignore no-explicit-any
+			// 	author: (manifest as unknown as any)?.author || undefined,
+			// 	screenshots: screenshots.length ? screenshots : undefined,
+			// 	screenshots_original: screenshots_source.length
+			// 		? screenshots_source
+			// 		: undefined,
+			// 		accent_color: accent_color,
+			// 		manifest_hash: hash,
+			// 		icon: `${IMAGES_URL}/${app.id}/icon`,
+			// 		icon_original: icon_url,
+			// })
+			// .eq("id", app.id);
+
+			const updateData = new FormData();
+			updateData.append("name", manifest.name ?? "");
+			updateData.append("description", manifest.description ?? "");
+			// deno-lint-ignore no-explicit-any
+			updateData.append("author", (manifest as any).author ?? "");
+			updateData.append("icon", new File([icon_blob], "icon.png"));
+			updateData.append("accent_color", accent_color);
+			updateData.append("manifest_hash", hash);
+
+			for (const category of categories) {
+				updateData.append("categories", category)
+			}
+
+			for (const screenshot of screenshots) {
+				updateData.append("screenshots", new File([screenshot], "screenshot.png"))
+			}
+
+
 		} catch (e) {
 			console.log(e);
 			appsWithError.push(app.name);
@@ -263,44 +265,6 @@ async function digest(message: string) {
 		"",
 	);
 	return hashHex;
-}
-
-async function clearAppFromStorage(id: string, folderName: string) {
-	const { data: files } = await supabase.storage
-		.from("apps")
-		.list(id);
-	const folders = files?.map((a) => a.name) || [];
-
-	if (!folders.includes(folderName)) return;
-
-	const { data: list } = await supabase.storage.from("apps").list(
-		`${id}/${folderName}`,
-	);
-	const filesToRemove = list?.map((x) => `${id}/${folderName}/${x.name}`) ||
-		[];
-
-	if (!filesToRemove) return;
-
-	const { error } = await supabase.storage
-		.from("apps")
-		.remove(filesToRemove);
-
-	if (error) {
-		console.log(error);
-	}
-}
-
-async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
-	const { error } = await supabase.storage
-		.from("apps")
-		.upload(`${id}/${name}.png`, uint, {
-			upsert: true,
-		});
-
-	if (error) {
-		console.log(error);
-		return null;
-	}
 }
 
 function slashSlashes(string: string) {

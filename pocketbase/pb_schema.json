@@ -1,0 +1,205 @@
+[
+  {
+    "id": "qqe4g51u3wi786g",
+    "name": "apps",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "g0sgmmr3",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "uf9gznhm",
+        "name": "description",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "0jul6e4h",
+        "name": "author",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "3awrhwr9",
+        "name": "icon",
+        "type": "file",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "mimeTypes": [
+            "image/jpg",
+            "image/jpeg",
+            "image/png",
+            "image/svg+xml",
+            "image/gif",
+            "image/webp"
+          ],
+          "thumbs": [
+            "48x48",
+            "96x96"
+          ]
+        }
+      },
+      {
+        "id": "ngn3iwmu",
+        "name": "screenshots",
+        "type": "file",
+        "system": false,
+        "required": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 20,
+          "maxSize": 10485760,
+          "mimeTypes": [
+            "image/jpg",
+            "image/jpeg",
+            "image/png",
+            "image/svg+xml",
+            "image/gif",
+            "image/webp"
+          ],
+          "thumbs": []
+        }
+      },
+      {
+        "id": "rewoupvc",
+        "name": "features",
+        "type": "select",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "maxSelect": 5,
+          "values": [
+            "mobile",
+            "desktop",
+            "openSource",
+            "auth",
+            "offline"
+          ]
+        }
+      },
+      {
+        "id": "ogbwhkdk",
+        "name": "added_at",
+        "type": "date",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": "",
+          "max": ""
+        }
+      },
+      {
+        "id": "mzqx8avl",
+        "name": "github_url",
+        "type": "url",
+        "system": false,
+        "required": false,
+        "unique": false,
+        "options": {
+          "exceptDomains": null,
+          "onlyDomains": [
+            "github.com"
+          ]
+        }
+      },
+      {
+        "id": "zu80n6ag",
+        "name": "gitlab_url",
+        "type": "url",
+        "system": false,
+        "required": false,
+        "unique": false,
+        "options": {
+          "exceptDomains": null,
+          "onlyDomains": [
+            "gitlab.com"
+          ]
+        }
+      },
+      {
+        "id": "khvswexe",
+        "name": "accent_color",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        }
+      },
+      {
+        "id": "rpu2ade0",
+        "name": "url",
+        "type": "url",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "exceptDomains": null,
+          "onlyDomains": null
+        }
+      },
+      {
+        "id": "etuemwjw",
+        "name": "categories",
+        "type": "select",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "maxSelect": 9,
+          "values": [
+            "news",
+            "social",
+            "entertainment",
+            "utilities",
+            "music",
+            "games",
+            "productivity",
+            "development",
+            "lifestyle"
+          ]
+        }
+      }
+    ],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+  }
+]
