@@ -88,7 +88,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rtsfred3"><img src="https://avatars.githubusercontent.com/u/2818162?v=4?s=100" width="100px;" alt="Ryan Fredrickson"/><br /><sub><b>Ryan Fredrickson</b></sub></a><br /><a href="https://github.com/notangelmario/paquet/issues?q=author%3Artsfred3" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rtsfred3"><img src="https://avatars.githubusercontent.com/u/2818162?v=4?s=100" width="100px;" alt="Ryan Fredrickson"/><br /><sub><b>Ryan Fredrickson</b></sub></a><br /><a href="https://github.com/notangelmario/paquet/issues?q=author%3Artsfred3" title="Bug reports">🐛</a> <a href="https://github.com/notangelmario/paquet/commits?author=rtsfred3" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
