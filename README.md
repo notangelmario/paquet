@@ -1,7 +1,4 @@
 <img
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 	align="right"
 	src="/resources/rounded-logo.png"
 	alt="Paquet logo"
@@ -10,7 +7,11 @@
 
 # [📦 Paquet](https://paquet.shop)
 
-[![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord)](https://discord.com/invite/DXke9aSZh6)
+[![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord)](https://discord.gg/JAcTzvxFFJ)
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Welcome to your new web app shop!
 
