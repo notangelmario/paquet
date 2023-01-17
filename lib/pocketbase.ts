@@ -7,7 +7,7 @@ import { User } from "@/types/User.ts";
 
 const DEV = Deno.env.get("DENO_DEPLOYMENT_ID") === undefined;
 export const getPocketbase = () => {
-	const pocketbase = new PocketBase(DEV ? "http://localhost:8090" : "https://pocketbase.io");
+	const pocketbase = new PocketBase(DEV ? "http://localhost:8090" : "https://api.paquet.shop");
 	pocketbase.autoCancellation(false);
 	return pocketbase;
 }

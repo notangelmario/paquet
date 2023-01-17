@@ -5,7 +5,7 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 const DEV = IS_BROWSER && window.location.hostname === "localhost";
 
 export const getPocketbase = () => {
-	const pocketbase = new PocketBase(DEV ? "http://localhost:8090" : "https://pocketbase.io");
+	const pocketbase = new PocketBase(DEV ? "http://localhost:8090" : "https://api.paquet.shop");
 	
 	pocketbase.authStore.loadFromCookie(IS_BROWSER ? document.cookie : "");
 

@@ -64,6 +64,7 @@
           ],
           "thumbs": [
             "48x48",
+            "64x64",
             "96x96"
           ]
         }
@@ -201,5 +202,66 @@
     "updateRule": null,
     "deleteRule": null,
     "options": {}
+  },
+  {
+    "id": "spb7ztz8z3pcx3n",
+    "name": "users",
+    "type": "auth",
+    "system": false,
+    "schema": [
+      {
+        "id": "t36wbuuj",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "vjo4kgkx",
+        "name": "avatar_url",
+        "type": "url",
+        "system": false,
+        "required": false,
+        "unique": false,
+        "options": {
+          "exceptDomains": [],
+          "onlyDomains": []
+        }
+      },
+      {
+        "id": "swturjaq",
+        "name": "library",
+        "type": "relation",
+        "system": false,
+        "required": false,
+        "unique": false,
+        "options": {
+          "maxSelect": null,
+          "collectionId": "qqe4g51u3wi786g",
+          "cascadeDelete": false
+        }
+      }
+    ],
+    "listRule": "id = @request.auth.id",
+    "viewRule": "id = @request.auth.id",
+    "createRule": "",
+    "updateRule": "id = @request.auth.id",
+    "deleteRule": null,
+    "options": {
+      "allowEmailAuth": false,
+      "allowOAuth2Auth": true,
+      "allowUsernameAuth": false,
+      "exceptEmailDomains": null,
+      "manageRule": null,
+      "minPasswordLength": 8,
+      "onlyEmailDomains": null,
+      "requireEmail": false
+    }
   }
 ]
