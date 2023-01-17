@@ -10,9 +10,3 @@
 
 # Sublime
 *.sublime-workspace
-
-# Pocketbase
-pocketbase/*
-!pocketbase/pb_schema.json
-!pocketbase/Dockerfile
-!pocketbase/fly.toml

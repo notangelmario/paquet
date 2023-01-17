@@ -6,6 +6,7 @@ import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
+import LogoutButton from "@/islands/LogoutButton.tsx";
 import { APP } from "@/lib/app.ts";
 import { providers } from "@/lib/authProviders.ts";
 import { User } from "@/types/User.ts";
@@ -39,13 +40,7 @@ export default function Settings(props: PageProps<DataProps>) {
 									}`}
 									divider
 								/>
-								<a href="/auth/logout">
-									<ListItem
-										icon="logout"
-										button
-										title="Log out"
-									/>
-								</a>
+								<LogoutButton />
 							</Card>
 						)
 						: (

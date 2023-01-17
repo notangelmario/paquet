@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { getApp, getApps, getPocketbase } from "@/lib/pocketbase.ts";
+import { supabase } from "@/lib/supabase.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -20,7 +20,6 @@ import SlideCategories from "@/components/compound/SlideCategories.tsx";
 interface DataProps {
 	app: App;
 	otherApps?: App[];
-	ssrInLibrary: boolean;
 }
 
 export default function App({ data }: PageProps<DataProps>) {
@@ -85,10 +84,7 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								<AddToLibrary
-									app={data.app}
-									ssrInLibrary={data.ssrInLibrary}
-								/>
+								<AddToLibrary app={data.app} />
 							</div>
 						</Card>
 						<div>
@@ -175,10 +171,15 @@ export default function App({ data }: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
-	const { app, error } = await getApp(ctx.params.id);
+	const { data: app } = await supabase.from("apps")
+		.select(
+			"id, name, author, description, url, icon, accent_color, screenshots, features, categories, github_url, gitlab_url",
+		)
+		.eq("id", ctx.params.id)
+		.single();
 
 	if (!app) {
-		return new Response(error?.message, {
+		return new Response("Not found", {
 			status: 307,
 			headers: {
 				Location: "/app/error",
@@ -186,25 +187,14 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	let ssrInLibrary = false;
-	if (ctx.state.user) {
-		const pocketbase = getPocketbase();
-
-		const data = await pocketbase.collection("users")
-			.getOne(ctx.state.user.id)
-
-		if (data) {
-			ssrInLibrary = data.library.includes(app.id);
-		}
-	}
-	
-	const { apps: otherApps } = await getApps(1, 5, {
-		sort: "@random"
-	});
+	const { data: otherApps } = await supabase.from("random_apps")
+		.select("id, name, author, icon")
+		.containedBy("categories", app.categories)
+		.neq("id", app.id)
+		.limit(5);
 
 	return ctx.render({
 		app,
 		otherApps,
-		ssrInLibrary,
 	} as DataProps);
 };

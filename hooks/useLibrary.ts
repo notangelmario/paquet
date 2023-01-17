@@ -1,6 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { getPocketbase } from "@/lib/pocketbase-client.ts";
-import { RecordPocket } from "../lib/pocketbase.ts";
+import { supabase } from "@/lib/supabase-client.ts";
 
 export interface RequiredAppData {
 	id: string;
@@ -11,27 +10,33 @@ export interface RequiredAppData {
 }
 
 export const useLibrary = (ssrApps?: RequiredAppData[]) => {
-	const pocketbase = getPocketbase();
 	const [loading, setLoading] = useState(true);
 	const [apps, setAppsRaw] = useState<RequiredAppData[]>(ssrApps || []);
 
 	useEffect(() => {
 		(async () => {
-			const user = pocketbase.authStore.model;
+			const { data: { user } } = await supabase.auth.getUser();
 
 			if (!user) {
 				setLoading(false);
 				return;
 			}
 
-			const userRecord = await pocketbase.collection("users")
-					.getOne(user.id, { expand: "library" });
+			const { data } = await supabase
+				.from("users")
+				.select("library")
+				.eq("id", user.id)
+				.single();
 
-			if (userRecord) {
-				setAppsRaw(userRecord.expand.library.map((app: RecordPocket) => ({
-					...app,
-					icon: pocketbase.getFileUrl(app, app.icon, { thumb: "48x48" })
-				})) || []);
+			if (data) {
+				const { data: apps } = await supabase
+					.from("apps")
+					.select("id, name, icon, author, url")
+					.in("id", data.library);
+
+				if (apps) {
+					setAppsRaw(apps);
+				}
 			}
 
 			setLoading(false);
@@ -39,19 +44,19 @@ export const useLibrary = (ssrApps?: RequiredAppData[]) => {
 	}, []);
 
 	const setApps = async (apps: RequiredAppData[]) => {
-		const user = pocketbase.authStore.model;
+		const { data: { user } } = await supabase.auth.getUser();
 
 		if (!user) {
 			return;
 		}
 
-		try {
-			await pocketbase.collection("users")
-				.update(user.id, { library: apps.map((app) => app.id) });
+		const { error } = await supabase
+			.from("users")
+			.update({ library: apps.map((app) => app.id) })
+			.eq("id", user.id);
 
+		if (!error) {
 			setAppsRaw(apps);
-		} catch (err) {
-			console.error(err);
 		}
 	};
 

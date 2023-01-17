@@ -3,7 +3,7 @@ import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
 import type { Category } from "@/types/App.ts";
 import type { App } from "@/types/App.ts";
-import { getApps } from "@/lib/pocketbase.ts";
+import { supabase } from "@/lib/supabase.ts";
 import { getCategory } from "@/lib/categories.ts";
 
 import Navbar from "@/islands/Navbar.tsx";
@@ -70,9 +70,10 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	const { apps } = await getApps(1, 50, {
-		filter: `categories ~ "${category}"`
-	})
+	const { data: apps } = await supabase
+		.from("apps")
+		.select("id, name, icon, author")
+		.contains("categories", [category]);
 
 	if (!apps) {
 		return new Response("Not found", {

@@ -1,15 +1,15 @@
 import { Head } from "$fresh/runtime.ts";
+import { supabaseAs } from "@/lib/supabase.ts";
 import { PageProps } from "$fresh/server.ts";
 import { Handler } from "@/types/Handler.ts";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
-import type { App } from "@/types/App.ts";
+import { App } from "@/types/App.ts";
 import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
 import LibraryApps from "@/islands/LibraryApps.tsx";
-import { getPocketbase, RecordPocket } from "@/lib/pocketbase.ts";
 
 interface DataProps {
 	apps: App[];
@@ -64,15 +64,16 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
-	const pocketbase = getPocketbase();
+	const supabase = supabaseAs(ctx.state.user.access_token);
 
-	let user: RecordPocket;
-	try {
-		user = await pocketbase.collection("users")
-			.getOne(ctx.state.user.id, {
-				expand: "library"
-			});
-	} catch {
+	const { data: user, error } = await supabase
+		.from("users")
+		.select("library")
+		.eq("id", ctx.state.user.id)
+		.single();
+
+	if (error) {
+		console.log(error);
 		return new Response(
 			"Your profile could not be fetched. Please file and issue.",
 			{
@@ -81,15 +82,12 @@ export const handler: Handler = async (_, ctx) => {
 		);
 	}
 
-
-	const apps = user.expand.library.map((app: RecordPocket) => {
-		return {
-			...app,
-			icon: pocketbase.getFileUrl(app, app.icon, { thumb: "48x48" })
-		}
-	});
+	const { data: apps } = await supabase
+		.from("apps")
+		.select("id, name, icon, author, url")
+		.in("id", user.library);
 
 	return ctx.render({
-		apps
+		apps,
 	});
 };
