@@ -5,7 +5,7 @@ import { Head } from "$fresh/runtime.ts";
 import Stack from "@/components/Stack.tsx";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
-import { getApps } from "@/lib/pocketbase.ts";
+import { getApps, getPocketbase } from "@/lib/pocketbase.ts";
 import { CATEGORIES, getCategory } from "@/lib/categories.ts";
 import Navbar from "@/islands/Navbar.tsx";
 import Button from "@/components/Button.tsx";
@@ -289,7 +289,7 @@ export const handler: Handler = async (_, ctx) => {
 		getApps(1, 5, {
 			sort: "@random",
 			filter: `screenshots:length > 0`
-		}),
+		}, "64x64"),
 	]);
 
 	const randomCategory = randomCategoryApps?.length

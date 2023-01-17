@@ -7,7 +7,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Icon from "@/components/Icon.tsx";
 import { Handler } from "@/types/Handler.ts";
 import { AuthMethodsList } from "pocketbase-types";
-import { pocketbase } from "@/lib/pocketbase.ts";
+import { getPocketbase } from "@/lib/pocketbase.ts";
 import LoginButtons from "@/components/compound/LoginButtons.tsx";
 
 interface DataProps {
@@ -81,6 +81,7 @@ export default function Login(props: PageProps<DataProps>) {
 }
 
 export const handler: Handler = async (_, ctx) => {
+	const pocketbase = getPocketbase();
 	if (ctx.state.user) {
 		return new Response("Already logged in", {
 			status: 307,

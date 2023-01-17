@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { getApp, getApps } from "@/lib/pocketbase.ts";
+import { getApp, getApps, getPocketbase } from "@/lib/pocketbase.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -177,8 +177,8 @@ export default function App({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const { app, error } = await getApp(ctx.params.id);
 
-	if (error) {
-		return new Response(error.message, {
+	if (!app) {
+		return new Response(error?.message, {
 			status: 307,
 			headers: {
 				Location: "/app/error",
@@ -187,19 +187,16 @@ export const handler: Handler = async (_, ctx) => {
 	}
 
 	let ssrInLibrary = false;
-	// if (ctx.state.user) {
-	// 	const supabase = supabaseAs(ctx.state.user.access_token);
+	if (ctx.state.user) {
+		const pocketbase = getPocketbase();
 
-	// 	const { data } = await supabase
-	// 		.from("users")
-	// 		.select("library")
-	// 		.eq("id", ctx.state.user.id)
-	// 		.single();
+		const data = await pocketbase.collection("users")
+			.getOne(ctx.state.user.id)
 
-	// 	if (data) {
-	// 		ssrInLibrary = data.library.includes(app.id);
-	// 	}
-	// }
+		if (data) {
+			ssrInLibrary = data.library.includes(app.id);
+		}
+	}
 	
 	const { apps: otherApps } = await getApps(1, 5, {
 		sort: "@random"

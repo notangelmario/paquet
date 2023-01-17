@@ -1,7 +1,6 @@
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
-import UserHandler from "@/islands/UserHandler.tsx";
 
 export default function App({ Component }: AppProps) {
 	return (
@@ -78,11 +77,9 @@ export default function App({ Component }: AppProps) {
 				<Component />
 			</main>
 			<Footer />
-			<UserHandler />
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
 				<script src="/registerSw.js"></script>
 			)}
-			<script src="/env.js"></script>
 		</html>
 	);
 }
