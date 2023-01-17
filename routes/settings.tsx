@@ -51,16 +51,23 @@ export default function Settings() {
 						>
 							<ListItem
 								button
-								divider
 								icon="discord"
 								title="Discord"
 								subtitle="Join our server!"
 							/>
 						</a>
+					</Card>
+					<Card disableGutters>
 						<ListItem
 							icon="info"
 							title="Version"
 							subtitle={`${APP.version} - ${APP.codename}`}
+							divider
+						/>
+						<ListItem
+							icon="deno"
+							title="Running on"
+							subtitle={`Deno ${APP.deno}`}
 						/>
 					</Card>
 				</Stack>

@@ -2,6 +2,7 @@ import "dotenv";
 
 export const APP = {
 	version: "2.1.1",
+	deno: Deno.version.deno,
 	codename: "Bianca",
 };
 
