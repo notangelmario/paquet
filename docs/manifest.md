@@ -2,6 +2,8 @@
 
 You can specify your app details on Paquet, using your `manifest.json` or `site.webmanifest` file.
 
+> This file is usually crawled by Paquet.
+
 Here is a `manifest.json` example:
 
 ```json
@@ -61,9 +63,15 @@ This is the name of the author. It is prefered to use the same
 names across multiple apps published to Paquet to share 
 verification status
 
+> This property is not used often, so when not present,
+Paquet will look for an author in the web page.
+
 ### `description`
 
-This is the description that will be shown on your app listing.
+This is the description that will be shown on your app listing. 
+
+> Most apps do not have a `description` property, so Paquet
+will look for one in the web page if not present.
 
 ### `categories`
 
