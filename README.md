@@ -15,9 +15,11 @@ Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
-> App requests will be handled after the migration. See notangelmario/paquet#82.
+### ☕ If you like Paquet, consider [buying me a coffee](https://buymeacoffee.com/notangelmario)!
 
-### About
+***
+
+## About
 
 - ⚡ Optimized for speed
 - 💄 An actual good looking web app shop
