@@ -36,8 +36,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 			<Navbar
 				right={[
 					{
-						icon: "apps",
-						href: "/library",
+						icon: "heart",
+						href: "/loved",
 					},
 					{
 						icon: "settings",
@@ -288,7 +288,7 @@ export const handler: Handler = async (_, ctx) => {
 		supabase.from("random_apps")
 			.select("id, name, icon, screenshots")
 			.not("screenshots", "is", null)
-			.limit(5),
+			.limit(6),
 	]);
 
 	const randomCategory = randomCategoryApps?.length

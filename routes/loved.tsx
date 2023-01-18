@@ -9,17 +9,17 @@ import Stack from "@/components/Stack.tsx";
 import { App } from "@/types/App.ts";
 import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
-import LibraryApps from "@/islands/LibraryApps.tsx";
+import LovedApps from "@/islands/LovedApps.tsx";
 
 interface DataProps {
 	apps: App[];
 }
 
-export default function Library(props: PageProps<DataProps>) {
+export default function Loved(props: PageProps<DataProps>) {
 	return (
 		<>
 			<Head>
-				<title>Library &middot; Paquet</title>
+				<title>Loved apps &middot; Paquet</title>
 			</Head>
 			<Navbar
 				back
@@ -32,19 +32,19 @@ export default function Library(props: PageProps<DataProps>) {
 			/>
 			<Container>
 				<Stack>
-					<Header icon="apps">
-						Library
+					<Header icon="heart">
+						Apps you love
 					</Header>
 					<Card disableGutters>
-						<LibraryApps ssrApps={props.data.apps} />
+						<LovedApps ssrApps={props.data.apps} />
 						<p class="opacity-50 p-4">
 							<Icon
 								name="info"
 								inline
 								size={18}
 							/>{" "}
-							Add apps to your library for easier access. Your
-							library syncs automatically between all your
+							Give apps a heart for easier access. Your
+							loved apps sync automatically between all your
 							devices.
 						</p>
 					</Card>
@@ -68,7 +68,7 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: user, error } = await supabase
 		.from("users")
-		.select("library")
+		.select("loved")
 		.eq("id", ctx.state.user.id)
 		.single();
 
@@ -85,7 +85,7 @@ export const handler: Handler = async (_, ctx) => {
 	const { data: apps } = await supabase
 		.from("apps")
 		.select("id, name, icon, author, url")
-		.in("id", user.library);
+		.in("id", user.loved);
 
 	return ctx.render({
 		apps,

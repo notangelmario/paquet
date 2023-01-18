@@ -18,9 +18,9 @@ export default function InstallBanner() {
 	const [dialogOpen, setDialogOpen] = useState(false);
 
 	useEffect(() => {
-		setInstalled(window.matchMedia("(display-mode: standalone)").matches);
+		setInstalled(globalThis.matchMedia("(display-mode: standalone)").matches);
 
-		window.matchMedia("(display-mode: standalone)").addEventListener(
+		globalThis.matchMedia("(display-mode: standalone)").addEventListener(
 			"change",
 			(e) => {
 				setInstalled(e.matches);
@@ -61,6 +61,15 @@ export default function InstallBanner() {
 				the install button
 				in the address bar and click "Install".
 			`;
+		}
+
+		// Desktop Firefox instructions
+		if (props.browserName === "Firefox" && !props.type) {
+			return `
+				Unfortunately, Firefox has removed PWA support
+				on desktop. You can use <a href="https://addons.mozilla.org/en-GB/firefox/addon/pwas-for-firefox/" target="_blank" rel="noreferrer noopener">this extension</a>
+				to install Paquet.
+			`
 		}
 
 		return `

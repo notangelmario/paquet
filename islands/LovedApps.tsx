@@ -1,13 +1,13 @@
 import type { App } from "@/types/App.ts";
-import { useLibrary } from "@/hooks/useLibrary.ts";
+import { useUserLoved } from "@/hooks/useUserLoved.ts";
 import ListItem from "@/components/ListItem.tsx";
 
 interface Props {
 	ssrApps: App[];
 }
 
-export default function LibraryApps({ ssrApps }: Props) {
-	const { apps } = useLibrary(ssrApps);
+export default function LovedApps({ ssrApps }: Props) {
+	const { apps } = useUserLoved(ssrApps);
 
 	return (
 		<>

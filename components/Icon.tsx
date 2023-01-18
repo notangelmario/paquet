@@ -19,6 +19,8 @@ import ToolIcon from "tabler-icons/tool.tsx";
 import BriefcaseIcon from "tabler-icons/briefcase.tsx";
 import GamepadIcon from "tabler-icons/device-gamepad-2.tsx";
 import HeartIcon from "tabler-icons/heart.tsx";
+import HeartsIcon from "tabler-icons/hearts.tsx";
+import BrokenHeartIcon from "tabler-icons/heart-broken.tsx";
 import HomeIcon from "tabler-icons/home.tsx";
 import FlagIcon from "tabler-icons/flag.tsx";
 import FileDescriptionIcon from "tabler-icons/file-description.tsx";
@@ -34,6 +36,7 @@ import UserIcon from "tabler-icons/user.tsx";
 import LoginIcon from "tabler-icons/login.tsx";
 import LogoutIcon from "tabler-icons/logout.tsx";
 import JavaScriptIcon from "tabler-icons/brand-javascript.tsx";
+import CoffeeIcon from "tabler-icons/coffee.tsx";
 
 export const ICONS = new Map([
 	["github", GitHubIcon],
@@ -57,6 +60,8 @@ export const ICONS = new Map([
 	["briefcase", BriefcaseIcon],
 	["gamepad", GamepadIcon],
 	["heart", HeartIcon],
+	["hearts", HeartsIcon],
+	["broken-heart", BrokenHeartIcon],
 	["home", HomeIcon],
 	["flag", FlagIcon],
 	["file-description", FileDescriptionIcon],
@@ -72,6 +77,7 @@ export const ICONS = new Map([
 	["login", LoginIcon],
 	["logout", LogoutIcon],
 	["javascript", JavaScriptIcon],
+	["coffee", CoffeeIcon]
 ]);
 
 export interface Props {

@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import type { PageProps } from "$fresh/server.ts";
 import type { Handler } from "@/types/Handler.ts";
-import { supabase } from "@/lib/supabase.ts";
+import { supabase, supabaseAs } from "@/lib/supabase.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -13,13 +13,14 @@ import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/compound/AppLinks.tsx";
 import Screenshots from "@/components/compound/Screenshots.tsx";
-import AddToLibrary from "@/islands/AddToLibrary.tsx";
+import LoveAppButton from "@/islands/LoveAppButton.tsx";
 import Card from "@/components/Card.tsx";
 import SlideCategories from "@/components/compound/SlideCategories.tsx";
 
 interface DataProps {
 	app: App;
 	otherApps?: App[];
+	ssrLoved: boolean;
 }
 
 export default function App({ data }: PageProps<DataProps>) {
@@ -84,7 +85,7 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								<AddToLibrary app={data.app} />
+								<LoveAppButton app={data.app} ssrLoved={data.ssrLoved} />
 							</div>
 						</Card>
 						<div>
@@ -187,6 +188,20 @@ export const handler: Handler = async (_, ctx) => {
 		});
 	}
 
+	let ssrLoved = false;
+	if (ctx.state.user) {
+		const supabase = supabaseAs(ctx.state.user.access_token);
+
+		const { data } = await supabase.from("users")
+			.select("loved")
+			.eq("id", ctx.state.user.id)
+			.single();
+
+		if (data) {
+			ssrLoved = data.loved.includes(app.id);
+		}
+	}
+
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon")
 		.containedBy("categories", app.categories)
@@ -196,5 +211,6 @@ export const handler: Handler = async (_, ctx) => {
 	return ctx.render({
 		app,
 		otherApps,
+		ssrLoved,
 	} as DataProps);
 };

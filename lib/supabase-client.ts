@@ -4,7 +4,7 @@ import { createClient, SupabaseClient } from "supabase-client";
 export const createSupabaseClient = () => {
 	if (IS_BROWSER) {
 		//@ts-ignore: We are setting window.env.SUPABASE_URL and window.env.SUPABASE_ANON_KEY in the browser
-		const { SUPABASE_URL, SUPABASE_ANON_KEY } = window.env;
+		const { SUPABASE_URL, SUPABASE_ANON_KEY } = globalThis.env;
 		return createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 	}
 

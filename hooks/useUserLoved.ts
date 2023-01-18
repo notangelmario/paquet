@@ -9,7 +9,7 @@ export interface RequiredAppData {
 	url: string;
 }
 
-export const useLibrary = (ssrApps?: RequiredAppData[]) => {
+export const useUserLoved = (ssrApps?: RequiredAppData[]) => {
 	const [loading, setLoading] = useState(true);
 	const [apps, setAppsRaw] = useState<RequiredAppData[]>(ssrApps || []);
 
@@ -24,7 +24,7 @@ export const useLibrary = (ssrApps?: RequiredAppData[]) => {
 
 			const { data } = await supabase
 				.from("users")
-				.select("library")
+				.select("loved")
 				.eq("id", user.id)
 				.single();
 
@@ -32,7 +32,7 @@ export const useLibrary = (ssrApps?: RequiredAppData[]) => {
 				const { data: apps } = await supabase
 					.from("apps")
 					.select("id, name, icon, author, url")
-					.in("id", data.library);
+					.in("id", data.loved);
 
 				if (apps) {
 					setAppsRaw(apps);
@@ -52,7 +52,7 @@ export const useLibrary = (ssrApps?: RequiredAppData[]) => {
 
 		const { error } = await supabase
 			.from("users")
-			.update({ library: apps.map((app) => app.id) })
+			.update({ loved: apps.map((app) => app.id) })
 			.eq("id", user.id);
 
 		if (!error) {

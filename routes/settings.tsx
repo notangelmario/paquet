@@ -92,6 +92,20 @@ export default function Settings(props: PageProps<DataProps>) {
 								subtitle="Join our server!"
 							/>
 						</a>
+						<a
+							href="https://buymeacoffee.com/notangelmario"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<ListItem
+								button
+								icon="coffee"
+								title="Buy me a coffee"
+								subtitle="Support Paquet's development"
+							/>
+						</a>
+					</Card>
+					<Card disableGutters>
 						<ListItem
 							icon="info"
 							title="Version"
