@@ -7,10 +7,8 @@
 
 # [📦 Paquet](https://paquet.shop)
 
-[![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord)](https://discord.gg/JAcTzvxFFJ)
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
+[![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord&style=flat-square)](https://discord.gg/JAcTzvxFFJ)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -19,9 +17,11 @@ Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
-> App requests will be handled after the migration. See notangelmario/paquet#82.
+### ☕ If you like Paquet, consider [buying me a coffee](https://buymeacoffee.com/notangelmario)!
 
-### About
+***
+
+## About
 
 - ⚡ Optimized for speed
 - 💄 An actual good looking web app shop
