@@ -7,8 +7,10 @@
 
 # [📦 Paquet](https://paquet.shop)
 
+
 [![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord&style=flat-square)](https://discord.gg/JAcTzvxFFJ)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Welcome to your new web app shop!
