@@ -77,7 +77,7 @@ export const ICONS = new Map([
 	["login", LoginIcon],
 	["logout", LogoutIcon],
 	["javascript", JavaScriptIcon],
-	["coffee", CoffeeIcon]
+	["coffee", CoffeeIcon],
 ]);
 
 export interface Props {

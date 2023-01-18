@@ -107,7 +107,9 @@ await Promise.all(apps.map(async (app) => {
 					if (screenshot.src.startsWith("http")) {
 						screenshots_source.push(screenshot.src);
 					} else if (screenshot.src.startsWith("//")) {
-						screenshots_source.push("https://" + screenshot.src.slice(2));
+						screenshots_source.push(
+							"https://" + screenshot.src.slice(2),
+						);
 					} else if (screenshot.src.startsWith("/")) {
 						screenshots_source.push(
 							slashSlashes(app.url) + "/" +

@@ -85,7 +85,10 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								<LoveAppButton app={data.app} ssrLoved={data.ssrLoved} />
+								<LoveAppButton
+									app={data.app}
+									ssrLoved={data.ssrLoved}
+								/>
 							</div>
 						</Card>
 						<div>

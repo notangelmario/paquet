@@ -18,7 +18,9 @@ export default function InstallBanner() {
 	const [dialogOpen, setDialogOpen] = useState(false);
 
 	useEffect(() => {
-		setInstalled(globalThis.matchMedia("(display-mode: standalone)").matches);
+		setInstalled(
+			globalThis.matchMedia("(display-mode: standalone)").matches,
+		);
 
 		globalThis.matchMedia("(display-mode: standalone)").addEventListener(
 			"change",
@@ -69,7 +71,7 @@ export default function InstallBanner() {
 				Unfortunately, Firefox has removed PWA support
 				on desktop. You can use <a href="https://addons.mozilla.org/en-GB/firefox/addon/pwas-for-firefox/" target="_blank" rel="noreferrer noopener">this extension</a>
 				to install Paquet.
-			`
+			`;
 		}
 
 		return `

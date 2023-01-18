@@ -9,7 +9,7 @@ interface Props {
 export default function LoginButtons(props: Props) {
 	return (
 		<>
-			{props.authMethods.authProviders.map(provider => (
+			{props.authMethods.authProviders.map((provider) => (
 				<a
 					href={`/auth/login?provider=${provider.name}`}
 				>

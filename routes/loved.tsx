@@ -43,9 +43,8 @@ export default function Loved(props: PageProps<DataProps>) {
 								inline
 								size={18}
 							/>{" "}
-							Give apps a heart for easier access. Your
-							loved apps sync automatically between all your
-							devices.
+							Give apps a heart for easier access. Your loved apps
+							sync automatically between all your devices.
 						</p>
 					</Card>
 				</Stack>

@@ -266,7 +266,9 @@ export const handler: Handler = async (_, ctx) => {
 
 	// This is used to determine for how long an app is considered
 	// to be new.
-	const sixtyDaysAgo = new Date(new Date().getTime() - (60 * 24 * 60 * 60 * 1000));
+	const sixtyDaysAgo = new Date(
+		new Date().getTime() - (60 * 24 * 60 * 60 * 1000),
+	);
 
 	const [
 		{ data: randomCategoryApps },
