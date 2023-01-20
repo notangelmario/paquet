@@ -67,7 +67,7 @@ export default function Settings(props: PageProps<DataProps>) {
 					</Card>
 					<Card disableGutters>
 						<a
-							href="https://github.com/notangelmario/paquet"
+							href={APP.githubRepo}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -80,7 +80,7 @@ export default function Settings(props: PageProps<DataProps>) {
 							/>
 						</a>
 						<a
-							href="https://discord.com/invite/DXke9aSZh6"
+							href={APP.discordInvite}
 							target="_blank"
 							rel="noopener noreferrer"
 						>

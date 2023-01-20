@@ -3,6 +3,9 @@ import GitLabIcon from "tabler-icons/brand-gitlab.tsx";
 import DiscordIcon from "tabler-icons/brand-discord.tsx";
 import GoogleIcon from "tabler-icons/brand-google.tsx";
 import JavaScriptIcon from "tabler-icons/brand-javascript.tsx";
+import FreshIcon from "tabler-icons/lemon-2.tsx";
+import DenoIcon from "tabler-icons/brand-deno.tsx";
+import SupabaseIcon from "tabler-icons/bolt.tsx";
 
 import SearchIcon from "tabler-icons/search.tsx";
 import ArrowLeftIcon from "tabler-icons/arrow-left.tsx";
@@ -46,6 +49,9 @@ export const ICONS = new Map([
 	["discord", DiscordIcon],
 	["google", GoogleIcon],
 	["javascript", JavaScriptIcon],
+	["fresh", FreshIcon],
+	["deno", DenoIcon],
+	["supabase", SupabaseIcon],
 	["search", SearchIcon],
 	["back", ArrowLeftIcon],
 	["settings", SettingsIcon],
