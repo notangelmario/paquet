@@ -82,7 +82,7 @@ export default function InstallBanner() {
 
 	return (
 		<Card
-			class={`${installed !== false ? "hidden" : ""} my-2`}
+			class={`${installed !== false ? "hidden" : ""} my-4`}
 		>
 			<Stack>
 				<h2 class="text-xl">Hello there!</h2>

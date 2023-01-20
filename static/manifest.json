@@ -40,7 +40,7 @@
 	"theme_color": "#8267be",
 	"background_color": "#ffffff",
 	"display": "standalone",
-	"start_url": "/?utm_source=pwa",
+	"start_url": "/home?utm_source=pwa",
 	"orientation": "portrait",
 	"scope": "/"
 }

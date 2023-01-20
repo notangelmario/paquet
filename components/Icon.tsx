@@ -2,6 +2,8 @@ import GitHubIcon from "tabler-icons/brand-github.tsx";
 import GitLabIcon from "tabler-icons/brand-gitlab.tsx";
 import DiscordIcon from "tabler-icons/brand-discord.tsx";
 import GoogleIcon from "tabler-icons/brand-google.tsx";
+import JavaScriptIcon from "tabler-icons/brand-javascript.tsx";
+
 import SearchIcon from "tabler-icons/search.tsx";
 import ArrowLeftIcon from "tabler-icons/arrow-left.tsx";
 import SettingsIcon from "tabler-icons/settings.tsx";
@@ -34,15 +36,16 @@ import SourceCodeIcon from "tabler-icons/source-code.tsx";
 import CloudOffIcon from "tabler-icons/cloud-off.tsx";
 import UserIcon from "tabler-icons/user.tsx";
 import LoginIcon from "tabler-icons/login.tsx";
+import ArrowBigDownLineIcon from "tabler-icons/arrow-big-down-line.tsx";
 import LogoutIcon from "tabler-icons/logout.tsx";
-import JavaScriptIcon from "tabler-icons/brand-javascript.tsx";
-import CoffeeIcon from "tabler-icons/coffee.tsx";
+import DownloadOffIcon from "tabler-icons/download-off.tsx";
 
 export const ICONS = new Map([
 	["github", GitHubIcon],
 	["gitlab", GitLabIcon],
 	["discord", DiscordIcon],
 	["google", GoogleIcon],
+	["javascript", JavaScriptIcon],
 	["search", SearchIcon],
 	["back", ArrowLeftIcon],
 	["settings", SettingsIcon],
@@ -75,9 +78,9 @@ export const ICONS = new Map([
 	["cloud-off", CloudOffIcon],
 	["user", UserIcon],
 	["login", LoginIcon],
+	["arrow-big-down-line", ArrowBigDownLineIcon],
 	["logout", LogoutIcon],
-	["javascript", JavaScriptIcon],
-	["coffee", CoffeeIcon],
+	["download-off", DownloadOffIcon],
 ]);
 
 export interface Props {
@@ -98,7 +101,7 @@ export default function Icon(props: Props) {
 
 	return (
 		<Icon
-			class={`${inline ? "inline align-middle" : ""} ${className}`}
+			class={`${inline ? "inline align-middle" : ""} ${className || ""}`}
 			size={size}
 			color={color}
 		/>
