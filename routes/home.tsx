@@ -19,6 +19,7 @@ import ImageCard from "@/components/compound/ImageCard.tsx";
 
 interface DataProps {
 	newApps?: App[];
+	lovedApps?: App[];
 	randomCards?: App[];
 	randomApps?: App[];
 	randomCategory?: {
@@ -257,6 +258,21 @@ export default function Home({ data }: PageProps<DataProps>) {
 							</div>
 						)}
 					</Container>
+				<Container>
+					{data.lovedApps && data.lovedApps.map((app, idx) => (
+						<a href={`/app/${app.id}`}>
+							<ListItem
+								button
+								key={app.id}
+								image={app.icon}
+								title={app.name}
+								subtitle={app.author}
+								divider={data.lovedApps && 
+									idx !==	data.lovedApps.length - 1}
+							/>
+						</a>
+					))}
+				</Container>
 				<Container class="mt-4">
 					<FewApps />
 				</Container>
@@ -280,6 +296,7 @@ export const handler: Handler = async (_, ctx) => {
 		{ data: newApps },
 		{ data: randomApps },
 		{ data: randomCards },
+		{ data: lovedApps }
 	] = await Promise.all([
 		supabase.from("random_apps")
 			.select("id, name, icon, author, categories")
@@ -296,6 +313,9 @@ export const handler: Handler = async (_, ctx) => {
 			.select("id, name, icon, screenshots")
 			.not("screenshots", "is", null)
 			.limit(6),
+		supabase.rpc("loved_apps")
+			.select("id, name, icon, author, categories")
+			.range(0, 5),
 	]);
 
 	const randomCategory = randomCategoryApps?.length
@@ -310,5 +330,6 @@ export const handler: Handler = async (_, ctx) => {
 		randomCards,
 		randomApps,
 		randomCategory,
+		lovedApps
 	} as DataProps);
 };

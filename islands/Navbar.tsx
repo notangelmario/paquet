@@ -19,8 +19,8 @@ export default function Navbar(props: Props) {
 	const darkAccent = combineColors(props.color + "50", "#121212");
 	const lightAccent = combineColors(props.color + "50", "#dddddd");
 
-	const [visitedRoot, setVisitedRoot] = useState(
-		!!globalThis.sessionStorage?.getItem("visitedRoot"),
+	const [visitedHome, setVisitedHome] = useState(
+		!!globalThis.sessionStorage?.getItem("visitedHome"),
 	);
 
 	const trigger = useScroll({
@@ -66,20 +66,20 @@ export default function Navbar(props: Props) {
 	}, [trigger]);
 
 	useEffect(() => {
-		if (!visitedRoot && globalThis.location.pathname === "/") {
-			setVisitedRoot(true);
-			globalThis.sessionStorage.setItem("visitedRoot", "true");
+		if (!visitedHome && globalThis.location.pathname === "/home") {
+			setVisitedHome(true);
+			globalThis.sessionStorage.setItem("visitedHome", "true");
 		}
 	}, []);
 
 	const goBack = () => {
-		if (visitedRoot) {
+		if (visitedHome) {
 			globalThis.history.back();
 		} else {
-			setVisitedRoot(true);
-			globalThis.sessionStorage.setItem("visitedRoot", "true");
+			setVisitedHome(true);
+			globalThis.sessionStorage.setItem("visitedHome", "true");
 
-			globalThis.location.replace("/");
+			globalThis.location.replace("/home");
 		}
 	};
 
@@ -117,7 +117,7 @@ export default function Navbar(props: Props) {
 						)
 						: (
 							<a
-								href="/"
+								href="/home"
 								class={tw(iconBtn)}
 							>
 								<Icon

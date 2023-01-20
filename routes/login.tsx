@@ -78,7 +78,7 @@ export const handler: Handler = (_, ctx) => {
 		return new Response("Already logged in", {
 			status: 307,
 			headers: {
-				Location: "/",
+				Location: "/home",
 			},
 		});
 	}

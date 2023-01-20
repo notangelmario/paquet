@@ -134,7 +134,7 @@ export const handler: Handler = async (req, ctx) => {
 		return new Response("No query provided", {
 			status: 307,
 			headers: {
-				Location: "/",
+				Location: "/home",
 			},
 		});
 	}
