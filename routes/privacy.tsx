@@ -47,7 +47,7 @@ export default function Privacy({ data }: PageProps<DataProps>) {
 				dangerouslySetInnerHTML={{ __html: data.content }}
 			/>
 		</>
-	)
+	);
 }
 
 export const handler: Handler = async (_, ctx) => {
@@ -55,4 +55,4 @@ export const handler: Handler = async (_, ctx) => {
 	const content = render(file);
 
 	return ctx.render({ content });
-}
+};
