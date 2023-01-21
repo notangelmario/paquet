@@ -16,9 +16,11 @@ import * as $9 from "./routes/docs/index.tsx";
 import * as $10 from "./routes/gfm.css.ts";
 import * as $11 from "./routes/index.tsx";
 import * as $12 from "./routes/library.tsx";
-import * as $13 from "./routes/search.tsx";
-import * as $14 from "./routes/settings.tsx";
-import * as $15 from "./routes/sitemap.xml.ts";
+import * as $13 from "./routes/privacy.tsx";
+import * as $14 from "./routes/search.tsx";
+import * as $15 from "./routes/settings.tsx";
+import * as $16 from "./routes/sitemap.xml.ts";
+import * as $17 from "./routes/terms-and-conditions.tsx";
 import * as $$0 from "./islands/AddToLibrary.tsx";
 import * as $$1 from "./islands/Dialog.tsx";
 import * as $$2 from "./islands/InstallBanner.tsx";
@@ -41,9 +43,11 @@ const manifest = {
 		"./routes/gfm.css.ts": $10,
 		"./routes/index.tsx": $11,
 		"./routes/library.tsx": $12,
-		"./routes/search.tsx": $13,
-		"./routes/settings.tsx": $14,
-		"./routes/sitemap.xml.ts": $15,
+		"./routes/privacy.tsx": $13,
+		"./routes/search.tsx": $14,
+		"./routes/settings.tsx": $15,
+		"./routes/sitemap.xml.ts": $16,
+		"./routes/terms-and-conditions.tsx": $17,
 	},
 	islands: {
 		"./islands/AddToLibrary.tsx": $$0,
