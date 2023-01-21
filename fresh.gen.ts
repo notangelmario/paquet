@@ -23,6 +23,7 @@ import * as $16 from "./routes/privacy.tsx";
 import * as $17 from "./routes/search.tsx";
 import * as $18 from "./routes/settings.tsx";
 import * as $19 from "./routes/sitemap.xml.ts";
+import * as $20 from "./routes/terms-and-conditions.tsx";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoginButtons.tsx";
@@ -55,6 +56,7 @@ const manifest = {
 		"./routes/search.tsx": $17,
 		"./routes/settings.tsx": $18,
 		"./routes/sitemap.xml.ts": $19,
+		"./routes/terms-and-conditions.tsx": $20,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,
