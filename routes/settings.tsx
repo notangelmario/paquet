@@ -51,6 +51,7 @@ export default function Settings() {
 						>
 							<ListItem
 								button
+								divider
 								icon="discord"
 								title="Discord"
 								subtitle="Join our server!"
