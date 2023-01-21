@@ -17,7 +17,7 @@ export default function Header(props: Props & JSX.IntrinsicElements["h1"]) {
 			)}
 			<h1
 				{...props}
-				class={`text-5xl ${props.class || ""}`}
+				class={`text-5xl font-medium ${props.class || ""}`}
 			>
 				{props.children}
 			</h1>

@@ -16,6 +16,7 @@ import SearchBar from "@/components/SearchBar.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/compound/ImageCard.tsx";
+import Card from "../components/Card.tsx";
 
 interface DataProps {
 	newApps?: App[];
@@ -186,7 +187,29 @@ export default function Home({ data }: PageProps<DataProps>) {
 			<Container>
 				<InstallBanner />
 			</Container>
-			<Stack>
+			{data.lovedApps && (
+				<Container>
+					<Card disableGutters>
+						<h2 class="text-2xl mt-4 ml-4">
+							Top 5 most loved apps
+						</h2>
+						{data.lovedApps.map((app, idx) => (
+							<a href={`/app/${app.id}`}>
+								<ListItem
+									button
+									key={app.id}
+									image={app.icon}
+									title={app.name}
+									subtitle={app.author}
+									divider={data.lovedApps && 
+										idx !==	data.lovedApps.length - 1}
+								/>
+							</a>
+						))}
+					</Card>
+				</Container>
+			)}
+			<Stack class="mt-4">
 				<Container
 					disableGutters
 					class="gap-4 md:flex flex-row justify-items-stretch"
@@ -258,21 +281,6 @@ export default function Home({ data }: PageProps<DataProps>) {
 							</div>
 						)}
 					</Container>
-				<Container>
-					{data.lovedApps && data.lovedApps.map((app, idx) => (
-						<a href={`/app/${app.id}`}>
-							<ListItem
-								button
-								key={app.id}
-								image={app.icon}
-								title={app.name}
-								subtitle={app.author}
-								divider={data.lovedApps && 
-									idx !==	data.lovedApps.length - 1}
-							/>
-						</a>
-					))}
-				</Container>
 				<Container class="mt-4">
 					<FewApps />
 				</Container>
@@ -299,11 +307,11 @@ export const handler: Handler = async (_, ctx) => {
 		{ data: lovedApps }
 	] = await Promise.all([
 		supabase.from("random_apps")
-			.select("id, name, icon, author, categories")
+			.select("id, name, icon, author")
 			.contains("categories", [randomCategoryId])
 			.limit(5),
 		supabase.from("apps")
-			.select("id, name, icon, categories, addedOn")
+			.select("id, name, icon, categories")
 			.order("addedOn", { ascending: false })
 			.gte("addedOn", sixtyDaysAgo.toDateString()),
 		supabase.from("random_apps")
@@ -314,7 +322,7 @@ export const handler: Handler = async (_, ctx) => {
 			.not("screenshots", "is", null)
 			.limit(6),
 		supabase.rpc("loved_apps")
-			.select("id, name, icon, author, categories")
+			.select("id, name, icon, author")
 			.range(0, 5),
 	]);
 

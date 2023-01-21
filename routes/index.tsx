@@ -11,7 +11,7 @@ import Card from "@/components/Card.tsx";
 import Divider from "@/components/Divider.tsx"
 import ListItem from "@/components/ListItem.tsx";
 import Features from "@/components/compound/Features.tsx";
-import { APP } from "../lib/app.ts";
+import { APP } from "@/lib/app.ts";
 
 interface DataProps {
 	apps: App[];
@@ -74,14 +74,6 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 							Open Paquet
 						</Button>
 					</a>
-					<Button
-						outlined
-						icon="hearts"
-						disabled
-						class="max-w-screen-sm w-full mx-auto"
-					>
-						You already love Paquet
-					</Button>
 				</Stack>
 				<Stack>
 					<h3
@@ -157,7 +149,11 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 						Close to the community
 					</h3>
 					<Card disableGutters>
-						<a href={APP.discordInvite}>
+						<a 
+							href={APP.discordInvite}
+							target="_blank"
+							rel="noreferrer noopener"
+						>
 							<ListItem
 								icon="discord"
 								title="Discord"
@@ -166,11 +162,28 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 								divider
 							/>
 						</a>
-						<a href={APP.githubRepo}>
+						<a 
+							href={APP.githubRepo}
+							target="_blank"
+							rel="noreferrer noopener"
+						>
 							<ListItem
 								icon="github"
 								title="GitHub"
 								subtitle="notangelmario/paquet"
+								button
+								divider
+							/>
+						</a>
+						<a 
+							href={APP.githubRepo + "/blob/main/CONTRIBUTING.md"}
+							target="_blank"
+							rel="noreferrer noopener"
+						>
+							<ListItem
+								icon="file-description"
+								title="Contribution Guide"
+								subtitle="Learn how to contribute to Paquet"
 								button
 							/>
 						</a>
@@ -269,7 +282,7 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 								disabled
 								class="max-w-screen-sm w-full mx-auto"
 							>
-								I told you already
+								I already love Paquet
 							</Button>
 						</div>
 					</Card>

@@ -19,9 +19,10 @@ import * as $12 from "./routes/home.tsx";
 import * as $13 from "./routes/index.tsx";
 import * as $14 from "./routes/login.tsx";
 import * as $15 from "./routes/loved.tsx";
-import * as $16 from "./routes/search.tsx";
-import * as $17 from "./routes/settings.tsx";
-import * as $18 from "./routes/sitemap.xml.ts";
+import * as $16 from "./routes/privacy.tsx";
+import * as $17 from "./routes/search.tsx";
+import * as $18 from "./routes/settings.tsx";
+import * as $19 from "./routes/sitemap.xml.ts";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoginButtons.tsx";
@@ -50,9 +51,10 @@ const manifest = {
 		"./routes/index.tsx": $13,
 		"./routes/login.tsx": $14,
 		"./routes/loved.tsx": $15,
-		"./routes/search.tsx": $16,
-		"./routes/settings.tsx": $17,
-		"./routes/sitemap.xml.ts": $18,
+		"./routes/privacy.tsx": $16,
+		"./routes/search.tsx": $17,
+		"./routes/settings.tsx": $18,
+		"./routes/sitemap.xml.ts": $19,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,

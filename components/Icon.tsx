@@ -7,6 +7,7 @@ import FreshIcon from "tabler-icons/lemon-2.tsx";
 import DenoIcon from "tabler-icons/brand-deno.tsx";
 import SupabaseIcon from "tabler-icons/bolt.tsx";
 
+import CoffeeIcon from "tabler-icons/coffee.tsx";
 import SearchIcon from "tabler-icons/search.tsx";
 import ArrowLeftIcon from "tabler-icons/arrow-left.tsx";
 import SettingsIcon from "tabler-icons/settings.tsx";
@@ -52,6 +53,7 @@ export const ICONS = new Map([
 	["fresh", FreshIcon],
 	["deno", DenoIcon],
 	["supabase", SupabaseIcon],
+	["coffee", CoffeeIcon],
 	["search", SearchIcon],
 	["back", ArrowLeftIcon],
 	["settings", SettingsIcon],
