@@ -5,7 +5,7 @@ export default function SlideContainer(props: JSX.IntrinsicElements["div"]) {
 		<div
 			{...props}
 			class={`
-				flex flex-row overflow-x-scroll md:container
+				flex flex-row overflow-x-scroll md:container lg:!max-w-screen-lg
 				${props.class || ""}
 			`}
 			style={{

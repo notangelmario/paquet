@@ -48,62 +48,71 @@ export default function App({ data }: PageProps<DataProps>) {
 					<Stack>
 						<Card
 							inset
-							class="bg-light dark:bg-dark flex flex-row flex-wrap gap-4"
+							disableGutters
+							class="bg-light dark:bg-dark"
 						>
-							<img
-								class="rounded w-20 h-20 shadow-outset-light dark:shadow-outset-dark bg-light-light dark:bg-dark-light"
-								src={data.app.icon}
-							/>
-							<div class="flex-1">
-								<h2 class="text-3xl">
-									{data.app.name}
-								</h2>
-								<p class="opacity-50">
-									{data.app.author}
-								</p>
-							</div>
-							<div class="min-w-full space-y-2 sm:min-w-[30%]">
-								<a
-									href={data.app.url}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<Button
-										icon="external-link"
-										fullWidth
-										style={{
-											backgroundColor:
-												data.app.accent_color,
-											boxShadow:
-												`0 0 8px ${data.app.accent_color}`,
-											color: "#ffffff",
-										}}
-										iconProps={{
-											name: "external-link",
-											color: "#ffffff",
-										}}
+							{data.app.cover &&
+								<img
+									src={data.app.cover}
+									class="w-full h-32 object-cover rounded-t"
+								/>
+							}
+							<div class="flex flex-row flex-wrap gap-4 p-4 shadow-inset-light dark:shadow-inset-dark">
+								<img
+									class="rounded w-20 h-20 shadow-outset-light dark:shadow-outset-dark bg-light-light dark:bg-dark-light"
+									src={data.app.icon}
+								/>
+								<div class="flex-1">
+									<h2 class="text-3xl">
+										{data.app.name}
+									</h2>
+									<p class="opacity-50">
+										{data.app.author}
+									</p>
+								</div>
+								<div class="min-w-full space-y-2 sm:min-w-[30%]">
+									<a
+										href={data.app.url}
+										target="_blank"
+										rel="noopener noreferrer"
 									>
-										Open
-									</Button>
-								</a>
-								{data.userLoggedIn
-									? (
-										<LoveAppButton
-											app={data.app}
-											ssrLoved={data.ssrLoved}
-										/>
-									)
-									: (
-										<a href="/login" class="block">
-											<Button
-												outlined
-												fullWidth
-												icon="heart"
-											>
-												Login to give hearts
-											</Button>
-										</a>
-									)}
+										<Button
+											icon="external-link"
+											fullWidth
+											style={{
+												backgroundColor:
+													data.app.accent_color,
+												boxShadow:
+													`0 0 8px ${data.app.accent_color}`,
+												color: "#ffffff",
+											}}
+											iconProps={{
+												name: "external-link",
+												color: "#ffffff",
+											}}
+										>
+											Open
+										</Button>
+									</a>
+									{data.userLoggedIn
+										? (
+											<LoveAppButton
+												app={data.app}
+												ssrLoved={data.ssrLoved}
+											/>
+										)
+										: (
+											<a href="/login" class="block">
+												<Button
+													outlined
+													fullWidth
+													icon="heart"
+												>
+													Login to give hearts
+												</Button>
+											</a>
+										)}
+								</div>
 							</div>
 						</Card>
 						<div>
@@ -192,7 +201,7 @@ export default function App({ data }: PageProps<DataProps>) {
 export const handler: Handler = async (_, ctx) => {
 	const { data: app } = await supabase.from("apps")
 		.select(
-			"id, name, author, description, url, icon, accent_color, screenshots, features, categories, github_url, gitlab_url",
+			"id, name, author, description, url, icon, cover, accent_color, screenshots, features, categories, github_url, gitlab_url",
 		)
 		.eq("id", ctx.params.id)
 		.single();
@@ -222,7 +231,6 @@ export const handler: Handler = async (_, ctx) => {
 
 	const { data: otherApps } = await supabase.from("random_apps")
 		.select("id, name, author, icon")
-		.containedBy("categories", app.categories)
 		.neq("id", app.id)
 		.limit(5);
 

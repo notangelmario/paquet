@@ -306,6 +306,18 @@ await Promise.all(apps.map(async (app) => {
 				await clearAppFromStorage(app.id, "covers");
 
 				if (cover_url) {
+						if (cover_url.startsWith("http")) {
+							cover_url = slashSlashes(cover_url);
+						} else if (cover_url.startsWith("//")) {
+							cover_url = "https://" + cover_url.slice(2);
+						} else if (cover_url.startsWith("/")) {
+							cover_url = slashSlashes(new URL(app.url).origin) +
+								"/" + slashSlashes(cover_url);
+						} else {
+							cover_url = slashSlashes(manifestParent.join("/")) +
+								"/" + slashSlashes(cover_url);
+						}
+
 					const cover_blob = await fetch(
 						new URL(cover_url, app.url).href,
 						{
@@ -342,8 +354,8 @@ await Promise.all(apps.map(async (app) => {
 				manifest_hash: hash,
 				icon: `${IMAGES_URL}/${app.id}/icon`,
 				icon_original: icon_url,
-				cover: `${IMAGES_URL}/${app.id}/cover`,
-				cover_original: cover_url,
+				cover: cover_url ? `${IMAGES_URL}/${app.id}/cover` : undefined,
+				cover_original: cover_url || undefined,
 			})
 			.eq("id", app.id);
 	}

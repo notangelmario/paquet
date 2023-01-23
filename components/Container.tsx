@@ -8,7 +8,7 @@ const Container = (props: Props & JSX.IntrinsicElements["h1"]) => {
 	return (
 		<div
 			{...props}
-			class={`md:container
+			class={`md:container lg:!max-w-screen-lg
 				${!props.disableGutters && "px-4"} 
 				${props.class || ""}
 			`}
