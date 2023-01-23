@@ -21,6 +21,7 @@ interface DataProps {
 	app: App;
 	otherApps?: App[];
 	ssrLoved: boolean;
+	userLoggedIn: boolean;
 }
 
 export default function App({ data }: PageProps<DataProps>) {
@@ -85,10 +86,12 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								<LoveAppButton
-									app={data.app}
-									ssrLoved={data.ssrLoved}
-								/>
+								{data.userLoggedIn &&
+									<LoveAppButton
+										app={data.app}
+										ssrLoved={data.ssrLoved}
+									/>
+								}
 							</div>
 						</Card>
 						<div>
@@ -215,5 +218,6 @@ export const handler: Handler = async (_, ctx) => {
 		app,
 		otherApps,
 		ssrLoved,
+		userLoggedIn: ctx.state.user !== undefined,
 	} as DataProps);
 };
