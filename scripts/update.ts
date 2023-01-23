@@ -309,12 +309,12 @@ await Promise.all(apps.map(async (app) => {
 						if (cover_url.startsWith("http")) {
 							cover_url = slashSlashes(cover_url);
 						} else if (cover_url.startsWith("//")) {
-							cover_url = "https://" + cover_url.slice(2);
+							cover_url = "https:" + cover_url;
 						} else if (cover_url.startsWith("/")) {
 							cover_url = slashSlashes(new URL(app.url).origin) +
 								"/" + slashSlashes(cover_url);
 						} else {
-							cover_url = slashSlashes(manifestParent.join("/")) +
+							cover_url = slashSlashes(app.url) +
 								"/" + slashSlashes(cover_url);
 						}
 
