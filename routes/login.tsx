@@ -19,7 +19,7 @@ export default function Login() {
 			<Container class="flex flex-row flex-wrap gap-4">
 				<div class="w-full md:flex-1">
 					<Stack>
-						<Header>
+						<Header icon="login">
 							Login
 						</Header>
 						<img

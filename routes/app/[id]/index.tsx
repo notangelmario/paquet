@@ -86,11 +86,21 @@ export default function App({ data }: PageProps<DataProps>) {
 										Open
 									</Button>
 								</a>
-								{data.userLoggedIn &&
+								{data.userLoggedIn ?
 									<LoveAppButton
 										app={data.app}
 										ssrLoved={data.ssrLoved}
 									/>
+									:
+									<a href="/login" class="block">
+										<Button
+											outlined
+											fullWidth
+											icon="heart"
+										>
+											Login to give hearts
+										</Button>
+									</a>
 								}
 							</div>
 						</Card>
