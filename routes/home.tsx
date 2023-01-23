@@ -16,7 +16,7 @@ import SearchBar from "@/components/SearchBar.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/compound/ImageCard.tsx";
-import Card from "../components/Card.tsx";
+import Card from "@/components/Card.tsx";
 
 interface DataProps {
 	newApps?: App[];
@@ -103,7 +103,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 								<ImageCard
 									class="flex flex-col gap-y-4 w-64"
 									// Weird stuff man
-									image={(app.screenshots!)[0]}
+									image={app.cover!}
 								>
 									<img
 										src={app.icon}
@@ -321,12 +321,12 @@ export const handler: Handler = async (_, ctx) => {
 			.select("id, name, icon, categories")
 			.limit(5),
 		supabase.from("random_apps")
-			.select("id, name, icon, screenshots")
-			.not("screenshots", "is", null)
+			.select("id, name, icon, cover")
+			.not("cover", "is", null)
 			.limit(6),
 		supabase.rpc("loved_apps")
 			.select("id, name, icon, author")
-			.range(0, 5),
+			.limit(5),
 	]);
 
 	const randomCategory = randomCategoryApps?.length

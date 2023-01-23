@@ -22,11 +22,9 @@ export interface App {
 
 	url: string;
 	screenshots: string[] | null;
+	cover: string | null;
 
 	description: string;
-	// /** @deprecated */
-	// category: string;
-
 	categories: string[];
 
 	icon: string;
