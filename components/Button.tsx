@@ -30,7 +30,7 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 							? "bg-error shadow-error"
 							: "bg-primary override:shadow-primary"
 					} text-white`
-				}
+			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.fullWidth ? "w-full" : ""}

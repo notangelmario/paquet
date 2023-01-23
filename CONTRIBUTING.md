@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-First of all, thanks for considering to contribute to 
+First of all, thanks for considering to contribute to
 Paquet! 🥳
 
 Keep in mind that those are guidelines and not strict
@@ -12,9 +12,9 @@ things are working here.
 
 ## Branches
 
-> Paquet is in the progress of switching from semver to 
-git hash versioning for faster deployments and fixes.
-This section is subject to change.
+> Paquet is in the progress of switching from semver to
+> git hash versioning for faster deployments and fixes.
+> This section is subject to change.
 
 The `main` branch is reserved for production only. This
 is the branch that gets deployed to production.
@@ -32,8 +32,9 @@ creating the issue, not for me reading it.
 ## Pull requests
 
 Pull requests should be made against:
-* `main` in case of hotfix, doc change, config change
-* `next` in case of improvement, bug fixes or anything else (so they are included in the next release ;))
+
+- `main` in case of hotfix, doc change, config change
+- `next` in case of improvement, bug fixes or anything else (so they are included in the next release ;))
 
 Pull requests should be reviewed by **at least one person** so they can be
 merged.

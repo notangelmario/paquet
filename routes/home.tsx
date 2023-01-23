@@ -201,8 +201,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 									image={app.icon}
 									title={app.name}
 									subtitle={app.author}
-									divider={data.lovedApps && 
-										idx !==	data.lovedApps.length - 1}
+									divider={data.lovedApps &&
+										idx !== data.lovedApps.length - 1}
 								/>
 							</a>
 						))}
@@ -235,11 +235,13 @@ export default function Home({ data }: PageProps<DataProps>) {
 												title={app.name}
 												subtitle={app.categories?.map(
 													(category) =>
-														getCategory(category)?.name,
+														getCategory(category)
+															?.name,
 												).join(", ")}
 												divider={data.randomApps &&
 													idx !==
-														data.randomApps.length - 1}
+														data.randomApps.length -
+															1}
 											/>
 										</a>
 									))}
@@ -252,8 +254,9 @@ export default function Home({ data }: PageProps<DataProps>) {
 							<div class="flex-1">
 								<Container>
 									<h2 class="text-2xl">
-										Looking for{" "}
-										{getCategory(data.randomCategory.category)
+										Looking for {getCategory(
+											data.randomCategory.category,
+										)
 											?.name}?
 									</h2>
 								</Container>
@@ -280,7 +283,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 								</Container>
 							</div>
 						)}
-					</Container>
+				</Container>
 				<Container class="mt-4">
 					<FewApps />
 				</Container>
@@ -304,7 +307,7 @@ export const handler: Handler = async (_, ctx) => {
 		{ data: newApps },
 		{ data: randomApps },
 		{ data: randomCards },
-		{ data: lovedApps }
+		{ data: lovedApps },
 	] = await Promise.all([
 		supabase.from("random_apps")
 			.select("id, name, icon, author")
@@ -338,6 +341,6 @@ export const handler: Handler = async (_, ctx) => {
 		randomCards,
 		randomApps,
 		randomCategory,
-		lovedApps
+		lovedApps,
 	} as DataProps);
 };

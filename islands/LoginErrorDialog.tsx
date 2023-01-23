@@ -15,7 +15,7 @@ export default function LoginErrorDialog() {
 				url.href
 					.replace(/error=[^&]*&?/, "")
 					.replace(/error_description=[^&]*&?/, "")
-					.replace(/[?&]$/, "")
+					.replace(/[?&]$/, ""),
 			);
 		}
 	}, []);
