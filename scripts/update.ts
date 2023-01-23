@@ -299,18 +299,22 @@ await Promise.all(apps.map(async (app) => {
 			}
 
 			if (!cover_url) {
-				cover_url = headParsed.querySelector("meta[property='og:image']")
-					?.getAttribute("content") || "";
+				cover_url =
+					headParsed.querySelector("meta[property='og:image']")
+						?.getAttribute("content") || "";
 
 				await clearAppFromStorage(app.id, "covers");
 
 				if (cover_url) {
-					const cover_blob = await fetch(new URL(cover_url, app.url).href, {
-						headers: {
-							"Accept":
-								"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+					const cover_blob = await fetch(
+						new URL(cover_url, app.url).href,
+						{
+							headers: {
+								"Accept":
+									"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+							},
 						},
-					}).then((res) => res.blob());
+					).then((res) => res.blob());
 
 					if (!cover_blob) {
 						console.warn("Could not fetch cover");

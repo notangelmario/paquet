@@ -2,7 +2,6 @@ import { Head } from "$fresh/runtime.ts";
 import Header from "@/components/Header.tsx";
 import Container from "@/components/Container.tsx";
 
-
 export default function Offline() {
 	return (
 		<>
@@ -20,5 +19,5 @@ export default function Offline() {
 				</p>
 			</Container>
 		</>
-	)
+	);
 }

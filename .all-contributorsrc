@@ -1,0 +1,35 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "rtsfred3",
+      "name": "Ryan Fredrickson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2818162?v=4",
+      "profile": "https://github.com/rtsfred3",
+      "contributions": [
+        "bug",
+        "doc"
+      ]
+    },
+    {
+      "login": "toniengelhardt",
+      "name": "Toni Engelhardt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2703233?v=4",
+      "profile": "http://merklin.xyz",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "paquet",
+  "projectOwner": "notangelmario"
+}
