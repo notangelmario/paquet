@@ -34,5 +34,9 @@ You can find more about manifest keys on the [manifest documentation](/docs/mani
 Paquet will periodically fetch new content using your manifest so you don't have to
 worry about submitting a new issue each time you update your app.
 
-We check for app updates pretty frequently so your users will notice the 
-changes you made pretty fast.
+We check for app updates daily, so keep that in mind.
+
+## Issues
+
+In case your app has some issues, it will be temporarily taken down, and you will be contacted
+in order to fix the issues.
