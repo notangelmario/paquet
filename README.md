@@ -55,10 +55,6 @@ To run the app in development mode:
 deno task dev
 ```
 
-> `deno task dev` will automatically download PocketBase for you and
-> run it concurrently with the app. The app doesn't work at all without
-> PocketBase running too.
-
 To update apps:
 
 ```
