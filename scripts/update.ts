@@ -14,7 +14,7 @@ const supabase = createClient(
 
 const IMAGES_URL = "https://paquet.shop/app";
 
-const ICONS_SIZES = ["128x128", "192x192", "256x256", "512x512"];
+const ICONS_SIZES = ["96x96", "128x128", "192x192", "256x256", "512x512"];
 
 let apps: App[] = [];
 
@@ -110,14 +110,19 @@ await Promise.all(apps.map(async (app) => {
 	}
 
 	if (hash !== app?.manifest_hash || Deno.args.includes("--force")) {
-		const manifestParent = manifestUrl.split("/");
-		manifestParent.pop();
+		const manifestSplit = manifestUrl.split("/");
+		manifestSplit.pop();
+		const manifestParent = manifestSplit.join("/");
 
 		let categories: string[] = [];
-		const screenshots_source: string[] = [];
-		const screenshots: string[] = [];
+		const screenshots_urls: string[] = [];
 		let icon_url = "";
 		let accent_color = "";
+
+		let description = manifest?.description;
+		// deno-lint-ignore no-explicit-any
+		let author = (manifest as unknown as any)?.author;
+		let cover_url = "";
 
 		if (Array.isArray(manifest.categories)) {
 			categories = manifest.categories
@@ -136,23 +141,7 @@ await Promise.all(apps.map(async (app) => {
 
 		if (manifest.screenshots) {
 			for (const screenshot of manifest.screenshots) {
-				if (screenshot.src.startsWith("http")) {
-					screenshots_source.push(screenshot.src);
-				} else if (screenshot.src.startsWith("//")) {
-					screenshots_source.push(
-						"https://" + screenshot.src.slice(2),
-					);
-				} else if (screenshot.src.startsWith("/")) {
-					screenshots_source.push(
-						slashSlashes(app.url) + "/" +
-							slashSlashes(screenshot.src),
-					);
-				} else {
-					screenshots_source.push(
-						slashSlashes(manifestParent.join("/")) + "/" +
-							slashSlashes(screenshot.src),
-					);
-				}
+				screenshots_urls.push(relativeToAbsolute(screenshot.src, manifestParent))
 			}
 		}
 
@@ -180,20 +169,7 @@ await Promise.all(apps.map(async (app) => {
 			for (const icon of icons) {
 				for (const size of ICONS_SIZES) {
 					if (icon.sizes === size && !icon_url) {
-						if (icon.src.startsWith("http")) {
-							icon_url = icon.src;
-
-							// Aparently some apps use "//" at the beginning
-							// and the browser actually understands it????
-						} else if (icon.src.startsWith("//")) {
-							icon_url = "https://" + icon.src.slice(2);
-						} else if (icon.src.startsWith("/")) {
-							icon_url = slashSlashes(new URL(app.url).origin) +
-								"/" + slashSlashes(icon.src);
-						} else {
-							icon_url = slashSlashes(manifestParent.join("/")) +
-								"/" + slashSlashes(icon.src);
-						}
+						icon_url = relativeToAbsolute(icon.src, manifestParent)
 					}
 				}
 			}
@@ -237,41 +213,8 @@ await Promise.all(apps.map(async (app) => {
 			return;
 		}
 
-		await clearAppFromStorage(app.id, "icons");
-		await clearAppFromStorage(app.id, "screenshots");
 
-		await uploadAndGetUrl(app.id, icon_blob, "icons/icon");
-
-		for (let i = 0; i < screenshots_source.length; i++) {
-			const blob = await fetch(screenshots_source[i], {
-				headers: {
-					"Accept":
-						"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
-				},
-			}).then((res) => res.blob());
-
-			if (!blob) {
-				console.warn("Could not fetch screenshot(s)");
-				console.log(screenshots_source[i]);
-				appsWithError.push(app.name);
-				return;
-			}
-
-			await uploadAndGetUrl(
-				app.id,
-				blob,
-				`screenshots/${i}`,
-			);
-
-			screenshots.push(`${IMAGES_URL}/${app.id}/screenshot?n=${i}`);
-		}
-
-		let pageDescription = manifest?.description;
-		// deno-lint-ignore no-explicit-any
-		let pageAuthor = (manifest as unknown as any)?.author;
-		let cover_url = "";
-
-		if (!pageDescription || !pageAuthor) {
+		if (!description || !author) {
 			const html = await fetch(app.url).then((res) => res.text());
 
 			const headParsed = new DOMParser().parseFromString(
@@ -287,14 +230,14 @@ await Promise.all(apps.map(async (app) => {
 				return;
 			}
 
-			if (!pageDescription) {
-				pageDescription =
+			if (!description) {
+				description =
 					headParsed.querySelector("meta[name='description']")
 						?.getAttribute("content") || "";
 			}
 
-			if (!pageAuthor) {
-				pageAuthor = headParsed.querySelector("meta[name='author']")
+			if (!author) {
+				author = headParsed.querySelector("meta[name='author']")
 					?.getAttribute("content") || "";
 			}
 
@@ -303,39 +246,8 @@ await Promise.all(apps.map(async (app) => {
 					headParsed.querySelector("meta[property='og:image']")
 						?.getAttribute("content") || "";
 
-				await clearAppFromStorage(app.id, "covers");
-
 				if (cover_url) {
-						if (cover_url.startsWith("http")) {
-							cover_url = slashSlashes(cover_url);
-						} else if (cover_url.startsWith("//")) {
-							cover_url = "https:" + cover_url;
-						} else if (cover_url.startsWith("/")) {
-							cover_url = slashSlashes(new URL(app.url).origin) +
-								"/" + slashSlashes(cover_url);
-						} else {
-							cover_url = slashSlashes(app.url) +
-								"/" + slashSlashes(cover_url);
-						}
-
-					const cover_blob = await fetch(
-						new URL(cover_url, app.url).href,
-						{
-							headers: {
-								"Accept":
-									"image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
-							},
-						},
-					).then((res) => res.blob());
-
-					if (!cover_blob) {
-						console.warn("Could not fetch cover");
-						console.log(cover_url);
-						appsWithError.push(app.name);
-						return;
-					}
-
-					await uploadAndGetUrl(app.id, cover_blob, "covers/cover");
+					cover_url = relativeToAbsolute(cover_url, app.url);
 				}
 			}
 		}
@@ -343,19 +255,14 @@ await Promise.all(apps.map(async (app) => {
 		await supabase.from("apps")
 			.update({
 				name: manifest?.name || undefined,
-				description: pageDescription || undefined,
-				categories: categories.length ? categories : undefined,
-				author: pageAuthor || undefined,
-				screenshots: screenshots.length ? screenshots : undefined,
-				screenshots_original: screenshots_source.length
-					? screenshots_source
-					: undefined,
+				description: description || undefined,
+				categories: categories || undefined,
+				author: author || undefined,
+				screenshots: screenshots_urls || undefined,
 				accent_color: accent_color,
 				manifest_hash: hash,
-				icon: `${IMAGES_URL}/${app.id}/icon`,
-				icon_original: icon_url,
-				cover: cover_url ? `${IMAGES_URL}/${app.id}/cover` : undefined,
-				cover_original: cover_url || undefined,
+				icon: icon_url || undefined,
+				cover: cover_url || undefined,
 			})
 			.eq("id", app.id);
 	}
@@ -374,44 +281,19 @@ async function digest(message: string) {
 	return hashHex;
 }
 
-async function clearAppFromStorage(id: string, folderName: string) {
-	const { data: files } = await supabase.storage
-		.from("apps")
-		.list(id);
-	const folders = files?.map((a) => a.name) || [];
-
-	if (!folders.includes(folderName)) return;
-
-	const { data: list } = await supabase.storage.from("apps").list(
-		`${id}/${folderName}`,
-	);
-	const filesToRemove = list?.map((x) => `${id}/${folderName}/${x.name}`) ||
-		[];
-
-	if (!filesToRemove) return;
-
-	const { error } = await supabase.storage
-		.from("apps")
-		.remove(filesToRemove);
-
-	if (error) {
-		console.log(error);
-	}
-}
-
-async function uploadAndGetUrl(id: string, uint: Blob, name: string) {
-	const { error } = await supabase.storage
-		.from("apps")
-		.upload(`${id}/${name}.png`, uint, {
-			upsert: true,
-		});
-
-	if (error) {
-		console.log(error);
-		return null;
-	}
-}
-
 function slashSlashes(string: string) {
 	return string.replace(/^\/|\/$/g, "");
+}
+
+function relativeToAbsolute(url: string, baseUrl: string) {
+	if (url.startsWith("http")) {
+		return url;
+	} else if (url.startsWith("//")) {
+		return "https:" + url;
+	} else if (url.startsWith("/")) {
+		return slashSlashes(new URL(baseUrl).origin) + "/" + slashSlashes(url);
+	} else {
+		return slashSlashes(baseUrl) +
+			"/" + slashSlashes(url);
+	}
 }

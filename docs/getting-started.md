@@ -6,14 +6,15 @@ is done by submiting an issue on our [GitHub repo](https://github.com/notangelma
 > Verification on apps has been removed, because all apps are checked
 > during the listing process.
 
-
-## Using `manifest.json`
-
 ### Requirements:
 * Web app manifest
 * Service worker
 * Name
 * App icons
+
+> Since 3.2.0, requirements are a little bit stricter.
+
+## Preparing your `manifest.json`
 
 You can use your `manifest.json` or `site.webmanifest` to specify the app listing
 details.
@@ -28,6 +29,25 @@ Here are the keys we use when displaying your app listing on Paquet:
 * `screenshots`
 
 You can find more about manifest keys on the [manifest documentation](/docs/manifest.md)
+
+## Preparing your `index.html` (home page)
+
+We also fetch some properties from the index page. Those are:
+* `og:image` (for the cover)
+* `author`
+* `description`
+
+The `og:image` should be a cover image. Preferably 1024x600. Low resolution images will not be accepted!
+
+## Extra
+
+When you submit your app, you specify your app's features. These features include:
+mobile optimisation, offline capability and more.
+
+You can also specify an URL to your app's source code.
+
+> In future releases, you will have the ability to display releases from
+GitHub or GitLab.
 
 ## Updating
 
