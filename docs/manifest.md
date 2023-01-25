@@ -91,14 +91,8 @@ If this icon is not found, Paquet will search for 128x128, 192x192, 256x256, 512
 The first found will be set as icon. The accent color will be grabbed from
 the icon.
 
-> Since 3.2.0, Paquet does not store the app's icon anymore. 
-Please make sure your icons does not have a cross origin restriction.
-
 ### `screenshots`
 
 We fetch for all screenshots no matter the size. We recomend
 you to add screenshots for all suported devices. Screenshots
 will also improve your visibility on Paquet.
-
-> Since 3.2.0, Paquet does not store the app's screenshots anymore. 
-Please make sure your screenshots does not have a cross origin restriction.

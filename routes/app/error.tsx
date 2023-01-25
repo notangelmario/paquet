@@ -22,7 +22,7 @@ export default function AppError() {
 						Something went wrong and we cannot display this app.
 						We'll try our best to fix it.
 					</p>
-					<a href="/">
+					<a href="/home">
 						<Button>
 							Go home
 						</Button>
