@@ -16,7 +16,7 @@ Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
-### ☕ If you like Paquet, consider [buying me a coffee](https://buymeacoffee.com/notangelmario)!
+#### ☕ If you like Paquet, consider [buying me a coffee](https://buymeacoffee.com/notangelmario)!
 
 ---
 
@@ -54,10 +54,6 @@ To run the app in development mode:
 ```
 deno task dev
 ```
-
-> `deno task dev` will automatically download PocketBase for you and
-> run it concurrently with the app. The app doesn't work at all without
-> PocketBase running too.
 
 To update apps:
 

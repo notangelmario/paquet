@@ -12,8 +12,6 @@ const supabase = createClient(
 	Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
 
-const IMAGES_URL = "https://paquet.shop/app";
-
 const ICONS_SIZES = ["96x96", "128x128", "192x192", "256x256", "512x512"];
 
 let apps: App[] = [];
