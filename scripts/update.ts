@@ -254,9 +254,9 @@ await Promise.all(apps.map(async (app) => {
 			.update({
 				name: manifest?.name || undefined,
 				description: description || undefined,
-				categories: categories || undefined,
+				categories: categories.length ? categories : undefined,
 				author: author || undefined,
-				screenshots: screenshots_urls || undefined,
+				screenshots: screenshots_urls.length ? screenshots_urls : undefined,
 				accent_color: accent_color,
 				manifest_hash: hash,
 				icon: icon_url || undefined,
