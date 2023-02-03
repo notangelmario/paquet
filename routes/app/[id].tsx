@@ -52,11 +52,12 @@ export default function App({ data }: PageProps<DataProps>) {
 							class="bg-light dark:bg-dark"
 						>
 							{data.app.cover &&
-								<img
-									src={data.app.cover}
-									class="w-full h-32 object-cover rounded-t"
-								/>
-							}
+								(
+									<img
+										src={data.app.cover}
+										class="w-full h-32 object-cover rounded-t"
+									/>
+								)}
 							<div class="flex flex-row flex-wrap gap-4 p-4 shadow-inset-light dark:shadow-inset-dark">
 								<img
 									class="rounded w-20 h-20 shadow-outset-light dark:shadow-outset-dark bg-light-light dark:bg-dark-light"

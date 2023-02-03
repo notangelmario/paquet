@@ -12,7 +12,15 @@ const supabase = createClient(
 	Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
 
-const ICONS_SIZES = ["96x96", "120x120", "128x128", "144x144", "192x192", "256x256", "512x512"];
+const ICONS_SIZES = [
+	"96x96",
+	"120x120",
+	"128x128",
+	"144x144",
+	"192x192",
+	"256x256",
+	"512x512",
+];
 
 let apps: App[] = [];
 
@@ -141,7 +149,9 @@ await Promise.all(apps.map(async (app) => {
 
 		if (manifest.screenshots) {
 			for (const screenshot of manifest.screenshots) {
-				screenshots_urls.push(relativeToAbsolute(screenshot.src, manifestParent))
+				screenshots_urls.push(
+					relativeToAbsolute(screenshot.src, manifestParent),
+				);
 			}
 		}
 
@@ -169,7 +179,7 @@ await Promise.all(apps.map(async (app) => {
 			for (const icon of icons) {
 				for (const size of ICONS_SIZES) {
 					if (icon.sizes === size && !icon_url) {
-						icon_url = relativeToAbsolute(icon.src, manifestParent)
+						icon_url = relativeToAbsolute(icon.src, manifestParent);
 					}
 				}
 			}
@@ -212,7 +222,6 @@ await Promise.all(apps.map(async (app) => {
 			appsWithError.push(app.name);
 			return;
 		}
-
 
 		if (!description || !author) {
 			const html = await fetch(app.url).then((res) => res.text());
@@ -258,7 +267,9 @@ await Promise.all(apps.map(async (app) => {
 				description: description || undefined,
 				categories: categories.length ? categories : undefined,
 				author: author || undefined,
-				screenshots: screenshots_urls.length ? screenshots_urls : undefined,
+				screenshots: screenshots_urls.length
+					? screenshots_urls
+					: undefined,
 				accent_color: accent_color,
 				manifest_hash: hash,
 				icon: icon_url || undefined,
