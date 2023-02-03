@@ -18,7 +18,7 @@ export default function Screenshots(props: Props) {
 						idx === props.screenshots.length - 1}
 				>
 					<img
-						class="max-w-2xl h-64"
+						class="max-w-2xl max-h-96"
 						src={screenshot}
 					/>
 				</SlideItem>
