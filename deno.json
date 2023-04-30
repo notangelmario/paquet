@@ -18,6 +18,7 @@
 		"esm:update": "deno run -A https://esm.sh/v104 update",
 		"esm:remove": "deno run -A https://esm.sh/v104 remove"
 	},
+	"lock": false,
 	"importMap": "./import_map.json",
 	"lint": {
 		"files": {
