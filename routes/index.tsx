@@ -147,19 +147,6 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 					</h3>
 					<Card disableGutters>
 						<a
-							href={APP.discordInvite}
-							target="_blank"
-							rel="noreferrer noopener"
-						>
-							<ListItem
-								icon="discord"
-								title="Discord"
-								subtitle="Join our server!"
-								button
-								divider
-							/>
-						</a>
-						<a
 							href={APP.githubRepo}
 							target="_blank"
 							rel="noreferrer noopener"

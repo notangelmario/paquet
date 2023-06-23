@@ -33,11 +33,10 @@ export default function Settings(props: PageProps<DataProps>) {
 								<ListItem
 									title={props.data.user.name}
 									image={props.data.user.avatar_url}
-									subtitle={`${props.data.user.email}<br/>Connected with ${
-										props.data.user.providers.map((val) =>
-											providers.get(val)
-										).join(", ")
-									}`}
+									subtitle={`${props.data.user.email}<br/>Connected with ${props.data.user.providers.map((val) =>
+										providers.get(val)
+									).join(", ")
+										}`}
 									divider
 								/>
 								<LogoutButton />
@@ -77,19 +76,6 @@ export default function Settings(props: PageProps<DataProps>) {
 								icon="github"
 								title="GitHub"
 								subtitle="notangelmario/paquet"
-							/>
-						</a>
-						<a
-							href={APP.discordInvite}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<ListItem
-								button
-								divider
-								icon="discord"
-								title="Discord"
-								subtitle="Join our server!"
 							/>
 						</a>
 						<a

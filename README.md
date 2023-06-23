@@ -7,7 +7,8 @@
 
 # [📦 Paquet](https://paquet.shop)
 
-[![Discord](https://img.shields.io/discord/1031892991478071306?label=discord&logo=discord&style=flat-square)](https://discord.gg/JAcTzvxFFJ)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -22,24 +23,24 @@ Welcome to your new web app shop!
 
 ## About
 
-- ⚡ Optimized for speed
-- 💄 An actual good looking web app shop
-- ✨ As open as it gets
-- 🩸 On the bleeding edge of web technology
-- 🌐 Hosted on the edge
-- 🚀 Encourage app performance
-- 🔒 Security is a top priority
-- 💔 Optimized for non-JavaScript browsers
-- 🎈 Easy to contribute
+-   ⚡ Optimized for speed
+-   💄 An actual good looking web app shop
+-   ✨ As open as it gets
+-   🩸 On the bleeding edge of web technology
+-   🌐 Hosted on the edge
+-   🚀 Encourage app performance
+-   🔒 Security is a top priority
+-   💔 Optimized for non-JavaScript browsers
+-   🎈 Easy to contribute
 
 ## 🧰 Tools
 
 Paquet is built with a modern toolset in mind:
 
-- [Deno](https://deno.land)
-- [Fresh](https://fresh.deno.dev)
-- [Twind](https://twind.dev)
-- [Supabase](https://supabase.com)
+-   [Deno](https://deno.land)
+-   [Fresh](https://fresh.deno.dev)
+-   [Twind](https://twind.dev)
+-   [Supabase](https://supabase.com)
 
 ## 🔨 Tasks
 
