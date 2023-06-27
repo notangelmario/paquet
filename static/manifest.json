@@ -1,10 +1,12 @@
 {
-	"name": "Paquet Shop",
+	"name": "Paquet",
 	"short_name": "Paquet",
 	"author": "Savin Angel-Mario",
 	"description": "Check out Paquet to find the best web apps on the open web.",
-	"categories": ["utilites"],
-	"id":"shop.paquet",
+	"categories": [
+		"utilites"
+	],
+	"id": "app.paquet",
 	"icons": [
 		{
 			"src": "/android-chrome-192x192.png",
@@ -31,16 +33,21 @@
 	],
 	"shortcuts": [
 		{
-			"name": "Library",
-			"url": "/library",
-			"icons": [{ "src": "/shortcuts/library.png", "sizes": "96x96"}],
-			"description": "Browse the Paquet library"
+			"name": "Loved",
+			"url": "/loved",
+			"icons": [
+				{
+					"src": "/shortcuts/loved.png",
+					"sizes": "128x128"
+				}
+			],
+			"description": "See your loved Paquet apps"
 		}
 	],
 	"theme_color": "#8267be",
 	"background_color": "#ffffff",
 	"display": "standalone",
-	"start_url": "/home?utm_source=pwa",
+	"start_url": "/home?utm_source=homescreen",
 	"orientation": "portrait",
 	"scope": "/"
 }

@@ -8,11 +8,11 @@ Here is a `manifest.json` example:
 
 ```json
 {
-	"name": "Paquet Shop",
+	"name": "Paquet",
 	"author": "Savin Angel-Mario",
 	"short_name": "Paquet",
 	"description": "Check out Paquet to find the best web apps on the open web.",
-	"id": "shop.paquet",
+	"id": "app.paquet",
 	"icons": [
 		{
 			"src": "/android-chrome-192x192.png",
