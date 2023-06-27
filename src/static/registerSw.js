@@ -39,6 +39,6 @@ if (navigator.serviceWorker) {
 	});
 }
 
-window.addEventListener('beforeinstallprompt', (e) => {
-	window.installPrompt = e;
+globalThis.addEventListener('beforeinstallprompt', (e) => {
+	globalThis.installPrompt = e;
 });
