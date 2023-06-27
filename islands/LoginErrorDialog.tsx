@@ -2,7 +2,7 @@ import { useEffect, useState } from "preact/hooks";
 import Dialog from "@/islands/Dialog.tsx";
 
 export default function LoginErrorDialog() {
-	const url = new URL(globalThis.location?.href ?? "https://paquet.shop");
+	const url = new URL(globalThis.location?.href ?? "https://paquet.app");
 	const [open, setOpen] = useState(!!url.searchParams.get("error"));
 
 	useEffect(() => {
@@ -26,9 +26,8 @@ export default function LoginErrorDialog() {
 				open={open}
 				setOpen={setOpen}
 				title="Login error"
-				content={`There was an error logging you in. Here's the error message: "${
-					url.searchParams.get("error_description")
-				}"`}
+				content={`There was an error logging you in. Here's the error message: "${url.searchParams.get("error_description")
+					}"`}
 				buttons={[
 					{
 						text: "OK",

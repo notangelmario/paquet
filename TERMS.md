@@ -2,9 +2,9 @@
 
 ## 1. Privacy
 
-Our [Privacy Policy](https://paquet.shop/privacy) describe how
+Our [Privacy Policy](https://paquet.app/privacy) describe how
 we handle the information you give to Paquet by signing in. By signing
-in you agree with our [Privacy policy](https://paquet.shop/privacy) and those
+in you agree with our [Privacy policy](https://paquet.app/privacy) and those
 terms and conditions.
 
 ## 2. Using the service
@@ -19,7 +19,7 @@ terms and conditions.
 ## 3. Your account
 
 1. Users can always delete their account by submiting a account deletion
-   request at [savin@paquet.shop](mailto:savin@paquet.shop). We do not
+   request at [savin@paquet.app](mailto:savin@paquet.app). We do not
    keep any traces of your account after deletion.
 2. To access some of Paquet's features, you will need to create an account.
    You are completely responsible for safeguarind your accont. Paquet is not

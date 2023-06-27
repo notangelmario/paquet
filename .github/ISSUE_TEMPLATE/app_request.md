@@ -1,13 +1,12 @@
 ---
 name: App request
 about: Request an app to add to Paquet
-title: '{App name}'
+title: "{App name}"
 labels: app request
-assignees: ''
-
+assignees: ""
 ---
 
-<!-- Please check https://paquet.shop/docs/manifest -->
+<!-- Please check https://paquet.app/docs/manifest -->
 
 **App URL:** https://example.com\
 **App Manifest URL:** https://example.com/manifest.json (if the manifest is added using javascript, if you don't you can leave this empty)\
@@ -15,5 +14,5 @@ assignees: ''
 **App author:** Linus Torvalds\
 **Features:** (desktop optimized, requires auth, open source, offline compatible, mobile optimized)
 
-- Desktop optimized
-- Mobile optimized
+-   Desktop optimized
+-   Mobile optimized

@@ -3,7 +3,7 @@
 The only data that Paquet collects about you is your name, email, profile image
 and what provider you used to log in which are provided by your auth provider
 (Google, GitHub, etc.). This information is only used to display a profile
-in the [settings page](https://paquet.shop/settings).
+in the [settings page](https://paquet.app/settings).
 
 Paquet keeps data about the apps that you love. The apps that you love are
 queried to make a ranking system for most loved apps. The apps that you love
@@ -16,7 +16,7 @@ used to make a profit in any way.
 
 ## Account deletion
 
-You can request an account deletion at [savin@paquet.shop](mailto:savin@paquet.shop).
+You can request an account deletion at [savin@paquet.app](mailto:savin@paquet.app).
 Once you send the email, you confirm that you are sure that you want your account deleted.
 The email has to be sent from the same email that is associated with the account.
 

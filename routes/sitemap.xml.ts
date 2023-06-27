@@ -10,7 +10,7 @@ const excludedRoutes = [
 
 export const handler: Handlers = {
 	async GET() {
-		const sitemap = new SitemapContext("https://paquet.shop", manifest);
+		const sitemap = new SitemapContext("https://paquet.app", manifest);
 		const docs = Deno.readDir("docs");
 
 		const { data: apps } = await supabase.from("apps")

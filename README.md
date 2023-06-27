@@ -5,7 +5,7 @@
 	height="150px"
 />
 
-# [📦 Paquet](https://paquet.shop)
+# [📦 Paquet](https://paquet.app)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
@@ -18,6 +18,12 @@ Welcome to your new web app shop!
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
 #### ☕ If you like Paquet, consider [buying me a coffee](https://buymeacoffee.com/notangelmario)!
+
+---
+
+### We moved from paquet.shop to [paquet.app](https://paquet.app).
+
+> I am very sorry for this sudden change, but unfortunately, the domain name paquet.shop was getting too expensive to maintain.
 
 ---
 
@@ -77,7 +83,7 @@ deno task check
 ## 📄 Developer Documentation
 
 Developer documentation is available both on [GitHub](/docs/getting-started.md) and
-[Paquet](https://paquet.shop/docs/getting-started)
+[Paquet](https://paquet.app/docs/getting-started)
 
 Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
 

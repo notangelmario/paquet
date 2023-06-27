@@ -65,10 +65,10 @@ export default function App({ Component }: AppProps) {
 					content="apps, PWA, web apps, shop, store, app store, app shop"
 				/>
 				<meta property="og:title" content="Paquet - The web app shop" />
-				<meta property="og:url" content="https://paquet.shop" />
+				<meta property="og:url" content="https://paquet.app" />
 				<meta
 					property="og:image"
-					content="https://paquet.shop/og-image.jpg"
+					content="https://paquet.app/og-image.jpg"
 				/>
 
 				<link rel="stylesheet" href="/fonts.css" />
