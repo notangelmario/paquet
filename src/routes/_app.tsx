@@ -75,7 +75,7 @@ export default function App({ Component }: AppProps) {
 				<link rel="stylesheet" href="/global.css" />
 			</Head>
 			{/* @ts-ignore */}
-			<main onTouchStart="">
+			<main onTouchStart={() => ""}>
 				<Component />
 			</main>
 			<Footer />

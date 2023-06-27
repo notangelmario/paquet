@@ -184,8 +184,8 @@ export default function App({ data }: PageProps<DataProps>) {
 												subtitle={app.author}
 												divider={idx !==
 													(data.otherApps
-															?.length as number) -
-														1}
+														?.length as number) -
+													1}
 											/>
 										</a>
 									))}

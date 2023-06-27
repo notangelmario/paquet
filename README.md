@@ -68,12 +68,6 @@ To update apps:
 deno task update [appId] [--force]
 ```
 
-To manage dependencies:
-
-```
-deno task esm:[add|remove|update]
-```
-
 To type check, lint, and format the source code:
 
 ```

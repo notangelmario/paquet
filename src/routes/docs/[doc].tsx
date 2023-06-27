@@ -7,6 +7,7 @@ import Navbar from "@/islands/Navbar.tsx";
 import Container from "@/components/Container.tsx";
 import Icon from "@/components/Icon.tsx";
 import { DOCS } from "@/routes/docs/index.tsx";
+import { BUILD_ID } from "$fresh/src/runtime/build_id.ts";
 
 type DataProps = {
 	content: string;
@@ -20,7 +21,7 @@ export default function DocPage({ data }: PageProps<DataProps>) {
 			<Head>
 				<link
 					rel="stylesheet"
-					href={`/gfm.css?build=${__FRSH_BUILD_ID}`}
+					href={`/gfm.css?build=${BUILD_ID}`}
 				/>
 				<title>{data.title} &middot; Paquet</title>
 			</Head>
