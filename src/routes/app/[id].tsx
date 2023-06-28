@@ -105,7 +105,7 @@ export default function App({ data }: PageProps<DataProps>) {
 										: (
 											<a href="/login" class="block">
 												<Button
-													outlined
+													variant="outlined"
 													fullWidth
 													icon="heart"
 												>

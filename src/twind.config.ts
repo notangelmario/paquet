@@ -69,7 +69,14 @@ export default {
 				not-disabled:dark:(shadow-outset-dark active:shadow-pressed-dark)
 				disabled:(opacity-25 cursor-not-allowed)
 				z-0 transition-shadow`],
-			['btn-icon', `cursor-pointer 
+			['btn-', ({ $$ }) => `
+				bg-${$$}
+				cursor-pointer
+				shadow-outset-${$$}
+				not-disabled:active:shadow-pressed-${$$}
+				disabled:(opacity-25 cursor-not-allowed)
+				z-0 transition-shadow`],
+			['icon-btn', `cursor-pointer 
 					rounded-full
 					block p-2
 					focus:!outline-0

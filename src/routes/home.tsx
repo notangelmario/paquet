@@ -66,7 +66,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 						<a href="/category">
 							<Button
 								icon="list"
-								outlined
+								variant="outlined"
 							>
 								All
 							</Button>
@@ -82,6 +82,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 							>
 								<Button
 									icon={category.icon}
+									variant="primary"
 								>
 									{category.name}
 								</Button>

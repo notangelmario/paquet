@@ -1,6 +1,6 @@
 import { StateUpdater, useEffect } from "preact/hooks";
 import Stack from "@/components/Stack.tsx";
-import Button from "@/components/Button.tsx";
+import Button, { ButtonProps } from "@/components/Button.tsx";
 
 export type Props = {
 	open: boolean;
@@ -10,8 +10,7 @@ export type Props = {
 	buttons?: {
 		text: string;
 		icon?: string;
-		error?: boolean;
-		outlined?: boolean;
+		variant?: ButtonProps["variant"];
 		onClick?: () => void;
 	}[];
 };
@@ -33,11 +32,10 @@ export default function Dialog(props: Props) {
 				!m-0
 				transition-opacity duration-150 ease-in-out
 
-				${
-				props.open
+				${props.open
 					? "opacity-100 pointer-events-auto"
 					: "opacity-0 pointer-events-none"
-			}
+				}
 			`}
 			onClick={(e) => {
 				if (e.target !== e.currentTarget) return;
@@ -69,8 +67,7 @@ export default function Dialog(props: Props) {
 					{props.buttons && props.buttons.map((button, i) => (
 						<Button
 							key={i}
-							outlined={button.outlined}
-							error={button.error}
+							variant={button.variant}
 							icon={button.icon}
 							onClick={button.onClick}
 						>

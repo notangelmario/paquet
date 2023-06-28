@@ -68,6 +68,7 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 						<Button
 							icon="external-link"
 							class="max-w-screen-sm w-full mx-auto"
+							variant="primary"
 						>
 							Open Paquet
 						</Button>
@@ -257,12 +258,13 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 								<Button
 									icon="external-link"
 									fullWidth
+									variant="primary"
 								>
 									Open
 								</Button>
 							</a>
 							<Button
-								outlined
+								variant="outlined"
 								icon="hearts"
 								disabled
 								class="max-w-screen-sm w-full mx-auto"

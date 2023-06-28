@@ -1,31 +1,26 @@
 import type { JSX } from "preact";
 import Icon, { Props as IconProps } from "@/components/Icon.tsx";
 
-export type Props = {
+export interface ButtonProps {
 	icon?: string;
 	iconProps?: IconProps;
 	fullWidth?: boolean;
-	outlined?: boolean;
-	primary?: boolean;
-	error?: boolean;
+	variant?: "outset" | "primary" | "secondary" | "error" | "outlined"
 };
 
-export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
+export default function Button(props: ButtonProps & JSX.IntrinsicElements["button"]) {
 	return (
 		<button
 			{...props}
 			class={`
-				${!props.outlined ? "btn-outset" : "btn"}
+				btn-${props.variant || "outset"}
 				relative rounded px-8 py-2 text-base
-				${props.error ? "border-error" : "border-current"}
+				${props.variant === "error" ? "border-error" : "border-current"}
 				
-				${props.outlined
-					? `bg-light border dark:bg-dark ${props.error ? "text-error" : "text-current"}`
-					: `${props.error
-						? "bg-error shadow-error text-white"
-						: ""}`
+				${props.variant === "outlined"
+					? "btn bg-light border dark:bg-dark text-current"
+					: ""
 				}
-				${props.primary ? "bg-primary shadow shadow-outset-primary text-white" : ""}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.fullWidth ? "w-full" : ""}
@@ -36,9 +31,6 @@ export default function Button(props: Props & JSX.IntrinsicElements["button"]) {
 				(
 					<Icon
 						name={props.icon}
-						color={props.outlined
-							? props.error ? "#ff0000" : undefined
-							: props.primary ? "#ffffff" : undefined}
 						size={18}
 						inline
 						{...props.iconProps}

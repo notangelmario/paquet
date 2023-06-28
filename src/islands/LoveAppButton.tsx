@@ -46,7 +46,7 @@ export default function LoveAppButton({ app, ssrLoved }: Props) {
 	return (
 		<>
 			<Button
-				outlined
+				variant="outlined"
 				fullWidth
 				disabled={!IS_BROWSER}
 				icon={isAppLoved ? "broken-heart" : "heart"}
@@ -67,7 +67,7 @@ export default function LoveAppButton({ app, ssrLoved }: Props) {
 					},
 					{
 						text: "Ok",
-						outlined: true,
+						variant: "outlined",
 						onClick: () => setDialogOpen(false),
 					},
 				]}
@@ -81,12 +81,12 @@ export default function LoveAppButton({ app, ssrLoved }: Props) {
 					{
 						text: "Confirm",
 						icon: "broken-heart",
-						error: true,
+						variant: "error",
 						onClick: confirmDelete,
 					},
 					{
 						text: "Cancel",
-						outlined: true,
+						variant: "outlined",
 						onClick: () => setConfirmDeleteDialog(false),
 					},
 				]}

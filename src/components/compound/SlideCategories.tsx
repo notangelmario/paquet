@@ -20,7 +20,7 @@ export default function SlideCategories({ categoryIds }: Props) {
 						>
 							<a href={`/category/${categoryId}`}>
 								<Button
-									outlined
+									variant="outlined"
 									icon={getCategory(categoryId)?.icon}
 								>
 									{getCategory(categoryId)?.name}

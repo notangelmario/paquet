@@ -103,7 +103,7 @@ export default function Navbar(props: Props) {
 					? IS_BROWSER
 						? (
 							<button
-								class="btn-icon"
+								class="icon-btn"
 								onClick={goBack}
 							>
 								<Icon
@@ -115,7 +115,7 @@ export default function Navbar(props: Props) {
 						: (
 							<a
 								href="/home"
-								class="btn-icon"
+								class="icon-btn"
 							>
 								<Icon
 									name="back"
@@ -128,7 +128,7 @@ export default function Navbar(props: Props) {
 			<div class="flex flex-row ml-auto items-center gap-2">
 				{props.right &&
 					props.right.map(({ icon, href }) => (
-						<a class="btn-icon" href={href}>
+						<a class="icon-btn" href={href}>
 							<Icon
 								name={icon}
 								size={24}

@@ -94,6 +94,7 @@ export default function InstallBanner() {
 					fullWidth
 					onClick={onClickInstall}
 					icon="download"
+					variant="primary"
 				>
 					Install
 				</Button>
@@ -105,7 +106,7 @@ export default function InstallBanner() {
 				setOpen={setDialogOpen}
 				buttons={[
 					{
-						outlined: true,
+						variant: "outlined",
 						text: "OK",
 						onClick: () => setDialogOpen(false),
 					},
