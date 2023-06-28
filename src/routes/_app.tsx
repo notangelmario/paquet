@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
 import UserHandler from "@/islands/UserHandler.tsx";
 import LoginErrorDialog from "@/islands/LoginErrorDialog.tsx";
+import { APP } from "@/lib/app.ts";
 
 export default function App({ Component }: AppProps) {
 	return (
@@ -73,6 +74,12 @@ export default function App({ Component }: AppProps) {
 
 				<link rel="stylesheet" href="/fonts.css" />
 				<link rel="stylesheet" href="/global.css" />
+				<script
+					src={APP.umamiUrl}
+					data-website-id={APP.umamiId}
+					data-domains="paquet.app"
+				>
+				</script>
 			</Head>
 			{/* @ts-ignore */}
 			<main onTouchStart={() => ""}>
