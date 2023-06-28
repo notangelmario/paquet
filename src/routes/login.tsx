@@ -4,7 +4,7 @@ import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Icon from "@/components/Icon.tsx";
-import LoginButtons from "@/islands/LoginButtons.tsx";
+import LoginButtons from "@/islands/login/LoginButtons.tsx";
 import { Handler } from "@/types/Handler.ts";
 
 export default function Login() {

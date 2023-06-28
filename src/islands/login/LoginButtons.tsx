@@ -17,7 +17,6 @@ export default function LoginButtons() {
 		<>
 			<Button
 				icon="google"
-				outlined
 				fullWidth
 				onClick={() => login("google")}
 				disabled={!IS_BROWSER}
@@ -26,7 +25,6 @@ export default function LoginButtons() {
 			</Button>
 			<Button
 				icon="github"
-				outlined
 				fullWidth
 				onClick={() => login("github")}
 				disabled={!IS_BROWSER}
@@ -35,7 +33,6 @@ export default function LoginButtons() {
 			</Button>
 			<Button
 				icon="gitlab"
-				outlined
 				fullWidth
 				onClick={() => login("gitlab")}
 				disabled={!IS_BROWSER}

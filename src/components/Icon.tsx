@@ -43,6 +43,7 @@ import LoginIcon from "tabler-icons/login.tsx";
 import ArrowBigDownLineIcon from "tabler-icons/arrow-big-down-line.tsx";
 import LogoutIcon from "tabler-icons/logout.tsx";
 import DownloadOffIcon from "tabler-icons/download-off.tsx";
+import AnalyticsIcon from "tabler-icons/clipboard-data.tsx";
 
 export const ICONS = new Map([
 	["github", GitHubIcon],
@@ -89,6 +90,7 @@ export const ICONS = new Map([
 	["arrow-big-down-line", ArrowBigDownLineIcon],
 	["logout", LogoutIcon],
 	["download-off", DownloadOffIcon],
+	["analytics", AnalyticsIcon],
 ]);
 
 export interface Props {

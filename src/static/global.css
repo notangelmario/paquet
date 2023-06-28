@@ -8,23 +8,24 @@ body {
 	font-family: "Poppins", sans-serif !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	overflow-x: hidden;
 	background-color: #dddddd;
 }
 
 @media (prefers-color-scheme: dark) {
-	html, body {
+	html,
+	body {
 		background-color: #121212;
 		color: #dddddd;
 	}
 }
 
-html { 
+html {
 	height: 100%;
 }
 
-body { 
+body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100%;
@@ -33,7 +34,7 @@ body {
 main {
 	flex: 1;
 }
- 
+
 @media (hover: none) {
 	* {
 		box-sizing: border-box;
@@ -45,7 +46,9 @@ main {
 		user-select: none;
 	}
 
-	input, input::after, input::before {
+	input,
+	input::after,
+	input::before {
 		-webkit-touch-callout: initial;
 		-webkit-user-select: initial;
 		-khtml-user-select: initial;
@@ -64,8 +67,8 @@ main {
 }
 
 *::-webkit-scrollbar {
-	width: .75rem;
-	height: .75rem;
+	width: 0.75rem;
+	height: 0.75rem;
 }
 
 *::-webkit-scrollbar-track {
@@ -97,12 +100,12 @@ main {
 }
 
 ::selection {
-	background-color: #8267BE;
+	background-color: #8267be;
 	color: #fff;
 }
 
 button:focus {
-	outline: none!important;
+	outline: none !important;
 }
 
 a {

@@ -1,6 +1,4 @@
 import type { JSX } from "preact";
-import { tw } from "twind";
-import { btn } from "@/lib/ui.ts";
 import Icon from "@/components/Icon.tsx";
 import Divider from "@/components/Divider.tsx";
 
@@ -13,6 +11,7 @@ export type Props = {
 	subtitle?: string;
 	imageProps?: JSX.IntrinsicElements["img"];
 	divider?: boolean;
+	secondarySlot?: JSX.Element;
 };
 
 export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
@@ -23,7 +22,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 				class={`
 						flex items-center p-4
 
-						${props.button && tw(btn)} 
+						${props.button && "btn"} 
 						${props.class || ""}
 					`}
 			>
@@ -53,7 +52,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 						)
 					: null}
 
-				<div class="overflow-hidden">
+				<div class="overflow-hidden w-full">
 					<h2 class="text-lg truncate">
 						{props.title}
 					</h2>
@@ -65,6 +64,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 						/>
 					</p>
 				</div>
+				{props.secondarySlot}
 			</div>
 			{props.divider && <Divider inset />}
 		</>

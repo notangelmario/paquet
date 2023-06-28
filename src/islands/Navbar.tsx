@@ -1,8 +1,6 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useScroll } from "@/hooks/useScroll.ts";
-import { iconBtn } from "@/lib/ui.ts";
-import { tw } from "twind";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
@@ -86,11 +84,10 @@ export default function Navbar(props: Props) {
 	return (
 		<div
 			class={`
-				${
-				props.transparentTop && !trigger
+				${props.transparentTop && !trigger
 					? "bg-transparent"
 					: "bg-light dark:!bg-dark"
-			}
+				}
 				fixed flex w-full 
 				-top-px left-0 right-0
 				items-center 
@@ -98,7 +95,7 @@ export default function Navbar(props: Props) {
 				transition-colors
 				px-2 py-2 z-30
 
-				${trigger ? "shadow-xl" : ""}
+				${trigger ? "shadow-md" : ""}
 			`}
 		>
 			<div>
@@ -106,7 +103,7 @@ export default function Navbar(props: Props) {
 					? IS_BROWSER
 						? (
 							<button
-								class={tw(iconBtn)}
+								class="btn-icon"
 								onClick={goBack}
 							>
 								<Icon
@@ -118,7 +115,7 @@ export default function Navbar(props: Props) {
 						: (
 							<a
 								href="/home"
-								class={tw(iconBtn)}
+								class="btn-icon"
 							>
 								<Icon
 									name="back"
@@ -131,7 +128,7 @@ export default function Navbar(props: Props) {
 			<div class="flex flex-row ml-auto items-center gap-2">
 				{props.right &&
 					props.right.map(({ icon, href }) => (
-						<a class={tw(iconBtn)} href={href}>
+						<a class="btn-icon" href={href}>
 							<Icon
 								name={icon}
 								size={24}

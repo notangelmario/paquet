@@ -155,7 +155,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 											disableGutters
 											isLast={data.newApps &&
 												idx ===
-													data.newApps.length - 1}
+												data.newApps.length - 1}
 										>
 											{col.map((app, idx) => (
 												<a
@@ -240,8 +240,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 												).join(", ")}
 												divider={data.randomApps &&
 													idx !==
-														data.randomApps.length -
-															1}
+													data.randomApps.length -
+													1}
 											/>
 										</a>
 									))}
@@ -275,8 +275,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 												divider={data.randomCategory
 													?.apps &&
 													idx !==
-														data.randomCategory.apps
-																.length - 1}
+													data.randomCategory.apps
+														.length - 1}
 											/>
 										</a>
 									))}

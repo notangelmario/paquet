@@ -4,8 +4,9 @@ import type {
 } from "$fresh/server.ts";
 import { User } from "@/types/User.ts";
 
-type MiddlewareProps = {
+export type MiddlewareProps = {
 	user?: User;
+	analyticsDisabled?: boolean;
 };
 
 export type Handler = FreshHandler<unknown, MiddlewareProps>;

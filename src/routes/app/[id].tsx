@@ -126,13 +126,14 @@ export default function App({ data }: PageProps<DataProps>) {
 						</div>
 					</Stack>
 				</Container>
-				<SlideCategories
-					categoryIds={data.app.categories}
-				/>
-				<Container class="mt-4">
-					<Divider inset />
-				</Container>
 			</div>
+
+			<SlideCategories
+				categoryIds={data.app.categories}
+			/>
+			<Container class="mt-4">
+				<Divider inset />
+			</Container>
 
 			{data.app.screenshots &&
 				(

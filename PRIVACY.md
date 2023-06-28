@@ -11,12 +11,22 @@ are associated with an ID, but the ID can not be traced back to you by other
 users. **Your name, email or profile image are not public and cannot be seen by
 other users**.
 
+## Analytics data
+
+Paquet also collects analytics data to improve the service. This data is
+completely anonymous and cannot be traced back to you. The data that is
+collected is: browser, operating system, device, country, pages visited, time spent on
+each page, and the referrer. This data is collected by [Umami](https://umami.is/),
+an open source analytics tool. You can read more about Umami's privacy policy
+[here](https://umami.is/privacy). You can also opt-out of analytics data
+collection by clicking [here](https://paquet.app/settings).
+
 Paquet **does not share** any data about you with any third party, and is not
 used to make a profit in any way.
 
 ## Account deletion
 
-You can request an account deletion at [savin@paquet.app](mailto:savin@paquet.app).
+You can request an account deletion at [hello@paquet.app](mailto:hello@paquet.app).
 Once you send the email, you confirm that you are sure that you want your account deleted.
 The email has to be sent from the same email that is associated with the account.
 
@@ -24,8 +34,11 @@ The email has to be sent from the same email that is associated with the account
 
 ## For short
 
-All the data that we keep about is: name, email, profile image, authentication provider
-and apps you loved. No one except Paquet administrator(s) can see this information. Paquet
+All the data that we keep about you is: name, email, profile image, authentication provider
+and the apps you loved. Analytics data used for improving the service is also collected, but
+is not tailored to you.
+
+No one except Paquet administrator(s) can see this information. Paquet
 administrator(s) will only access this data when requested by a user. (troubleshooting, deleting account)
 
 ## FAQ

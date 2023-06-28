@@ -1,4 +1,4 @@
-import { Handler, PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -6,16 +6,13 @@ import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import LogoutButton from "@/islands/LogoutButton.tsx";
+import LogoutButton from "@/islands/login/LogoutButton.tsx";
 import { APP } from "@/lib/app.ts";
 import { providers } from "@/lib/authProviders.ts";
-import { User } from "@/types/User.ts";
+import type { Handler, MiddlewareProps } from "@/types/Handler.ts";
+import AnalyticsSwitch from "@/islands/AnalyticsSwitch.tsx";
 
-interface DataProps {
-	user?: User;
-}
-
-export default function Settings(props: PageProps<DataProps>) {
+export default function Settings(props: PageProps<MiddlewareProps>) {
 	return (
 		<>
 			<Head>
@@ -27,33 +24,35 @@ export default function Settings(props: PageProps<DataProps>) {
 					<Header icon="settings">
 						Settings
 					</Header>
-					{props.data?.user
-						? (
-							<Card disableGutters>
-								<ListItem
-									title={props.data.user.name}
-									image={props.data.user.avatar_url}
-									subtitle={`${props.data.user.email}<br/>Connected with ${props.data.user.providers.map((val) =>
-										providers.get(val)
-									).join(", ")
-										}`}
-									divider
-								/>
-								<LogoutButton />
-							</Card>
-						)
-						: (
-							<Card disableGutters>
+					<Card disableGutters>
+						{props.data?.user
+							? (
+								<>
+									<ListItem
+										title={props.data.user.name}
+										image={props.data.user.avatar_url}
+										subtitle={`${props.data.user.email}<br/>Connected with ${props.data.user.providers.map((val) =>
+											providers.get(val)
+										).join(", ")
+											}`}
+										divider
+									/>
+									<LogoutButton />
+								</>
+							)
+							: (
 								<a href="/login">
 									<ListItem
 										button
 										icon="login"
 										title="Login"
 										subtitle="Login to access more features"
+										divider
 									/>
 								</a>
-							</Card>
-						)}
+							)}
+						<AnalyticsSwitch analyticsDisabled={!!props.data.analyticsDisabled} />
+					</Card>
 					<Card disableGutters>
 						<a href="/docs">
 							<ListItem

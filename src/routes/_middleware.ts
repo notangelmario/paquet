@@ -4,7 +4,9 @@ import { MiddlewareHandlerContext } from "$fresh/server.ts";
 
 export const handler = async (req: Request, ctx: MiddlewareHandlerContext) => {
 	const cookies = getCookies(req.headers);
-	const access_token = cookies["supabase-access-token"];
+	const access_token = cookies?.["supabase-access-token"];
+
+	ctx.state.analyticsDisabled = cookies?.["analytics-disabled"] === "true";
 
 	if (access_token) {
 		const { data } = await supabase.auth.getUser(access_token);

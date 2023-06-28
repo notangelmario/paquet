@@ -19,7 +19,7 @@ terms and conditions.
 ## 3. Your account
 
 1. Users can always delete their account by submiting a account deletion
-   request at [savin@paquet.app](mailto:savin@paquet.app). We do not
+   request at [hello@paquet.app](mailto:hello@paquet.app). We do not
    keep any traces of your account after deletion.
 2. To access some of Paquet's features, you will need to create an account.
    You are completely responsible for safeguarind your accont. Paquet is not

@@ -2,7 +2,7 @@ import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
 import UserHandler from "@/islands/UserHandler.tsx";
-import LoginErrorDialog from "@/islands/LoginErrorDialog.tsx";
+import LoginErrorDialog from "@/islands/login/LoginErrorDialog.tsx";
 import { APP } from "@/lib/app.ts";
 
 export default function App({ Component }: AppProps) {

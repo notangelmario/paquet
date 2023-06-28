@@ -16,6 +16,7 @@ export default function LogoutButton() {
 			title="Log out"
 			disabled={!IS_BROWSER}
 			onClick={logout}
+			divider
 		/>
 	);
 }
