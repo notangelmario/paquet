@@ -75,7 +75,7 @@ export default {
 				shadow-outset-${$$}
 				not-disabled:active:shadow-pressed-${$$}
 				disabled:(opacity-25 cursor-not-allowed)
-				z-0 transition-shadow`],
+				z-0 transition-shadow ${$$ === "primary" ? "text-light" : ""}`],
 			['icon-btn', `cursor-pointer 
 					rounded-full
 					block p-2

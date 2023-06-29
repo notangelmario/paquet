@@ -10,6 +10,7 @@ export default function Card(props: Props) {
 		<div
 			{...props}
 			class={`
+				grainy
 				rounded
 				overflow-hidden
 				border border-light-dark dark:border-dark-light

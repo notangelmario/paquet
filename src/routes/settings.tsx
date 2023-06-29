@@ -10,7 +10,7 @@ import LogoutButton from "@/islands/login/LogoutButton.tsx";
 import { APP } from "@/lib/app.ts";
 import { providers } from "@/lib/authProviders.ts";
 import type { Handler, MiddlewareProps } from "@/types/Handler.ts";
-import AnalyticsSwitch from "@/islands/AnalyticsSwitch.tsx";
+import AnalyticsSwitch from "@/islands/settings/AnalyticsSwitch.tsx";
 
 export default function Settings(props: PageProps<MiddlewareProps>) {
 	return (

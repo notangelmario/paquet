@@ -23,16 +23,16 @@ import * as $17 from "./routes/search.tsx";
 import * as $18 from "./routes/settings.tsx";
 import * as $19 from "./routes/sitemap.xml.ts";
 import * as $20 from "./routes/terms-and-conditions.tsx";
-import * as $$0 from "./islands/AnalyticsSwitch.tsx";
-import * as $$1 from "./islands/Dialog.tsx";
-import * as $$2 from "./islands/InstallBanner.tsx";
-import * as $$3 from "./islands/LoveAppButton.tsx";
-import * as $$4 from "./islands/LovedApps.tsx";
-import * as $$5 from "./islands/Navbar.tsx";
-import * as $$6 from "./islands/UserHandler.tsx";
-import * as $$7 from "./islands/login/LoginButtons.tsx";
-import * as $$8 from "./islands/login/LoginErrorDialog.tsx";
-import * as $$9 from "./islands/login/LogoutButton.tsx";
+import * as $$0 from "./islands/Dialog.tsx";
+import * as $$1 from "./islands/InstallBanner.tsx";
+import * as $$2 from "./islands/LoveAppButton.tsx";
+import * as $$3 from "./islands/LovedApps.tsx";
+import * as $$4 from "./islands/Navbar.tsx";
+import * as $$5 from "./islands/UserHandler.tsx";
+import * as $$6 from "./islands/login/LoginButtons.tsx";
+import * as $$7 from "./islands/login/LoginErrorDialog.tsx";
+import * as $$8 from "./islands/login/LogoutButton.tsx";
+import * as $$9 from "./islands/settings/AnalyticsSwitch.tsx";
 
 const manifest = {
 	routes: {
@@ -59,16 +59,16 @@ const manifest = {
 		"./routes/terms-and-conditions.tsx": $20,
 	},
 	islands: {
-		"./islands/AnalyticsSwitch.tsx": $$0,
-		"./islands/Dialog.tsx": $$1,
-		"./islands/InstallBanner.tsx": $$2,
-		"./islands/LoveAppButton.tsx": $$3,
-		"./islands/LovedApps.tsx": $$4,
-		"./islands/Navbar.tsx": $$5,
-		"./islands/UserHandler.tsx": $$6,
-		"./islands/login/LoginButtons.tsx": $$7,
-		"./islands/login/LoginErrorDialog.tsx": $$8,
-		"./islands/login/LogoutButton.tsx": $$9,
+		"./islands/Dialog.tsx": $$0,
+		"./islands/InstallBanner.tsx": $$1,
+		"./islands/LoveAppButton.tsx": $$2,
+		"./islands/LovedApps.tsx": $$3,
+		"./islands/Navbar.tsx": $$4,
+		"./islands/UserHandler.tsx": $$5,
+		"./islands/login/LoginButtons.tsx": $$6,
+		"./islands/login/LoginErrorDialog.tsx": $$7,
+		"./islands/login/LogoutButton.tsx": $$8,
+		"./islands/settings/AnalyticsSwitch.tsx": $$9,
 	},
 	baseUrl: import.meta.url,
 };

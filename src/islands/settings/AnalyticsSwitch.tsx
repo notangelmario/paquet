@@ -2,7 +2,7 @@ import ListItem from "@/components/ListItem.tsx";
 import Switch from "@/components/Switch.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useState } from "preact/hooks";
-import { setCookie } from "../lib/cookie.ts";
+import { setCookie } from "@/lib/cookie.ts";
 
 interface Props {
 	analyticsDisabled: boolean;

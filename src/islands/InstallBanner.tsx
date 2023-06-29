@@ -39,8 +39,13 @@ export default function InstallBanner() {
 	};
 
 	const installInstructions = (props: typeof clientBrowser) => {
+		const header = `
+			<p class="p-4 rounded shadow-outset-primary">Tip: if you decide to change the theme, 
+			you will need to reinstall Paquet, for a better experience.</p><br />
+		`;
+
 		if (props.isIos && props.browserName === "Mobile Safari") {
-			return `
+			return header + `
 				Add Paquet by tapping
 				the share button
 				and tap "Add to Home Screen".
@@ -48,7 +53,7 @@ export default function InstallBanner() {
 		}
 
 		if (props.isIos && props.browserName !== "Mobile Safari") {
-			return `
+			return header + `
 				Unfortunately, Paquet on iOS only works in Safari.
 				Open Paquet in Safari and tap 
 				the share button
@@ -58,7 +63,7 @@ export default function InstallBanner() {
 
 		// Desktop Chrome instructions
 		if (props.browserName === "Chrome" && !props.type) {
-			return `
+			return header + `
 				Add Paquet by clicking
 				the install button
 				in the address bar and click "Install".
@@ -67,7 +72,7 @@ export default function InstallBanner() {
 
 		// Desktop Firefox instructions
 		if (props.browserName === "Firefox" && !props.type) {
-			return `
+			return header + `
 				Unfortunately, Firefox has removed PWA support
 				on desktop. You can use <a href="https://addons.mozilla.org/en-GB/firefox/addon/pwas-for-firefox/" target="_blank" rel="noreferrer noopener">this extension</a>
 				to install Paquet.
