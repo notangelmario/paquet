@@ -10,7 +10,6 @@ export default function Card(props: Props) {
 		<div
 			{...props}
 			class={`
-				grainy
 				rounded
 				overflow-hidden
 				border border-light-dark dark:border-dark-light
@@ -23,6 +22,7 @@ export default function Card(props: Props) {
 				${props.class || ""}
 			`}
 		>
+			<div className="grainy w-full h-full">{props.children}</div>
 		</div>
 	);
 }
