@@ -112,15 +112,3 @@ a {
 	color: inherit;
 	text-decoration-line: none;
 }
-
-.grainy {
-	background:	url(/noise-light.svg);
-	background-repeat: repeat;
-	background-size: 512px 512px;
-}
-
-@media (prefers-color-scheme: dark) {
-	.grainy {
-		background: url(/noise-dark.svg);
-	}
-}

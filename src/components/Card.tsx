@@ -10,6 +10,7 @@ export default function Card(props: Props) {
 		<div
 			{...props}
 			class={`
+				relative
 				rounded
 				overflow-hidden
 				border border-light-dark dark:border-dark-light
@@ -17,12 +18,13 @@ export default function Card(props: Props) {
 					? "shadow-inset-light dark:shadow-inset-dark"
 					: "shadow-outset-light dark:shadow-outset-dark"
 				}
-				
+				grainy
+
 				${!props.disableGutters && "p-4"}
 				${props.class || ""}
 			`}
 		>
-			<div className="grainy w-full h-full">{props.children}</div>
+			{props.children}
 		</div>
 	);
 }

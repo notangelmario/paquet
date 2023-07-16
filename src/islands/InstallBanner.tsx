@@ -39,10 +39,7 @@ export default function InstallBanner() {
 	};
 
 	const installInstructions = (props: typeof clientBrowser) => {
-		const header = `
-			<p class="p-4 rounded shadow-outset-primary">Tip: if you decide to change the theme, 
-			you will need to reinstall Paquet, for a better experience.</p><br />
-		`;
+		const header = ``;
 
 		if (props.isIos && props.browserName === "Mobile Safari") {
 			return header + `

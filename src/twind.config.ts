@@ -57,6 +57,7 @@ export default {
 			},
 		},
 		rules: [
+			['grainy', `bg-[url(/noise-light.svg)] bg-repeat dark:bg-[url(/noise-dark.svg)]`],
 			['btn', `cursor-pointer
 				not-disabled:(active:override:opacity-50 hover:opacity-75)
 				disabled:(opacity-25 cursor-not-allowed)
