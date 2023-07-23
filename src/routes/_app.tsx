@@ -89,9 +89,9 @@ export default function App({ Component }: AppProps) {
 			<UserHandler />
 			<LoginErrorDialog />
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
-				<script src="/registerSw.js"></script>
+				<script type="text/javascript" src="/registerSw.js"></script>
 			)}
-			<script src="/env.js"></script>
+			<script type="text/javascript" src="/env.js"></script>
 		</html>
 	);
 }
