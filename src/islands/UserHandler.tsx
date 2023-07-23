@@ -2,6 +2,7 @@ import { useEffect } from "preact/hooks";
 import { supabase } from "@/lib/supabase-client.ts";
 
 export default function UserHandler() {
+
 	useEffect(() => {
 		supabase.auth.onAuthStateChange((event, session) => {
 			if (event === "SIGNED_OUT") {
