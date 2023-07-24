@@ -27,6 +27,15 @@ export default function Footer() {
 						Terms and Conditions
 					</a>
 				</div>
+
+				<div class="flex flex-row gap-2 mt-4 justify-center">
+					<a
+						href="/privacy"
+						class="underline opacity-75"
+					>
+						Docs
+					</a>
+				</div>
 			</Container>
 		</footer>
 	);

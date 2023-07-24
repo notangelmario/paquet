@@ -49,6 +49,12 @@ You can also specify an URL to your app's source code.
 > In future releases, you will have the ability to display releases from
 GitHub or GitLab.
 
+## Domain hosting
+
+If you don't want to pay for domain hosting, you can apply for
+subdomain hosting at `yourapp.paquet.app`. Check [the documentation](/docs/hosting.md)
+for more information.
+
 ## Updating
 
 Paquet will periodically fetch new content using your manifest so you don't have to

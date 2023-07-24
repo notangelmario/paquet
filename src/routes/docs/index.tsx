@@ -26,6 +26,12 @@ export const DOCS: Doc[] = [
 		icon: "file-description",
 		filename: "manifest.md",
 	},
+	{
+		title: "Subdomain hosting",
+		description: "How to host your app on a subdomain of paquet.app",
+		icon: "cloud",
+		filename: "hosting.md",
+	}
 ];
 
 export default function Documentation() {

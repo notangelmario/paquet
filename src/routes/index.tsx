@@ -166,9 +166,20 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 							rel="noreferrer noopener"
 						>
 							<ListItem
-								icon="file-description"
+								icon="source-code"
 								title="Contribution Guide"
 								subtitle="Learn how to contribute to Paquet"
+								button
+								divider
+							/>
+						</a>
+						<a
+							href="/docs"
+						>
+							<ListItem
+								icon="file-description"
+								title="Documentation"
+								subtitle="Learn how to use Paquet"
 								button
 							/>
 						</a>

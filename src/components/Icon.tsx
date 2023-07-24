@@ -38,6 +38,7 @@ import Mobile from "tabler-icons/device-mobile.tsx";
 import LockIcon from "tabler-icons/lock.tsx";
 import SourceCodeIcon from "tabler-icons/source-code.tsx";
 import CloudOffIcon from "tabler-icons/cloud-off.tsx";
+import CloudIcon from "tabler-icons/cloud.tsx";
 import UserIcon from "tabler-icons/user.tsx";
 import LoginIcon from "tabler-icons/login.tsx";
 import ArrowBigDownLineIcon from "tabler-icons/arrow-big-down-line.tsx";
@@ -90,6 +91,7 @@ export const ICONS = new Map([
 	["lock", LockIcon],
 	["source-code", SourceCodeIcon],
 	["cloud-off", CloudOffIcon],
+	["cloud", CloudIcon],
 	["user", UserIcon],
 	["login", LoginIcon],
 	["arrow-big-down-line", ArrowBigDownLineIcon],
