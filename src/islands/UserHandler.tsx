@@ -4,7 +4,6 @@ import { supabase } from "@/lib/supabase-client.ts";
 export default function UserHandler() {
 
 	useEffect(() => {
-		console.log("UserHandler: useEffect");
 		supabase.auth.onAuthStateChange((event, session) => {
 			if (event === "SIGNED_OUT") {
 				// delete cookies on sign out
