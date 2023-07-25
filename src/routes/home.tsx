@@ -17,6 +17,7 @@ import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/compound/ImageCard.tsx";
 import Card from "@/components/Card.tsx";
+import { buildImageUrl } from "@/lib/image.ts";
 
 interface DataProps {
 	newApps?: App[];
@@ -95,8 +96,8 @@ export default function Home({ data }: PageProps<DataProps>) {
 					{data.randomCards?.map((app, idx) => (
 						<SlideItem
 							key={idx}
-							isLast={data.randomApps &&
-								idx === data.randomApps.length - 1}
+							isLast={data.randomCards &&
+								idx === data.randomCards.length - 1}
 						>
 							<a
 								href={`/app/${app.id}`}
@@ -104,10 +105,10 @@ export default function Home({ data }: PageProps<DataProps>) {
 								<ImageCard
 									class="flex flex-col gap-y-4 w-64"
 									// Weird stuff man
-									image={app.cover!}
+									image={buildImageUrl(app.cover!, 350)}
 								>
 									<img
-										src={app.icon}
+										src={buildImageUrl(app.icon, 72, 72)}
 										class="rounded-xl w-16 h-16"
 									/>
 									<h2 class="text-2xl">
@@ -118,7 +119,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 						</SlideItem>
 					))}
 				</SlideContainer>
-				{data.newApps &&
+				{data.newApps && data.newApps.length ?
 					(
 						<div>
 							<Container>
@@ -167,7 +168,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 														button
 														key={app.id}
 														style={{ width: 300 }}
-														image={app.icon}
+														image={buildImageUrl(app.icon, 72, 72)}
 														title={app.name}
 														subtitle={app.categories
 															?.map((category) =>
@@ -183,7 +184,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 									))}
 							</SlideContainer>
 						</div>
-					)}
+					) : null}
 			</Stack>
 			<Container>
 				<InstallBanner />
@@ -199,7 +200,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 								<ListItem
 									button
 									key={app.id}
-									image={app.icon}
+									image={buildImageUrl(app.icon, 72, 72)}
 									title={app.name}
 									subtitle={app.author}
 									divider={data.lovedApps &&
@@ -232,7 +233,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 											<ListItem
 												button
 												key={app.id}
-												image={app.icon}
+												image={buildImageUrl(app.icon, 72, 72)}
 												title={app.name}
 												subtitle={app.categories?.map(
 													(category) =>
@@ -270,7 +271,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 											<ListItem
 												button
 												key={app.id}
-												image={app.icon}
+												image={buildImageUrl(app.icon, 72 ,72)}
 												title={app.name}
 												subtitle={app.author}
 												divider={data.randomCategory

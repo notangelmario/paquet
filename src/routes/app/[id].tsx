@@ -16,6 +16,7 @@ import Screenshots from "@/components/compound/Screenshots.tsx";
 import LoveAppButton from "@/islands/LoveAppButton.tsx";
 import Card from "@/components/Card.tsx";
 import SlideCategories from "@/components/compound/SlideCategories.tsx";
+import { buildImageUrl } from "@/lib/image.ts";
 
 interface DataProps {
 	app: App;
@@ -61,7 +62,7 @@ export default function App({ data }: PageProps<DataProps>) {
 							<div class="flex flex-row flex-wrap gap-4 p-4 shadow-inset-light dark:shadow-inset-dark">
 								<img
 									class="rounded w-20 h-20 shadow-outset-light dark:shadow-outset-dark bg-light-light dark:bg-dark-light"
-									src={data.app.icon}
+									src={buildImageUrl(data.app.icon, 96, 96)}
 								/>
 								<div class="flex-1">
 									<h2 class="text-3xl">
@@ -181,7 +182,7 @@ export default function App({ data }: PageProps<DataProps>) {
 											<ListItem
 												button
 												title={app.name}
-												image={app.icon}
+												image={buildImageUrl(app.icon, 64, 64)}
 												subtitle={app.author}
 												divider={idx !==
 													(data.otherApps

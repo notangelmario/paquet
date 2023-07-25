@@ -1,6 +1,7 @@
 import type { App } from "@/types/App.ts";
 import { useUserLoved } from "@/hooks/useUserLoved.ts";
 import ListItem from "@/components/ListItem.tsx";
+import { buildImageUrl } from "@/lib/image.ts";
 
 interface Props {
 	ssrApps: App[];
@@ -17,7 +18,7 @@ export default function LovedApps({ ssrApps }: Props) {
 				>
 					<ListItem
 						title={app.name}
-						image={app.icon}
+						image={buildImageUrl(app.icon, 64, 64)}
 						subtitle={app.author}
 					/>
 				</a>

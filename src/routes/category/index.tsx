@@ -6,6 +6,7 @@ import Container from "@/components/Container.tsx";
 import Card from "@/components/Card.tsx";
 import Stack from "@/components/Stack.tsx";
 import Navbar from "@/islands/Navbar.tsx";
+import { buildImageUrl } from "@/lib/image.ts";
 
 export default function CategoryPage() {
 	return (
@@ -27,7 +28,7 @@ export default function CategoryPage() {
 							>
 								<ListItem
 									button
-									icon={category.icon}
+									icon={buildImageUrl(category.icon, 64, 64)}
 									title={category.name}
 									divider={CATEGORIES &&
 										category.id !==
