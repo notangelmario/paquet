@@ -81,7 +81,6 @@ export default function App({ Component }: AppProps) {
 				>
 				</script>
 			</Head>
-			{/* @ts-ignore */}
 			<main onTouchStart={() => ""}>
 				<Component />
 			</main>

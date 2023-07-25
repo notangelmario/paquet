@@ -4,8 +4,9 @@ import { supabase } from "@/lib/supabase-client.ts";
 export default function UserHandler() {
 
 	useEffect(() => {
-		supabase.auth.onAuthStateChange((_, session) => {
-			if (!session) {
+		console.log("UserHandler: useEffect");
+		supabase.auth.onAuthStateChange((event, session) => {
+			if (event === "SIGNED_OUT") {
 				// delete cookies on sign out
 				const expires = new Date(0).toUTCString();
 				document.cookie =
@@ -13,7 +14,7 @@ export default function UserHandler() {
 				document.cookie =
 					`supabase-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`;
 			} else if (
-				session
+				(event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && session
 			) {
 				const maxAge = 100 * 365 * 24 * 60 * 60; // 100 years, never expires
 				document.cookie =
