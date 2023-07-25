@@ -191,8 +191,8 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 						</span>{" "}
 						in mind.
 					</h3>
-					<div class="max-w-screen-sm w-full mx-auto">
-						<ul class="list-disc list-outside ml-4 text-lg">
+					<div class="max-w-screen-sm w-full mx-auto text-center">
+						<ul class="text-lg">
 							<li>
 								<a
 									class="underline"

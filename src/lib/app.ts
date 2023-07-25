@@ -1,7 +1,7 @@
 import "dotenv";
 
 export const APP = {
-	version: "4.1.1",
+	version: "4.1.2",
 	codename: "Dorina",
 	githubRepo: "https://github.com/notangelmario/paquet",
 	umamiUrl: Deno.env.get("UMAMI_URL"),
