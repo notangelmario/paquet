@@ -3,9 +3,6 @@ import { Head } from "$fresh/runtime.ts";
 import Container from "@/components/Container.tsx";
 import Stack from "@/components/Stack.tsx";
 import Icon from "@/components/Icon.tsx";
-import { Handler } from "@/types/Handler.ts";
-import type { App } from "@/types/App.ts";
-import { PageProps } from "$fresh/server.ts";
 import Button from "@/components/Button.tsx";
 import Card from "@/components/Card.tsx";
 import Divider from "@/components/Divider.tsx";
@@ -13,11 +10,23 @@ import ListItem from "@/components/ListItem.tsx";
 import Features from "@/components/compound/Features.tsx";
 import { APP } from "@/lib/app.ts";
 
-interface DataProps {
-	apps: App[];
-}
+export default async function Welcome(req: Request) {
+	const url = new URL(req.url);
 
-export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
+	if (url.searchParams.get("utm_source") === "homescreen" || url.searchParams.get("utm_source") === "pwa") {
+		return new Response("", {
+			status: 307,
+			headers: {
+				"Location": "/home?utm_source=homescreen",
+			},
+		});
+	}
+
+	const { data: apps } = await supabase.from("random_apps")
+		.select("id, icon")
+		.limit(8);
+
+
 	return (
 		<>
 			<Head>
@@ -42,38 +51,42 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 				</p>
 			</Container>
 			<Container>
-				<Stack>
-					<h2 class="text-5xl font-bold">
-						No downloads. No installs. You just{" "}
-						<span class="text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary">
-							open it
-						</span>.
-					</h2>
-					<div class="grid grid-cols-4 md:grid-cols-8 gap-2 place-items-center place-content-center filter grayscale">
-						{apps.map((app) => (
-							<a
-								href={`/app/${app.id}`}
-							>
-								<img
-									class="w-16 h-16 rounded"
-									src={app.icon}
-								/>
-							</a>
-						))}
-					</div>
-					<a
-						href="/home"
-						class="w-full"
-					>
-						<Button
-							icon="external-link"
-							class="max-w-screen-sm w-full mx-auto"
-							variant="primary"
+				<Card class="p-16">
+					<Stack>
+						<h2 class="text-5xl font-bold">
+							No downloads. <br/>
+							No installs. <br/>
+							Just{" "}
+							<span class="text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary">
+								open it
+							</span>.
+						</h2>
+						<div class="grid grid-cols-4 md:grid-cols-8 gap-2 place-items-center place-content-center filter grayscale">
+							{apps ? apps.map((app) => (
+								<a
+									href={`/app/${app.id}`}
+								>
+									<img
+										class="w-16 h-16 rounded"
+										src={app.icon}
+									/>
+								</a>
+							)) : null}
+						</div>
+						<a
+							href="/home"
+							class="w-full"
 						>
-							Open Paquet
-						</Button>
-					</a>
-				</Stack>
+							<Button
+								icon="external-link"
+								variant="primary"
+								fullWidth
+							>
+								Open Paquet
+							</Button>
+						</a>
+					</Stack>
+				</Card>
 				<Stack>
 					<h3 class="text-center font-bold text-3xl mt-32">
 						What's in store?
@@ -184,6 +197,26 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 							/>
 						</a>
 					</Card>
+
+					<h3 class="text-center font-bold text-3xl mt-32">
+						And close to you
+					</h3>
+					<Card class="max-w-screen-md mx-auto">
+						<p>
+							Deployed in 35+ locations around the world, Paquet
+							is always close to you. We use{" "}
+							<a	
+								href="https://vercel.com"
+								target="_blank"
+								rel="noreferrer noopener"
+								class="underline text-primary"
+							>
+								Deno Deploy
+							</a>{" "}
+							to deploy Paquet.
+						</p>
+					</Card>
+
 					<h3 class="text-center font-bold text-3xl mt-32">
 						Built with{" "}
 						<span class="text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary">
@@ -289,22 +322,3 @@ export default function Welcome({ data: { apps } }: PageProps<DataProps>) {
 		</>
 	);
 }
-
-export const handler: Handler = async (req, ctx) => {
-	const url = new URL(req.url);
-
-	if (url.searchParams.get("utm_source") === "pwa") {
-		return new Response("", {
-			status: 307,
-			headers: {
-				"Location": "/home?utm_source=pwa",
-			},
-		});
-	}
-
-	const { data: apps } = await supabase.from("random_apps")
-		.select("id, icon")
-		.limit(8);
-
-	return ctx.render({ apps });
-};
