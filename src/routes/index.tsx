@@ -51,11 +51,11 @@ export default async function Welcome(req: Request) {
 				</p>
 			</Container>
 			<Container>
-				<Card class="p-16">
+				<Card class="p-8 md:p-16">
 					<Stack>
 						<h2 class="text-5xl font-bold">
-							No downloads. <br/>
-							No installs. <br/>
+							No downloads. <br />
+							No installs. <br />
 							Just{" "}
 							<span class="text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary">
 								open it
@@ -205,7 +205,7 @@ export default async function Welcome(req: Request) {
 						<p>
 							Deployed in 35+ locations around the world, Paquet
 							is always close to you. We use{" "}
-							<a	
+							<a
 								href="https://vercel.com"
 								target="_blank"
 								rel="noreferrer noopener"
