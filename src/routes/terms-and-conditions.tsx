@@ -17,7 +17,7 @@ export default function TermsAndConditions({ data }: PageProps<DataProps>) {
 			<Head>
 				<link
 					rel="stylesheet"
-					href="/gfm.css"
+					href={`/gfm.css?build=${__FRSH_BUILD_ID}`}
 				/>
 				<title>Terms and Condition &middot; Paquet</title>
 			</Head>

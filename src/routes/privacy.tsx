@@ -17,7 +17,7 @@ export default function Privacy({ data }: PageProps<DataProps>) {
 			<Head>
 				<link
 					rel="stylesheet"
-					href="/gfm.css"
+					href={`/gfm.css?build=${__FRSH_BUILD_ID}`}
 				/>
 				<title>Privacy Policy &middot; Paquet</title>
 			</Head>
