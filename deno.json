@@ -68,7 +68,8 @@
     "preset-tailwind": "https://esm.sh/@twind/preset-tailwind@1.1.4",
     "preset-autoprefix": "https://esm.sh/@twind/preset-autoprefix@1.0.7",
     "ua-parser-js": "https://esm.sh/ua-parser-js@1.0.2",
-    "imagescript": "https://esm.sh/imagescript@1.2.15"
+    "imagescript": "https://esm.sh/imagescript@1.2.15",
+    "libsql": "https://esm.sh/@libsql/client@0.3.1/web"
   },
   "scopes": {}
 }

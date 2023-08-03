@@ -10,3 +10,5 @@
 
 # Sublime
 *.sublime-workspace
+
+scripts/migrate.ts

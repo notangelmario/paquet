@@ -18,6 +18,7 @@ import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/compound/ImageCard.tsx";
 import Card from "@/components/Card.tsx";
 import { buildImageUrl } from "@/lib/image.ts";
+import { convertStringToArray, dbGet } from "@/lib/db.ts";
 
 interface DataProps {
 	newApps?: App[];
@@ -170,7 +171,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 														style={{ width: 300 }}
 														image={buildImageUrl(app.icon, 72, 72)}
 														title={app.name}
-														subtitle={app.categories
+														subtitle={convertStringToArray(app.categories)
 															?.map((category) =>
 																getCategory(
 																	category,
@@ -235,7 +236,7 @@ export default function Home({ data }: PageProps<DataProps>) {
 												key={app.id}
 												image={buildImageUrl(app.icon, 72, 72)}
 												title={app.name}
-												subtitle={app.categories?.map(
+												subtitle={convertStringToArray(app.categories)?.map(
 													(category) =>
 														getCategory(category)
 															?.name,
@@ -298,37 +299,16 @@ export const handler: Handler = async (_, ctx) => {
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 
-	// This is used to determine for how long an app is considered
-	// to be new.
-	const sixtyDaysAgo = new Date(
-		new Date().getTime() - (60 * 24 * 60 * 60 * 1000),
-	);
-
 	const [
-		{ data: randomCategoryApps },
-		{ data: newApps },
-		{ data: randomApps },
-		{ data: randomCards },
-		{ data: lovedApps },
+		randomCategoryApps,
+		newApps,
+		randomApps,
+		randomCards,
 	] = await Promise.all([
-		supabase.from("random_apps")
-			.select("id, name, icon, author")
-			.contains("categories", [randomCategoryId])
-			.limit(5),
-		supabase.from("apps")
-			.select("id, name, icon, categories")
-			.order("addedOn", { ascending: false })
-			.gte("addedOn", sixtyDaysAgo.toDateString()),
-		supabase.from("random_apps")
-			.select("id, name, icon, categories")
-			.limit(5),
-		supabase.from("random_apps")
-			.select("id, name, icon, cover")
-			.not("cover", "is", null)
-			.limit(6),
-		supabase.rpc("loved_apps")
-			.select("id, name, icon, author")
-			.limit(5),
+		dbGet<App[]>(`select id, name, icon, author from apps where categories like '%${randomCategoryId}%' order by random() limit 5;`),
+		dbGet<App[]>(`select id, name, icon, categories from apps where addedOn > date('now', '-120 days') order by addedOn desc limit 5;`),
+		dbGet<App[]>(`select id, name, icon, categories from apps limit 5;`),
+		dbGet<App[]>(`select id, name, icon, cover from apps where cover is not null order by random() limit 6;`),
 	]);
 
 	const randomCategory = randomCategoryApps?.length
@@ -343,6 +323,5 @@ export const handler: Handler = async (_, ctx) => {
 		randomCards,
 		randomApps,
 		randomCategory,
-		lovedApps,
 	} as DataProps);
 };

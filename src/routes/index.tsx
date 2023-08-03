@@ -1,4 +1,3 @@
-import { supabase } from "@/lib/supabase.ts";
 import { Head } from "$fresh/runtime.ts";
 import Container from "@/components/Container.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -9,6 +8,8 @@ import Divider from "@/components/Divider.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Features from "@/components/compound/Features.tsx";
 import { APP } from "@/lib/app.ts";
+import { dbGet } from "@/lib/db.ts";
+import { App } from "@/types/App.ts";
 
 export default async function Welcome(req: Request) {
 	const url = new URL(req.url);
@@ -22,10 +23,7 @@ export default async function Welcome(req: Request) {
 		});
 	}
 
-	const { data: apps } = await supabase.from("random_apps")
-		.select("id, icon")
-		.limit(8);
-
+	const apps = await dbGet<App[]>("select * from apps where approved == 1 order by random() limit 8;");
 
 	return (
 		<>

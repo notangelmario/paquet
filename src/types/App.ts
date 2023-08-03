@@ -25,7 +25,7 @@ export interface App {
 	cover: string | null;
 
 	description: string;
-	categories: string[];
+	categories: string;
 
 	icon: string;
 	accent_color: string;

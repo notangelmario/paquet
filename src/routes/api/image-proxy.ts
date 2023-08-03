@@ -34,7 +34,7 @@ export const handler: Handler = async (req) => {
 
 			img = await imageToResize.encode(1);
 		} catch {
-			console.error("Error resizing image");
+			console.error("Error resizing image", imgUrl);
 		}
 	}
 
