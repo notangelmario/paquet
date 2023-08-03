@@ -1,12 +1,11 @@
 import { FEATURES } from "@/lib/features.ts";
-import type { App } from "@/types/App.ts";
 import Container from "@/components/Container.tsx";
 import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
-	features: App["features"];
+	features: string[];
 };
 
 export default function Features(props: Props) {

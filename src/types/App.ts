@@ -11,8 +11,8 @@ export interface Feature {
 	name: string;
 }
 
-// We use null instead of optional because Supabase
-// does not support undefined
+// Properties in plural are arrays but are stored 
+// as strings in the database.
 export interface App {
 	id: string;
 
@@ -21,7 +21,7 @@ export interface App {
 	author: string;
 
 	url: string;
-	screenshots: string[] | null;
+	screenshots: string | null;
 	cover: string | null;
 
 	description: string;
@@ -33,12 +33,12 @@ export interface App {
 	manifest_url: string;
 	manifest_hash: string;
 
-	features: string[] | null;
+	features: string | null;
 
 	github_url: string | null;
 	gitlab_url: string | null;
 
 	approved: boolean;
 
-	addedOn: number;
+	added_on: number;
 }

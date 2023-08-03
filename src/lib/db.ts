@@ -12,10 +12,11 @@ export async function dbGet<T>(sql: string): Promise<T | null> {
 		return rows;
 	} catch (error) {
 		console.error(error);
-
+			
 		return null;
 	}
 }
+
 
 export const convertStringToArray = (str: string): string[] => {
 	return str.split(",").map((item) => item.trim());

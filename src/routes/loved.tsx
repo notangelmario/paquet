@@ -11,10 +11,6 @@ import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
 import LovedApps from "@/islands/LovedApps.tsx";
 
-interface DataProps {
-	apps: App[];
-}
-
 export default function Loved(props: PageProps<DataProps>) {
 	return (
 		<>
