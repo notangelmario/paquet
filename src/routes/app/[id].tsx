@@ -21,6 +21,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 	const appId = ctx.params.id;
 	const app = await dbGet<App[]>(`select * from apps where id = '${appId}';`).then((res) => res?.[0]);
 
+
 	if (!app) {
 		return new Response("Not found", {
 			status: 307,
