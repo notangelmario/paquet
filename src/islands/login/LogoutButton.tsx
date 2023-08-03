@@ -1,12 +1,9 @@
-import { supabase } from "@/lib/supabase-client.ts";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import ListItem from "@/components/ListItem.tsx";
 
 export default function LogoutButton() {
 	const logout = () => {
-		supabase.auth.signOut().then(() => {
-			window.location.reload();
-		});
+		console.log("logout");
 	};
 
 	return (

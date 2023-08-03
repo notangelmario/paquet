@@ -29,11 +29,10 @@ import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/LoveAppButton.tsx";
 import * as $$3 from "./islands/LovedApps.tsx";
 import * as $$4 from "./islands/Navbar.tsx";
-import * as $$5 from "./islands/UserHandler.tsx";
-import * as $$6 from "./islands/login/LoginButtons.tsx";
-import * as $$7 from "./islands/login/LoginErrorDialog.tsx";
-import * as $$8 from "./islands/login/LogoutButton.tsx";
-import * as $$9 from "./islands/settings/AnalyticsSwitch.tsx";
+import * as $$5 from "./islands/login/LoginButtons.tsx";
+import * as $$6 from "./islands/login/LoginErrorDialog.tsx";
+import * as $$7 from "./islands/login/LogoutButton.tsx";
+import * as $$8 from "./islands/settings/AnalyticsSwitch.tsx";
 
 const manifest = {
 	routes: {
@@ -66,11 +65,10 @@ const manifest = {
 		"./islands/LoveAppButton.tsx": $$2,
 		"./islands/LovedApps.tsx": $$3,
 		"./islands/Navbar.tsx": $$4,
-		"./islands/UserHandler.tsx": $$5,
-		"./islands/login/LoginButtons.tsx": $$6,
-		"./islands/login/LoginErrorDialog.tsx": $$7,
-		"./islands/login/LogoutButton.tsx": $$8,
-		"./islands/settings/AnalyticsSwitch.tsx": $$9,
+		"./islands/login/LoginButtons.tsx": $$5,
+		"./islands/login/LoginErrorDialog.tsx": $$6,
+		"./islands/login/LogoutButton.tsx": $$7,
+		"./islands/settings/AnalyticsSwitch.tsx": $$8,
 	},
 	baseUrl: import.meta.url,
 };

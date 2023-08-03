@@ -1,16 +1,10 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import Button from "@/components/Button.tsx";
-import { supabase } from "@/lib/supabase-client.ts";
 import { Provider } from "https://esm.sh/v102/@supabase/gotrue-js@2.6.1/dist/module/lib/types";
 
 export default function LoginButtons() {
 	const login = (provider: Provider) => {
-		supabase.auth.signInWithOAuth({
-			provider,
-			options: {
-				redirectTo: window.location.origin + "/home",
-			},
-		});
+		console.log("login", provider);
 	};
 
 	return (

@@ -1,5 +1,4 @@
 import { Head } from "$fresh/runtime.ts";
-import { supabaseAs } from "@/lib/supabase.ts";
 import { PageProps } from "$fresh/server.ts";
 import { Handler } from "@/types/Handler.ts";
 import Container from "@/components/Container.tsx";
@@ -11,7 +10,7 @@ import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
 import LovedApps from "@/islands/LovedApps.tsx";
 
-export default function Loved(props: PageProps<DataProps>) {
+export default function Loved(props: PageProps) {
 	return (
 		<>
 			<Head>
@@ -49,40 +48,43 @@ export default function Loved(props: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handler = async (_, ctx) => {
-	if (!ctx.state.user) {
-		return new Response("Unauthorized", {
-			status: 307,
-			headers: {
-				Location: "/login",
-			},
-		});
-	}
+export const handler: Handler = (_, ctx) => {
+	return Response.redirect("/home", 307);
+	
 
-	const supabase = supabaseAs(ctx.state.user.access_token);
+	// if (!ctx.state.user) {
+	// 	return new Response("Unauthorized", {
+	// 		status: 307,
+	// 		headers: {
+	// 			Location: "/login",
+	// 		},
+	// 	});
+	// }
 
-	const { data: user, error } = await supabase
-		.from("users")
-		.select("loved")
-		.eq("id", ctx.state.user.id)
-		.single();
+	// const supabase = supabaseAs(ctx.state.user.access_token);
 
-	if (error) {
-		console.log(error);
-		return new Response(
-			"Your profile could not be fetched. Please file and issue.",
-			{
-				status: 500,
-			},
-		);
-	}
+	// const { data: user, error } = await supabase
+	// 	.from("users")
+	// 	.select("loved")
+	// 	.eq("id", ctx.state.user.id)
+	// 	.single();
 
-	const { data: apps } = await supabase
-		.from("apps")
-		.select("id, name, icon, author, url")
-		.in("id", user.loved);
+	// if (error) {
+	// 	console.log(error);
+	// 	return new Response(
+	// 		"Your profile could not be fetched. Please file and issue.",
+	// 		{
+	// 			status: 500,
+	// 		},
+	// 	);
+	// }
 
-	return ctx.render({
-		apps,
-	});
+	// const { data: apps } = await supabase
+	// 	.from("apps")
+	// 	.select("id, name, icon, author, url")
+	// 	.in("id", user.loved);
+
+	// return ctx.render({
+	// 	apps,
+	// });
 };
