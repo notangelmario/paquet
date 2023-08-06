@@ -6,6 +6,8 @@ import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-w
 
 const INTERNAL_KEY = Deno.env.get("INTERNAL_KEY")!;
 
+const API_ENDPOINT = "https://paquet.app";
+
 const ICONS_SIZES = [
 	"96x96",
 	"120x120",
@@ -51,7 +53,7 @@ console.log("Updating...");
 
 for (const app of apps) {
 	const appCurrentData: App = await fetch(
-		"http://localhost:3000/api/apps/" + app.id,
+		API_ENDPOINT + "/api/apps/" + app.id,
 		{
 			headers: {
 				Authorization: `Bearer ${INTERNAL_KEY}`,
@@ -66,7 +68,7 @@ for (const app of apps) {
 
 	if (!appCurrentData) {
 		// App does not exist, create it
-		const res = await fetch("http://localhost:3000/api/apps/" + app.id, {
+		const res = await fetch(API_ENDPOINT + "/api/apps/" + app.id, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${INTERNAL_KEY}`,
@@ -273,7 +275,7 @@ for (const app of apps) {
 			}
 		}
 
-		const res = await fetch("http://localhost:3000/api/apps/" + app.id, {
+		const res = await fetch(API_ENDPOINT + "/api/apps/" + app.id, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
