@@ -14,7 +14,12 @@ import SlideContainer from "@/components/SlideContainer.tsx";
 import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/compound/ImageCard.tsx";
 import { buildImageUrl } from "@/lib/image.ts";
-import { getAppsBetweenDates, getAppsByCategory, getAppsRandom, getRandomAppsWithCover } from "@/lib/db.ts";
+import {
+	getAppsBetweenDates,
+	getAppsByCategory,
+	getAppsRandom,
+	getRandomAppsWithCover,
+} from "@/lib/db.ts";
 
 export default async function Home() {
 	const randomCategoryId: string =
@@ -208,7 +213,8 @@ export default async function Home() {
 			<Container>
 				<InstallBanner />
 			</Container>
-			{/* data.lovedApps && (
+			{
+				/* data.lovedApps && (
 				<Container>
 					<Card disableGutters>
 						<h2 class="text-2xl mt-4 ml-4">
@@ -229,7 +235,8 @@ export default async function Home() {
 						))}
 					</Card>
 				</Container>
-			) */}
+			) */
+			}
 			<Stack class="mt-4">
 				<Container
 					disableGutters

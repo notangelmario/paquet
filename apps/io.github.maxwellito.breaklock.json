@@ -1,18 +1,18 @@
 {
-    "id": "io.github.maxwellito.breaklock",
-    "url": "https://maxwellito.github.io/breaklock",
-    "manifestUrl": "https://maxwellito.github.io/breaklock/en/manifest.json",
-    "features": [
-        "mobile",
-        "desktop",
-        "offline",
-        "openSource"
-    ],
-    "githubUrl": "https://github.com/maxwellito/breaklock",
-    "categories": [
-        "games"
-    ],
-    "author": "maxwellito",
-    "accentColor": "#7f7f7f",
-    "version": 1
+	"id": "io.github.maxwellito.breaklock",
+	"url": "https://maxwellito.github.io/breaklock",
+	"manifestUrl": "https://maxwellito.github.io/breaklock/en/manifest.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"githubUrl": "https://github.com/maxwellito/breaklock",
+	"categories": [
+		"games"
+	],
+	"author": "maxwellito",
+	"accentColor": "#7f7f7f",
+	"version": 1
 }

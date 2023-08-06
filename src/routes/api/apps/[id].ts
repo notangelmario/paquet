@@ -12,7 +12,7 @@ export const handler: Handlers = {
 				status: 400,
 			});
 		}
-		
+
 		const app = await getApp(id);
 
 		if (!app) {
@@ -35,7 +35,7 @@ export const handler: Handlers = {
 		}
 
 		const body: App = await req.json();
-		
+
 		const exists = await getApp(body.id);
 
 		if (exists) {
@@ -51,7 +51,7 @@ export const handler: Handlers = {
 				status: 500,
 			});
 		}
-		
+
 		return new Response("App created", {
 			status: 201,
 		});
@@ -72,7 +72,7 @@ export const handler: Handlers = {
 		}
 
 		const app = await getApp(id);
-		
+
 		if (!app) {
 			return new Response("App not found", {
 				status: 404,
@@ -80,7 +80,7 @@ export const handler: Handlers = {
 		}
 
 		const body: App = await req.json();
-		
+
 		const res = await updateApp(id, body);
 
 		if (!res) {
@@ -92,5 +92,5 @@ export const handler: Handlers = {
 		return new Response("App updated", {
 			status: 200,
 		});
-	}
-}
+	},
+};

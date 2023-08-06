@@ -1,4 +1,3 @@
-import type { PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -6,13 +5,14 @@ import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
-import LogoutButton from "@/islands/login/LogoutButton.tsx";
 import { APP } from "@/lib/app.ts";
-import { providers } from "@/lib/authProviders.ts";
-import type { Handler, MiddlewareProps } from "@/types/Handler.ts";
+import type { RouteContext } from "@/types/Handler.ts";
 import AnalyticsSwitch from "@/islands/settings/AnalyticsSwitch.tsx";
+import { getUser } from "@/lib/oauth.ts";
 
-export default function Settings(props: PageProps<MiddlewareProps>) {
+export default async function Settings(req: Request, ctx: RouteContext) {
+	const user = await getUser(req);
+
 	return (
 		<>
 			<Head>
@@ -25,20 +25,24 @@ export default function Settings(props: PageProps<MiddlewareProps>) {
 						Settings
 					</Header>
 					<Card disableGutters>
-						{props.data?.user
+						{user
 							? (
 								<>
 									<ListItem
-										title={props.data.user.name}
-										image={props.data.user.avatar_url}
-										subtitle={`${props.data.user.email}<br/>Connected with ${
-											props.data.user.providers.map((
-												val,
-											) => providers.get(val)).join(", ")
-										}`}
+										title={user.name}
+										image={user.avatar_url}
+										subtitle={user.email}
 										divider
 									/>
-									<LogoutButton />
+									<a href="/api/auth/signout">
+										<ListItem
+											button
+											icon="logout"
+											title="Sign out"
+											subtitle="Sign out of your account"
+											divider
+										/>
+									</a>
 								</>
 							)
 							: (
@@ -53,7 +57,7 @@ export default function Settings(props: PageProps<MiddlewareProps>) {
 								</a>
 							)}
 						<AnalyticsSwitch
-							analyticsDisabled={!!props.data.analyticsDisabled}
+							analyticsDisabled={!!ctx.state.analyticsDisabled}
 						/>
 					</Card>
 					<Card disableGutters>
@@ -105,7 +109,3 @@ export default function Settings(props: PageProps<MiddlewareProps>) {
 		</>
 	);
 }
-
-export const handler: Handler = (_, ctx) => {
-	return ctx.render(ctx.state);
-};

@@ -16,7 +16,7 @@ export const handler: Handlers = {
 		const sitemap = new SitemapContext("https://paquet.app", manifest);
 		const docs = Deno.readDir("docs");
 
-		const allApps = await getApps(100);
+		const allApps = await getApps();
 
 		if (!allApps) {
 			return sitemap.render();

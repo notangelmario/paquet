@@ -45,17 +45,19 @@ for await (const dirEntry of appDir) {
 	apps.push(app);
 }
 
-
 const appsWithError: string[] = [];
 
 console.log("Updating...");
 
 for (const app of apps) {
-	const appCurrentData: App = await fetch("http://localhost:3000/api/apps/" + app.id, {
-		headers: {
-			Authorization: `Bearer ${INTERNAL_KEY}`,
+	const appCurrentData: App = await fetch(
+		"http://localhost:3000/api/apps/" + app.id,
+		{
+			headers: {
+				Authorization: `Bearer ${INTERNAL_KEY}`,
+			},
 		},
-	}).then((res) => res.json())
+	).then((res) => res.json())
 		.catch((err) => {
 			console.log(err);
 			appsWithError.push(app.id);
@@ -77,7 +79,7 @@ for (const app of apps) {
 			appsWithError.push(app.id);
 			continue;
 		}
-		
+
 		// App created, remove from error list
 		const index = appsWithError.indexOf(app.id);
 		if (index > -1) {
@@ -122,7 +124,6 @@ for (const app of apps) {
 		manifestUrl = manifestValue.startsWith("http")
 			? manifestValue
 			: relativeToAbsolute(manifestValue, app.url);
-
 	} else {
 		manifestUrl = app.manifestUrl;
 	}
@@ -151,7 +152,10 @@ for (const app of apps) {
 		continue;
 	}
 
-	if (hash !== appCurrentData?.manifestHash || appCurrentData.version !== app.version) {
+	if (
+		hash !== appCurrentData?.manifestHash ||
+		appCurrentData.version !== app.version
+	) {
 		const manifestSplit = manifestUrl.split("/");
 		manifestSplit.pop();
 		const manifestParent = manifestSplit.join("/");
@@ -278,12 +282,15 @@ for (const app of apps) {
 			body: JSON.stringify({
 				name: manifest?.name || appCurrentData?.name,
 				description: description || appCurrentData?.description,
-				categories: app.categories || categories.length ? categories : appCurrentData?.categories,
+				categories: app.categories || categories.length
+					? categories
+					: appCurrentData?.categories,
 				author: author || app?.author || appCurrentData?.author,
 				screenshots: screenshots_urls.length
 					? screenshots_urls
 					: appCurrentData?.screenshots,
-				accentColor: accent_color || app.categories || appCurrentData?.accentColor,
+				accentColor: accent_color || app.categories ||
+					appCurrentData?.accentColor,
 				manifestHash: hash,
 				icon: icon_url || appCurrentData?.icon,
 				cover: cover_url || appCurrentData?.icon,
@@ -297,7 +304,6 @@ for (const app of apps) {
 			appsWithError.push(app.id);
 			continue;
 		}
-
 	}
 
 	console.log(`Updated ${app.id}`);

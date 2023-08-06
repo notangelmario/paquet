@@ -20,11 +20,12 @@ if (Deno.env.get("MIGRATE_FROM_SUPABASE") === "1") {
 	console.log("Migrated from Supabase");
 }
 
+// @ts-ignore: I don't care about the type of the manifest
 await start(manifest, {
 	plugins: [
 		// @ts-ignore: I don't care about the type of this plugin
 		twindPlugin(twindConfig),
-		kvInsightsPlugin()
+		kvInsightsPlugin(),
 	],
 	port: parseInt(Deno.env.get("PORT") || "3000"),
 });

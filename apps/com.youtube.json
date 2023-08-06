@@ -1,15 +1,15 @@
 {
-    "id": "com.youtube",
-    "url": "https://www.youtube.com",
-    "manifestUrl": "https://www.youtube.com/manifest.webmanifest",
-    "features": [
-        "mobile",
-        "desktop"
-    ],
-    "categories": [
-        "entertainment"
-    ],
-    "author": "Google",
-    "accentColor": "#fc0404",
-    "version": 1
+	"id": "com.youtube",
+	"url": "https://www.youtube.com",
+	"manifestUrl": "https://www.youtube.com/manifest.webmanifest",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"categories": [
+		"entertainment"
+	],
+	"author": "Google",
+	"accentColor": "#fc0404",
+	"version": 1
 }

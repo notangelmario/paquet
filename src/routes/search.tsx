@@ -1,6 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
 import type { App } from "@/types/App.ts";
-import { supabase } from "@/lib/supabase.ts";
 import { getCategory, searchCategory } from "@/lib/categories.ts";
 import ListItem from "@/components/ListItem.tsx";
 import Button from "@/components/Button.tsx";
@@ -30,21 +29,21 @@ export default async function Search(req: Request) {
 
 	const categories = searchCategory(query);
 
-	let moreApps: App[] = [];
-	if (apps && apps.length < 10) {
-		const { data } = await supabase
-			.from("random_apps")
-			.select("id, name, categories, icon")
-			// Unsolved bug from supabase requires us to use this
-			// method to exclude apps from the search
-			// See https://github.com/supabase/supabase/discussions/2055#discussioncomment-923451
-			.not("id", "in", `(${apps.map((app) => app.id).join(",")})`)
-			.limit(5);
+	const moreApps: App[] = [];
+	// if (apps && apps.length < 10) {
+	// 	const { data } = await supabase
+	// 		.from("random_apps")
+	// 		.select("id, name, categories, icon")
+	// 		// Unsolved bug from supabase requires us to use this
+	// 		// method to exclude apps from the search
+	// 		// See https://github.com/supabase/supabase/discussions/2055#discussioncomment-923451
+	// 		.not("id", "in", `(${apps.map((app) => app.id).join(",")})`)
+	// 		.limit(5);
 
-		if (data && data.length > 0) {
-			moreApps = data as App[];
-		}
-	}
+	// 	if (data && data.length > 0) {
+	// 		moreApps = data as App[];
+	// 	}
+	// }
 
 	return (
 		<>

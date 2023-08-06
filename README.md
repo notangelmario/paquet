@@ -46,7 +46,6 @@ Paquet is built with a modern toolset in mind:
 - [Deno](https://deno.land)
 - [Fresh](https://fresh.deno.dev)
 - [Twind](https://twind.dev)
-- [Supabase](https://supabase.com)
 
 ## 🔨 Tasks
 
@@ -60,12 +59,6 @@ To run the app in development mode:
 
 ```
 deno task dev
-```
-
-To update apps:
-
-```
-deno task update [appId] [--force]
 ```
 
 To type check, lint, and format the source code:

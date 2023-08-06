@@ -1,15 +1,15 @@
 {
-    "id": "eu.bolt.m",
-    "url": "https://m.bolt.eu",
-    "manifestUrl": "https://m.bolt.eu/manifest.json",
-    "features": [
-        "mobile",
-        "desktop"
-    ],
-    "categories": [
-        "lifestyle"
-    ],
-    "author": "Bolt",
-    "accentColor": "#34d484",
-    "version": 1
+	"id": "eu.bolt.m",
+	"url": "https://m.bolt.eu",
+	"manifestUrl": "https://m.bolt.eu/manifest.json",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"categories": [
+		"lifestyle"
+	],
+	"author": "Bolt",
+	"accentColor": "#34d484",
+	"version": 1
 }

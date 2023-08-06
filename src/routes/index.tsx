@@ -25,7 +25,7 @@ export default async function Welcome(req: Request) {
 		});
 	}
 
-	const apps = await getAppsRandom(8)
+	const apps = await getAppsRandom(8);
 
 	return (
 		<>
@@ -258,24 +258,6 @@ export default async function Welcome(req: Request) {
 								</a>{" "}
 								&middot; Because we love <b>performance</b>
 							</li>
-							<li>
-								<a
-									class="underline"
-									href="https://supabase.com/"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<Icon
-										name="supabase"
-										inline
-										size={18}
-									/>{" "}
-									Supabase
-								</a>{" "}
-								&middot; Because we love <b>open source</b> and
-								{" "}
-								<b>privacy</b>
-							</li>
 						</ul>
 					</div>
 					<h3 class="text-center font-bold text-3xl mt-32">
@@ -293,9 +275,13 @@ export default async function Welcome(req: Request) {
 							<h2 class="text-3xl">
 								Paquet
 							</h2>
-							<p class="opacity-50">
+							<a 
+								class="opacity-50 text-primary"
+								href="https://angelmario.eu"
+								target="_blank"
+							>
 								notangelmario
-							</p>
+							</a>
 						</div>
 						<div class="min-w-full space-y-2 sm:min-w-[30%]">
 							<a href="/home">

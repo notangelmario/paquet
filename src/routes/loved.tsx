@@ -1,21 +1,28 @@
 import { Head } from "$fresh/runtime.ts";
-import { supabaseAs } from "@/lib/supabase.ts";
 import { PageProps } from "$fresh/server.ts";
-import { Handler } from "@/types/Handler.ts";
 import Container from "@/components/Container.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
-import { App } from "@/types/App.ts";
 import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
-import LovedApps from "@/islands/LovedApps.tsx";
+import { getApps, getLovedAppIds } from "@/lib/db.ts";
+import ListItem from "@/components/ListItem.tsx";
+import { buildImageUrl } from "@/lib/image.ts";
 
-interface DataProps {
-	apps: App[];
-}
+export default async function Loved(req: Request, ctx: PageProps) {
+	if (!ctx.state.isSignedIn) {
+		return new Response("Not logged in", {
+			status: 307,
+			headers: {
+				Location: "/login",
+			},
+		});
+	}
 
-export default function Loved(props: PageProps<DataProps>) {
+	const appIds = await getLovedAppIds(req);
+	const apps = await getApps(appIds || []);
+
 	return (
 		<>
 			<Head>
@@ -36,7 +43,18 @@ export default function Loved(props: PageProps<DataProps>) {
 						Apps you love
 					</Header>
 					<Card disableGutters>
-						<LovedApps ssrApps={props.data.apps} />
+						{apps && apps.map((app) => (
+							<a
+								href={`/app/${app.id}`}
+							>
+								<ListItem
+									title={app.name}
+									image={buildImageUrl(app.icon, 64, 64)}
+									subtitle={app.author}
+									divider
+								/>
+							</a>
+						))}
 						<p class="opacity-50 p-4">
 							<Icon
 								name="info"
@@ -52,41 +70,3 @@ export default function Loved(props: PageProps<DataProps>) {
 		</>
 	);
 }
-
-export const handler: Handler = async (_, ctx) => {
-	if (!ctx.state.user) {
-		return new Response("Unauthorized", {
-			status: 307,
-			headers: {
-				Location: "/login",
-			},
-		});
-	}
-
-	const supabase = supabaseAs(ctx.state.user.access_token);
-
-	const { data: user, error } = await supabase
-		.from("users")
-		.select("loved")
-		.eq("id", ctx.state.user.id)
-		.single();
-
-	if (error) {
-		console.log(error);
-		return new Response(
-			"Your profile could not be fetched. Please file and issue.",
-			{
-				status: 500,
-			},
-		);
-	}
-
-	const { data: apps } = await supabase
-		.from("apps")
-		.select("id, name, icon, author, url")
-		.in("id", user.loved);
-
-	return ctx.render({
-		apps,
-	});
-};

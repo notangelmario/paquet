@@ -28,8 +28,8 @@ export const migrate = async () => {
 		// Also add the pathname to the end of the domain name
 		// with dots as separators
 		let appId = origin.split(".").reverse().join(".");
-		appId = appId + (url.pathname !== "/" ? url.pathname.replaceAll("/", ".") : "");
-
+		appId = appId +
+			(url.pathname !== "/" ? url.pathname.replaceAll("/", ".") : "");
 
 		let manifestUrl = "";
 
@@ -52,20 +52,26 @@ export const migrate = async () => {
 				}
 
 				// Get only the head tag
-				const head = body?.match(/<head[^>]*>([\s\S.]*)<\/head>/i)?.[0] || "";
-				const headParsed = new DOMParser().parseFromString(head, "text/html");
+				const head =
+					body?.match(/<head[^>]*>([\s\S.]*)<\/head>/i)?.[0] || "";
+				const headParsed = new DOMParser().parseFromString(
+					head,
+					"text/html",
+				);
 
 				if (!headParsed) {
 					console.error(`Could not parse head of ${app.url}`);
 				}
 
-				const manifestValue = headParsed?.querySelector("link[rel=manifest]")
-					?.getAttribute("href") || "";
+				const manifestValue =
+					headParsed?.querySelector("link[rel=manifest]")
+						?.getAttribute("href") || "";
 
 				manifestUrl = manifestValue.startsWith("http")
 					? manifestValue
-					: new URL(manifestValue, app.url.replace(/\/?$/, "/")).toString();
-			} catch (err) {
+					: new URL(manifestValue, app.url.replace(/\/?$/, "/"))
+						.toString();
+			} catch (_err) {
 				console.error(`Failed to fetch ${app.url}`);
 			}
 		} else {
@@ -75,7 +81,10 @@ export const migrate = async () => {
 		const manifestHash = await fetch(manifestUrl)
 			.then((res) => res.text())
 			.then((text) => {
-				return crypto.subtle.digest("SHA-1", new TextEncoder().encode(text));
+				return crypto.subtle.digest(
+					"SHA-1",
+					new TextEncoder().encode(text),
+				);
 			})
 			.then((hash) => {
 				return Array.from(new Uint8Array(hash))
@@ -100,25 +109,28 @@ export const migrate = async () => {
 			description: app.description,
 			addedOn: app.added_on || undefined,
 			screenshots: app.screenshots || undefined,
-			version: 1
+			version: 1,
 		};
 
 		await createApp(appObj);
 
-		const data = new TextEncoder().encode(JSON.stringify({
-			id: appId,
-			url: app.url,
-			manifestUrl: manifestUrl,
-			features: app.features || undefined,
-			githubUrl: app.github_url || undefined,
-			gitlabUrl: app.gitlab_url || undefined,
-			categories: app.categories,
-			author: app.author || undefined,
-			accentColor: app.accent_color,
-			addedOn: app.added_on || undefined,
-			version: 1
-		}, null, 4));
+		const data = new TextEncoder().encode(JSON.stringify(
+			{
+				id: appId,
+				url: app.url,
+				manifestUrl: manifestUrl,
+				features: app.features || undefined,
+				githubUrl: app.github_url || undefined,
+				gitlabUrl: app.gitlab_url || undefined,
+				categories: app.categories,
+				author: app.author || undefined,
+				accentColor: app.accent_color,
+				addedOn: app.added_on || undefined,
+				version: 1,
+			},
+			null,
+			4,
+		));
 		await Deno.writeFile("./apps/" + appId + ".json", data);
 	}
-}
-
+};

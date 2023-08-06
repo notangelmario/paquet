@@ -12,7 +12,6 @@
 	"tasks": {
 		"dev": "deno run --unstable -A --watch=src/static/,src/routes/ src/dev.ts",
 		"cache": "deno cache --reload src/main.ts",
-		"update": "deno run --allow-read --allow-env --allow-net scripts/update.ts",
 		"check": "deno lint && deno fmt && deno check src/main.ts"
 	},
 	"lock": false,
@@ -33,19 +32,16 @@
 		}
 	},
 	"fmt": {
-		"files": {
-			"exclude": [
-				"static",
-				"docs",
-				"resources"
-			]
-		},
-		"options": {
-			"useTabs": true,
-			"indentWidth": 4,
-			"singleQuote": false,
-			"proseWrap": "preserve"
-		}
+		"exclude": [
+			"static",
+			"docs",
+			"resources"
+		],
+		"useTabs": true,
+		"indentWidth": 4,
+		"singleQuote": false,
+		"semiColons": true,
+		"proseWrap": "preserve"
 	},
 	"imports": {
 		"@/": "./src/",
@@ -67,7 +63,8 @@
 		"preset-autoprefix": "https://esm.sh/@twind/preset-autoprefix@1.0.7",
 		"ua-parser-js": "https://esm.sh/ua-parser-js@1.0.2",
 		"imagescript": "https://esm.sh/imagescript@1.2.15",
-		"deno-kv-insights": "https://deno.land/x/deno_kv_insights@v0.5.0-alpha/mod.ts"
+		"deno-kv-insights": "https://deno.land/x/deno_kv_insights@v0.5.0-alpha/mod.ts",
+		"deno-kv-oauth": "https://deno.land/x/deno_kv_oauth@v0.3.0/mod.ts"
 	},
 	"scopes": {}
 }

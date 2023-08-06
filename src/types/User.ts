@@ -1,9 +1,7 @@
 export interface User {
 	id: string;
-	email: string;
-	name: string;
+	login: string;
 	avatar_url: string;
-	providers: string[];
-
-	access_token: string;
+	name: string;
+	email: string;
 }

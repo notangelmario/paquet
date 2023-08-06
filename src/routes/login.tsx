@@ -4,10 +4,21 @@ import Header from "@/components/Header.tsx";
 import Stack from "@/components/Stack.tsx";
 import Navbar from "@/islands/Navbar.tsx";
 import Icon from "@/components/Icon.tsx";
-import LoginButtons from "@/islands/login/LoginButtons.tsx";
-import { Handler } from "@/types/Handler.ts";
+import { Handler, RouteContext } from "@/types/Handler.ts";
+import Button from "@/components/Button.tsx";
 
-export default function Login() {
+export default async function Login(_: Request, ctx: RouteContext) {
+	await Promise.resolve();
+
+	if (ctx.state.isSignedIn) {
+		return new Response("Already logged in", {
+			status: 307,
+			headers: {
+				Location: "/home",
+			},
+		});
+	}
+
 	return (
 		<>
 			<Head>
@@ -22,11 +33,18 @@ export default function Login() {
 						<Header icon="login">
 							Login
 						</Header>
+						<a href="/api/auth/signin">
+							<Button
+								icon="github"
+								fullWidth
+							>
+								Login with GitHub
+							</Button>
+						</a>
 						<img
 							src="/illustrations/login.svg"
 							class="block md:(hidden mb-4) max-w-md mx-auto"
 						/>
-						<LoginButtons />
 					</Stack>
 				</div>
 				<div class="w-full md:(flex-1 mt-16)">
@@ -34,29 +52,6 @@ export default function Login() {
 						src="/illustrations/login.svg"
 						class="hidden md:(block mb-4)"
 					/>
-					<noscript>
-						<p class="opacity-75 mb-4">
-							<Icon
-								name="javascript"
-								inline
-								size={18}
-							/>{" "}
-							You need to enable JavaScript to login. We want to
-							make sure the login process happens on your device
-							only, your login info is not sent anywhere.
-							<br />
-							<br />
-							You can{" "}
-							<a
-								href="https://github.com/notangelmario/paquet"
-								target="_blank"
-								rel="noreferrer noopenner"
-								class="text-secondary underline"
-							>
-								check the open-source repo
-							</a>, just to be safe.
-						</p>
-					</noscript>
 					<p class="opacity-50">
 						<Icon
 							name="info"
@@ -74,14 +69,5 @@ export default function Login() {
 }
 
 export const handler: Handler = (_, ctx) => {
-	if (ctx.state.user) {
-		return new Response("Already logged in", {
-			status: 307,
-			headers: {
-				Location: "/home",
-			},
-		});
-	}
-
 	return ctx.render();
 };

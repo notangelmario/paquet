@@ -1,17 +1,17 @@
 {
-    "id": "io.github.bsehovac.the-cube",
-    "url": "https://bsehovac.github.io/the-cube",
-    "manifestUrl": "https://bsehovac.github.io/the-cube/assets/icons/site.webmanifest",
-    "features": [
-        "mobile",
-        "desktop",
-        "openSource",
-        "offline"
-    ],
-    "categories": [
-        "games"
-    ],
-    "author": "Boris Sehovac",
-    "accentColor": "#d1331c",
-    "version": 1
+	"id": "io.github.bsehovac.the-cube",
+	"url": "https://bsehovac.github.io/the-cube",
+	"manifestUrl": "https://bsehovac.github.io/the-cube/assets/icons/site.webmanifest",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource",
+		"offline"
+	],
+	"categories": [
+		"games"
+	],
+	"author": "Boris Sehovac",
+	"accentColor": "#d1331c",
+	"version": 1
 }

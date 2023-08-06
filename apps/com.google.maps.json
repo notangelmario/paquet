@@ -1,15 +1,15 @@
 {
-    "id": "com.google.maps",
-    "url": "https://google.com/maps",
-    "manifestUrl": "https://google.com/maps/preview/pwa/manifest?source=ttpwa&hl=ro",
-    "features": [
-        "mobile",
-        "desktop"
-    ],
-    "categories": [
-        "lifestyle"
-    ],
-    "author": "Google",
-    "accentColor": "#fbbb05",
-    "version": 1
+	"id": "com.google.maps",
+	"url": "https://google.com/maps",
+	"manifestUrl": "https://google.com/maps/preview/pwa/manifest?source=ttpwa&hl=ro",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"categories": [
+		"lifestyle"
+	],
+	"author": "Google",
+	"accentColor": "#fbbb05",
+	"version": 1
 }

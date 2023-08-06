@@ -1,16 +1,16 @@
 {
-    "id": "io.pomofocus",
-    "url": "https://pomofocus.io",
-    "manifestUrl": "https://pomofocus.io/manifest.json",
-    "features": [
-        "mobile",
-        "desktop"
-    ],
-    "categories": [
-        "productivity",
-        "utilities"
-    ],
-    "author": "Yuya Uzu",
-    "accentColor": "#cc5c5c",
-    "version": 1
+	"id": "io.pomofocus",
+	"url": "https://pomofocus.io",
+	"manifestUrl": "https://pomofocus.io/manifest.json",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"categories": [
+		"productivity",
+		"utilities"
+	],
+	"author": "Yuya Uzu",
+	"accentColor": "#cc5c5c",
+	"version": 1
 }

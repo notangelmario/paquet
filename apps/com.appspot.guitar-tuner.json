@@ -1,18 +1,18 @@
 {
-    "id": "com.appspot.guitar-tuner",
-    "url": "https://guitar-tuner.appspot.com/",
-    "manifestUrl": "https://guitar-tuner.appspot.com/manifest.json",
-    "features": [
-        "mobile",
-        "desktop",
-        "offline",
-        "openSource"
-    ],
-    "githubUrl": "https://github.com/googlearchive/guitar-tuner",
-    "categories": [
-        "utilities"
-    ],
-    "author": "Paul Lewis",
-    "accentColor": "#efb90f",
-    "version": 1
+	"id": "com.appspot.guitar-tuner",
+	"url": "https://guitar-tuner.appspot.com/",
+	"manifestUrl": "https://guitar-tuner.appspot.com/manifest.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"githubUrl": "https://github.com/googlearchive/guitar-tuner",
+	"categories": [
+		"utilities"
+	],
+	"author": "Paul Lewis",
+	"accentColor": "#efb90f",
+	"version": 1
 }

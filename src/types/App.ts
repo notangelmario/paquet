@@ -5,6 +5,12 @@ export interface Category {
 	aliases?: string[];
 }
 
+export interface Feature {
+	id: string;
+	name: string;
+	icon: string;
+}
+
 export interface App {
 	id: string;
 
@@ -31,7 +37,7 @@ export interface App {
 	githubUrl?: string;
 	gitlabUrl?: string;
 
-	addedOn?: number;
+	addedOn?: string;
 
 	version: string | number;
 }

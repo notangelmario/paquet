@@ -1,5 +1,4 @@
 import { Head } from "$fresh/runtime.ts";
-import type { RouteContext } from "$fresh/server.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -13,10 +12,12 @@ import AppLinks from "@/components/compound/AppLinks.tsx";
 import Screenshots from "@/components/compound/Screenshots.tsx";
 import SlideCategories from "@/components/compound/SlideCategories.tsx";
 import { buildImageUrl } from "@/lib/image.ts";
-import { getApp, getAppsRandom } from "@/lib/db.ts";
+import { RouteContext } from "@/types/Handler.ts";
+import { getApp, getAppsRandom, isAppLoved } from "@/lib/db.ts";
 import Card from "@/components/Card.tsx";
+import LoveAppButton from "@/islands/LoveAppButton.tsx";
 
-export default async function App(_: Request, ctx: RouteContext) {
+export default async function App(req: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
 	const otherApps = await getAppsRandom(5, false, app?.id);
 	const openButtonTextColor = getContrastYIQ(app?.accentColor || "#8267be");
@@ -29,6 +30,8 @@ export default async function App(_: Request, ctx: RouteContext) {
 			},
 		});
 	}
+
+	const ssrLoved = await isAppLoved(req, app?.id);
 
 	return (
 		<>
@@ -72,25 +75,26 @@ export default async function App(_: Request, ctx: RouteContext) {
 									<h2 class="text-3xl">
 										{app.name}
 									</h2>
-									{app.authorLink ?
-										<a
-											href={app.authorLink}
-											class="opacity-50"
-											rel="noopener noreferrer"
-											target="_blank"
-											style={{
-												color: app.accentColor || "#8267be",
-											}}
-										>
-											{app.author}
-										</a>
-										:
-										<p 
-											class="opacity-50"
-										>
-											{app.author}
-										</p>
-									}
+									{app.authorLink
+										? (
+											<a
+												href={app.authorLink}
+												class="opacity-50"
+												rel="noopener noreferrer"
+												target="_blank"
+												style={{
+													color: app.accentColor ||
+														"#8267be",
+												}}
+											>
+												{app.author}
+											</a>
+										)
+										: (
+											<p class="opacity-50">
+												{app.author}
+											</p>
+										)}
 								</div>
 								<div class="min-w-full space-y-2 sm:min-w-[30%]">
 									<a
@@ -116,7 +120,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 											Open
 										</Button>
 									</a>
-									{/*userLoggedIn
+									{ctx.state.isSignedIn
 										? (
 											<LoveAppButton
 												app={app}
@@ -133,7 +137,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 													Login to give hearts
 												</Button>
 											</a>
-										)*/}
+										)}
 								</div>
 							</div>
 						</Card>
@@ -225,7 +229,6 @@ export default async function App(_: Request, ctx: RouteContext) {
 	);
 }
 
-
 function colorHexToFull(colorHex: string) {
 	if (colorHex.length === 4) {
 		colorHex = colorHex.replace(
@@ -243,10 +246,9 @@ function getContrastYIQ(colorHex: string) {
 	colorHex = colorHexToFull(colorHex);
 
 	const hex = colorHex.replace("#", "");
-	const r = parseInt(hex.substring(1,3),16);
-    const g = parseInt(hex.substring(3,5),16);
-    const b = parseInt(hex.substring(5,7),16);
-    const yiq = ((r*299)+(g*587)+(b*114))/1000;
-    return (yiq >= 128) ? 'black' : 'white';
+	const r = parseInt(hex.substring(1, 3), 16);
+	const g = parseInt(hex.substring(3, 5), 16);
+	const b = parseInt(hex.substring(5, 7), 16);
+	const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+	return (yiq >= 128) ? "black" : "white";
 }
-

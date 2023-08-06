@@ -20,8 +20,8 @@ This is a sample specification:
 This is required. This must be the domain of your app reversed.
 If your app is hosted at a subdomain, append the pathname at the end.
 
-Example 1: https://paquet.app -> app.paquet
-Example 2: https://notangelmario.github.io/paquet -> io.github.notangelmario.paquet
+Example 1: `https://paquet.app -> app.paquet` \
+Example 2: `https://notangelmario.github.io/paquet -> io.github.notangelmario.paquet`
 
 ### `url`
 
