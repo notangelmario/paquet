@@ -1,0 +1,15 @@
+{
+	"id": "com.boxy-svg.app",
+	"url": "https://boxy-svg.com/app",
+	"manifestUrl": "https://boxy-svg.com/boxy-svg.webmanifest",
+	"features": [
+		"desktop",
+		"offline"
+	],
+	"categories": [
+		"lifestyle"
+	],
+	"author": "Jarosław Foksa",
+	"accentColor": "#fbbb4c",
+	"version": 1
+}

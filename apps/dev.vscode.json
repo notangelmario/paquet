@@ -1,0 +1,17 @@
+{
+	"id": "dev.vscode",
+	"url": "https://vscode.dev",
+	"manifestUrl": "https://vscode.dev/static/stable/code.webmanifest",
+	"features": [
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"githubUrl": "https://github.com/microsoft/vscode",
+	"categories": [
+		"development"
+	],
+	"author": "Microsoft",
+	"accentColor": "#24adf4",
+	"version": 1
+}

@@ -1,0 +1,17 @@
+{
+	"id": "com.repo-tracker",
+	"url": "https://repo-tracker.com",
+	"manifestUrl": "https://repo-tracker.com/manifest.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"auth"
+	],
+	"categories": [
+		"productivity",
+		"utilities"
+	],
+	"author": "Toni Engelhardt",
+	"accentColor": "#8454f4",
+	"version": 1
+}

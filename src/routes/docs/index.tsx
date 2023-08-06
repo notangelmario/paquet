@@ -21,6 +21,12 @@ export const DOCS: Doc[] = [
 		filename: "getting-started.md",
 	},
 	{
+		title: "App specification",
+		description: "How to write your app specification",
+		icon: "code",
+		filename: "app-spec.md",
+	},
+	{
 		title: "Manifest file",
 		description: "How to use your manifest file to edit your app listing",
 		icon: "file-description",
@@ -31,7 +37,7 @@ export const DOCS: Doc[] = [
 		description: "How to host your app on a subdomain of paquet.app",
 		icon: "cloud",
 		filename: "hosting.md",
-	}
+	},
 ];
 
 export default function Documentation() {

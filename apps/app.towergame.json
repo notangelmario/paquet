@@ -1,0 +1,17 @@
+{
+	"id": "app.towergame",
+	"url": "https://towergame.app",
+	"manifestUrl": "https://towergame.app/manifest.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"categories": [
+		"games"
+	],
+	"author": "iamkun",
+	"accentColor": "#e3684c",
+	"version": 1
+}

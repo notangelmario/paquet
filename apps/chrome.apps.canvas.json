@@ -1,0 +1,15 @@
+{
+	"id": "chrome.apps.canvas",
+	"url": "https://canvas.apps.chrome",
+	"manifestUrl": "https://canvas.apps.chrome/manifest.json",
+	"features": [
+		"desktop",
+		"offline"
+	],
+	"categories": [
+		"entertainment"
+	],
+	"author": "Google",
+	"accentColor": "#ec4434",
+	"version": 1
+}

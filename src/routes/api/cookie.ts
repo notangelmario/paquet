@@ -45,11 +45,11 @@ export const handler: Handlers = {
 				path: "/",
 				httpOnly: true,
 				secure: true,
-				sameSite: "Strict"
+				sameSite: "Strict",
 			});
 			return res;
 		}
 
 		return new Response("No cookie to update", { status: 404 });
 	},
-}
+};

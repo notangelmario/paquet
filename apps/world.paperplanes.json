@@ -1,0 +1,14 @@
+{
+	"id": "world.paperplanes",
+	"url": "https://paperplanes.world",
+	"manifestUrl": "https://paperplanes.world/manifest.json",
+	"features": [
+		"mobile"
+	],
+	"categories": [
+		"games"
+	],
+	"author": "Yvo Schaap",
+	"accentColor": "#2323db",
+	"version": 1
+}

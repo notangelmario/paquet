@@ -14,5 +14,5 @@ assignees: ""
 **App author:** Linus Torvalds\
 **Features:** (desktop optimized, requires auth, open source, offline compatible, mobile optimized)
 
--   Desktop optimized
--   Mobile optimized
+- Desktop optimized
+- Mobile optimized

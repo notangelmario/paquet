@@ -1,0 +1,20 @@
+{
+	"id": "io.stackedit.app",
+	"url": "https://stackedit.io/app",
+	"manifestUrl": "https://stackedit.io/manifest.c9128ce574e7548a3b0d3bcd8bfa212c.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource",
+		"offline"
+	],
+	"githubUrl": "https://github.com/benweet/stackedit/",
+	"categories": [
+		"development",
+		"utilities",
+		"productivity"
+	],
+	"author": "Benoit Schweblin",
+	"accentColor": "#fb8c04",
+	"version": 1
+}

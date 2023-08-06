@@ -1,0 +1,19 @@
+{
+	"id": "org.telegram.web.z",
+	"url": "https://web.telegram.org/z",
+	"manifestUrl": "https://web.telegram.org/z/site.webmanifest",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource",
+		"offline",
+		"auth"
+	],
+	"githubUrl": "https://github.com/Ajaxy/telegram-tt",
+	"categories": [
+		"social"
+	],
+	"author": "Telegram",
+	"accentColor": "#2ca4dc",
+	"version": 1
+}

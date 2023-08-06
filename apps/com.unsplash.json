@@ -1,0 +1,16 @@
+{
+	"id": "com.unsplash",
+	"url": "https://unsplash.com",
+	"manifestUrl": "https://unsplash.com/site-v2.webmanifest",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"categories": [
+		"utilities",
+		"lifestyle"
+	],
+	"author": "Unsplash",
+	"accentColor": "#7f7f7f",
+	"version": 1
+}

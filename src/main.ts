@@ -6,13 +6,19 @@
 import { start } from "$fresh/server.ts";
 import manifest from "@/fresh.gen.ts";
 
+import "dotenv";
+
 import twindPlugin from "$fresh/plugins/twindv1.ts";
 import twindConfig from "@/twind.config.ts";
 
+import { kvInsightsPlugin } from "deno-kv-insights";
+
+// @ts-ignore: I don't care about the type of the manifest
 await start(manifest, {
 	plugins: [
 		// @ts-ignore: I don't care about the type of this plugin
 		twindPlugin(twindConfig),
+		kvInsightsPlugin(),
 	],
 	port: parseInt(Deno.env.get("PORT") || "3000"),
 });

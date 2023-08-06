@@ -84,10 +84,11 @@ export default function Navbar(props: Props) {
 	return (
 		<div
 			class={`
-				${props.transparentTop && !trigger
+				${
+				props.transparentTop && !trigger
 					? "bg-transparent"
 					: "bg-light dark:!bg-dark"
-				}
+			}
 				fixed flex w-full 
 				-top-px left-0 right-0
 				items-center 

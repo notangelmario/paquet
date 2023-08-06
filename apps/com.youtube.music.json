@@ -1,0 +1,16 @@
+{
+	"id": "com.youtube.music",
+	"url": "https://music.youtube.com/",
+	"manifestUrl": "https://music.youtube.com/manifest.webmanifest",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"categories": [
+		"entertainment",
+		"music"
+	],
+	"author": "Google",
+	"accentColor": "#fc0404",
+	"version": 1
+}

@@ -5,10 +5,12 @@ export interface ButtonProps {
 	icon?: string;
 	iconProps?: IconProps;
 	fullWidth?: boolean;
-	variant?: "outset" | "primary" | "secondary" | "error" | "outlined"
-};
+	variant?: "outset" | "primary" | "secondary" | "error" | "outlined";
+}
 
-export default function Button(props: ButtonProps & JSX.IntrinsicElements["button"]) {
+export default function Button(
+	props: ButtonProps & JSX.IntrinsicElements["button"],
+) {
 	return (
 		<button
 			{...props}
@@ -17,10 +19,11 @@ export default function Button(props: ButtonProps & JSX.IntrinsicElements["butto
 				relative rounded px-8 py-2 text-base
 				${props.variant === "error" ? "border-error" : "border-current"}
 				
-				${props.variant === "outlined"
+				${
+				props.variant === "outlined"
 					? "btn bg-light border dark:bg-dark text-current"
 					: ""
-				}
+			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
 				
 				${props.fullWidth ? "w-full" : ""}

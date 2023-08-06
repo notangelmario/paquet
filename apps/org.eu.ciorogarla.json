@@ -1,0 +1,18 @@
+{
+	"id": "org.eu.ciorogarla",
+	"url": "https://ciorogarla.eu.org",
+	"manifestUrl": "https://ciorogarla.eu.org/manifest.json",
+	"features": [
+		"openSource",
+		"mobile",
+		"desktop"
+	],
+	"githubUrl": "https://github.com/profiteriteam/platforma-ciorogarla",
+	"categories": [
+		"news",
+		"social"
+	],
+	"author": "Profiteri",
+	"accentColor": "#36c836",
+	"version": 1
+}

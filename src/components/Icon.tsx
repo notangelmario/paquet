@@ -50,7 +50,6 @@ import SunIcon from "tabler-icons/sun.tsx";
 import SunMoonIcon from "tabler-icons/sun-moon.tsx";
 import BrushIcon from "tabler-icons/brush.tsx";
 
-
 export const ICONS = new Map([
 	["github", GitHubIcon],
 	["gitlab", GitLabIcon],

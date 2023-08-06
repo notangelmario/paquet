@@ -1,7 +1,8 @@
 # Getting started
 
-:wave: Hi! Here is how you can add your app to Paquet. Adding a new app
-is done by submiting an issue on our [GitHub repo](https://github.com/notangelmario/paquet).
+:wave: Hi! Here is how you can add your app to Paquet. Adding
+a new app is done by adding a spec to `apps` folder in the
+[GitHub repo](https://github.com/notangelmario/paquet).
 
 > Verification on apps has been removed, because all apps are checked
 > during the listing process.
@@ -27,6 +28,7 @@ Here are the keys we use when displaying your app listing on Paquet:
 * `categories`
 * `icons`
 * `screenshots`
+* `theme_color`
 
 You can find more about manifest keys on the [manifest documentation](/docs/manifest.md)
 

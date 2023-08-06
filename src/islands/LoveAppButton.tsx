@@ -1,8 +1,7 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { useMemo, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import type { App } from "@/types/App.ts";
 import Button from "@/components/Button.tsx";
-import { useUserLoved } from "@/hooks/useUserLoved.ts";
 import Dialog from "@/islands/Dialog.tsx";
 
 interface Props {
@@ -11,36 +10,42 @@ interface Props {
 }
 
 export default function LoveAppButton({ app, ssrLoved }: Props) {
-	const { apps, setApps, loading } = useUserLoved();
+	const [throttle, setThrottle] = useState(false);
+	const [isLoved, setLoved] = useState(ssrLoved);
 	const [dialogOpen, setDialogOpen] = useState(false);
-	const [confirmDeleteDialog, setConfirmDeleteDialog] = useState(false);
+	const [confirmDeleteDialogOpen, setConfirmDeleteDialogOpen] = useState(
+		false,
+	);
 
-	const loveApp = (app: App) => {
-		if (!apps.find((a) => a.id === app.id)) {
-			setApps([...apps, {
-				id: app.id,
-				name: app.name,
-				icon: app.icon,
-				url: app.url,
-				author: app.author,
-			}]);
+	const openDialogs = () => {
+		if (!isLoved) {
+			loveAppToggle();
 			setDialogOpen(true);
 		} else {
-			setConfirmDeleteDialog(true);
+			setConfirmDeleteDialogOpen(true);
 		}
 	};
 
-	const isAppLoved = useMemo(() => {
-		if (loading) {
-			return ssrLoved;
+	const loveAppToggle = () => {
+		if (throttle) return;
+
+		if (!isLoved) {
+			setDialogOpen(true);
+		} else {
+			setConfirmDeleteDialogOpen(true);
 		}
 
-		return apps.find((a) => a.id === app.id);
-	}, [apps, app]);
+		setLoved(!isLoved);
+		setThrottle(true);
+		fetch(`/api/user/love/` + app.id, {
+			method: isLoved ? "DELETE" : "POST",
+		})
+			.finally(() => setThrottle(false));
+	};
 
 	const confirmDelete = () => {
-		setApps(apps.filter((a) => a.id !== app.id));
-		setConfirmDeleteDialog(false);
+		loveAppToggle();
+		setConfirmDeleteDialogOpen(false);
 	};
 
 	return (
@@ -49,10 +54,10 @@ export default function LoveAppButton({ app, ssrLoved }: Props) {
 				variant="outlined"
 				fullWidth
 				disabled={!IS_BROWSER}
-				icon={isAppLoved ? "broken-heart" : "heart"}
-				onClick={() => loveApp(app)}
+				icon={isLoved ? "broken-heart" : "heart"}
+				onClick={openDialogs}
 			>
-				{isAppLoved ? "Remove from loved" : "Love this app"}
+				{isLoved ? "Remove from loved" : "Love this app"}
 			</Button>
 			<Dialog
 				title="You love this app!"
@@ -75,8 +80,8 @@ export default function LoveAppButton({ app, ssrLoved }: Props) {
 			<Dialog
 				title="Are you sure?"
 				content={`Are you sure you want to remove ${app.name} from your loved apps? You can add it back anytime.`}
-				open={confirmDeleteDialog}
-				setOpen={setConfirmDeleteDialog}
+				open={confirmDeleteDialogOpen}
+				setOpen={setConfirmDeleteDialogOpen}
 				buttons={[
 					{
 						text: "Confirm",
@@ -87,7 +92,7 @@ export default function LoveAppButton({ app, ssrLoved }: Props) {
 					{
 						text: "Cancel",
 						variant: "outlined",
-						onClick: () => setConfirmDeleteDialog(false),
+						onClick: () => setConfirmDeleteDialogOpen(false),
 					},
 				]}
 			/>

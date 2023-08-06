@@ -1,0 +1,21 @@
+{
+	"id": "app.inthistweet",
+	"url": "https://inthistweet.app",
+	"manifestUrl": "https://inthistweet.app/manifest.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource"
+	],
+	"githubUrl": "https://github.com/okikio/inthistweet",
+	"categories": [
+		"productivity",
+		"utilities",
+		"social",
+		"lifestyle",
+		"entertainment"
+	],
+	"author": "@okikio",
+	"accentColor": "#324cf4",
+	"version": 1
+}

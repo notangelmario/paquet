@@ -30,7 +30,7 @@ export default function Footer() {
 
 				<div class="flex flex-row gap-2 mt-4 justify-center">
 					<a
-						href="/privacy"
+						href="/docs"
 						class="underline opacity-75"
 					>
 						Docs

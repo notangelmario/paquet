@@ -1,0 +1,17 @@
+{
+	"id": "eu.mconverter",
+	"url": "https://mconverter.eu",
+	"manifestUrl": "https://mconverter.eu/manifest.json",
+	"features": [
+		"mobile",
+		"desktop"
+	],
+	"categories": [
+		"utilities",
+		"lifestyle",
+		"entertainment"
+	],
+	"author": "MConverter",
+	"accentColor": "#5494fc",
+	"version": 1
+}

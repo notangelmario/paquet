@@ -1,0 +1,19 @@
+{
+	"id": "com.bundlejs",
+	"url": "https://bundlejs.com",
+	"manifestUrl": "https://bundlejs.com/manifest.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource"
+	],
+	"githubUrl": "https://github.com/okikio/bundlejs",
+	"categories": [
+		"productivity",
+		"utilities",
+		"development"
+	],
+	"author": "@okikio",
+	"accentColor": "#3c84f4",
+	"version": 1
+}

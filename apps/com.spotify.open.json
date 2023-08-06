@@ -1,0 +1,16 @@
+{
+	"id": "com.spotify.open",
+	"url": "https://open.spotify.com",
+	"manifestUrl": "https://open.spotifycdn.com/cdn/generated/manifest-mobile-web-player.a1ddf51c.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"auth"
+	],
+	"categories": [
+		"music"
+	],
+	"author": "Spotify AB",
+	"accentColor": "#1cd363",
+	"version": 1
+}

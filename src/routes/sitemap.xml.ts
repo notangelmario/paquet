@@ -1,11 +1,14 @@
 import manifest from "@/fresh.gen.ts";
 import type { Handlers } from "@/types/Handler.ts";
 import { SitemapContext } from "fresh_seo";
-import { supabase } from "@/lib/supabase.ts";
+import { getApps } from "@/lib/db.ts";
 
 const excludedRoutes = [
 	"/gfm.css",
 	"/app/error",
+	"/api/cookie",
+	"/api/image-proxy",
+	"/env.js",
 ];
 
 export const handler: Handlers = {
@@ -13,15 +16,14 @@ export const handler: Handlers = {
 		const sitemap = new SitemapContext("https://paquet.app", manifest);
 		const docs = Deno.readDir("docs");
 
-		const { data: apps } = await supabase.from("apps")
-			.select("*");
+		const allApps = await getApps();
 
-		if (!apps) {
+		if (!allApps) {
 			return sitemap.render();
 		}
 
 		// Add app routes
-		apps.forEach((app) => {
+		allApps.forEach((app) => {
 			sitemap.add(`/app/${app.id}`);
 		});
 

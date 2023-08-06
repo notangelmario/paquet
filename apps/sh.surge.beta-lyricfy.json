@@ -1,0 +1,17 @@
+{
+	"id": "sh.surge.beta-lyricfy",
+	"url": "https://beta-lyricfy.surge.sh",
+	"manifestUrl": "https://beta-lyricfy.surge.sh/manifest.json",
+	"features": [
+		"mobile",
+		"desktop",
+		"auth"
+	],
+	"categories": [
+		"utilities",
+		"music"
+	],
+	"author": "Lyricfy",
+	"accentColor": "#54e4b9",
+	"version": 1
+}

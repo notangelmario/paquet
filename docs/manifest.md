@@ -53,6 +53,7 @@ The values Paquet uses in your app listing are:
 -   `categories`
 -   `icons`
 -   `screenshots`
+-   `theme_color`
 
 ### `name`
 
@@ -103,3 +104,9 @@ will also improve your visibility on Paquet.
 
 > Since 3.2.0, Paquet does not store the app's screenshots anymore.
 > Please make sure your screenshots does not have a cross origin restriction.
+
+
+### `theme_color`
+
+We use the this variable to display the accent in the page listing.
+This can be any hex variable.

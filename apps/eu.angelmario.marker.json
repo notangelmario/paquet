@@ -1,0 +1,18 @@
+{
+	"id": "eu.angelmario.marker",
+	"url": "https://marker.angelmario.eu",
+	"manifestUrl": "https://marker.angelmario.eu/manifest.json",
+	"features": [
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"githubUrl": "https://github.com/fructoland/marker",
+	"categories": [
+		"utilities",
+		"productivity"
+	],
+	"author": "Savin Angel-Mario",
+	"accentColor": "#7f7f7f",
+	"version": 1
+}

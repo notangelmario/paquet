@@ -11,10 +11,11 @@ export default function SlideItem(props: Props & JSX.IntrinsicElements["div"]) {
 		<div
 			{...props}
 			class={`
-				${props.isLast
+				${
+				props.isLast
 					? `${!props.disableGutters ? "!pr-4" : ""} md:pr-0`
 					: ""
-				} 
+			} 
 				${props.equal ? "flex-1" : ""}
 				${!props.disableGutters ? "pl-4" : ""}
 

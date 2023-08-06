@@ -26,30 +26,50 @@ export default function DocPage({ data }: PageProps<DataProps>) {
 				<title>{data.title} &middot; Paquet</title>
 			</Head>
 			<Navbar back />
-			<Container class="mt-16 mb-8">
-				<p>
-					<Icon
-						name="info"
-						size={18}
-						inline
-						class="opacity-50"
-					/>{" "}
-					<span class="opacity-50">Read this page on{" "}</span>
-					<a
-						class="text-primary"
-						href={data.githubUrl}
-					>
-						GitHub
-					</a>
-				</p>
-			</Container>
-			<Container
-				data-color-mode="auto"
-				data-light-theme="light"
-				data-dark-theme="dark"
-				class="markdown-body !bg-light dark:!bg-dark"
-				dangerouslySetInnerHTML={{ __html: data.content }}
-			/>
+			<div class="flex flex-row">
+				<div class="hidden md:block">
+					<Container class="mt-16">
+						{DOCS.map((doc) => (
+							<a
+								href={`/docs/${
+									doc.filename.replace(".md", "")
+								}`}
+								class="block mb-4"
+							>
+								{doc.title}
+							</a>
+						))}
+					</Container>
+				</div>
+				<div class="flex-1">
+					<Container class="mt-16 mb-8">
+						<p>
+							<Icon
+								name="info"
+								size={18}
+								inline
+								class="opacity-50"
+							/>{" "}
+							<span class="opacity-50">
+								Read this page on{" "}
+							</span>
+							<a
+								class="text-primary"
+								href={data.githubUrl}
+							>
+								GitHub
+							</a>
+						</p>
+					</Container>
+					<Container
+						data-color-mode="auto"
+						data-light-theme="light"
+						data-dark-theme="dark"
+						class="markdown-body !bg-light dark:!bg-dark"
+						dangerouslySetInnerHTML={{ __html: data.content }}
+					/>
+				</div>
+			</div>
 		</>
 	);
 }

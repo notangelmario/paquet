@@ -1,11 +1,13 @@
 import type { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
-import UserHandler from "@/islands/UserHandler.tsx";
-import LoginErrorDialog from "@/islands/login/LoginErrorDialog.tsx";
 import { APP } from "@/lib/app.ts";
 
-export default function App({ Component }: AppProps) {
+export default function App({ Component, url }: AppProps) {
+	if (url.pathname === "/kv-insights") {
+		return <Component />;
+	}
+
 	return (
 		<html>
 			<Head>
@@ -81,16 +83,13 @@ export default function App({ Component }: AppProps) {
 				>
 				</script>
 			</Head>
-			<main onTouchStart={() => ""}>
+			<main>
 				<Component />
 			</main>
 			<Footer />
-			<UserHandler />
-			<LoginErrorDialog />
 			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
 				<script type="text/javascript" src="/registerSw.js"></script>
 			)}
-			<script type="text/javascript" src="/env.js"></script>
 		</html>
 	);
 }

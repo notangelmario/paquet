@@ -1,0 +1,16 @@
+{
+	"id": "app.vercel.long-cat",
+	"url": "https://long-cat.vercel.app",
+	"manifestUrl": "https://long-cat.vercel.app/manifest.json",
+	"features": [
+		"mobile",
+		"offline",
+		"openSource"
+	],
+	"categories": [
+		"games"
+	],
+	"author": "Jorge Rubiano",
+	"accentColor": "#fcec34",
+	"version": 1
+}

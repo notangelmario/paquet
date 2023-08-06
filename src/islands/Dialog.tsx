@@ -32,10 +32,11 @@ export default function Dialog(props: Props) {
 				!m-0
 				transition-opacity duration-150 ease-in-out
 
-				${props.open
+				${
+				props.open
 					? "opacity-100 pointer-events-auto"
 					: "opacity-0 pointer-events-none"
-				}
+			}
 			`}
 			onClick={(e) => {
 				if (e.target !== e.currentTarget) return;

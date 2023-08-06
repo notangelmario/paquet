@@ -1,0 +1,15 @@
+{
+	"id": "com.google.santatracker",
+	"url": "https://santatracker.google.com",
+	"manifestUrl": "https://santatracker.google.com/manifest.json",
+	"features": [
+		"desktop",
+		"mobile"
+	],
+	"categories": [
+		"games"
+	],
+	"author": "Google",
+	"accentColor": "#e13d34",
+	"version": 1
+}
