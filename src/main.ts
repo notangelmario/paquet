@@ -13,13 +13,6 @@ import twindConfig from "@/twind.config.ts";
 
 import { kvInsightsPlugin } from "deno-kv-insights";
 
-import { migrate } from "../scripts/migrate.ts";
-
-if (Deno.env.get("MIGRATE_FROM_SUPABASE") === "1") {
-	await migrate();
-	console.log("Migrated from Supabase");
-}
-
 // @ts-ignore: I don't care about the type of the manifest
 await start(manifest, {
 	plugins: [
