@@ -6,7 +6,7 @@ import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-w
 
 const INTERNAL_KEY = Deno.env.get("INTERNAL_KEY")!;
 
-const API_ENDPOINT = "http://paquet.app";
+const API_ENDPOINT = Deno.env.get("DENO_DEPLOYMENT_ID") ? "https://paquet.app" : "http://localhost:3000";
 
 const ICONS_SIZES = [
 	"96x96",
