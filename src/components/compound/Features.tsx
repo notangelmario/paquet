@@ -24,13 +24,14 @@ export default function Features(props: Props) {
 					>
 						<div
 							class={`
-								${props.features &&
+								${
+								props.features &&
 									!props.features?.find((value) =>
 										value === id
 									)?.length
 									? "opacity-50"
 									: ""
-								}
+							}
 
 								flex flex-row justify-center items-center gap-2
 							`}
@@ -40,13 +41,14 @@ export default function Features(props: Props) {
 									flex flex-shrink-0 justify-center items-center
 									rounded-full w-12 h-12
 
-									${props.features &&
+									${
+									props.features &&
 										props.features?.find((value) =>
 											value === id
 										)?.length
 										? "bg-secondary shadow shadow-outset-secondary"
 										: "bg-light-dark"
-									}
+								}
 								`}
 							>
 								<Icon

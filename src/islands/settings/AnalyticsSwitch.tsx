@@ -10,11 +10,13 @@ interface Props {
 
 export default function AnalyticsSwitch(props: Props) {
 	// We also use the cookie for prerendering.
-	// In the future analyticsDisabled set from the middleware will disable 
+	// In the future analyticsDisabled set from the middleware will disable
 	// the script before reaching the client.
-	const [analyticsEnabled, setAnalyticsEnabled] = useState(IS_BROWSER
-		? globalThis.localStorage?.getItem("umami.disabled") !== "true"
-		: !props.analyticsDisabled);
+	const [analyticsEnabled, setAnalyticsEnabled] = useState(
+		IS_BROWSER
+			? globalThis.localStorage?.getItem("umami.disabled") !== "true"
+			: !props.analyticsDisabled,
+	);
 
 	const toggleAnalytics = () => {
 		if (analyticsEnabled) {
@@ -34,7 +36,9 @@ export default function AnalyticsSwitch(props: Props) {
 			icon="analytics"
 			title="Analytics"
 			subtitle="Help us improve Paquet by sending anonymous usage data"
-			secondarySlot={<Switch checked={analyticsEnabled} onChange={toggleAnalytics} />}
+			secondarySlot={
+				<Switch checked={analyticsEnabled} onChange={toggleAnalytics} />
+			}
 		/>
-	)
+	);
 }

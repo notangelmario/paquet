@@ -1,0 +1,17 @@
+{
+    "id": "com.gamelette.moodyman",
+    "url": "https://moodyman.gamelette.com/",
+    "manifestUrl": "https://moodyman.gamelette.com/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "offline"
+    ],
+    "categories": [
+        "games",
+        "entertainment"
+    ],
+    "author": "Shishir Singh",
+    "accentColor": "#fbab24",
+    "version": 1
+}

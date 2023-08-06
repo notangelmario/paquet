@@ -1,0 +1,16 @@
+{
+    "id": "com.webapicheck",
+    "url": "https://webapicheck.com",
+    "manifestUrl": "https://webapicheck.com/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "productivity",
+        "utilities"
+    ],
+    "author": "Toni Engelhardt",
+    "accentColor": "#4e0cf2",
+    "version": 1
+}

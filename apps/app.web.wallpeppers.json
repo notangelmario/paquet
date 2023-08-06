@@ -1,0 +1,17 @@
+{
+    "id": "app.web.wallpeppers",
+    "url": "https://wallpeppers.web.app",
+    "manifestUrl": "https://wallpeppers.web.app/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "openSource"
+    ],
+    "categories": [
+        "lifestyle",
+        "utilities"
+    ],
+    "author": "undefyned",
+    "accentColor": "#fc9504",
+    "version": 1
+}

@@ -1,16 +1,10 @@
 import "dotenv";
 import type { App } from "@/types/App.ts";
-import { createClient } from "supabase";
-import Vibrant from "npm:node-vibrant";
-import Jimp from "npm:jimp";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
 
-const supabase = createClient(
-	Deno.env.get("SUPABASE_URL")!,
-	Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-);
+const INTERNAL_KEY = Deno.env.get("INTERNAL_KEY")!;
 
 const ICONS_SIZES = [
 	"96x96",
@@ -22,40 +16,78 @@ const ICONS_SIZES = [
 	"512x512",
 ];
 
-let apps: App[] = [];
-
-if (Deno.args.length) {
-	if (Deno.args[0] !== "--force") {
-		const { data } = await supabase.from("apps")
-			.select("*")
-			.eq("id", Deno.args[0]);
-
-		if (data) {
-			apps = data;
-		} else {
-			console.error("Could not get apps!");
-			Deno.exit(1);
-		}
-	} else {
-		const { data } = await supabase.from("apps")
-			.select("*");
-
-		if (!data) {
-			Deno.exit();
-		}
-
-		apps = data;
-	}
+export interface AppSpec {
+	id: string;
+	url: string;
+	manifestUrl?: string;
+	categories?: string[];
+	author?: string;
+	authorLink?: string;
+	githubUrl?: string;
+	gitlabUrl?: string;
+	accentColor?: string;
+	version: string | number;
 }
+
+// Read all app.json's from the apps folder
+const appDir = Deno.readDir("./apps");
+const apps: AppSpec[] = [];
+
+for await (const dirEntry of appDir) {
+	if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
+		continue;
+	}
+
+	const app = JSON.parse(
+		await Deno.readTextFile(`./apps/${dirEntry.name}`),
+	) as App;
+
+	apps.push(app);
+}
+
 
 const appsWithError: string[] = [];
 
 console.log("Updating...");
 
-await Promise.all(apps.map(async (app) => {
+for (const app of apps) {
+	const appCurrentData: App = await fetch("http://localhost:3000/api/apps/" + app.id, {
+		headers: {
+			Authorization: `Bearer ${INTERNAL_KEY}`,
+		},
+	}).then((res) => res.json())
+		.catch((err) => {
+			console.log(err);
+			appsWithError.push(app.id);
+			return null;
+		});
+
+	if (!appCurrentData) {
+		// App does not exist, create it
+		const res = await fetch("http://localhost:3000/api/apps/" + app.id, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${INTERNAL_KEY}`,
+			},
+			body: JSON.stringify(app),
+		});
+
+		if (!res.ok) {
+			console.error(`Could not create app ${app.id}`);
+			appsWithError.push(app.id);
+			continue;
+		}
+		
+		// App created, remove from error list
+		const index = appsWithError.indexOf(app.id);
+		if (index > -1) {
+			appsWithError.splice(index, 1);
+		}
+	}
+
 	let manifestUrl: string;
 
-	if (!app.manifest_url) {
+	if (!app.manifestUrl) {
 		const body = await fetch(app.url, {
 			headers: {
 				Accept: "text/html",
@@ -64,14 +96,14 @@ await Promise.all(apps.map(async (app) => {
 			.then((res) => res.text())
 			.catch((err) => {
 				console.log(err);
-				appsWithError.push(app.name);
+				appsWithError.push(app.id);
 				return null;
 			});
 
 		if (!body) {
 			console.error(`Could not fetch ${app.url}`);
-			appsWithError.push(app.name);
-			return;
+			appsWithError.push(app.id);
+			continue;
 		}
 
 		// Get only the head tag
@@ -81,7 +113,7 @@ await Promise.all(apps.map(async (app) => {
 		if (!headParsed) {
 			console.error(`Could not parse head of ${app.url}`);
 			appsWithError.push(app.id);
-			return;
+			continue;
 		}
 
 		const manifestValue = headParsed.querySelector("link[rel=manifest]")
@@ -89,9 +121,10 @@ await Promise.all(apps.map(async (app) => {
 
 		manifestUrl = manifestValue.startsWith("http")
 			? manifestValue
-			: new URL(manifestValue, app.url.replace(/\/?$/, "/")).toString();
+			: relativeToAbsolute(manifestValue, app.url);
+
 	} else {
-		manifestUrl = app.manifest_url;
+		manifestUrl = app.manifestUrl;
 	}
 
 	let manifest: WebAppManifest | undefined;
@@ -106,18 +139,19 @@ await Promise.all(apps.map(async (app) => {
 		) => res.json());
 	} catch (err) {
 		console.error("Could not fetch manifest", err);
-		appsWithError.push(app.name);
-		return;
+		appsWithError.push(app.id);
+		console.log(manifestUrl);
+		continue;
 	}
 
 	const hash = await digest(JSON.stringify(manifest));
 
 	if (!manifest) {
 		console.log("Couldn't fetch manifest");
-		return;
+		continue;
 	}
 
-	if (hash !== app?.manifest_hash || Deno.args.includes("--force")) {
+	if (hash !== appCurrentData?.manifestHash || appCurrentData.version !== app.version) {
 		const manifestSplit = manifestUrl.split("/");
 		manifestSplit.pop();
 		const manifestParent = manifestSplit.join("/");
@@ -129,7 +163,7 @@ await Promise.all(apps.map(async (app) => {
 
 		let description = manifest?.description;
 		// deno-lint-ignore no-explicit-any
-		let author = (manifest as unknown as any)?.author;
+		let author = (manifest as unknown as any)?.author || app.author || "";
 		let cover_url = "";
 
 		if (Array.isArray(manifest.categories)) {
@@ -185,43 +219,17 @@ await Promise.all(apps.map(async (app) => {
 			}
 		} else {
 			console.error("No icons found");
-			appsWithError.push(app.name);
-			return;
+			appsWithError.push(app.id);
+			continue;
 		}
 
 		if (!icon_url.length) {
 			console.error("Icons not fetched properly!");
-			appsWithError.push(app.name);
-			return;
+			appsWithError.push(app.id);
+			continue;
 		}
 
-		const icon_blob = await Jimp.read(icon_url)
-			.then((image) => image.resize(128, 128))
-			.then((image) => image.getBufferAsync(Jimp.MIME_PNG))
-			.then((buffer) => new Blob([new Uint8Array(buffer)]))
-			.catch((err) => {
-				console.error("Could not fetch icon", err);
-				console.log(icon_url);
-				appsWithError.push(app.name);
-				return;
-			});
-
-		if (!icon_blob) return;
-
-		try {
-			const iconColorPalette = await Vibrant.from(icon_url)
-				.getPalette();
-
-			if (iconColorPalette.Vibrant) {
-				accent_color = iconColorPalette.Vibrant?.hex;
-			}
-		} catch (e) {
-			console.error("Could not get accent color");
-			console.error(e);
-			console.log(icon_url);
-			appsWithError.push(app.name);
-			return;
-		}
+		accent_color = manifest.theme_color || "";
 
 		if (!description || !author) {
 			const html = await fetch(app.url).then((res) => res.text());
@@ -235,8 +243,8 @@ await Promise.all(apps.map(async (app) => {
 				console.error(
 					"Could not parse html for description and author info",
 				);
-				appsWithError.push(app.name);
-				return;
+				appsWithError.push(app.id);
+				continue;
 			}
 
 			if (!description) {
@@ -261,23 +269,39 @@ await Promise.all(apps.map(async (app) => {
 			}
 		}
 
-		await supabase.from("apps")
-			.update({
-				name: manifest?.name || undefined,
-				description: description || undefined,
-				categories: categories.length ? categories : undefined,
-				author: author || undefined,
+		const res = await fetch("http://localhost:3000/api/apps/" + app.id, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${INTERNAL_KEY}`,
+			},
+			body: JSON.stringify({
+				name: manifest?.name || appCurrentData?.name,
+				description: description || appCurrentData?.description,
+				categories: app.categories || categories.length ? categories : appCurrentData?.categories,
+				author: author || app?.author || appCurrentData?.author,
 				screenshots: screenshots_urls.length
 					? screenshots_urls
-					: undefined,
-				accent_color: accent_color,
-				manifest_hash: hash,
-				icon: icon_url || undefined,
-				cover: cover_url || undefined,
-			})
-			.eq("id", app.id);
+					: appCurrentData?.screenshots,
+				accentColor: accent_color || app.categories || appCurrentData?.accentColor,
+				manifestHash: hash,
+				icon: icon_url || appCurrentData?.icon,
+				cover: cover_url || appCurrentData?.icon,
+				version: app.version,
+			}),
+		});
+
+		if (res.status !== 200) {
+			console.error("Could not update app");
+			console.error(await res.text());
+			appsWithError.push(app.id);
+			continue;
+		}
+
 	}
-}));
+
+	console.log(`Updated ${app.id}`);
+}
 
 console.log(`\n${appsWithError.length} apps with errors`);
 console.log(appsWithError.join(", "));

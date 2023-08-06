@@ -1,0 +1,18 @@
+{
+    "id": "social.pinafore",
+    "url": "https://pinafore.social",
+    "manifestUrl": "https://pinafore.social/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "auth",
+        "openSource"
+    ],
+    "githubUrl": "https://github.com/nolanlawson/pinafore",
+    "categories": [
+        "social"
+    ],
+    "author": "Nolan Lawson",
+    "accentColor": "#446ce4",
+    "version": 1
+}

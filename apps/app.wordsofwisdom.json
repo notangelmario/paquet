@@ -1,0 +1,15 @@
+{
+    "id": "app.wordsofwisdom",
+    "url": "https://wordsofwisdom.app",
+    "manifestUrl": "https://wordsofwisdom.app/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "utilities"
+    ],
+    "author": "Henry Egloff",
+    "accentColor": "#7f7f7f",
+    "version": 1
+}

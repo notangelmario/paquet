@@ -1,0 +1,19 @@
+{
+    "id": "io.github.maxmoffa.mydiary.public",
+    "url": "https://maxmoffa.github.io/mydiary/public",
+    "manifestUrl": "https://maxmoffa.github.io/mydiary/public/manifest.json",
+    "features": [
+        "openSource",
+        "mobile",
+        "offline",
+        "desktop"
+    ],
+    "githubUrl": "https://github.com/MaxMoffa/MyDiary",
+    "categories": [
+        "productivity",
+        "utilities"
+    ],
+    "author": "Massimo Moffa",
+    "accentColor": "#d0c589",
+    "version": 1
+}

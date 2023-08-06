@@ -9,9 +9,9 @@ export const supabase = createClient(
 	SUPABASE_ANON_KEY,
 	{
 		auth: {
-			persistSession: false
-		}
-	}
+			persistSession: false,
+		},
+	},
 );
 
 export const supabaseAs = (access_token: string) => {

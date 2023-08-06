@@ -1,0 +1,15 @@
+{
+    "id": "io.krunker",
+    "url": "https://krunker.io",
+    "manifestUrl": "https://krunker.io/",
+    "features": [
+        "desktop",
+        "mobile"
+    ],
+    "categories": [
+        "games"
+    ],
+    "author": "FRVR",
+    "accentColor": "#fb931c",
+    "version": 1
+}

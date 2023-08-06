@@ -1,0 +1,16 @@
+{
+    "id": "win.freesolitaire",
+    "url": "https://freesolitaire.win",
+    "manifestUrl": "https://freesolitaire.win/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "offline"
+    ],
+    "categories": [
+        "games"
+    ],
+    "author": "Unknown",
+    "accentColor": "#449444",
+    "version": 1
+}

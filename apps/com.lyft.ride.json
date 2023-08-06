@@ -1,0 +1,16 @@
+{
+    "id": "com.lyft.ride",
+    "url": "https://ride.lyft.com",
+    "manifestUrl": "https://ride.lyft.com/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "auth"
+    ],
+    "categories": [
+        "lifestyle"
+    ],
+    "author": "Lyft",
+    "accentColor": "#fc04bc",
+    "version": 1
+}

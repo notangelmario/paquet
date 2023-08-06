@@ -10,7 +10,7 @@ interface Props {
 export default function SlideCategories({ categoryIds }: Props) {
 	return (
 		<SlideContainer class="mt-4">
-			{categoryIds.map((categoryId, idx) =>
+			{categoryIds && categoryIds.map((categoryId, idx) =>
 				getCategory(categoryId)?.id
 					? (
 						<SlideItem

@@ -1,0 +1,15 @@
+{
+    "id": "com.pinterest",
+    "url": "https://pinterest.com",
+    "manifestUrl": "https://pinterest.com/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "lifestyle"
+    ],
+    "author": "Pinterest",
+    "accentColor": "#bc2324",
+    "version": 1
+}

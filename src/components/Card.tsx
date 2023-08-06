@@ -14,10 +14,11 @@ export default function Card(props: Props) {
 				rounded
 				overflow-hidden
 				border border-light-dark dark:border-dark-light
-				${props.inset
+				${
+				props.inset
 					? "shadow-inset-light dark:shadow-inset-dark"
 					: "shadow-outset-light dark:shadow-outset-dark"
-				}
+			}
 				grainy
 
 				${!props.disableGutters && "p-4"}

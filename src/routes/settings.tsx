@@ -31,10 +31,11 @@ export default function Settings(props: PageProps<MiddlewareProps>) {
 									<ListItem
 										title={props.data.user.name}
 										image={props.data.user.avatar_url}
-										subtitle={`${props.data.user.email}<br/>Connected with ${props.data.user.providers.map((val) =>
-											providers.get(val)
-										).join(", ")
-											}`}
+										subtitle={`${props.data.user.email}<br/>Connected with ${
+											props.data.user.providers.map((
+												val,
+											) => providers.get(val)).join(", ")
+										}`}
 										divider
 									/>
 									<LogoutButton />
@@ -51,7 +52,9 @@ export default function Settings(props: PageProps<MiddlewareProps>) {
 									/>
 								</a>
 							)}
-						<AnalyticsSwitch analyticsDisabled={!!props.data.analyticsDisabled} />
+						<AnalyticsSwitch
+							analyticsDisabled={!!props.data.analyticsDisabled}
+						/>
 					</Card>
 					<Card disableGutters>
 						<a href="/docs">

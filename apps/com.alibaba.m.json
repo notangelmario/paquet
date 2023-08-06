@@ -1,0 +1,14 @@
+{
+    "id": "com.alibaba.m",
+    "url": "https://m.alibaba.com/",
+    "manifestUrl": "https://m.alibaba.com/manifest-pwa.json",
+    "features": [
+        "mobile"
+    ],
+    "categories": [
+        "lifestyle"
+    ],
+    "author": "Alibaba",
+    "accentColor": "#fc6404",
+    "version": 1
+}

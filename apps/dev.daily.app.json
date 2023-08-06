@@ -1,0 +1,18 @@
+{
+    "id": "dev.daily.app",
+    "url": "https://app.daily.dev",
+    "manifestUrl": "https://app.daily.dev/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "openSource"
+    ],
+    "githubUrl": "https://github.com/dailydotdev/daily",
+    "categories": [
+        "news",
+        "development"
+    ],
+    "author": "daily.dev",
+    "accentColor": "#448cfc",
+    "version": 1
+}

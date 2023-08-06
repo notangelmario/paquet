@@ -1,0 +1,15 @@
+{
+    "id": "com.google.travel",
+    "url": "https://www.google.com/travel",
+    "manifestUrl": "https://www.google.com/_/TravelFrontendUi/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "lifestyle"
+    ],
+    "author": "Google",
+    "accentColor": "#fabc05",
+    "version": 1
+}

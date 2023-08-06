@@ -1,4 +1,3 @@
-import { supabase } from "@/lib/supabase.ts";
 import { Head } from "$fresh/runtime.ts";
 import Container from "@/components/Container.tsx";
 import Stack from "@/components/Stack.tsx";
@@ -9,11 +8,15 @@ import Divider from "@/components/Divider.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import Features from "@/components/compound/Features.tsx";
 import { APP } from "@/lib/app.ts";
+import { getAppsRandom } from "@/lib/db.ts";
 
 export default async function Welcome(req: Request) {
 	const url = new URL(req.url);
 
-	if (url.searchParams.get("utm_source") === "homescreen" || url.searchParams.get("utm_source") === "pwa") {
+	if (
+		url.searchParams.get("utm_source") === "homescreen" ||
+		url.searchParams.get("utm_source") === "pwa"
+	) {
 		return new Response("", {
 			status: 307,
 			headers: {
@@ -22,10 +25,7 @@ export default async function Welcome(req: Request) {
 		});
 	}
 
-	const { data: apps } = await supabase.from("random_apps")
-		.select("id, icon")
-		.limit(8);
-
+	const apps = await getAppsRandom(8)
 
 	return (
 		<>
@@ -62,16 +62,18 @@ export default async function Welcome(req: Request) {
 							</span>.
 						</h2>
 						<div class="grid grid-cols-4 md:grid-cols-8 gap-2 place-items-center place-content-center filter grayscale">
-							{apps ? apps.map((app) => (
-								<a
-									href={`/app/${app.id}`}
-								>
-									<img
-										class="w-16 h-16 rounded"
-										src={app.icon}
-									/>
-								</a>
-							)) : null}
+							{apps
+								? apps.map((app) => (
+									<a
+										href={`/app/${app.id}`}
+									>
+										<img
+											class="w-16 h-16 rounded"
+											src={app.icon}
+										/>
+									</a>
+								))
+								: null}
 						</div>
 						<a
 							href="/home"
@@ -186,9 +188,7 @@ export default async function Welcome(req: Request) {
 								divider
 							/>
 						</a>
-						<a
-							href="/docs"
-						>
+						<a href="/docs">
 							<ListItem
 								icon="file-description"
 								title="Documentation"

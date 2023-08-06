@@ -1,0 +1,16 @@
+{
+    "id": "com.instagram",
+    "url": "https://www.instagram.com",
+    "manifestUrl": "https://www.instagram.com/data/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "auth"
+    ],
+    "categories": [
+        "social"
+    ],
+    "author": "Meta",
+    "accentColor": "#c43c7c",
+    "version": 1
+}

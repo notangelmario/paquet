@@ -1,0 +1,16 @@
+{
+    "id": "dev.jull.sudoku",
+    "url": "https://sudoku.jull.dev",
+    "manifestUrl": "https://sudoku.jull.dev/manifest.json?v=1",
+    "features": [
+        "mobile",
+        "desktop",
+        "offline"
+    ],
+    "categories": [
+        "games"
+    ],
+    "author": "jull.dev",
+    "accentColor": "#7f7f7f",
+    "version": 1
+}

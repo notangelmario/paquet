@@ -1,0 +1,19 @@
+{
+    "id": "com.monkeytype",
+    "url": "https://monkeytype.com",
+    "manifestUrl": "https://monkeytype.com/manifest.json",
+    "features": [
+        "openSource",
+        "desktop",
+        "mobile",
+        "offline"
+    ],
+    "githubUrl": "https://github.com/monkeytypegame/monkeytype",
+    "categories": [
+        "utilities",
+        "games"
+    ],
+    "author": "Miodec",
+    "accentColor": "#dcb015",
+    "version": 1
+}

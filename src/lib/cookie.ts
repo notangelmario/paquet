@@ -1,5 +1,5 @@
 export async function getCookie(name: string): Promise<string | undefined> {
-	const res = await fetch(`/api/cookie?name=${name}`)
+	const res = await fetch(`/api/cookie?name=${name}`);
 	if (res.status !== 200) {
 		return undefined;
 	}

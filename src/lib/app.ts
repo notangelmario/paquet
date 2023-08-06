@@ -5,7 +5,7 @@ export const APP = {
 	codename: "Dorina",
 	githubRepo: "https://github.com/notangelmario/paquet",
 	umamiUrl: Deno.env.get("UMAMI_URL"),
-	umamiId: Deno.env.get("UMAMI_ID")
+	umamiId: Deno.env.get("UMAMI_ID"),
 };
 
 export const DEV = !Deno.env.get("DENO_DEPLOYMENT_ID");

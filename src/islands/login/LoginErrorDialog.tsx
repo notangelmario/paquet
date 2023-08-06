@@ -26,8 +26,9 @@ export default function LoginErrorDialog() {
 				open={open}
 				setOpen={setOpen}
 				title="Login error"
-				content={`There was an error logging you in. Here's the error message: "${url.searchParams.get("error_description")
-					}"`}
+				content={`There was an error logging you in. Here's the error message: "${
+					url.searchParams.get("error_description")
+				}"`}
 				buttons={[
 					{
 						text: "OK",

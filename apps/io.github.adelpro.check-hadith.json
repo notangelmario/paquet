@@ -1,0 +1,18 @@
+{
+    "id": "io.github.adelpro.check-hadith",
+    "url": "https://adelpro.github.io/check-hadith",
+    "manifestUrl": "https://adelpro.github.io/check-hadith/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "openSource",
+        "offline"
+    ],
+    "githubUrl": "https://github.com/adelpro/check-hadith",
+    "categories": [
+        "social"
+    ],
+    "author": "BENYAHIA-DEV",
+    "accentColor": "#0594e4",
+    "version": 1
+}

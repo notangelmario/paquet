@@ -1,0 +1,17 @@
+{
+    "id": "net.rec",
+    "url": "https://rec.net",
+    "manifestUrl": "https://rec.net/manifest.webmanifest",
+    "features": [
+        "mobile",
+        "desktop",
+        "offline"
+    ],
+    "categories": [
+        "social",
+        "games"
+    ],
+    "author": "Rec Room",
+    "accentColor": "#f46c45",
+    "version": 1
+}

@@ -1,7 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import type { PageProps } from "$fresh/server.ts";
-import type { Handler } from "@/types/Handler.ts";
-import { supabase, supabaseAs } from "@/lib/supabase.ts";
+import type { RouteContext } from "$fresh/server.ts";
 
 import type { App } from "@/types/App.ts";
 import Navbar from "@/islands/Navbar.tsx";
@@ -13,34 +11,40 @@ import ListItem from "@/components/ListItem.tsx";
 import Divider from "@/components/Divider.tsx";
 import AppLinks from "@/components/compound/AppLinks.tsx";
 import Screenshots from "@/components/compound/Screenshots.tsx";
-import LoveAppButton from "@/islands/LoveAppButton.tsx";
-import Card from "@/components/Card.tsx";
 import SlideCategories from "@/components/compound/SlideCategories.tsx";
 import { buildImageUrl } from "@/lib/image.ts";
+import { getApp, getAppsRandom } from "@/lib/db.ts";
+import Card from "@/components/Card.tsx";
 
-interface DataProps {
-	app: App;
-	otherApps?: App[];
-	ssrLoved: boolean;
-	userLoggedIn: boolean;
-}
+export default async function App(_: Request, ctx: RouteContext) {
+	const app = await getApp(ctx.params.id);
+	const otherApps = await getAppsRandom(5, false, app?.id);
+	const openButtonTextColor = getContrastYIQ(app?.accentColor || "#8267be");
 
-export default function App({ data }: PageProps<DataProps>) {
+	if (!app) {
+		return new Response("Not found", {
+			status: 307,
+			headers: {
+				Location: "/app/error",
+			},
+		});
+	}
+
 	return (
 		<>
 			<Head>
-				<title>{data.app.name} &middot; Paquet</title>
+				<title>{app.name} &middot; Paquet</title>
 			</Head>
 			<Navbar
 				transparentTop
-				color={data.app.accent_color}
+				color={colorHexToFull(app.accentColor)}
 				back
 			/>
 			<div
 				style={{
 					background: `linear-gradient(
 						to bottom, 
-						${data.app.accent_color}50 0%, 
+						${colorHexToFull(app.accentColor)}50 0%, 
 						rgba(0, 0, 0, 0) 100%)
 					`,
 				}}
@@ -52,29 +56,45 @@ export default function App({ data }: PageProps<DataProps>) {
 							disableGutters
 							class="bg-light dark:bg-dark"
 						>
-							{data.app.cover &&
+							{app.cover &&
 								(
 									<img
-										src={data.app.cover}
+										src={app.cover}
 										class="w-full h-32 object-cover rounded-t"
 									/>
 								)}
 							<div class="flex flex-row flex-wrap gap-4 p-4 shadow-inset-light dark:shadow-inset-dark">
 								<img
 									class="rounded w-20 h-20 shadow-outset-light dark:shadow-outset-dark bg-light-light dark:bg-dark-light"
-									src={buildImageUrl(data.app.icon, 96, 96)}
+									src={buildImageUrl(app.icon, 96, 96)}
 								/>
 								<div class="flex-1">
 									<h2 class="text-3xl">
-										{data.app.name}
+										{app.name}
 									</h2>
-									<p class="opacity-50">
-										{data.app.author}
-									</p>
+									{app.authorLink ?
+										<a
+											href={app.authorLink}
+											class="opacity-50"
+											rel="noopener noreferrer"
+											target="_blank"
+											style={{
+												color: app.accentColor || "#8267be",
+											}}
+										>
+											{app.author}
+										</a>
+										:
+										<p 
+											class="opacity-50"
+										>
+											{app.author}
+										</p>
+									}
 								</div>
 								<div class="min-w-full space-y-2 sm:min-w-[30%]">
 									<a
-										href={data.app.url}
+										href={app.url}
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -83,24 +103,24 @@ export default function App({ data }: PageProps<DataProps>) {
 											fullWidth
 											style={{
 												backgroundColor:
-													data.app.accent_color,
+													app.accentColor,
 												boxShadow:
-													`0 0 8px ${data.app.accent_color}`,
-												color: "#ffffff",
+													`0 0 8px ${app.accentColor}`,
+												color: openButtonTextColor,
 											}}
 											iconProps={{
 												name: "external-link",
-												color: "#ffffff",
+												color: openButtonTextColor,
 											}}
 										>
 											Open
 										</Button>
 									</a>
-									{data.userLoggedIn
+									{/*userLoggedIn
 										? (
 											<LoveAppButton
-												app={data.app}
-												ssrLoved={data.ssrLoved}
+												app={app}
+												ssrLoved={ssrLoved}
 											/>
 										)
 										: (
@@ -113,7 +133,7 @@ export default function App({ data }: PageProps<DataProps>) {
 													Login to give hearts
 												</Button>
 											</a>
-										)}
+										)*/}
 								</div>
 							</div>
 						</Card>
@@ -122,7 +142,7 @@ export default function App({ data }: PageProps<DataProps>) {
 								About
 							</h3>
 							<p>
-								{data.app.description}
+								{app.description}
 							</p>
 						</div>
 					</Stack>
@@ -130,34 +150,34 @@ export default function App({ data }: PageProps<DataProps>) {
 			</div>
 
 			<SlideCategories
-				categoryIds={data.app.categories}
+				categoryIds={app.categories}
 			/>
 			<Container class="mt-4">
 				<Divider inset />
 			</Container>
 
-			{data.app.screenshots &&
+			{app.screenshots &&
 				(
 					<Screenshots
 						class="mt-4"
-						screenshots={data.app.screenshots}
+						screenshots={app.screenshots}
 					/>
 				)}
 
-			{(data.app?.github_url || data.app?.gitlab_url) && (
+			{(app?.githubUrl || app?.gitlabUrl) && (
 				<Container class="mt-4">
 					<AppLinks
-						github={data.app?.github_url || undefined}
-						gitlab={data.app?.gitlab_url || undefined}
+						github={app?.githubUrl || undefined}
+						gitlab={app?.gitlabUrl || undefined}
 					/>
 					<Divider class="mt-4" inset />
 				</Container>
 			)}
 
-			{data.app.features && (
+			{app.features && (
 				<div class="mt-4">
 					<Features
-						features={data.app.features}
+						features={app.features}
 					/>
 					<Container>
 						<Divider class="mt-4" inset />
@@ -165,7 +185,7 @@ export default function App({ data }: PageProps<DataProps>) {
 				</div>
 			)}
 
-			{data.otherApps?.length
+			{otherApps?.length
 				? (
 					<>
 						<Container>
@@ -174,7 +194,7 @@ export default function App({ data }: PageProps<DataProps>) {
 									Other apps
 								</h3>
 								<Card disableGutters>
-									{data.otherApps.map((app, idx) => (
+									{otherApps.map((app, idx) => (
 										<a
 											key={idx}
 											href={`/app/${app.id}`}
@@ -182,12 +202,16 @@ export default function App({ data }: PageProps<DataProps>) {
 											<ListItem
 												button
 												title={app.name}
-												image={buildImageUrl(app.icon, 64, 64)}
+												image={buildImageUrl(
+													app.icon,
+													64,
+													64,
+												)}
 												subtitle={app.author}
 												divider={idx !==
-													(data.otherApps
-														?.length as number) -
-													1}
+													(otherApps
+															?.length as number) -
+														1}
 											/>
 										</a>
 									))}
@@ -201,46 +225,28 @@ export default function App({ data }: PageProps<DataProps>) {
 	);
 }
 
-export const handler: Handler = async (_, ctx) => {
-	const { data: app } = await supabase.from("apps")
-		.select(
-			"id, name, author, description, url, icon, cover, accent_color, screenshots, features, categories, github_url, gitlab_url",
-		)
-		.eq("id", ctx.params.id)
-		.single();
 
-	if (!app) {
-		return new Response("Not found", {
-			status: 307,
-			headers: {
-				Location: "/app/error",
+function colorHexToFull(colorHex: string) {
+	if (colorHex.length === 4) {
+		colorHex = colorHex.replace(
+			/^#?([a-f\d])([a-f\d])([a-f\d])$/i,
+			function (_, r, g, b) {
+				return "#" + r + r + g + g + b + b;
 			},
-		});
+		);
 	}
 
-	let ssrLoved = false;
-	if (ctx.state.user) {
-		const supabase = supabaseAs(ctx.state.user.access_token);
+	return colorHex;
+}
 
-		const { data } = await supabase.from("users")
-			.select("loved")
-			.eq("id", ctx.state.user.id)
-			.single();
+function getContrastYIQ(colorHex: string) {
+	colorHex = colorHexToFull(colorHex);
 
-		if (data) {
-			ssrLoved = data.loved.includes(app.id);
-		}
-	}
+	const hex = colorHex.replace("#", "");
+	const r = parseInt(hex.substring(1,3),16);
+    const g = parseInt(hex.substring(3,5),16);
+    const b = parseInt(hex.substring(5,7),16);
+    const yiq = ((r*299)+(g*587)+(b*114))/1000;
+    return (yiq >= 128) ? 'black' : 'white';
+}
 
-	const { data: otherApps } = await supabase.from("random_apps")
-		.select("id, name, author, icon")
-		.neq("id", app.id)
-		.limit(5);
-
-	return ctx.render({
-		app,
-		otherApps,
-		ssrLoved,
-		userLoggedIn: ctx.state.user !== undefined,
-	} as DataProps);
-};

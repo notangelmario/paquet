@@ -1,0 +1,15 @@
+{
+    "id": "com.stackblitz",
+    "url": "https://stackblitz.com",
+    "manifestUrl": "https://stackblitz.com/manifest.json",
+    "features": [
+        "desktop",
+        "auth"
+    ],
+    "categories": [
+        "development"
+    ],
+    "author": "StackBlitz, Inc.",
+    "accentColor": "#0494fb",
+    "version": 1
+}

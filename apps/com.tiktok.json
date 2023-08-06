@@ -1,0 +1,16 @@
+{
+    "id": "com.tiktok",
+    "url": "https://tiktok.com",
+    "manifestUrl": "https://tiktok.com/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "social",
+        "entertainment"
+    ],
+    "author": "ByteDance",
+    "accentColor": "#24f3eb",
+    "version": 1
+}

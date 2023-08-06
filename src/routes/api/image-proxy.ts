@@ -13,7 +13,7 @@ export const handler: Handler = async (req) => {
 	}
 
 	const res = await fetch(imgUrl);
-	
+
 	if (!res.ok) {
 		return new Response("Error fetching image", { status: 500 });
 	}
@@ -44,4 +44,4 @@ export const handler: Handler = async (req) => {
 			"cache-control": "public, max-age=604800",
 		},
 	});
-}
+};

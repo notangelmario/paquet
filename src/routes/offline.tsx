@@ -22,7 +22,13 @@ export default function Offline(props: PageProps) {
 				{props.url.hostname !== "paquet.shop" && (
 					<Card>
 						<p class="text-2xl">
-							We moved to <a class="underline text-primary" href="https://paquet.app">paquet.app</a>.
+							We moved to{" "}
+							<a
+								class="underline text-primary"
+								href="https://paquet.app"
+							>
+								paquet.app
+							</a>.
 						</p>
 					</Card>
 				)}

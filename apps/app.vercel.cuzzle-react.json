@@ -1,0 +1,16 @@
+{
+    "id": "app.vercel.cuzzle-react",
+    "url": "https://cuzzle-react.vercel.app",
+    "manifestUrl": "https://cuzzle-react.vercel.app/manifest.json",
+    "features": [
+        "mobile",
+        "desktop",
+        "openSource"
+    ],
+    "categories": [
+        "games"
+    ],
+    "author": "Jorge Rubiano",
+    "accentColor": "#c0416a",
+    "version": 1
+}

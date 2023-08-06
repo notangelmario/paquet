@@ -5,7 +5,13 @@ import UserHandler from "@/islands/UserHandler.tsx";
 import LoginErrorDialog from "@/islands/login/LoginErrorDialog.tsx";
 import { APP } from "@/lib/app.ts";
 
-export default function App({ Component }: AppProps) {
+export default function App({ Component, url }: AppProps) {
+	if (url.pathname === "/kv-insights") {
+		return (
+			<Component />
+		)
+	}
+
 	return (
 		<html>
 			<Head>
@@ -81,7 +87,7 @@ export default function App({ Component }: AppProps) {
 				>
 				</script>
 			</Head>
-			<main onTouchStart={() => ""}>
+			<main>
 				<Component />
 			</main>
 			<Footer />

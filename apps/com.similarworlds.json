@@ -1,0 +1,18 @@
+{
+    "id": "com.similarworlds",
+    "url": "https://similarworlds.com",
+    "manifestUrl": "https://similarworlds.com/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "social",
+        "entertainment",
+        "lifestyle",
+        "news"
+    ],
+    "author": "Similar Worlds",
+    "accentColor": "#ec7c22",
+    "version": 1
+}

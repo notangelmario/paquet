@@ -1,0 +1,17 @@
+{
+    "id": "dev.vscode.insiders",
+    "url": "https://insiders.vscode.dev",
+    "manifestUrl": "https://insiders.vscode.dev/static/insider/code.webmanifest",
+    "features": [
+        "desktop",
+        "offline",
+        "openSource"
+    ],
+    "githubUrl": "https://github.com/microsoft/vscode",
+    "categories": [
+        "development"
+    ],
+    "author": "Microsoft",
+    "accentColor": "#0eb49c",
+    "version": 1
+}

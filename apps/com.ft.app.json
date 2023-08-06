@@ -1,0 +1,15 @@
+{
+    "id": "com.ft.app",
+    "url": "https://app.ft.com",
+    "manifestUrl": "https://app.ft.com/metatags.json?v=3",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "news"
+    ],
+    "author": "Financial Times",
+    "accentColor": "#e1851d",
+    "version": 1
+}

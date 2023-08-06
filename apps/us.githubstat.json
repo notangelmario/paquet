@@ -1,0 +1,17 @@
+{
+    "id": "us.githubstat",
+    "url": "https://githubstat.us",
+    "manifestUrl": "https://githubstat.us/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "utilities",
+        "productivity",
+        "development"
+    ],
+    "author": "rtsfred3",
+    "accentColor": "#54c48c",
+    "version": 1
+}

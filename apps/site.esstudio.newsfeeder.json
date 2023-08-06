@@ -1,0 +1,15 @@
+{
+    "id": "site.esstudio.newsfeeder",
+    "url": "https://newsfeeder.esstudio.site",
+    "manifestUrl": "https://newsfeeder.esstudio.site/manifest.json",
+    "features": [
+        "mobile",
+        "desktop"
+    ],
+    "categories": [
+        "news"
+    ],
+    "author": "Sem Postma, sem.postma@gmail.com",
+    "accentColor": "#f45c3d",
+    "version": 1
+}
