@@ -13,7 +13,7 @@ export const handler: Handlers = {
 			});
 		}
 
-		const app = await getApp(id);
+		const app = await getApp(id, true);
 
 		if (!app) {
 			return new Response("App not found", {
@@ -36,7 +36,7 @@ export const handler: Handlers = {
 
 		const body: App = await req.json();
 
-		const exists = await getApp(body.id);
+		const exists = await getApp(body.id, true);
 
 		if (exists) {
 			return new Response("App already exists", {
@@ -71,7 +71,7 @@ export const handler: Handlers = {
 			});
 		}
 
-		const app = await getApp(id);
+		const app = await getApp(id, true);
 
 		if (!app) {
 			return new Response("App not found", {
