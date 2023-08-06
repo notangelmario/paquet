@@ -43,6 +43,8 @@ export default async function Home() {
 		getRandomAppsWithCover(6),
 	]);
 
+	console.log(randomApps);
+
 	const randomCategory = randomCategoryApps?.length
 		? {
 			category: randomCategoryId,

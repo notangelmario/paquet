@@ -214,7 +214,7 @@ export const searchApps = async (
 	});
 
 	for await (const { value } of iter) {
-		if (value.name.toLowerCase().includes(query.toLowerCase())) {
+		if (value.name?.toLowerCase().includes(query.toLowerCase())) {
 			apps.push(value);
 		}
 	}
@@ -246,6 +246,7 @@ export const getAppsRandom = async (
 	} else {
 		return apps.sort(() => Math.random() - 0.5).slice(0, limit);
 	}
+
 };
 
 export const getAppsByCategory = async (

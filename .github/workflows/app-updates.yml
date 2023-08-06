@@ -32,6 +32,5 @@ jobs:
 
       - name: Update apps
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: deno task update --force
+          INTERNAL_KEY: ${{ secrets.INTERNAL_KEY }}
+        run: deno task update

@@ -6,7 +6,7 @@ import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-w
 
 const INTERNAL_KEY = Deno.env.get("INTERNAL_KEY")!;
 
-const API_ENDPOINT = "https://paquet.app";
+const API_ENDPOINT = "http://localhost:3000";
 
 const ICONS_SIZES = [
 	"96x96",
@@ -284,14 +284,12 @@ for (const app of apps) {
 			body: JSON.stringify({
 				name: manifest?.name || appCurrentData?.name,
 				description: description || appCurrentData?.description,
-				categories: app.categories || categories.length
-					? categories
-					: appCurrentData?.categories,
+				categories: app.categories || categories || appCurrentData?.categories,
 				author: author || app?.author || appCurrentData?.author,
 				screenshots: screenshots_urls.length
 					? screenshots_urls
 					: appCurrentData?.screenshots,
-				accentColor: accent_color || app.categories ||
+				accentColor: accent_color || app.accentColor ||
 					appCurrentData?.accentColor,
 				manifestHash: hash,
 				icon: icon_url || appCurrentData?.icon,
