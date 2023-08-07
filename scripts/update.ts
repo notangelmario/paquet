@@ -7,7 +7,7 @@ import { DEV } from "@/lib/app.ts";
 
 const INTERNAL_KEY = Deno.env.get("INTERNAL_KEY")!;
 
-const API_ENDPOINT = DEV ? "https://paquet.app" : "http://localhost:3000";
+const API_ENDPOINT = DEV ? "http://localhost:3000" : "https://paquet.app";
 
 const ICONS_SIZES = [
 	"96x96",
