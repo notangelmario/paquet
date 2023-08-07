@@ -74,6 +74,13 @@ Developer documentation is available both on [GitHub](/docs/getting-started.md) 
 
 Developer documentation teaches you how you can add your own app to Paquet or build an app using Paquet's APIs
 
+## ➕ Add an app
+
+To add an app, fork this repository and [add your app specification](/docs/app-spec.md)
+to the `apps` folder.
+
+Here is [an example](/apps/us.githubstat.json).
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
