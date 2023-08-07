@@ -59,14 +59,14 @@ The values Paquet uses in your app listing are:
 
 This is the name that is going to be used when showing your app.
 
-## `author`
+### `author`
 
 This is the name of the author. It is prefered to use the same
 names across multiple apps published to Paquet to share
 verification status
 
 > This property is not used often, so when not present,
-> Paquet will look for an author in the web page.
+> Paquet will look for an `author` meta tag in the web page.
 
 ### `description`
 
@@ -90,12 +90,7 @@ Paquet also uses aliases so apps are better categorised.
 Paquet will fetch the first maskable icon that is 96x96 pixels.
 
 If this icon is not found, Paquet will search for 128x128, 192x192, 256x256, 512x512.
-The first found will be set as icon. The accent color will be grabbed from
-the icon.
-
-> Since 3.2.0, Paquet does not store the app's icon anymore.
-> Please make sure your icons does not have a cross origin restriction.
-
+The first found will be set as icon.
 ### `screenshots`
 
 We fetch for all screenshots no matter the size. We recomend
@@ -103,8 +98,10 @@ you to add screenshots for all suported devices. Screenshots
 will also improve your visibility on Paquet.
 
 > Since 3.2.0, Paquet does not store the app's screenshots anymore.
-> Please make sure your screenshots does not have a cross origin restriction.
-
+> Please make sure your screenshots do not have a cross origin restriction.
+> 
+> `icons` no longer have this issue since 5.0.1, but this change will also
+> come to `screenshots`
 
 ### `theme_color`
 

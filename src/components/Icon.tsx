@@ -44,6 +44,7 @@ import LoginIcon from "tabler-icons/login.tsx";
 import ArrowBigDownLineIcon from "tabler-icons/arrow-big-down-line.tsx";
 import LogoutIcon from "tabler-icons/logout.tsx";
 import DownloadOffIcon from "tabler-icons/download-off.tsx";
+import RefreshIcon from "tabler-icons/refresh.tsx";
 import AnalyticsIcon from "tabler-icons/clipboard-data.tsx";
 import MoonIcon from "tabler-icons/moon.tsx";
 import SunIcon from "tabler-icons/sun.tsx";
@@ -83,6 +84,7 @@ export const ICONS = new Map([
 	["flag", FlagIcon],
 	["file-description", FileDescriptionIcon],
 	["download", DownloadIcon],
+	["refresh", RefreshIcon],
 	["external-link", ExternalLink],
 	["check", CheckIcon],
 	["laptop", LaptopIcon],

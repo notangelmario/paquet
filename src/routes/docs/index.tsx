@@ -27,6 +27,12 @@ export const DOCS: Doc[] = [
 		filename: "app-spec.md",
 	},
 	{
+		title: "App updating",
+		description: "How to update your app on Paquet",
+		icon: "refresh",
+		filename: "updating.md",
+	},
+	{
 		title: "Manifest file",
 		description: "How to use your manifest file to edit your app listing",
 		icon: "file-description",

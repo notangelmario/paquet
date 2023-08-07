@@ -43,7 +43,7 @@ The `og:image` should be a cover image. Preferably 1024x600. Low resolution imag
 
 ## Extra
 
-When you submit your app, you specify your app's features. These features include:
+When you submit your app, you need specify your app's features. These features include:
 mobile optimisation, offline capability and more.
 
 You can also specify an URL to your app's source code.
@@ -59,10 +59,8 @@ for more information.
 
 ## Updating
 
-Paquet will periodically fetch new content using your manifest so you don't have to
-worry about submitting a new issue each time you update your app.
-
-We check for app updates daily, so keep that in mind.
+Paquet uses an [update cycle](/docs/updating.md) to keep track of changes made to your app
+so your app listing is always up-to-date.
 
 ## Issues
 

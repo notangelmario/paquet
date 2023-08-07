@@ -15,7 +15,7 @@ type DataProps = {
 	title: string;
 };
 
-export default function DocPage({ data }: PageProps<DataProps>) {
+export default function DocPage({ data, params }: PageProps<DataProps>) {
 	return (
 		<>
 			<Head>
@@ -34,7 +34,7 @@ export default function DocPage({ data }: PageProps<DataProps>) {
 								href={`/docs/${
 									doc.filename.replace(".md", "")
 								}`}
-								class="block mb-4"
+								class={`block mb-4 ${doc.filename.replace(".md", "") === params.doc ? "text-primary" : ""}`}
 							>
 								{doc.title}
 							</a>
@@ -79,7 +79,17 @@ export const handler: Handler = async (_, ctx) => {
 
 	const file = await Deno.readTextFile(
 		join("docs", `${doc}.md`),
-	);
+	).catch(() => null);
+
+	if (!file) {
+		return ctx.render({
+			content: "Not found",
+			githubUrl: "",
+			title: "",
+		});
+	}
+			
+
 	let content = render(file);
 
 	// Compatibility with GitHub and Website

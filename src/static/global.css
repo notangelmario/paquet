@@ -4,6 +4,7 @@
 
 html,
 body {
+	scroll-padding-top: 4rem;
 	margin: 0;
 	font-family: "Poppins", sans-serif !important;
 	-webkit-font-smoothing: antialiased;
