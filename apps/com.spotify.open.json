@@ -10,7 +10,8 @@
 	"categories": [
 		"music"
 	],
-	"author": "Spotify AB",
+	"author": "Spotify",
+	"authorLink": "https://spotify.com",
 	"accentColor": "#1cd363",
-	"version": 1
+	"version": 2
 }

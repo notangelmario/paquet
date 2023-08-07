@@ -12,6 +12,7 @@
 		"development"
 	],
 	"author": "Microsoft",
+	"authorLink": "https://microsoft.com/",
 	"accentColor": "#24adf4",
-	"version": 1
+	"version": 2
 }
