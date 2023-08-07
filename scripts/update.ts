@@ -159,6 +159,8 @@ for (const app of apps) {
 		hash !== appCurrentData?.manifestHash ||
 		appCurrentData.version !== app.version
 	) {
+		console.log(`Updating ${app.id}...`);
+		
 		const manifestSplit = manifestUrl.split("/");
 		manifestSplit.pop();
 		const manifestParent = manifestSplit.join("/");
