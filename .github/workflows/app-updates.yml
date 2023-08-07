@@ -33,4 +33,4 @@ jobs:
       - name: Update apps
         env:
           INTERNAL_KEY: ${{ secrets.INTERNAL_KEY }}
-        run: deno task update:apps
+        run: DENO_DEPLOYMENT_ID=github-actions deno task update:apps
