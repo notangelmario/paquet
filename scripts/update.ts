@@ -289,6 +289,7 @@ for (const app of apps) {
 				description: description || appCurrentData?.description,
 				categories: app.categories || categories || appCurrentData?.categories,
 				author: author || app?.author || appCurrentData?.author,
+				authorLink: app.authorLink || appCurrentData?.authorLink,
 				screenshots: screenshots_urls.length
 					? screenshots_urls
 					: appCurrentData?.screenshots,
