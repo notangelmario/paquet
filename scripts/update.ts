@@ -3,10 +3,11 @@ import type { App } from "@/types/App.ts";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
+import { DEV } from "@/lib/app.ts";
 
 const INTERNAL_KEY = Deno.env.get("INTERNAL_KEY")!;
 
-const API_ENDPOINT = Deno.env.get("DENO_DEPLOYMENT_ID") ? "https://paquet.app" : "http://localhost:3000";
+const API_ENDPOINT = DEV ? "https://paquet.app" : "http://localhost:3000";
 
 const ICONS_SIZES = [
 	"96x96",

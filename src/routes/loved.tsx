@@ -21,7 +21,8 @@ export default async function Loved(req: Request, ctx: PageProps) {
 	}
 
 	const appIds = await getLovedAppIds(req);
-	const apps = await getApps(appIds || []);
+
+	const apps = appIds && appIds.length ? await getApps(appIds) : [];
 
 	return (
 		<>

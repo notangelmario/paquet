@@ -79,7 +79,6 @@ export const unloveApp = async (req: Request, id: string) => {
 		["loved_apps", user.id],
 		lovedApps.value.filter((appId) => appId !== id),
 	);
-	console.log(lovedApps.value.filter((appId) => appId !== id));
 	return true;
 };
 
