@@ -56,7 +56,7 @@ export default function ListItem(props: Props & JSX.IntrinsicElements["div"]) {
 					<h2 class="text-lg truncate">
 						{props.title}
 					</h2>
-					<p class="text-sm opacity-50 truncate">
+					<p class="text-sm opacity-50 line-clamp-2">
 						<span
 							dangerouslySetInnerHTML={{
 								__html: props.subtitle || "",

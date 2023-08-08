@@ -36,7 +36,7 @@ import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/KvInsightsEntriesManagement.tsx";
 import * as $$3 from "./islands/LoveAppButton.tsx";
 import * as $$4 from "./islands/Navbar.tsx";
-import * as $$5 from "./islands/VerfiedBadge.tsx";
+import * as $$5 from "./islands/VerifiedBadge.tsx";
 import * as $$6 from "./islands/settings/AnalyticsSwitch.tsx";
 
 const manifest = {
@@ -77,7 +77,7 @@ const manifest = {
 		"./islands/KvInsightsEntriesManagement.tsx": $$2,
 		"./islands/LoveAppButton.tsx": $$3,
 		"./islands/Navbar.tsx": $$4,
-		"./islands/VerfiedBadge.tsx": $$5,
+		"./islands/VerifiedBadge.tsx": $$5,
 		"./islands/settings/AnalyticsSwitch.tsx": $$6,
 	},
 	baseUrl: import.meta.url,

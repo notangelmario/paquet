@@ -1,10 +1,11 @@
 import { css, defineConfig } from "@twind/core";
 import presetTailwind from "preset-tailwind";
 import presetAutoPrefix from "preset-autoprefix";
+import presetLineClamp from "preset-line-clamp";
 
 export default {
 	...defineConfig({
-		presets: [presetTailwind(), presetAutoPrefix()],
+		presets: [presetTailwind(), presetAutoPrefix(), presetLineClamp()],
 		darkMode: "media",
 		theme: {
 			extend: {

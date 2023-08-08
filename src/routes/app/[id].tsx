@@ -17,7 +17,7 @@ import { getApp, getAppsRandom, isAppLoved } from "@/lib/db.ts";
 import Card from "@/components/Card.tsx";
 import LoveAppButton from "@/islands/LoveAppButton.tsx";
 import Icon from "@/components/Icon.tsx";
-import VerifiedBadge from "@/islands/VerfiedBadge.tsx";
+import VerifiedBadge from "@/islands/VerifiedBadge.tsx";
 
 export default async function App(req: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
@@ -144,17 +144,15 @@ export default async function App(req: Request, ctx: RouteContext) {
 								</div>
 							</div>
 						</Card>
+						<h3 class="text-2xl">
+							About
+						</h3>
+						<p>
+							{app.description}
+						</p>
 						{app.certificate && (
 							<VerifiedBadge cert={app.certificate}/>
 						)}
-						<div>
-							<h3 class="text-2xl">
-								About
-							</h3>
-							<p>
-								{app.description}
-							</p>
-						</div>
 					</Stack>
 				</Container>
 			</div>

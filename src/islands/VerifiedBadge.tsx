@@ -23,47 +23,51 @@ export default function VerifiedBadge(props: { cert: Certificate }) {
 
 	return IS_BROWSER ? (
 		<>
-			<Button
-				variant={
-					verifiedState.value === "loading"
-						? "outlined"
+			<div>
+				<Button
+					variant={
+						verifiedState.value === "loading"
+							? "outlined"
+							: verifiedState.value === "verified"
+								? "primary"
+								: "error"
+					}
+					icon={
+						verifiedState.value === "loading"
+							? "refresh"
+							: verifiedState.value === "verified"
+								? "check"
+								: "x"
+					}
+					disabled={verifiedState.value === "loading"}
+					onClick={() => setDialogOpen(true)}
+				>
+					{verifiedState.value === "loading"
+						? "Verifying..."
 						: verifiedState.value === "verified"
-							? "secondary"
-							: "error"
-				}
-				icon={
-					verifiedState.value === "loading"
-						? "refresh"
-						: verifiedState.value === "verified"
-							? "check"
-							: "x"
-				}
-				disabled={verifiedState.value === "loading"}
-				onClick={() => setDialogOpen(true)}
-			>
-				{verifiedState.value === "loading"
-					? "Verifying..."
-					: verifiedState.value === "verified"
-						? "Verified"
-						: "Invalid certificate"}
-			</Button>
+							? "Verified"
+							: "Invalid certificate"}
+				</Button>
+			</div>
 			<Dialog
 				open={dialogOpen}
 				setOpen={setDialogOpen}
 				title="Certificate details"
 				content={`
-					<p>
-						<b>Issued At:</b> ${new Date(props.cert.issuedAt).toLocaleString()}
-					</p>
-					<p>
-						<b>For App URL:</b> ${props.cert.url}
-					</p>
-					<p class="truncate">
-						<b>Signature:</b> ${props.cert.signature}
-					</p>
-					<p>
-						<b>Is Valid:</b> ${verifiedState.value === "verified" ? "Yes" : "No"}
-					</p>
+					<div class="overflow-auto">
+						<p class="whitespace-nowrap">
+							<b>Issued At:</b> ${new Date(props.cert.issuedAt).toLocaleString()}
+						</p>
+						<p class="whitespace-nowrap">
+							<b>For App URL:</b> ${props.cert.url}
+						</p>
+						<p class="whitespace-nowrap">
+							<b>Signature:</b> ${props.cert.signature}
+						</p>
+						<p class="whitespace-nowrap">
+							<b>Is Valid:</b> ${verifiedState.value === "verified" ? "Yes" : "No"}
+						</p>
+					</div>
 				`}
 				buttons={[
 					{
