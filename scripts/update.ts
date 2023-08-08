@@ -4,6 +4,8 @@ import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
 import { DEV } from "@/lib/app.ts";
+import { verifyCertificate } from "@/lib/cert.ts";
+import { Certificate } from "@/types/Certificate.ts";
 
 const INTERNAL_KEY = Deno.env.get("INTERNAL_KEY")!;
 
@@ -30,6 +32,7 @@ export interface AppSpec {
 	gitlabUrl?: string;
 	accentColor?: string;
 	version: string | number;
+	certificateUrl?: string;
 }
 
 // Read all app.json's from the apps folder
@@ -156,8 +159,9 @@ for (const app of apps) {
 	}
 
 	if (
-		hash !== appCurrentData?.manifestHash ||
-		appCurrentData.version !== app.version
+		DEV ||
+		(hash !== appCurrentData?.manifestHash ||
+		appCurrentData.version !== app.version)
 	) {
 		console.log(`Updating ${app.id}...`);
 		
@@ -278,6 +282,26 @@ for (const app of apps) {
 			}
 		}
 
+		let certificate: Certificate | undefined;
+		if (app.certificateUrl) {
+			console.log("Verifying certificate...");
+
+			const certRes = await fetch(app.certificateUrl, {
+				headers: {
+					Accept: "application/json",
+				},
+			})
+
+
+			if (certRes.status === 200) {
+				const certificateData = await certRes.json() as Certificate;
+
+				if (certificateData.url && certificateData.signature && certificateData.issuedAt) {
+					certificate = certificateData;
+				}
+			}
+		}
+
 		const res = await fetch(API_ENDPOINT + "/api/apps/" + app.id, {
 			method: "PATCH",
 			headers: {
@@ -296,6 +320,7 @@ for (const app of apps) {
 				accentColor: accent_color || app.accentColor ||
 					appCurrentData?.accentColor,
 				manifestHash: hash,
+				certificate,
 				icon: icon_url || appCurrentData?.icon,
 				cover: cover_url || appCurrentData?.icon,
 				version: app.version,

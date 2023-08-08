@@ -9,6 +9,7 @@ import SupabaseIcon from "tabler-icons/bolt.tsx";
 
 import CoffeeIcon from "tabler-icons/coffee.tsx";
 import SearchIcon from "tabler-icons/search.tsx";
+import Certificate from "tabler-icons/certificate.tsx";
 import ArrowLeftIcon from "tabler-icons/arrow-left.tsx";
 import SettingsIcon from "tabler-icons/settings.tsx";
 import AppsIcon from "tabler-icons/apps.tsx";
@@ -36,6 +37,7 @@ import CheckIcon from "tabler-icons/check.tsx";
 import LaptopIcon from "tabler-icons/device-laptop.tsx";
 import Mobile from "tabler-icons/device-mobile.tsx";
 import LockIcon from "tabler-icons/lock.tsx";
+import XIcon from "tabler-icons/x.tsx";
 import SourceCodeIcon from "tabler-icons/source-code.tsx";
 import CloudOffIcon from "tabler-icons/cloud-off.tsx";
 import CloudIcon from "tabler-icons/cloud.tsx";
@@ -61,6 +63,7 @@ export const ICONS = new Map([
 	["deno", DenoIcon],
 	["supabase", SupabaseIcon],
 	["coffee", CoffeeIcon],
+	["certificate", Certificate],
 	["search", SearchIcon],
 	["back", ArrowLeftIcon],
 	["settings", SettingsIcon],
@@ -92,6 +95,7 @@ export const ICONS = new Map([
 	["lock", LockIcon],
 	["source-code", SourceCodeIcon],
 	["cloud-off", CloudOffIcon],
+	["x", XIcon],
 	["cloud", CloudIcon],
 	["user", UserIcon],
 	["login", LoginIcon],

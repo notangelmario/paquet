@@ -16,6 +16,8 @@ import { RouteContext } from "@/types/Handler.ts";
 import { getApp, getAppsRandom, isAppLoved } from "@/lib/db.ts";
 import Card from "@/components/Card.tsx";
 import LoveAppButton from "@/islands/LoveAppButton.tsx";
+import Icon from "@/components/Icon.tsx";
+import VerifiedBadge from "@/islands/VerfiedBadge.tsx";
 
 export default async function App(req: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
@@ -79,15 +81,16 @@ export default async function App(req: Request, ctx: RouteContext) {
 										? (
 											<a
 												href={app.authorLink}
-												class="opacity-50"
 												rel="noopener noreferrer"
 												target="_blank"
-												style={{
-													color: app.accentColor ||
-														"#8267be",
-												}}
+												class="opacity-50 hover:underline"
 											>
 												{app.author}
+												<Icon
+													inline
+													size={16}
+													name="external-link"
+												/>
 											</a>
 										)
 										: (
@@ -141,6 +144,9 @@ export default async function App(req: Request, ctx: RouteContext) {
 								</div>
 							</div>
 						</Card>
+						{app.certificate && (
+							<VerifiedBadge cert={app.certificate}/>
+						)}
 						<div>
 							<h3 class="text-2xl">
 								About

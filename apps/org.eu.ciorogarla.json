@@ -14,6 +14,7 @@
 	],
 	"author": "Profiteri",
 	"authorLink": "https://profiteri.eu.org",
+	"certificateUrl": "https://ciorogarla.eu.org/.well-known/certificate.json",
 	"accentColor": "#36c836",
-	"version": 2
+	"version": 3
 }

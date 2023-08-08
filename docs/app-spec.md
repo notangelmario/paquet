@@ -75,3 +75,7 @@ website or GitHub profile.
 ### `accentColor`
 
 This is if you want a separate theme color from the one in your app's manifest.
+
+### `certificateUrl`
+
+This URL points to your certificate that is used to prove ownership of your app.
