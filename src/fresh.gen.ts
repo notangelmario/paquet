@@ -16,7 +16,7 @@ import * as $10 from "./routes/app/[id].tsx";
 import * as $11 from "./routes/app/error.tsx";
 import * as $12 from "./routes/category/[id].tsx";
 import * as $13 from "./routes/category/index.tsx";
-import * as $14 from "./routes/certificate/index.tsx";
+import * as $14 from "./routes/certificate.tsx";
 import * as $15 from "./routes/docs/[doc].tsx";
 import * as $16 from "./routes/docs/index.tsx";
 import * as $17 from "./routes/gfm.css.ts";
@@ -55,7 +55,7 @@ const manifest = {
 		"./routes/app/error.tsx": $11,
 		"./routes/category/[id].tsx": $12,
 		"./routes/category/index.tsx": $13,
-		"./routes/certificate/index.tsx": $14,
+		"./routes/certificate.tsx": $14,
 		"./routes/docs/[doc].tsx": $15,
 		"./routes/docs/index.tsx": $16,
 		"./routes/gfm.css.ts": $17,

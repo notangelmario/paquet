@@ -77,6 +77,8 @@ export default function Certificate(props: PageProps<DataProps>) {
 									placeholder="App URL"
 									fullWidth
 									name="url"
+									required
+									type="url"
 								/>
 
 								<Button

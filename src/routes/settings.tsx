@@ -61,6 +61,15 @@ export default async function Settings(req: Request, ctx: RouteContext) {
 						/>
 					</Card>
 					<Card disableGutters>
+						<a href="/certificate">
+							<ListItem
+								button
+								icon="certificate"
+								title="Certificate"
+								subtitle="Generate a certificate"
+								divider
+							/>
+						</a>
 						<a href="/docs">
 							<ListItem
 								button
