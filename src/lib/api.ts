@@ -13,3 +13,13 @@ export const authenticate = (req: Request) => {
 
 	return true;
 };
+
+export const rewriteToApi = async (req: Request) => {
+	const url = new URL(req.url);
+
+	return await fetch(url.origin + "/api" + url.pathname, {
+		headers: req.headers,
+		method: req.method,
+		body: req.body,
+	});
+}

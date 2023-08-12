@@ -9,8 +9,8 @@ import * as $3 from "./routes/api/auth/callback.ts";
 import * as $4 from "./routes/api/auth/signin.ts";
 import * as $5 from "./routes/api/auth/signout.ts";
 import * as $6 from "./routes/api/certificate/public-key.ts";
-import * as $7 from "./routes/api/cookie.ts";
-import * as $8 from "./routes/api/image-proxy.ts";
+import * as $7 from "./routes/api/image-proxy.ts";
+import * as $8 from "./routes/api/index.ts";
 import * as $9 from "./routes/api/user/love/[id].ts";
 import * as $10 from "./routes/app/[id].tsx";
 import * as $11 from "./routes/app/error.tsx";
@@ -29,8 +29,7 @@ import * as $23 from "./routes/offline.tsx";
 import * as $24 from "./routes/privacy.tsx";
 import * as $25 from "./routes/search.tsx";
 import * as $26 from "./routes/settings.tsx";
-import * as $27 from "./routes/sitemap.xml.ts";
-import * as $28 from "./routes/terms-and-conditions.tsx";
+import * as $27 from "./routes/terms-and-conditions.tsx";
 import * as $$0 from "./islands/Dialog.tsx";
 import * as $$1 from "./islands/InstallBanner.tsx";
 import * as $$2 from "./islands/KvInsightsEntriesManagement.tsx";
@@ -48,8 +47,8 @@ const manifest = {
 		"./routes/api/auth/signin.ts": $4,
 		"./routes/api/auth/signout.ts": $5,
 		"./routes/api/certificate/public-key.ts": $6,
-		"./routes/api/cookie.ts": $7,
-		"./routes/api/image-proxy.ts": $8,
+		"./routes/api/image-proxy.ts": $7,
+		"./routes/api/index.ts": $8,
 		"./routes/api/user/love/[id].ts": $9,
 		"./routes/app/[id].tsx": $10,
 		"./routes/app/error.tsx": $11,
@@ -68,8 +67,7 @@ const manifest = {
 		"./routes/privacy.tsx": $24,
 		"./routes/search.tsx": $25,
 		"./routes/settings.tsx": $26,
-		"./routes/sitemap.xml.ts": $27,
-		"./routes/terms-and-conditions.tsx": $28,
+		"./routes/terms-and-conditions.tsx": $27,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $$0,
