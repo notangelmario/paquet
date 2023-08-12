@@ -1,7 +1,7 @@
 {
 	"id": "com.google.maps",
 	"url": "https://google.com/maps",
-	"manifestUrl": "https://google.com/maps/preview/pwa/manifest?source=ttpwa&hl=ro",
+	"manifestUrl": "https://google.com/maps/preview/pwa/manifest",
 	"features": [
 		"mobile",
 		"desktop"

@@ -45,6 +45,12 @@ export const DOCS: Doc[] = [
 		filename: "manifest.md",
 	},
 	{
+		title: "API",
+		description: "How to use the Paquet API",
+		icon: "api",
+		filename: "api.md",
+	},
+	{
 		title: "Subdomain hosting",
 		description: "How to host your app on a subdomain of paquet.app",
 		icon: "cloud",

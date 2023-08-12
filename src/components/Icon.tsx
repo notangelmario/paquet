@@ -8,6 +8,7 @@ import DenoIcon from "tabler-icons/brand-deno.tsx";
 import SupabaseIcon from "tabler-icons/bolt.tsx";
 
 import CoffeeIcon from "tabler-icons/coffee.tsx";
+import APIIcon from "tabler-icons/api.tsx";
 import SearchIcon from "tabler-icons/search.tsx";
 import Certificate from "tabler-icons/certificate.tsx";
 import ArrowLeftIcon from "tabler-icons/arrow-left.tsx";
@@ -63,6 +64,7 @@ export const ICONS = new Map([
 	["deno", DenoIcon],
 	["supabase", SupabaseIcon],
 	["coffee", CoffeeIcon],
+	["api", APIIcon],
 	["certificate", Certificate],
 	["search", SearchIcon],
 	["back", ArrowLeftIcon],
