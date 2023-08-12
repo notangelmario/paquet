@@ -13,17 +13,3 @@ export const authenticate = (req: Request) => {
 
 	return true;
 };
-
-export const rewriteToApi = async (req: Request) => {
-	const url = new URL(req.url);
-
-	// Remove api. from the host
-	// This gets around the Deno Deploy rewrite issue 
-	const baseDomain = url.origin.replace("api.", "");
-
-	return await fetch(baseDomain + "/api" + url.pathname, {
-		headers: req.headers,
-		method: req.method,
-		body: req.body,
-	});
-}
