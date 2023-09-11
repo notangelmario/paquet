@@ -10,3 +10,6 @@
 
 # Sublime
 *.sublime-workspace
+
+# Fresh build directory
+_fresh/
