@@ -2,8 +2,8 @@
 	"id": "org.eu.ciorogarla.431",
 	"url": "https://431.ciorogarla.eu.org",
 	"manifestUrl": "https://431.ciorogarla.eu.org/static/site.webmanifest",
-	"author": "Profiteri",
-	"authorLink": "https://profiteri.eu.org",
+	"author": "Roseto",
+	"authorLink": "https://roseto.space",
 	"categories": ["tools"],
 	"features": ["openSource", "mobile", "desktop"],
 	"version": 3
