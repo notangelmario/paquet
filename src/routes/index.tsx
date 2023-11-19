@@ -275,7 +275,7 @@ export default async function Welcome(req: Request) {
 							<h2 class="text-3xl">
 								Paquet
 							</h2>
-							<a 
+							<a
 								class="opacity-50 text-primary"
 								href="https://angelmario.eu"
 								target="_blank"

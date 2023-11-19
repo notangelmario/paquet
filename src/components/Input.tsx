@@ -1,11 +1,12 @@
 import { JSX } from "preact/jsx-runtime";
 
 export interface InputProps {
-	fullWidth?: boolean
+	fullWidth?: boolean;
 }
 
-
-export default function Input(props: InputProps & JSX.IntrinsicElements["input"]) {
+export default function Input(
+	props: InputProps & JSX.IntrinsicElements["input"],
+) {
 	return (
 		<input
 			class={`
@@ -22,5 +23,5 @@ export default function Input(props: InputProps & JSX.IntrinsicElements["input"]
 			`}
 			{...props}
 		/>
-	)
+	);
 }

@@ -34,7 +34,12 @@ export default function DocPage({ data, params }: PageProps<DataProps>) {
 								href={`/docs/${
 									doc.filename.replace(".md", "")
 								}`}
-								class={`block mb-4 ${doc.filename.replace(".md", "") === params.doc ? "text-primary" : ""}`}
+								class={`block mb-4 ${
+									doc.filename.replace(".md", "") ===
+											params.doc
+										? "text-primary"
+										: ""
+								}`}
 							>
 								{doc.title}
 							</a>
@@ -88,7 +93,6 @@ export const handler: Handler = async (_, ctx) => {
 			title: "",
 		});
 	}
-			
 
 	let content = render(file);
 

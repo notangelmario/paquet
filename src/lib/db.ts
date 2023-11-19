@@ -245,7 +245,6 @@ export const getAppsRandom = async (
 	} else {
 		return apps.sort(() => Math.random() - 0.5).slice(0, limit);
 	}
-
 };
 
 export const getAppsByCategory = async (

@@ -17,47 +17,62 @@ interface DataProps {
 export default function Certificate(props: PageProps<DataProps>) {
 	return (
 		<>
-			<Navbar 
+			<Navbar
 				back
 			/>
 			<Container>
 				<Stack>
-					<Header
-						icon="certificate"
-					>
+					<Header icon="certificate">
 						Certificate
 					</Header>
-					{props.data?.cert ? (
-						<Card>
-							<Stack>
-								<p class="text-primary">
-									<Icon
-										name="info"
-										inline
-										size={18}
-									/>{" "}
-									Your certificate has been generated.
-								</p>
-								<pre class="text-xs overflow-x-auto bg-light dark:bg-dark rounded-lg p-2">
+					{props.data?.cert
+						? (
+							<Card>
+								<Stack>
+									<p class="text-primary">
+										<Icon
+											name="info"
+											inline
+											size={18}
+										/>{" "}
+										Your certificate has been generated.
+									</p>
+									<pre class="text-xs overflow-x-auto bg-light dark:bg-dark rounded-lg p-2">
 									{JSON.stringify(props.data.cert, null, 2)}
-								</pre>
-								<a
-									href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(props.data.cert, null, 2))}`}
-									download="certificate.json"
-								>
-									<Button
-										fullWidth
-										variant="outlined"
+									</pre>
+									<a
+										href={`data:text/json;charset=utf-8,${
+											encodeURIComponent(
+												JSON.stringify(
+													props.data.cert,
+													null,
+													2,
+												),
+											)
+										}`}
+										download="certificate.json"
 									>
-										Download
-									</Button>
-								</a>
-								<p>
-									Refer to the <a class="text-primary hover:underline" href="/docs/certificate">documentation</a> to learn how to use it.
-								</p>
-							</Stack>
-						</Card>
-					) : null}
+										<Button
+											fullWidth
+											variant="outlined"
+										>
+											Download
+										</Button>
+									</a>
+									<p>
+										Refer to the{" "}
+										<a
+											class="text-primary hover:underline"
+											href="/docs/certificate"
+										>
+											documentation
+										</a>{" "}
+										to learn how to use it.
+									</p>
+								</Stack>
+							</Card>
+						)
+						: null}
 					<Card>
 						<p class="opacity-50">
 							<Icon
@@ -65,11 +80,11 @@ export default function Certificate(props: PageProps<DataProps>) {
 								inline
 								size={18}
 							/>{" "}
-							Generate a Paquet certificate for your app
-							to verify its authenticity.
+							Generate a Paquet certificate for your app to verify
+							its authenticity.
 						</p>
 					</Card>
-					
+
 					<Card>
 						<form method="POST">
 							<Stack>
@@ -93,7 +108,7 @@ export default function Certificate(props: PageProps<DataProps>) {
 				</Stack>
 			</Container>
 		</>
-	)
+	);
 }
 
 export const handler: Handlers = {
@@ -105,12 +120,12 @@ export const handler: Handlers = {
 		if (!url) {
 			return ctx.render();
 		}
-			
+
 		const privateKey = Deno.env.get("CERTIFICATE_PRIVATE_KEY")!;
 		const cert = await createCertificate(privateKey, url);
 
 		return ctx.render({
-			cert
+			cert,
 		});
-	}
-}
+	},
+};

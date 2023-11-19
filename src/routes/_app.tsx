@@ -1,5 +1,5 @@
 import type { AppProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
+import { Head, Partial } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
 import { APP } from "@/lib/app.ts";
 
@@ -83,13 +83,18 @@ export default function App({ Component, url }: AppProps) {
 				>
 				</script>
 			</Head>
-			<main>
-				<Component />
-			</main>
-			<Footer />
-			{Deno.env.get("DENO_DEPLOYMENT_ID") && (
-				<script type="text/javascript" src="/registerSw.js"></script>
-			)}
+			<body>
+				<main f-client-nav>
+					<Partial name="main">
+						<Component />
+					</Partial>
+				</main>
+				<Footer />
+				{Deno.env.get("DENO_DEPLOYMENT_ID") && (
+					<script type="text/javascript" src="/registerSw.js">
+					</script>
+				)}
+			</body>
 		</html>
 	);
 }

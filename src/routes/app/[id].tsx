@@ -151,7 +151,7 @@ export default async function App(req: Request, ctx: RouteContext) {
 							{app.description}
 						</p>
 						{app.certificate && (
-							<VerifiedBadge cert={app.certificate}/>
+							<VerifiedBadge cert={app.certificate} />
 						)}
 					</Stack>
 				</Container>

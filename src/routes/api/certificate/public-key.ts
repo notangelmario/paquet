@@ -8,4 +8,4 @@ export const handler: Handler = () => {
 			"Content-Type": "text/plain",
 		},
 	});
-}
+};
