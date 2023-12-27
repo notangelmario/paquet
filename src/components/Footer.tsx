@@ -21,7 +21,7 @@ export default function Footer() {
 						Privacy Policy
 					</a>&middot;
 					<a
-						href="/terms-and-condition"
+						href="/terms-and-conditions"
 						class="underline opacity-75"
 					>
 						Terms and Conditions
