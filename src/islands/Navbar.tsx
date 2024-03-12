@@ -44,7 +44,7 @@ export default function Navbar(props: Props) {
 			metaTag2.content = lightAccent;
 			document.head.appendChild(metaTag2);
 		}
-	}, []);
+	}, [props.color]);
 
 	useEffect(() => {
 		const darkMetaTag = document.querySelector(
