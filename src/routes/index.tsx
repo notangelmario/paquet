@@ -203,10 +203,10 @@ export default async function Welcome(req: Request) {
 					</h3>
 					<Card class="max-w-screen-md mx-auto">
 						<p>
-							Deployed in 35+ locations around the world, Paquet
+							Deployed in 12 regions around the world, Paquet
 							is always close to you. We use{" "}
 							<a
-								href="https://vercel.com"
+								href="https://deno.com/deploy"
 								target="_blank"
 								rel="noreferrer noopener"
 								class="underline text-primary"
