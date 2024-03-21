@@ -24,7 +24,7 @@ export default async function Category(_: Request, ctx: RouteContext) {
 		});
 	}
 
-	const apps = await getAppsByCategory(10, category);
+	const apps = await getAppsByCategory(50, category);
 
 	if (!apps) {
 		return new Response("Not found", {
