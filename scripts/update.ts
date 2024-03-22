@@ -64,7 +64,7 @@ export const checkUpdates = async () => {
 		}
 
 		// Update
-		if (app.version !== appSpec.version) {
+		if (app.version !== appSpec.version || app.manifestHash !== appSpec.manifestHash) {
 			const appData = await generateAppFields(appSpec, app);
 
 			if (!appData) continue;
