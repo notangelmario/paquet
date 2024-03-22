@@ -1,11 +1,13 @@
-<img
-	align="right"
-	src="/resources/rounded-logo.png"
-	alt="Paquet logo"
-	height="150px"
-/>
+<p align="center">
+	<img
+		align="center"
+		src="/resources/rounded-logo.png"
+		alt="Paquet logo"
+		height="150px"
+	/>
+</p>
 
-# [📦 Paquet](https://paquet.app)
+<a href="https://paquet.app"><h1 align="center">Paquet</h1></a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
@@ -13,19 +15,16 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+---
+
+> [!IMPORTANT]
+> [A big change is coming](https://github.com/notangelmario/paquet/issues/117). Paquet as of now is still usable but there might be some bugs here and there.
+
 Welcome to your new web app shop!
 
 👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
 
 #### ☕ If you like Paquet, consider [buying me a coffee](https://buymeacoffee.com/notangelmario)!
-
----
-
-### We moved from paquet.shop to [paquet.app](https://paquet.app).
-
-> I am very sorry for this sudden change, but unfortunately, the domain name paquet.shop was getting too expensive to maintain.
-
----
 
 ## About
 
