@@ -11,7 +11,6 @@ import * as $app_id_ from "./routes/app/[id].tsx";
 import * as $app_error from "./routes/app/error.tsx";
 import * as $category_id_ from "./routes/category/[id].tsx";
 import * as $category_index from "./routes/category/index.tsx";
-import * as $certificate from "./routes/certificate.tsx";
 import * as $docs_doc_ from "./routes/docs/[doc].tsx";
 import * as $docs_index from "./routes/docs/index.tsx";
 import * as $gfm_css from "./routes/gfm.css.ts";
@@ -29,7 +28,6 @@ import * as $KvInsightsEntriesManagement from "./islands/KvInsightsEntriesManage
 import * as $KvInsightsEntryManagement from "./islands/KvInsightsEntryManagement.tsx";
 import * as $KvInsightsQueueManagement from "./islands/KvInsightsQueueManagement.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
-import * as $VerifiedBadge from "./islands/VerifiedBadge.tsx";
 import * as $settings_AnalyticsSwitch from "./islands/settings/AnalyticsSwitch.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -44,7 +42,6 @@ const manifest = {
 		"./routes/app/error.tsx": $app_error,
 		"./routes/category/[id].tsx": $category_id_,
 		"./routes/category/index.tsx": $category_index,
-		"./routes/certificate.tsx": $certificate,
 		"./routes/docs/[doc].tsx": $docs_doc_,
 		"./routes/docs/index.tsx": $docs_index,
 		"./routes/gfm.css.ts": $gfm_css,
@@ -65,7 +62,6 @@ const manifest = {
 		"./islands/KvInsightsEntryManagement.tsx": $KvInsightsEntryManagement,
 		"./islands/KvInsightsQueueManagement.tsx": $KvInsightsQueueManagement,
 		"./islands/Navbar.tsx": $Navbar,
-		"./islands/VerifiedBadge.tsx": $VerifiedBadge,
 		"./islands/settings/AnalyticsSwitch.tsx": $settings_AnalyticsSwitch,
 	},
 	baseUrl: import.meta.url,

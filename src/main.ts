@@ -25,10 +25,11 @@ kv.listenQueue(async (value: unknown) => {
   await kvInsightsQueueValueHandler(value);
 });
 
-checkUpdates();
 
 if (!DEV) {
 	Deno.cron("App updates", "0 0 */1 * *", checkUpdates);
+} else {
+	checkUpdates();
 }
 
 // @ts-ignore: I don't care about the type of the manifest

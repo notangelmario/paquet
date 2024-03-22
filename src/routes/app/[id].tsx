@@ -16,9 +16,8 @@ import { RouteContext } from "@/types/Handler.ts";
 import { getApp, getAppsRandom } from "@/lib/db.ts";
 import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
-import VerifiedBadge from "@/islands/VerifiedBadge.tsx";
 
-export default async function App(req: Request, ctx: RouteContext) {
+export default async function App(_: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
 	const otherApps = await getAppsRandom(5, false, app?.id);
 	const openButtonTextColor = getContrastYIQ(app?.accentColor || "#8267be");
@@ -129,9 +128,6 @@ export default async function App(req: Request, ctx: RouteContext) {
 						<p>
 							{app.description}
 						</p>
-						{app.certificate && (
-							<VerifiedBadge cert={app.certificate} />
-						)}
 					</Stack>
 				</Container>
 			</div>

@@ -4,7 +4,6 @@ import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
 import { DEV } from "@/lib/app.ts";
-import { Certificate } from "@/types/Certificate.ts";
 import { createApp, getApps, updateApp } from "@/lib/db.ts";
 
 const ICONS_SIZES = [
@@ -63,8 +62,11 @@ export const checkUpdates = async () => {
 			continue;
 		}
 
+		const latestManifestHash = await getManifestHash(app.manifestUrl);
+
 		// Update
-		if (app.version !== appSpec.version) {
+		if (app.version !== appSpec.version || app.manifestHash !== latestManifestHash) {
+			console.log(`Updating ${appSpec.id}...`);
 			const appData = await generateAppFields(appSpec, app);
 
 			if (!appData) continue;
@@ -270,28 +272,6 @@ export const checkUpdates = async () => {
 				}
 			}
 
-			let certificate: Certificate | undefined;
-			if (appSpec.certificateUrl) {
-				console.log("Verifying certificate...");
-
-				const certRes = await fetch(appSpec.certificateUrl, {
-					headers: {
-						Accept: "application/json",
-					},
-				});
-
-				if (certRes.status === 200) {
-					const certificateData = await certRes.json() as Certificate;
-
-					if (
-						certificateData.url && certificateData.signature &&
-						certificateData.issuedAt
-					) {
-						certificate = certificateData;
-					}
-				}
-			}
-
 			return {
 				id: appSpec.id,
 				url: appSpec.url,
@@ -309,9 +289,8 @@ export const checkUpdates = async () => {
 				accentColor: accent_color || appSpec.accentColor ||
 					appCurrentData?.accentColor || "",
 				manifestHash: hash,
-				certificate,
 				icon: icon_url || appCurrentData?.icon || "",
-				cover: cover_url || appCurrentData?.icon,
+				cover: cover_url || appCurrentData?.icon || "",
 				version: appSpec.version,
 			};
 		}
@@ -328,6 +307,28 @@ async function digest(message: string) {
 		"",
 	);
 	return hashHex;
+}
+
+async function getManifestHash(url: string) {
+	let manifest: string;
+
+	try {
+		manifest = await fetch(url, {
+			headers: {
+				Accept:
+					"application/manifest+json, application/json, application/webmanifest",
+			},
+		}).then((
+			res,
+		) => res.json());
+	} catch (err) {
+		console.error("Could not fetch manifest", err);
+		return null;
+	}
+
+	const hash = await digest(JSON.stringify(manifest));
+
+	return hash;
 }
 
 function slashSlashes(string: string) {

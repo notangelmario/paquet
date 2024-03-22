@@ -9,7 +9,9 @@ import { APP } from "@/lib/app.ts";
 import type { RouteContext } from "@/types/Handler.ts";
 import AnalyticsSwitch from "@/islands/settings/AnalyticsSwitch.tsx";
 
-export default async function Settings(req: Request, ctx: RouteContext) {
+export default async function Settings(_: Request, ctx: RouteContext) {
+	await Promise.resolve();
+
 	return (
 		<>
 			<Head>
@@ -27,15 +29,6 @@ export default async function Settings(req: Request, ctx: RouteContext) {
 						/>
 					</Card>
 					<Card disableGutters>
-						<a href="/certificate">
-							<ListItem
-								button
-								icon="certificate"
-								title="Certificate"
-								subtitle="Generate a certificate"
-								divider
-							/>
-						</a>
 						<a href="/docs">
 							<ListItem
 								button
