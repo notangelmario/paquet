@@ -42,7 +42,10 @@ export default async function Category(_: Request, ctx: RouteContext) {
 					{getCategory(category)?.name} &middot; Paquet
 				</title>
 			</Head>
-			<Navbar back />
+			<Navbar 
+				f-client-nav={false}
+				back 
+			/>
 			<Container>
 				<Stack>
 					<Header

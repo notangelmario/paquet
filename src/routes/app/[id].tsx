@@ -37,6 +37,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 				<title>{app.name} &middot; Paquet</title>
 			</Head>
 			<Navbar
+				f-client-nav={false}
 				transparentTop
 				color={colorHexToFull(app.accentColor)}
 				back

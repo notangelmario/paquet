@@ -74,7 +74,6 @@ export default function App({ Component, url }: PageProps) {
 					content="https://paquet.app/og-image.jpg"
 				/>
 
-				<link rel="stylesheet" href="/fonts.css" />
 				<link rel="stylesheet" href="/global.css" />
 				<script
 					src={APP.umamiUrl}

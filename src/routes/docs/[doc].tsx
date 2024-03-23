@@ -25,7 +25,10 @@ export default function DocPage({ data, params }: PageProps<DataProps>) {
 				/>
 				<title>{data.title} &middot; Paquet</title>
 			</Head>
-			<Navbar back />
+			<Navbar 
+				f-client-nav={false}
+				back
+			/>
 			<div class="flex flex-row">
 				<div class="hidden md:block">
 					<Container class="mt-16">

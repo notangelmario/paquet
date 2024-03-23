@@ -9,9 +9,8 @@ export default function Footer() {
 					target="_blank"
 					class="hover:underline opacity-75 text-center"
 				>
-					Made with <span role="img">❤</span>
-					<br />
-					by Savin Angel-Mario
+					Made with <span role="img">❤</span>{" "}
+					by Roseto
 				</a>
 				<div class="flex flex-row gap-2 mt-4 justify-center">
 					<a

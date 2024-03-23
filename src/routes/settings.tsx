@@ -17,7 +17,10 @@ export default async function Settings(_: Request, ctx: RouteContext) {
 			<Head>
 				<title>Settings &middot; Paquet</title>
 			</Head>
-			<Navbar back />
+			<Navbar 
+				f-client-nav={false}
+				back 
+			/>
 			<Container>
 				<Stack>
 					<Header icon="settings">
@@ -49,7 +52,7 @@ export default async function Settings(_: Request, ctx: RouteContext) {
 								divider
 								icon="github"
 								title="GitHub"
-								subtitle="notangelmario/paquet"
+								subtitle="roseto/paquet"
 							/>
 						</a>
 						<a

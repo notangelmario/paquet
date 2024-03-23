@@ -13,7 +13,10 @@ export default function CategoryPage() {
 			<Head>
 				<title>Categories &middot; Paquet</title>
 			</Head>
-			<Navbar back />
+			<Navbar 
+				f-client-nav={false}
+				back 
+			/>
 			<Container>
 				<Stack>
 					<Header icon="apps" class="mb-2">

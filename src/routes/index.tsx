@@ -132,13 +132,12 @@ export default async function Welcome(req: Request) {
 									inline
 									size={18}
 								/>{" "}
-								Ranked by the community
+								Loved by the community
 							</p>
 							<p>
-								Apps are not ranked by us. They are ranked by
-								the community. The more people like an app, the
-								higher it will rank. This way you can find the
-								best apps for you.
+								Only apps that are loved by the community
+								are featured on Paquet. We make sure that
+								you only get the best apps.
 							</p>
 						</Card>
 					</div>
@@ -170,7 +169,7 @@ export default async function Welcome(req: Request) {
 							<ListItem
 								icon="github"
 								title="GitHub"
-								subtitle="notangelmario/paquet"
+								subtitle="roseto/paquet"
 								button
 								divider
 							/>
@@ -277,10 +276,10 @@ export default async function Welcome(req: Request) {
 							</h2>
 							<a
 								class="opacity-50 text-primary"
-								href="https://angelmario.eu"
+								href="https://roseto.co"
 								target="_blank"
 							>
-								notangelmario
+								Roseto
 							</a>
 						</div>
 						<div class="min-w-full space-y-2 sm:min-w-[30%]">
