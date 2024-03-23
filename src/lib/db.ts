@@ -97,6 +97,32 @@ export const updateApp = async (id: string, app: App) => {
 	return true;
 };
 
+export const removeApp = async (id: string) => {
+	const app = await kv.get<App>(["apps", id]);
+
+	if (!app.value) {
+		return false;
+	}
+
+	let tsx = kv.atomic()
+		.check(app)
+		.delete(["apps", id]);
+
+	if (app.value.categories && app.value.categories.length !== 0) {
+		for (const category of app.value.categories) {
+			tsx = tsx.delete(["apps_by_category", category, id]);
+		}
+	}
+
+	const res = await tsx.commit();
+
+	if (!res) {
+		throw new Error("Failed to remove app");
+	}
+
+	return true;
+}
+
 export const getApps = async (ids: string[] = [], eager = false) => {
 	const apps: App[] = [];
 

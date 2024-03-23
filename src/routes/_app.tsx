@@ -1,9 +1,9 @@
-import type { AppProps } from "$fresh/server.ts";
 import { Head, Partial } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
 import { APP } from "@/lib/app.ts";
+import { PageProps } from "$fresh/server.ts";
 
-export default function App({ Component, url }: AppProps) {
+export default function App({ Component, url }: PageProps) {
 	if (url.pathname === "/kv-insights") {
 		return <Component />;
 	}
@@ -91,8 +91,7 @@ export default function App({ Component, url }: AppProps) {
 				</main>
 				<Footer />
 				{Deno.env.get("DENO_DEPLOYMENT_ID") && (
-					<script type="text/javascript" src="/registerSw.js">
-					</script>
+					<script type="text/javascript" src="/registerSw.js"></script>
 				)}
 			</body>
 		</html>

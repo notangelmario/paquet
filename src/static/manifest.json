@@ -1,7 +1,7 @@
 {
 	"name": "Paquet",
 	"short_name": "Paquet",
-	"author": "Savin Angel-Mario",
+	"author": "Roseto",
 	"description": "Check out Paquet to find the best web apps on the open web.",
 	"categories": [
 		"utilites"
@@ -31,19 +31,7 @@
 			"purpose": "maskable"
 		}
 	],
-	"shortcuts": [
-		{
-			"name": "Loved",
-			"url": "/loved",
-			"icons": [
-				{
-					"src": "/shortcuts/loved.png",
-					"sizes": "128x128"
-				}
-			],
-			"description": "See your loved Paquet apps"
-		}
-	],
+	"dir": "ltr",
 	"theme_color": "#8267be",
 	"background_color": "#ffffff",
 	"display": "standalone",

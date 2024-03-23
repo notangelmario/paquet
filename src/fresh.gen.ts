@@ -4,7 +4,6 @@
 
 import * as $_app from "./routes/_app.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
-import * as $api_certificate_public_key from "./routes/api/certificate/public-key.ts";
 import * as $api_image_proxy from "./routes/api/image-proxy.ts";
 import * as $api_index from "./routes/api/index.ts";
 import * as $app_id_ from "./routes/app/[id].tsx";
@@ -35,7 +34,6 @@ const manifest = {
 	routes: {
 		"./routes/_app.tsx": $_app,
 		"./routes/_middleware.ts": $_middleware,
-		"./routes/api/certificate/public-key.ts": $api_certificate_public_key,
 		"./routes/api/image-proxy.ts": $api_image_proxy,
 		"./routes/api/index.ts": $api_index,
 		"./routes/app/[id].tsx": $app_id_,
