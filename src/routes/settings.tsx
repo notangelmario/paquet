@@ -55,7 +55,7 @@ export default async function Settings(_: Request, ctx: RouteContext) {
 							/>
 						</a>
 						<a
-							href="https://opencollective.com/roseto"
+							href="https://opencollective.com/roseto/projects/paquet/donate"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
