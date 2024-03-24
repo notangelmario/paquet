@@ -55,14 +55,14 @@ export default async function Settings(_: Request, ctx: RouteContext) {
 							/>
 						</a>
 						<a
-							href="https://buymeacoffee.com/notangelmario"
+							href="https://opencollective.com/roseto"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							<ListItem
 								button
-								icon="coffee"
-								title="Buy me a coffee"
+								icon="euro"
+								title="Donate"
 								subtitle="Support Paquet's development"
 							/>
 						</a>
