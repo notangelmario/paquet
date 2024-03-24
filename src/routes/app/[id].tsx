@@ -13,13 +13,11 @@ import Screenshots from "@/components/compound/Screenshots.tsx";
 import SlideCategories from "@/components/compound/SlideCategories.tsx";
 import { buildImageUrl } from "@/lib/image.ts";
 import { RouteContext } from "@/types/Handler.ts";
-import { getApp, getAppsRandom, isAppLoved } from "@/lib/db.ts";
+import { getApp, getAppsRandom } from "@/lib/db.ts";
 import Card from "@/components/Card.tsx";
-import LoveAppButton from "@/islands/LoveAppButton.tsx";
 import Icon from "@/components/Icon.tsx";
-import VerifiedBadge from "@/islands/VerifiedBadge.tsx";
 
-export default async function App(req: Request, ctx: RouteContext) {
+export default async function App(_: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
 	const otherApps = await getAppsRandom(5, false, app?.id);
 	const openButtonTextColor = getContrastYIQ(app?.accentColor || "#8267be");
@@ -32,8 +30,6 @@ export default async function App(req: Request, ctx: RouteContext) {
 			},
 		});
 	}
-
-	const ssrLoved = await isAppLoved(req, app?.id);
 
 	return (
 		<>
@@ -123,24 +119,6 @@ export default async function App(req: Request, ctx: RouteContext) {
 											Open
 										</Button>
 									</a>
-									{ctx.state.isSignedIn
-										? (
-											<LoveAppButton
-												app={app}
-												ssrLoved={ssrLoved}
-											/>
-										)
-										: (
-											<a href="/login" class="block">
-												<Button
-													variant="outlined"
-													fullWidth
-													icon="heart"
-												>
-													Login to give hearts
-												</Button>
-											</a>
-										)}
 								</div>
 							</div>
 						</Card>
@@ -150,9 +128,6 @@ export default async function App(req: Request, ctx: RouteContext) {
 						<p>
 							{app.description}
 						</p>
-						{app.certificate && (
-							<VerifiedBadge cert={app.certificate} />
-						)}
 					</Stack>
 				</Container>
 			</div>

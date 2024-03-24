@@ -26,24 +26,8 @@ export default async function Search(req: Request) {
 	}
 
 	const apps = await searchApps(20, query);
-
 	const categories = searchCategory(query);
-
 	const moreApps: App[] = [];
-	// if (apps && apps.length < 10) {
-	// 	const { data } = await supabase
-	// 		.from("random_apps")
-	// 		.select("id, name, categories, icon")
-	// 		// Unsolved bug from supabase requires us to use this
-	// 		// method to exclude apps from the search
-	// 		// See https://github.com/supabase/supabase/discussions/2055#discussioncomment-923451
-	// 		.not("id", "in", `(${apps.map((app) => app.id).join(",")})`)
-	// 		.limit(5);
-
-	// 	if (data && data.length > 0) {
-	// 		moreApps = data as App[];
-	// 	}
-	// }
 
 	return (
 		<>

@@ -27,12 +27,6 @@ export const DOCS: Doc[] = [
 		filename: "app-spec.md",
 	},
 	{
-		title: "Certificate",
-		description: "How to generate your app certificate",
-		icon: "certificate",
-		filename: "certificate.md",
-	},
-	{
 		title: "App updating",
 		description: "How to update your app on Paquet",
 		icon: "refresh",
@@ -43,12 +37,6 @@ export const DOCS: Doc[] = [
 		description: "How to use your manifest file to edit your app listing",
 		icon: "file-description",
 		filename: "manifest.md",
-	},
-	{
-		title: "API",
-		description: "How to use the Paquet API",
-		icon: "api",
-		filename: "api.md",
 	},
 	{
 		title: "Subdomain hosting",

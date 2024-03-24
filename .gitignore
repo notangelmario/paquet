@@ -13,3 +13,6 @@
 
 # Fresh build directory
 _fresh/
+
+# Node modules
+node_modules/

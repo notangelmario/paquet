@@ -17,14 +17,9 @@
 
 ---
 
-> [!IMPORTANT]
-> [A big change is coming](https://github.com/notangelmario/paquet/issues/117). Paquet as of now is still usable but there might be some bugs here and there.
-
 Welcome to your new web app shop!
 
-👋 Submit a new app 👉 [here](https://github.com/notangelmario/paquet/issues/new?labels=new+app&template=app-request.md)
-
-#### ☕ If you like Paquet, consider [buying me a coffee](https://buymeacoffee.com/notangelmario)!
+#### ☕ If you like Paquet, consider [donating](https://opencollective.com/roseto/projects/paquet/donate)!
 
 ## About
 
@@ -44,7 +39,6 @@ Paquet is built with a modern toolset in mind:
 
 - [Deno](https://deno.land)
 - [Fresh](https://fresh.deno.dev)
-- [Twind](https://twind.dev)
 
 ## 🔨 Tasks
 
@@ -90,7 +84,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rtsfred3"><img src="https://avatars.githubusercontent.com/u/2818162?v=4?s=100" width="100px;" alt="Ryan Fredrickson"/><br /><sub><b>Ryan Fredrickson</b></sub></a><br /><a href="https://github.com/notangelmario/paquet/issues?q=author%3Artsfred3" title="Bug reports">🐛</a> <a href="https://github.com/notangelmario/paquet/commits?author=rtsfred3" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rtsfred3"><img src="https://avatars.githubusercontent.com/u/2818162?v=4?s=100" width="100px;" alt="Ryan Fredrickson"/><br /><sub><b>Ryan Fredrickson</b></sub></a><br /><a href="https://github.com/roseto/paquet/issues?q=author%3Artsfred3" title="Bug reports">🐛</a> <a href="https://github.com/roseto/paquet/commits?author=rtsfred3" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://merklin.xyz"><img src="https://avatars.githubusercontent.com/u/2703233?v=4?s=100" width="100px;" alt="Toni Engelhardt"/><br /><sub><b>Toni Engelhardt</b></sub></a><br /><a href="#ideas-toniengelhardt" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
