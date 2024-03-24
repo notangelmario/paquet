@@ -24,11 +24,11 @@ jobs:
           deno-version: v1.x
 
       - name: Build step
-        run: "deno task build"
+        run: "deno task dev"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "paquet"
-          entrypoint: "./src/main.ts"
-          root: ""
+          entrypoint: "/src/main.ts"
+          root: "."
