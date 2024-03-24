@@ -1,6 +1,7 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useScroll } from "@/hooks/useScroll.ts";
+import { usePath } from "@/hooks/usePath.ts";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
@@ -16,6 +17,7 @@ export type Props = {
 export default function Navbar(props: Props) {
 	const darkAccent = combineColors(props.color + "50", "#121212");
 	const lightAccent = combineColors(props.color + "50", "#dddddd");
+	const path = usePath();
 
 	const [visitedHome, setVisitedHome] = useState(
 		!!globalThis.sessionStorage?.getItem("visitedHome"),
@@ -44,7 +46,7 @@ export default function Navbar(props: Props) {
 			metaTag2.content = lightAccent;
 			document.head.appendChild(metaTag2);
 		}
-	}, [props.color]);
+	}, [props.color, path]);
 
 	useEffect(() => {
 		const darkMetaTag = document.querySelector(
@@ -61,7 +63,7 @@ export default function Navbar(props: Props) {
 			darkMetaTag?.setAttribute("content", "#121212");
 			lightMetaTag?.setAttribute("content", "#dddddd");
 		}
-	}, [trigger]);
+	}, [trigger, path]);
 
 	useEffect(() => {
 		if (!visitedHome && globalThis.location.pathname === "/home") {

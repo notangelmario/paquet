@@ -5,7 +5,6 @@ import type {
 } from "$fresh/server.ts";
 
 export type MiddlewareProps = {
-	isSignedIn?: boolean;
 	analyticsDisabled?: boolean;
 };
 

@@ -1,5 +1,3 @@
-import { Certificate } from "@/types/Certificate.ts";
-
 export interface Category {
 	id: string;
 	icon: string;
@@ -42,5 +40,4 @@ export interface App {
 	addedOn?: string;
 
 	version: string | number;
-	certificate?: Certificate;
 }

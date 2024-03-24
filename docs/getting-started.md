@@ -2,7 +2,7 @@
 
 :wave: Hi! Here is how you can add your app to Paquet. Adding
 a new app is done by adding a spec to `apps` folder in the
-[GitHub repo](https://github.com/notangelmario/paquet).
+[GitHub repo](https://github.com/roseto/paquet).
 
 > Verification on apps has been removed, because all apps are checked
 > during the listing process.

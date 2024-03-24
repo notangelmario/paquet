@@ -8,68 +8,29 @@ import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
 import type { RouteContext } from "@/types/Handler.ts";
 import AnalyticsSwitch from "@/islands/settings/AnalyticsSwitch.tsx";
-import { getUser } from "@/lib/oauth.ts";
 
-export default async function Settings(req: Request, ctx: RouteContext) {
-	const user = await getUser(req);
+export default async function Settings(_: Request, ctx: RouteContext) {
+	await Promise.resolve();
 
 	return (
 		<>
 			<Head>
 				<title>Settings &middot; Paquet</title>
 			</Head>
-			<Navbar back />
+			<Navbar 
+				back 
+			/>
 			<Container>
 				<Stack>
 					<Header icon="settings">
 						Settings
 					</Header>
 					<Card disableGutters>
-						{user
-							? (
-								<>
-									<ListItem
-										title={user.name}
-										image={user.avatar_url}
-										subtitle={user.email}
-										divider
-									/>
-									<a href="/api/auth/signout">
-										<ListItem
-											button
-											icon="logout"
-											title="Sign out"
-											subtitle="Sign out of your account"
-											divider
-										/>
-									</a>
-								</>
-							)
-							: (
-								<a href="/login">
-									<ListItem
-										button
-										icon="login"
-										title="Login"
-										subtitle="Login to access more features"
-										divider
-									/>
-								</a>
-							)}
 						<AnalyticsSwitch
 							analyticsDisabled={!!ctx.state.analyticsDisabled}
 						/>
 					</Card>
 					<Card disableGutters>
-						<a href="/certificate">
-							<ListItem
-								button
-								icon="certificate"
-								title="Certificate"
-								subtitle="Generate a certificate"
-								divider
-							/>
-						</a>
 						<a href="/docs">
 							<ListItem
 								button
@@ -90,18 +51,18 @@ export default async function Settings(req: Request, ctx: RouteContext) {
 								divider
 								icon="github"
 								title="GitHub"
-								subtitle="notangelmario/paquet"
+								subtitle="roseto/paquet"
 							/>
 						</a>
 						<a
-							href="https://buymeacoffee.com/notangelmario"
+							href="https://opencollective.com/roseto/projects/paquet/donate"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							<ListItem
 								button
-								icon="coffee"
-								title="Buy me a coffee"
+								icon="euro"
+								title="Donate"
 								subtitle="Support Paquet's development"
 							/>
 						</a>

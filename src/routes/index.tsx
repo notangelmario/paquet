@@ -42,7 +42,7 @@ export default async function Welcome(req: Request) {
 						instantly
 					</span>
 				</a>
-				<p class="self-center text-center opacity-50 font-medium absolute bottom-4">
+				<p class="self-center text-center opacity-50 font-medium absolute bottom-4 animate-bounce">
 					Interested? Scroll down to learn more.<br />
 					<Icon
 						name="arrow-big-down-line"
@@ -132,13 +132,12 @@ export default async function Welcome(req: Request) {
 									inline
 									size={18}
 								/>{" "}
-								Ranked by the community
+								Loved by the community
 							</p>
 							<p>
-								Apps are not ranked by us. They are ranked by
-								the community. The more people like an app, the
-								higher it will rank. This way you can find the
-								best apps for you.
+								Only apps that are loved by the community
+								are featured on Paquet. We make sure that
+								you only get the best apps.
 							</p>
 						</Card>
 					</div>
@@ -170,7 +169,7 @@ export default async function Welcome(req: Request) {
 							<ListItem
 								icon="github"
 								title="GitHub"
-								subtitle="notangelmario/paquet"
+								subtitle="roseto/paquet"
 								button
 								divider
 							/>
@@ -203,10 +202,10 @@ export default async function Welcome(req: Request) {
 					</h3>
 					<Card class="max-w-screen-md mx-auto">
 						<p>
-							Deployed in 35+ locations around the world, Paquet
+							Deployed in 12 regions around the world, Paquet
 							is always close to you. We use{" "}
 							<a
-								href="https://vercel.com"
+								href="https://deno.com/deploy"
 								target="_blank"
 								rel="noreferrer noopener"
 								class="underline text-primary"
@@ -276,11 +275,17 @@ export default async function Welcome(req: Request) {
 								Paquet
 							</h2>
 							<a
-								class="opacity-50 text-primary"
-								href="https://angelmario.eu"
+								href="https://roseto.co"
+								rel="noopener noreferrer"
 								target="_blank"
+								class="opacity-50 hover:underline"
 							>
-								notangelmario
+								Roseto
+							<Icon
+								inline
+								size={16}
+								name="external-link"
+							/>
 							</a>
 						</div>
 						<div class="min-w-full space-y-2 sm:min-w-[30%]">
@@ -293,14 +298,6 @@ export default async function Welcome(req: Request) {
 									Open
 								</Button>
 							</a>
-							<Button
-								variant="outlined"
-								icon="hearts"
-								disabled
-								class="max-w-screen-sm w-full mx-auto"
-							>
-								I already love Paquet
-							</Button>
 						</div>
 					</Card>
 				</Stack>

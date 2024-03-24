@@ -25,7 +25,9 @@ export default function DocPage({ data, params }: PageProps<DataProps>) {
 				/>
 				<title>{data.title} &middot; Paquet</title>
 			</Head>
-			<Navbar back />
+			<Navbar 
+				back
+			/>
 			<div class="flex flex-row">
 				<div class="hidden md:block">
 					<Container class="mt-16">
@@ -102,7 +104,7 @@ export const handler: Handler = async (_, ctx) => {
 	const title = DOCS.find((docElement) => docElement.filename === `${doc}.md`)
 		?.title;
 	const githubUrl =
-		`https://github.com/notangelmario/paquet/blob/main/docs/${doc}.md`;
+		`https://github.com/roseto/paquet/blob/main/docs/${doc}.md`;
 
 	return ctx.render({
 		content,
