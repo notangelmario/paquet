@@ -213,30 +213,6 @@ export default async function Home() {
 			<Container>
 				<InstallBanner />
 			</Container>
-			{
-				/* data.lovedApps && (
-				<Container>
-					<Card disableGutters>
-						<h2 class="text-2xl mt-4 ml-4">
-							Top 5 most loved apps
-						</h2>
-						{data.lovedApps.map((app, idx) => (
-							<a href={`/app/${app.id}`}>
-								<ListItem
-									button
-									key={app.id}
-									image={buildImageUrl(app.icon, 72, 72)}
-									title={app.name}
-									subtitle={app.author}
-									divider={data.lovedApps &&
-										idx !== data.lovedApps.length - 1}
-								/>
-							</a>
-						))}
-					</Card>
-				</Container>
-			) */
-			}
 			<Stack class="mt-4">
 				<Container
 					disableGutters

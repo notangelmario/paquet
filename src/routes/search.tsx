@@ -11,6 +11,7 @@ import SearchBar from "@/components/SearchBar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Card from "@/components/Card.tsx";
 import { searchApps } from "@/lib/db.ts";
+import { buildImageUrl } from "@/lib/image.ts";
 
 export default async function Search(req: Request) {
 	const searchParams = new URLSearchParams(req.url.split("?")[1]);
@@ -93,7 +94,7 @@ export default async function Search(req: Request) {
 									<ListItem
 										button
 										key={app.id}
-										image={app.icon}
+										image={buildImageUrl(app.icon, 96, 96)}
 										title={app.name}
 										subtitle={app.categories
 											?.map((category) =>
@@ -126,7 +127,7 @@ export default async function Search(req: Request) {
 											<ListItem
 												button
 												key={app.id}
-												image={app.icon}
+												image={buildImageUrl(app.icon, 96, 96)}
 												title={app.name}
 												subtitle={app.categories
 													?.map((category) =>
