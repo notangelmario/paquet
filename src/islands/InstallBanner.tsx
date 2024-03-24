@@ -41,7 +41,7 @@ export default function InstallBanner() {
 	const installInstructions = (props: typeof clientBrowser) => {
 		const header = ``;
 
-		if (props.isIos && props.browserName === "Mobile Safari") {
+		if (props.isIos && (props.browserName === "Mobile Safari" || parseFloat(props.osVersion || "0") >= 16.4)) {
 			return header + `
 				Add Paquet by tapping
 				the share button

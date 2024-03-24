@@ -217,12 +217,12 @@ export default async function Home() {
 						Roseto will be the new home for Paquet, and we're excited to see what the future holds.
 					</p>
 					<a
-						href="https://roseto.co/updates"
+						href="https://roseto.co/updates#welcome-paquet"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<Button fullWidth variant="outset" class="mt-4">
-							Learn more
+						<Button fullWidth variant="secondary" class="mt-4">
+							Learn more on Roseto's blog
 						</Button>
 					</a>
 				</Card>
