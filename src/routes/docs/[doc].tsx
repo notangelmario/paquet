@@ -104,7 +104,7 @@ export const handler: Handler = async (_, ctx) => {
 	const title = DOCS.find((docElement) => docElement.filename === `${doc}.md`)
 		?.title;
 	const githubUrl =
-		`https://github.com/notangelmario/paquet/blob/main/docs/${doc}.md`;
+		`https://github.com/roseto/paquet/blob/main/docs/${doc}.md`;
 
 	return ctx.render({
 		content,
