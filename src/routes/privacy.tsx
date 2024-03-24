@@ -22,7 +22,6 @@ export default function Privacy({ data }: PageProps<DataProps>) {
 				<title>Privacy Policy &middot; Paquet</title>
 			</Head>
 			<Navbar  
-				f-client-nav={false}
 				back 
 			/>
 			<Container class="mt-16 mb-8">

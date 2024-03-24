@@ -42,7 +42,7 @@ export default async function Welcome(req: Request) {
 						instantly
 					</span>
 				</a>
-				<p class="self-center text-center opacity-50 font-medium absolute bottom-4">
+				<p class="self-center text-center opacity-50 font-medium absolute bottom-4 animate-bounce">
 					Interested? Scroll down to learn more.<br />
 					<Icon
 						name="arrow-big-down-line"
@@ -275,11 +275,17 @@ export default async function Welcome(req: Request) {
 								Paquet
 							</h2>
 							<a
-								class="opacity-50 text-primary"
 								href="https://roseto.co"
+								rel="noopener noreferrer"
 								target="_blank"
+								class="opacity-50 hover:underline"
 							>
 								Roseto
+							<Icon
+								inline
+								size={16}
+								name="external-link"
+							/>
 							</a>
 						</div>
 						<div class="min-w-full space-y-2 sm:min-w-[30%]">
@@ -292,14 +298,6 @@ export default async function Welcome(req: Request) {
 									Open
 								</Button>
 							</a>
-							<Button
-								variant="outlined"
-								icon="hearts"
-								disabled
-								class="max-w-screen-sm w-full mx-auto"
-							>
-								I already love Paquet
-							</Button>
 						</div>
 					</Card>
 				</Stack>

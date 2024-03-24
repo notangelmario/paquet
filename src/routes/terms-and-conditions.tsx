@@ -22,7 +22,6 @@ export default function TermsAndConditions({ data }: PageProps<DataProps>) {
 				<title>Terms and Condition &middot; Paquet</title>
 			</Head>
 			<Navbar
-				f-client-nav={false}
 				back 
 			/>
 			<Container class="mt-16 mb-8">

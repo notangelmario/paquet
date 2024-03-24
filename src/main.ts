@@ -10,8 +10,7 @@ import "dotenv";
 
 import { checkUpdates } from "../scripts/update.ts";
 import { DEV } from "@/lib/app.ts";
-import twindPlugin from "$fresh/plugins/twindv1.ts";
-import twindConfig from "@/twind.config.ts";
+import tailwind from "$fresh/plugins/tailwind.ts";
 
 import { kvInsightsPlugin, createQueueValueHandler } from "deno-kv-insights";
 
@@ -29,14 +28,13 @@ kv.listenQueue(async (value: unknown) => {
 if (!DEV) {
 	Deno.cron("App updates", "0 0 */1 * *", checkUpdates);
 } else {
-	checkUpdates();
+	Deno.env.get("CHECK_APPS") && checkUpdates();
 }
 
 // @ts-ignore: I don't care about the type of the manifest
 await start(manifest, {
 	plugins: [
-		// @ts-ignore: I don't care about the type of this plugin
-		twindPlugin(twindConfig),
+		tailwind(),
 		kvInsightsPlugin({ kv }),
 		freshSEOPlugin(manifest, {
 			include: [

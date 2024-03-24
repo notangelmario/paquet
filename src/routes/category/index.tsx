@@ -14,7 +14,6 @@ export default function CategoryPage() {
 				<title>Categories &middot; Paquet</title>
 			</Head>
 			<Navbar 
-				f-client-nav={false}
 				back 
 			/>
 			<Container>

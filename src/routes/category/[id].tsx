@@ -43,7 +43,6 @@ export default async function Category(_: Request, ctx: RouteContext) {
 				</title>
 			</Head>
 			<Navbar 
-				f-client-nav={false}
 				back 
 			/>
 			<Container>

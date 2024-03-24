@@ -56,12 +56,7 @@ export default async function Home() {
 				<title>Paquet</title>
 			</Head>
 			<Navbar
-				f-client-nav={false}
 				right={[
-					{
-						icon: "heart",
-						href: "/loved",
-					},
 					{
 						icon: "settings",
 						href: "/settings",

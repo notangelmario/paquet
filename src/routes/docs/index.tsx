@@ -53,7 +53,6 @@ export default function Documentation() {
 				<title>Docs &middot; Paquet</title>
 			</Head>
 			<Navbar
-				f-client-nav={false}
 				back
 			/>
 			<Container>

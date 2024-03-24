@@ -8,9 +8,18 @@ export interface ButtonProps {
 	variant?: "outset" | "primary" | "secondary" | "error" | "outlined";
 }
 
+const _variants = {
+	"outset": "btn-outset",
+	"primary": "btn-primary",
+	"secondary": "btn-secondary",
+	"error": "btn-error",
+	"outlined": "btn-outlined",
+}
+
 export default function Button(
 	props: ButtonProps & JSX.IntrinsicElements["button"],
 ) {
+
 	return (
 		<button
 			{...props}
