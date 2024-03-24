@@ -1,0 +1,318 @@
+import "dotenv";
+import type { App } from "@/types/App.ts";
+import { CATEGORIES } from "@/lib/categories.ts";
+import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
+import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
+import { createApp, getApps, updateApp } from "@/lib/db.ts";
+import { removeApp } from "@/lib/db.ts";
+
+const ICONS_SIZES = [
+	"96x96",
+	"120x120",
+	"128x128",
+	"144x144",
+	"192x192",
+	"256x256",
+	"512x512",
+];
+
+export interface AppSpec {
+	id: string;
+	url: string;
+	manifestUrl?: string;
+	categories?: string[];
+	features: string[];
+	author?: string;
+	authorLink?: string;
+	githubUrl?: string;
+	gitlabUrl?: string;
+	accentColor?: string;
+}
+
+export async function digest(message: string) {
+	const msgUint8 = new TextEncoder().encode(message);
+	const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
+	const hashArray = Array.from(new Uint8Array(hashBuffer));
+	const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join(
+		"",
+	);
+	return hashHex;
+}
+
+export function slashSlashes(string: string) {
+	return string.replace(/^\/|\/$/g, "");
+}
+
+export function relativeToAbsolute(url: string, baseUrl: string) {
+	if (url.startsWith("http")) {
+		return url;
+	} else if (url.startsWith("//")) {
+		return "https:" + url;
+	} else if (url.startsWith("/")) {
+		return slashSlashes(new URL(baseUrl).origin) + "/" + slashSlashes(url);
+	} else {
+		return slashSlashes(baseUrl) +
+			"/" + slashSlashes(url);
+	}
+}
+
+export const fetchManifestUrlFromIndex = async (url: string): Promise<string | null> => {
+	const body = await fetch(url, {
+		headers: {
+			Accept: "text/html",
+		},
+	})
+		.then((res) => res.text())
+		.catch((err) => {
+			console.log(err);
+			return null;
+		});
+
+	if (!body) {
+		console.error(`Could not fetch ${url}`);
+		return null;
+	}
+
+	// Get only the head tag
+	const head = body.match(/<head[^>]*>([\s\S.]*)<\/head>/i)?.[0] ||
+		"";
+	const headParsed = new DOMParser().parseFromString(
+		head,
+		"text/html",
+	);
+
+	if (!headParsed) {
+		console.error(`[fetchManifestUrlFromIndex] Could not parse head of ${url}`);
+		return null;
+	}
+
+	const manifestValue = headParsed.querySelector("link[rel=manifest]")
+		?.getAttribute("href") || "";
+
+	const manifestUrl = manifestValue.startsWith("http")
+		? manifestValue
+		: relativeToAbsolute(manifestValue, url);
+
+	return manifestUrl;
+}
+
+export const fetchManifest = async (manifestUrl: string): Promise<WebAppManifest | null> => {
+	let manifest: WebAppManifest | undefined;
+	try {
+		manifest = await fetch(manifestUrl, {
+			headers: {
+				Accept:
+					"application/manifest+json, application/json, application/webmanifest",
+			},
+		}).then((
+			res,
+		) => res.json());
+	} catch {
+		console.error(`[fetchManifest] Could not fetch manifest from ${manifestUrl}`);
+	}
+
+	return manifest || null;
+}
+
+export const fetchIndexProps = async (url: string): Promise<Pick<App, "author" | "description" | "cover"> | null> => {
+	const body = await fetch(url, {
+		headers: {
+			Accept: "text/html",
+		},
+	})
+		.then((res) => res.text())
+		.catch((err) => {
+			console.log(err);
+			return null;
+		});
+
+	if (!body) {
+		console.error(`Could not fetch ${url}`);
+		return null;
+	}
+
+	// Get only the head tag
+	const head = body.match(/<head[^>]*>([\s\S.]*)<\/head>/i)?.[0] ||
+		"";
+	const headParsed = new DOMParser().parseFromString(
+		head,
+		"text/html",
+	);
+
+	if (!headParsed) {
+		console.error(`[fetchIndexProps] Could not parse head of ${url}`);
+		return null;
+	}
+
+	const author = headParsed.querySelector("meta[name='author']")?.getAttribute("content") || "";
+	const description = headParsed.querySelector("meta[name='description']")?.getAttribute("content") || "";
+	const cover = headParsed.querySelector("meta[property='og:image']")?.getAttribute("content") || "";
+
+	return { author, description, cover };
+}
+
+export const getIcon = (manifest: WebAppManifest, manifestUrl: string): string | null => {
+	const manifestSplit = manifestUrl.split("/");
+	manifestSplit.pop();
+	const manifestParent = manifestSplit.join("/");
+	const icons = manifest.icons || [];
+
+	const maskableIcons = icons.filter((icon) => icon.purpose === "maskable");
+	const pngIcons = icons.filter((icon) => icon.src.replace(/\?.*/, "").endsWith(".png"));
+
+	const maskableIconsBySize = ICONS_SIZES.map((size) => maskableIcons.find((icon) => icon.sizes === size));
+	const maskableIcon = maskableIconsBySize.find((icon) => icon !== undefined);
+	if (maskableIcon) {
+		return relativeToAbsolute(maskableIcon.src, manifestParent);
+	}
+
+	const pngIconsBySize = ICONS_SIZES.map((size) => pngIcons.find((icon) => icon.sizes === size));
+	const pngIcon = pngIconsBySize.find((icon) => icon !== undefined);
+	if (pngIcon) {
+		return relativeToAbsolute(pngIcon.src, manifestParent);
+	}
+
+	return null;
+}
+
+export const getScreenshots = (manifest: WebAppManifest, manifestUrl: string): string[] => {
+	const manifestSplit = manifestUrl.split("/");
+	manifestSplit.pop();
+	const manifestParent = manifestSplit.join("/");
+	const screenshots = manifest.screenshots || [];
+	return screenshots.map((screenshot) => relativeToAbsolute(screenshot.src, manifestParent));
+}
+
+export const getCategories = (manifest: WebAppManifest): string[] => {
+	const categories = manifest.categories || [];
+	const manifestCategories = categories.map((category) => {
+		const foundCategory = CATEGORIES.find((c) => c.id === category || c.aliases?.includes(category));
+		return foundCategory?.id || category;
+	});
+
+	return [...new Set(manifestCategories)];
+}
+
+export const generateApp = async (appSpec: AppSpec, existingApp: App | null, manifest: WebAppManifest, manifestUrl: string, url: string): Promise<App> => {
+	const icon = getIcon(manifest, manifestUrl);
+	const screenshots = getScreenshots(manifest, manifestUrl);
+	const { author, description, cover } = await fetchIndexProps(url) || {};
+	const coverUrl = cover ? relativeToAbsolute(cover, url) : undefined;
+	const categories = getCategories(manifest);
+
+	const newApp: Partial<App> = {
+		id: appSpec.id,
+		name: manifest.name || manifest.short_name,
+		description: manifest.description || description,
+		icon: icon || "",
+		screenshots: screenshots,
+		url: url,
+		cover: coverUrl,
+		// @ts-ignore Some manifests have author
+		author: appSpec.author || manifest.author || author,
+		accentColor: appSpec.accentColor || manifest.theme_color,
+		categories: appSpec.categories || categories || [],
+		features: appSpec.features,
+		manifestUrl: appSpec.manifestUrl || url,
+		manifestHash: await digest(JSON.stringify(manifest)),
+		githubUrl: appSpec.githubUrl || undefined,
+		gitlabUrl: appSpec.gitlabUrl || undefined,
+		authorLink: appSpec.authorLink || undefined,
+	} 
+
+	const updatedApp = { ...existingApp, ...newApp } as App;
+	
+	return updatedApp;
+}
+
+export const updateApps = async (appIdsToUpdate?: string[]) => {
+	const appDir = Deno.readDir("./apps");
+	const appsSpecs: AppSpec[] = [];
+	const apps: App[] = await getApps(appIdsToUpdate || []);
+
+	if (appIdsToUpdate) {
+		for (const appId of appIdsToUpdate) {
+			const app = apps.find((a) => a.id === appId);
+			if (!app) {
+				console.error(`App ${appId} not found`);
+				continue;
+			}
+
+			const appSpec = JSON.parse(
+				await Deno.readTextFile(`./apps/${appId}.json`),
+			) as AppSpec;
+
+			appsSpecs.push(appSpec);
+		}
+	} else {
+		for await (const dirEntry of appDir) {
+			if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
+				continue;
+			}
+
+			const app = JSON.parse(
+				await Deno.readTextFile(`./apps/${dirEntry.name}`),
+			) as AppSpec;
+
+			appsSpecs.push(app);
+		}
+	}
+
+	// Check every appSpec to see if it exists or needs to be created
+	// updated or deleted
+	// Check manifest hash to see if it needs to be updated
+	
+	for (const appSpec of appsSpecs) {
+		const app: App | undefined = apps.find((a) => a.id === appSpec.id);
+
+		console.log(`Checking ${appSpec.id}`);
+
+		// Needs to create app
+		if (!app) {
+			console.log(`Creating ${appSpec.id}`);
+
+			const manifestUrl = appSpec.manifestUrl || (await fetchManifestUrlFromIndex(appSpec.url));
+			if (!manifestUrl) continue;
+
+			const manifest = await fetchManifest(manifestUrl);
+			if (!manifest) continue;
+
+			const appData = await generateApp(appSpec, null, manifest, manifestUrl, appSpec.url);
+
+			if (!appData) continue;
+
+			createApp(appData);
+			continue;
+		}
+
+		// Update
+		const manifest = await fetchManifest(app.manifestUrl);
+		if (!manifest) continue;
+
+		const manifestHash = await digest(JSON.stringify(manifest));
+
+		if ((app.manifestHash !== manifestHash) || appIdsToUpdate) {
+			console.log(`Updating ${appSpec.id}`);
+
+			const manifestUrl = appSpec.manifestUrl || (await fetchManifestUrlFromIndex(appSpec.url));
+			if (!manifestUrl) continue;
+
+			const appData = await generateApp(appSpec, app, manifest, manifestUrl, app.url);
+
+			if (!appData) continue;
+
+			updateApp(appSpec.id, appData);
+			continue;
+		}
+	}
+
+	// Delete
+	const appIds = apps.map((app) => app.id);
+	const appSpecIds = appsSpecs.map((app) => app.id);
+	const appsToDelete = appIds.filter((id) => !appSpecIds.includes(id));
+
+	for (const appId of appsToDelete) {
+		console.log(`Deleting ${appId}`);
+		removeApp(appId);
+	}
+}

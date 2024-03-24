@@ -11,6 +11,7 @@ import ListItem from "@/components/ListItem.tsx";
 import FewApps from "@/components/compound/FewApps.tsx";
 import Stack from "@/components/Stack.tsx";
 import { getAppsByCategory } from "@/lib/db.ts";
+import { buildImageUrl } from "@/lib/image.ts";
 
 export default async function Category(_: Request, ctx: RouteContext) {
 	const category = ctx.params.id;
@@ -60,7 +61,7 @@ export default async function Category(_: Request, ctx: RouteContext) {
 							>
 								<ListItem
 									button
-									image={app.icon}
+									image={buildImageUrl(app.icon, 64, 64)}
 									title={app.name}
 									subtitle={app.author}
 									divider={idx !== apps.length - 1}

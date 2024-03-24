@@ -36,8 +36,4 @@ export interface App {
 
 	githubUrl?: string;
 	gitlabUrl?: string;
-
-	addedOn?: string;
-
-	version: string | number;
 }

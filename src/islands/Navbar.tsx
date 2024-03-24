@@ -15,8 +15,8 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
-	const darkAccent = combineColors(props.color + "50", "#121212");
-	const lightAccent = combineColors(props.color + "50", "#dddddd");
+	const darkAccent = props.color ? combineColors(props.color + "50", "#121212") : "#121212";
+	const lightAccent = props.color ? combineColors(props.color + "50", "#dddddd") : "#dddddd";
 	const path = usePath();
 
 	const [visitedHome, setVisitedHome] = useState(
@@ -26,27 +26,6 @@ export default function Navbar(props: Props) {
 	const trigger = useScroll({
 		threshold: 16,
 	});
-
-	useEffect(() => {
-		if (props.color) {
-			const metaTags = document.querySelectorAll(
-				"meta[name=theme-color]",
-			);
-			metaTags.forEach((meta) => meta.remove());
-
-			const metaTag = document.createElement("meta");
-			metaTag.name = "theme-color";
-			metaTag.media = "(prefers-color-scheme: dark)";
-			metaTag.content = darkAccent;
-			document.head.appendChild(metaTag);
-
-			const metaTag2 = document.createElement("meta");
-			metaTag2.name = "theme-color";
-			metaTag2.media = "(prefers-color-scheme: light)";
-			metaTag2.content = lightAccent;
-			document.head.appendChild(metaTag2);
-		}
-	}, [props.color, path]);
 
 	useEffect(() => {
 		const darkMetaTag = document.querySelector(
