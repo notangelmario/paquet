@@ -15,7 +15,6 @@ import SlideItem from "@/components/SlideItem.tsx";
 import ImageCard from "@/components/compound/ImageCard.tsx";
 import { buildImageUrl } from "@/lib/image.ts";
 import {
-	getAppsBetweenDates,
 	getAppsByCategory,
 	getAppsRandom,
 	getRandomAppsWithCover,
@@ -26,20 +25,12 @@ export default async function Home() {
 	const randomCategoryId: string =
 		CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)].id;
 
-	// This is used to determine for how long an app is considered
-	// to be new.
-	const sixtyDaysAgo = new Date(
-		new Date().getTime() - (60 * 24 * 60 * 60 * 1000),
-	);
-
 	const [
 		randomCategoryApps,
-		newApps,
 		randomApps,
 		randomCards,
 	] = await Promise.all([
 		getAppsByCategory(5, randomCategoryId),
-		getAppsBetweenDates(5, sixtyDaysAgo, new Date()),
 		getAppsRandom(5),
 		getRandomAppsWithCover(6),
 	]);
@@ -135,77 +126,6 @@ export default async function Home() {
 						</SlideItem>
 					))}
 				</SlideContainer>
-				{newApps && newApps.length
-					? (
-						<div>
-							<Container>
-								<h2 class="text-2xl">
-									New apps
-								</h2>
-							</Container>
-							<SlideContainer>
-								{/* This sorts every 2 elements */}
-								{newApps.reduce(
-									function (
-										accumulator,
-										_,
-										currentIndex,
-										array,
-									) {
-										if (currentIndex % 3 === 0) {
-											accumulator.push(
-												array.slice(
-													currentIndex,
-													currentIndex + 3,
-												) as never,
-											);
-										}
-										return accumulator;
-									},
-									[],
-								)
-									.map((
-										col: App[],
-										idx: number,
-									) => (
-										<SlideItem
-											key={idx}
-											disableGutters
-											isLast={newApps &&
-												idx ===
-													newApps.length - 1}
-										>
-											{col.map((app, idx) => (
-												<a
-													href={`/app/${app.id}`}
-													key={idx}
-												>
-													<ListItem
-														button
-														key={app.id}
-														style={{ width: 300 }}
-														image={buildImageUrl(
-															app.icon,
-															72,
-															72,
-														)}
-														title={app.name}
-														subtitle={app.categories
-															?.map((category) =>
-																getCategory(
-																	category,
-																)?.name
-															).join(", ")}
-														divider={idx !== 2}
-													/>
-												</a>
-											))}
-										</SlideItem>
-									))}
-							</SlideContainer>
-						</div>
-					)
-					: null}
 			</Stack>
 			<Container>
 				<Card class="mt-4 !bg-gradient-to-tr from-primary to-secondary text-light">

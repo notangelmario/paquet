@@ -23,7 +23,7 @@ kv.listenQueue(async (value: unknown) => {
 if (!DEV) {
 	Deno.cron("App updates", "0 0 */1 * *", updateApps);
 } else {
-	Deno.env.get("CHECK_APPS") && updateApps();
+	updateApps();
 }
 
 // @ts-ignore: I don't care about the type of the manifest

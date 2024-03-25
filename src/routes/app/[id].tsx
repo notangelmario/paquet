@@ -19,7 +19,7 @@ import Icon from "@/components/Icon.tsx";
 
 export default async function App(_: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
-	const otherApps = await getAppsRandom(5, false, app?.id);
+	const otherApps = await getAppsRandom(5, app?.id);
 	const openButtonTextColor = getContrastYIQ(app?.accentColor || "#8267be");
 
 	if (!app) {

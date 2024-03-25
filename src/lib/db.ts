@@ -123,13 +123,11 @@ export const removeApp = async (id: string) => {
 	return true;
 }
 
-export const getApps = async (ids: string[] = [], eager = false) => {
+export const getApps = async (ids: string[] = []) => {
 	const apps: App[] = [];
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
 	});
 
 	for await (const { value } of iter) {
@@ -149,14 +147,11 @@ export const getApps = async (ids: string[] = [], eager = false) => {
 export const searchApps = async (
 	limit: number,
 	query: string,
-	eager = false,
 ) => {
 	const apps: App[] = [];
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
 	});
 
 	for await (const { value } of iter) {
@@ -170,15 +165,12 @@ export const searchApps = async (
 
 export const getAppsRandom = async (
 	limit: number,
-	eager = false,
 	except?: string,
 ) => {
 	const apps: App[] = [];
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
 	});
 
 	for await (const { value } of iter) {
@@ -197,14 +189,13 @@ export const getAppsRandom = async (
 export const getAppsByCategory = async (
 	limit: number,
 	category: string,
-	eager = false,
 ) => {
 	const apps: App[] = [];
 
 	const iter = kv.list<App>({
 		prefix: ["apps_by_category", category],
 	}, {
-		consistency: eager ? "strong" : "eventual",
+		consistency: "eventual",
 	});
 
 	for await (const { value } of iter) {
@@ -214,46 +205,11 @@ export const getAppsByCategory = async (
 	return apps.slice(0, limit);
 };
 
-export const getAppsBetweenDates = async (
-	limit: number,
-	start: Date,
-	end: Date,
-	eager = false,
-) => {
+export const getRandomAppsWithCover = async (limit: number) => {
 	const apps: App[] = [];
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
-	});
-
-	for await (const { value } of iter) {
-		if (!value) {
-			continue;
-		}
-
-		if (!value.addedOn) {
-			continue;
-		}
-
-		if (
-			new Date(value.addedOn) >= start && new Date(value.addedOn) <= end
-		) {
-			apps.push(value);
-		}
-	}
-
-	return apps.slice(0, limit);
-};
-
-export const getRandomAppsWithCover = async (limit: number, eager = false) => {
-	const apps: App[] = [];
-
-	const iter = kv.list<App>({
-		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
 	});
 
 	for await (const { value } of iter) {

@@ -34,8 +34,8 @@
 	},
 	"imports": {
 		"@/": "./src/",
-		"$std/": "https://deno.land/std@0.171.0/",
-		"dotenv": "https://deno.land/std@0.171.0/dotenv/load.ts",
+		"$std/": "https://deno.land/std@0.220.1/",
+		"dotenv": "https://deno.land/std@0.220.1/dotenv/load.ts",
 		"$fresh/": "https://deno.land/x/fresh@1.6.8/",
 		"fresh-seo": "https://deno.land/x/fresh_seo@1.0.0/mod.ts",
 		"gfm": "https://deno.land/x/gfm@0.1.22/mod.ts",
