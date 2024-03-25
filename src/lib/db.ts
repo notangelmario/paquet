@@ -123,13 +123,11 @@ export const removeApp = async (id: string) => {
 	return true;
 }
 
-export const getApps = async (ids: string[] = [], eager = false) => {
+export const getApps = async (ids: string[] = []) => {
 	const apps: App[] = [];
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
 	});
 
 	for await (const { value } of iter) {
@@ -149,14 +147,11 @@ export const getApps = async (ids: string[] = [], eager = false) => {
 export const searchApps = async (
 	limit: number,
 	query: string,
-	eager = false,
 ) => {
 	const apps: App[] = [];
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
 	});
 
 	for await (const { value } of iter) {
@@ -176,8 +171,6 @@ export const getAppsRandom = async (
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: "eventual",
 	});
 
 	for await (const { value } of iter) {
@@ -217,8 +210,6 @@ export const getRandomAppsWithCover = async (limit: number) => {
 
 	const iter = kv.list<App>({
 		prefix: ["apps"],
-	}, {
-		consistency: "eventual",
 	});
 
 	for await (const { value } of iter) {
