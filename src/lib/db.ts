@@ -214,39 +214,6 @@ export const getAppsByCategory = async (
 	return apps.slice(0, limit);
 };
 
-export const getAppsBetweenDates = async (
-	limit: number,
-	start: Date,
-	end: Date,
-	eager = false,
-) => {
-	const apps: App[] = [];
-
-	const iter = kv.list<App>({
-		prefix: ["apps"],
-	}, {
-		consistency: eager ? "strong" : "eventual",
-	});
-
-	for await (const { value } of iter) {
-		if (!value) {
-			continue;
-		}
-
-		if (!value.addedOn) {
-			continue;
-		}
-
-		if (
-			new Date(value.addedOn) >= start && new Date(value.addedOn) <= end
-		) {
-			apps.push(value);
-		}
-	}
-
-	return apps.slice(0, limit);
-};
-
 export const getRandomAppsWithCover = async (limit: number, eager = false) => {
 	const apps: App[] = [];
 
