@@ -1,4 +1,4 @@
-import { Head, Partial } from "$fresh/runtime.ts";
+import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
 import { APP } from "@/lib/app.ts";
 import { PageProps } from "$fresh/server.ts";
@@ -47,11 +47,13 @@ export default function App({ Component, url }: PageProps) {
 					name="theme-color"
 					media="(prefers-color-scheme: dark)"
 					content="#121212"
+					key="dark-theme-color"
 				/>
 				<meta
 					name="theme-color"
 					media="(prefers-color-scheme: light)"
 					content="#dddddd"
+					key="light-theme-color"
 				/>
 				<link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="/splash_screens/iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_landscape.png"/>
 				<link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="/splash_screens/iPhone_15_Pro__iPhone_15__iPhone_14_Pro_landscape.png"/>
@@ -117,10 +119,8 @@ export default function App({ Component, url }: PageProps) {
 				</script>
 			</Head>
 			<body>
-				<main f-client-nav>
-					<Partial name="main">
-						<Component />
-					</Partial>
+				<main>
+					<Component />
 				</main>
 				<Footer />
 				{Deno.env.get("DENO_DEPLOYMENT_ID") && (

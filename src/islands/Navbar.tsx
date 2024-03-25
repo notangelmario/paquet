@@ -1,7 +1,6 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { Head, IS_BROWSER } from "$fresh/runtime.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useScroll } from "@/hooks/useScroll.ts";
-import { usePath } from "@/hooks/usePath.ts";
 import Icon from "@/components/Icon.tsx";
 
 export type Props = {
@@ -15,9 +14,8 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
-	const darkAccent = combineColors(props.color + "50", "#121212");
-	const lightAccent = combineColors(props.color + "50", "#dddddd");
-	const path = usePath();
+	const darkAccent = props.color ? combineColors(props.color + "50", "#121212") : "#121212";
+	const lightAccent = props.color ? combineColors(props.color + "50", "#dddddd") : "#dddddd";
 
 	const [visitedHome, setVisitedHome] = useState(
 		!!globalThis.sessionStorage?.getItem("visitedHome"),
@@ -26,27 +24,6 @@ export default function Navbar(props: Props) {
 	const trigger = useScroll({
 		threshold: 16,
 	});
-
-	useEffect(() => {
-		if (props.color) {
-			const metaTags = document.querySelectorAll(
-				"meta[name=theme-color]",
-			);
-			metaTags.forEach((meta) => meta.remove());
-
-			const metaTag = document.createElement("meta");
-			metaTag.name = "theme-color";
-			metaTag.media = "(prefers-color-scheme: dark)";
-			metaTag.content = darkAccent;
-			document.head.appendChild(metaTag);
-
-			const metaTag2 = document.createElement("meta");
-			metaTag2.name = "theme-color";
-			metaTag2.media = "(prefers-color-scheme: light)";
-			metaTag2.content = lightAccent;
-			document.head.appendChild(metaTag2);
-		}
-	}, [props.color, path]);
 
 	useEffect(() => {
 		const darkMetaTag = document.querySelector(
@@ -63,7 +40,7 @@ export default function Navbar(props: Props) {
 			darkMetaTag?.setAttribute("content", "#121212");
 			lightMetaTag?.setAttribute("content", "#dddddd");
 		}
-	}, [trigger, path]);
+	}, [trigger]);
 
 	useEffect(() => {
 		if (!visitedHome && globalThis.location.pathname === "/home") {
@@ -84,62 +61,78 @@ export default function Navbar(props: Props) {
 	};
 
 	return (
-		<div
-			class={`
-				${
-				props.transparentTop && !trigger
-					? "bg-transparent"
-					: "bg-light dark:!bg-dark"
-			}
-				fixed flex w-full 
-				-top-px left-0 right-0
-				items-center 
+		<>
+			<Head>
+				<meta
+					name="theme-color"
+					media="(prefers-color-scheme: dark)"
+					content={darkAccent}
+					key="dark-theme-color"
+				/>
+				<meta
+					name="theme-color"
+					media="(prefers-color-scheme: light)"
+					content={lightAccent}
+					key="light-theme-color"
+				/>
+			</Head>
+			<div
+				class={`
+					${
+					props.transparentTop && !trigger
+						? "bg-transparent"
+						: "bg-light dark:!bg-dark"
+				}
+					fixed flex w-full 
+					-top-px left-0 right-0
+					items-center 
 
-				transition-colors
-				px-2 py-2 z-30
+					transition-colors
+					px-2 py-2 z-30
 
-				${trigger ? "shadow-md" : ""}
-			`}
-		>
-			<div>
-				{props.back
-					? IS_BROWSER
-						? (
-							<button
-								class="icon-btn"
-								onClick={goBack}
-							>
+					${trigger ? "shadow-md" : ""}
+				`}
+			>
+				<div>
+					{props.back
+						? IS_BROWSER
+							? (
+								<button
+									class="icon-btn"
+									onClick={goBack}
+								>
+									<Icon
+										name="back"
+										size={24}
+									/>
+								</button>
+							)
+							: (
+								<a
+									href="/home"
+									class="icon-btn"
+								>
+									<Icon
+										name="back"
+										size={24}
+									/>
+								</a>
+							)
+						: null}
+				</div>
+				<div class="flex flex-row ml-auto items-center gap-2">
+					{props.right &&
+						props.right.map(({ icon, href }) => (
+							<a class="icon-btn" href={href}>
 								<Icon
-									name="back"
-									size={24}
-								/>
-							</button>
-						)
-						: (
-							<a
-								href="/home"
-								class="icon-btn"
-							>
-								<Icon
-									name="back"
+									name={icon}
 									size={24}
 								/>
 							</a>
-						)
-					: null}
+						))}
+				</div>
 			</div>
-			<div class="flex flex-row ml-auto items-center gap-2">
-				{props.right &&
-					props.right.map(({ icon, href }) => (
-						<a class="icon-btn" href={href}>
-							<Icon
-								name={icon}
-								size={24}
-							/>
-						</a>
-					))}
-			</div>
-		</div>
+		</>
 	);
 }
 
