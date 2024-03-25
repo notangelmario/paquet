@@ -14,6 +14,7 @@ export default function CategoryPage() {
 				<title>Categories &middot; Paquet</title>
 			</Head>
 			<Navbar 
+				title="Categories"
 				back 
 			/>
 			<Container>

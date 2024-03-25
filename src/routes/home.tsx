@@ -48,6 +48,7 @@ export default async function Home() {
 				<title>Paquet</title>
 			</Head>
 			<Navbar
+				title="Home"
 				right={[
 					{
 						icon: "settings",

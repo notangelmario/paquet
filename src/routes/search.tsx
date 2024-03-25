@@ -36,6 +36,7 @@ export default async function Search(req: Request) {
 				<title>{query} &middot; Paquet</title>
 			</Head>
 			<Navbar
+				title={query}
 				back
 			/>
 			<Container class="mt-16 mb-4">

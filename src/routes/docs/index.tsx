@@ -53,6 +53,7 @@ export default function Documentation() {
 				<title>Docs &middot; Paquet</title>
 			</Head>
 			<Navbar
+				title="Docs"
 				back
 			/>
 			<Container>

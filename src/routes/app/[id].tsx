@@ -38,7 +38,8 @@ export default async function App(_: Request, ctx: RouteContext) {
 			</Head>
 			<Navbar
 				transparentTop
-				color={colorHexToFull(app.accentColor)}
+				tint={colorHexToFull(app.accentColor)}
+				title={app.name}
 				back
 			/>
 			<div

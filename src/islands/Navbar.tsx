@@ -5,8 +5,9 @@ import Icon from "@/components/Icon.tsx";
 
 export type Props = {
 	transparentTop?: boolean;
-	color?: string;
+	tint?: string;
 	back?: boolean;
+	title?: string;
 	right?: {
 		icon: string;
 		href: string;
@@ -14,8 +15,8 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
-	const darkAccent = props.color ? combineColors(props.color + "50", "#121212") : "#121212";
-	const lightAccent = props.color ? combineColors(props.color + "50", "#dddddd") : "#dddddd";
+	const darkAccent = props.tint ? combineColors(props.tint + "50", "#121212") : "#121212";
+	const lightAccent = props.tint ? combineColors(props.tint + "50", "#dddddd") : "#dddddd";
 
 	const [visitedHome, setVisitedHome] = useState(
 		!!globalThis.sessionStorage?.getItem("visitedHome"),
@@ -120,6 +121,9 @@ export default function Navbar(props: Props) {
 							)
 						: null}
 				</div>
+				<p class={`ml-2 text-md ${trigger ? "opacity-100" : "opacity-0"} transition-opacity`}>
+					{props.title}
+				</p>
 				<div class="flex flex-row ml-auto items-center gap-2">
 					{props.right &&
 						props.right.map(({ icon, href }) => (

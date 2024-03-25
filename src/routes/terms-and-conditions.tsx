@@ -19,9 +19,10 @@ export default function TermsAndConditions({ data }: PageProps<DataProps>) {
 					rel="stylesheet"
 					href="/gfm.css"
 				/>
-				<title>Terms and Condition &middot; Paquet</title>
+				<title>Terms and Conditions &middot; Paquet</title>
 			</Head>
 			<Navbar
+				title="Terms and Conditions"
 				back 
 			/>
 			<Container class="mt-16 mb-8">
