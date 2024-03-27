@@ -231,7 +231,7 @@ export const updateApps = async (appIdsToUpdate?: string[]) => {
 
 	if (appIdsToUpdate) {
 		for (const appId of appIdsToUpdate) {
-			const app = apps.find((a) => a.id === appId);
+			const app = appsSpecs.find((a) => a.id === appId);
 			if (!app) {
 				console.error(`App ${appId} not found`);
 				continue;
