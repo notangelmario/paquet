@@ -27,5 +27,5 @@ jobs:
         - name: Update Apps
           run: deno task update:apps ${{ steps.get_changed_files.outputs.files }}
           env:
-            DENO_KV_TOKEN: ${{ secrets.DENO_KV_TOKEN }}
-            DENO_KV_NAMESPACE: ${{ secrets.DENO_KV_NAMESPACE }}
+            DENO_KV_ACCESS_TOKEN: ${{ secrets.DENO_KV_ACCESS_TOKEN }}
+            DENO_KV_PATH: ${{ secrets.DENO_KV_PATH }}
