@@ -224,26 +224,14 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 	return updatedApp;
 }
 
-export const updateApps = async (appIdsToUpdate?: string[]) => {
+export const updateApps = async (specificAppIds: string[] = []) => {
 	const appDir = Deno.readDir("./apps");
-	const appsSpecs: AppSpec[] = [];
-	const apps: App[] = await getApps(appIdsToUpdate || []);
+	const appSpecs: AppSpec[] = [];
+	const appIdsToUpdate = specificAppIds;
 
-	if (appIdsToUpdate) {
-		for (const appId of appIdsToUpdate) {
-			const app = appsSpecs.find((a) => a.id === appId);
-			if (!app) {
-				console.error(`App ${appId} not found`);
-				continue;
-			}
+	if (appIdsToUpdate.length === 0) {
+		console.log("Updating all apps");
 
-			const appSpec = JSON.parse(
-				await Deno.readTextFile(`./apps/${appId}.json`),
-			) as AppSpec;
-
-			appsSpecs.push(appSpec);
-		}
-	} else {
 		for await (const dirEntry of appDir) {
 			if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
 				continue;
@@ -253,15 +241,33 @@ export const updateApps = async (appIdsToUpdate?: string[]) => {
 				await Deno.readTextFile(`./apps/${dirEntry.name}`),
 			) as AppSpec;
 
-			appsSpecs.push(app);
+			appSpecs.push(app);
+			appIdsToUpdate.push(app.id);
+		}
+	} else {
+		console.log(`Updating ${specificAppIds.join(", ")}`);
+	
+		for await (const dirEntry of appDir) {
+			if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
+				continue;
+			}
+
+			const app = JSON.parse(
+				await Deno.readTextFile(`./apps/${dirEntry.name}`),
+			) as AppSpec;
+
+			if (appIdsToUpdate.includes(app.id)) {
+				appSpecs.push(app);
+			}
 		}
 	}
+
+	const apps: App[] = await getApps(appSpecs.map((app) => app.id));
 
 	// Check every appSpec to see if it exists or needs to be created
 	// updated or deleted
 	// Check manifest hash to see if it needs to be updated
-	
-	for (const appSpec of appsSpecs) {
+	for (const appSpec of appSpecs) {
 		const app: App | undefined = apps.find((a) => a.id === appSpec.id);
 
 		console.log(`Checking ${appSpec.id}`);
@@ -308,7 +314,7 @@ export const updateApps = async (appIdsToUpdate?: string[]) => {
 	// Delete
 	if (appIdsToUpdate) return;
 	const appIds = apps.map((app) => app.id);
-	const appSpecIds = appsSpecs.map((app) => app.id);
+	const appSpecIds = appSpecs.map((app) => app.id);
 	const appsToDelete = appIds.filter((id) => !appSpecIds.includes(id));
 
 	for (const appId of appsToDelete) {
