@@ -2,7 +2,6 @@
     "id": "io.github.nenadalm.player-order-selector",
     "url": "https://nenadalm.github.io/player-order-selector/",
     "author": "Miloslav Nenadál",
-    "authorUrl": "https://github.com/nenadalm",
     "manifestUrl": "https://nenadalm.github.io/player-order-selector/manifest.json",
     "features": [
         "openSource",
