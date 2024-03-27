@@ -23,7 +23,7 @@ export interface AppSpec {
 	categories?: string[];
 	features: string[];
 	author?: string;
-	authorLink?: string;
+	authorUrl?: string;
 	githubUrl?: string;
 	gitlabUrl?: string;
 	accentColor?: string;
@@ -217,7 +217,7 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 		manifestHash: await digest(JSON.stringify(manifest)),
 		githubUrl: appSpec.githubUrl || undefined,
 		gitlabUrl: appSpec.gitlabUrl || undefined,
-		authorLink: appSpec.authorLink || undefined,
+		authorUrl: appSpec.authorUrl || undefined,
 	} 
 
 	const updatedApp = { ...existingApp, ...newApp } as App;

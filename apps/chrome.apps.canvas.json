@@ -10,7 +10,7 @@
 		"entertainment"
 	],
 	"author": "Google",
-	"authorLink": "https://about.google",
+	"authorUrl": "https://about.google",
 	"accentColor": "#ec4434",
 	"version": 2
 }

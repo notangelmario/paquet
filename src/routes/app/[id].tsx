@@ -74,10 +74,10 @@ export default async function App(_: Request, ctx: RouteContext) {
 									<h2 class="text-3xl">
 										{app.name}
 									</h2>
-									{app.authorLink
+									{app.authorUrl
 										? (
 											<a
-												href={app.authorLink}
+												href={app.authorUrl}
 												rel="noopener noreferrer"
 												target="_blank"
 												class="opacity-50 hover:underline"

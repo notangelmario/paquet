@@ -66,11 +66,11 @@ This URL points to the public repository of your app.
 This will include the categories that your app is included in.
 It is preferable to use the `categories` key in your app's manifest.
 
-### `author` & `authorLink`
+### `author` & `authorUrl`
 
 If you want to have a different author text from the one in your app's manifest,
-you can add an `author` key. You can also add `authorLink` to link to your
-website or GitHub profile.
+you can add an `author` key. You can also add `authorUrl` to link to your
+website or GitHub profile. (`authorUrl` has been previously known as `authorLink`)
 
 ### `accentColor`
 

@@ -17,7 +17,7 @@ export interface App {
 	name: string;
 
 	author: string;
-	authorLink?: string;
+	authorUrl?: string;
 
 	url: string;
 	manifestUrl: string;

@@ -11,7 +11,7 @@
 		"music"
 	],
 	"author": "Spotify",
-	"authorLink": "https://spotify.com",
+	"authorUrl": "https://spotify.com",
 	"accentColor": "#1cd363",
 	"version": 2
 }

@@ -13,7 +13,7 @@
 		"social"
 	],
 	"author": "Roseto",
-	"authorLink": "https://roseto.co",
+	"authorUrl": "https://roseto.co",
 	"certificateUrl": "https://ciorogarla.eu.org/.well-known/certificate.json",
 	"accentColor": "#36c836",
 	"version": 5
