@@ -15,7 +15,7 @@ This is a sample specification:
 
 ## Keys
 
-### `id` 
+### `id` (required)
 
 This is required. This must be the domain of your app reversed.
 If your app is hosted at a subdomain, append the pathname at the end.
@@ -23,11 +23,11 @@ If your app is hosted at a subdomain, append the pathname at the end.
 Example 1: `https://paquet.app -> app.paquet` \
 Example 2: `https://roseto.github.io/paquet -> io.github.roseto.paquet`
 
-### `url`
+### `url` (required)
 
 This is the URL to your app. This can point to your app's landing page or the app itself.
 
-### `manifestUrl`
+### `manifestUrl` (optional)
 
 This is the url pointing to your app's manifest. If your app generates
 different manifest files with a different pathname on every deployment,
@@ -36,7 +36,7 @@ file in your app.
 
 It is typically recommended to include this in your app specification.
 
-### `features`
+### `features` (required)
 
 This represents the features that your app offers.
 The available features are: 
@@ -48,7 +48,7 @@ The available features are:
 - `offline`: Works offline
 
 
-### `version`
+### `version` (deprecated)
 
 This is used to keep track of the changes to your app specification
 You can use your app's version as a string (`"version": "1.0.0"`) or
@@ -57,22 +57,22 @@ use a number and increment it on each app specification update (`"version": 1`)
 
 ## Additional keys
 
-### `githubUrl` & `gitlabUrl`
+### `githubUrl` & `gitlabUrl` (optional)
 
 This URL points to the public repository of your app.
 
-### `categories`
+### `categories` (optional)
 
 This will include the categories that your app is included in.
 It is preferable to use the `categories` key in your app's manifest.
 
-### `author` & `authorUrl`
+### `author` (required) & `authorUrl` (optional)
 
 If you want to have a different author text from the one in your app's manifest,
 you can add an `author` key. You can also add `authorUrl` to link to your
 website or GitHub profile. (`authorUrl` has been previously known as `authorLink`)
 
-### `accentColor`
+### `accentColor` (optional)
 
 This is if you want a separate theme color from the one in your app's manifest.
 

@@ -27,7 +27,7 @@ export const DOCS: Doc[] = [
 		filename: "app-spec.md",
 	},
 	{
-		title: "App updating",
+		title: "How updates work",
 		description: "How to update your app on Paquet",
 		icon: "refresh",
 		filename: "updating.md",

@@ -48,6 +48,7 @@ Here is a `manifest.json` example:
 The values Paquet uses in your app listing are:
 
 -   `name`
+-   `short_name`
 -   `author`
 -   `description`
 -   `categories`
@@ -55,11 +56,16 @@ The values Paquet uses in your app listing are:
 -   `screenshots`
 -   `theme_color`
 
-### `name`
+### `name` (required)
 
 This is the name that is going to be used when showing your app.
 
-### `author`
+### `short_name` (optional)
+
+This is the short name that is going to be used when showing your app.
+This is used as the name of the app in the app listing if `name` is not present.
+
+### `author` (required)
 
 This is the name of the author. It is prefered to use the same
 names across multiple apps published to Paquet to share
@@ -68,14 +74,14 @@ verification status
 > This property is not used often, so when not present,
 > Paquet will look for an `author` meta tag in the web page.
 
-### `description`
+### `description` (optional)
 
 This is the description that will be shown on your app listing.
 
 > Most apps do not have a `description` property, so Paquet
 > will look for one in the web page if not present.
 
-### `categories`
+### `categories` (required)
 
 This is usually an array of categories.
 Paquet fetches this manifest property and reflects it to your app.
@@ -85,23 +91,18 @@ Paquet also uses aliases so apps are better categorised.
 
 [Here is a list of available categories.](https://paquet.app/category)
 
-### `icons`
+### `icons` (required)
 
 Paquet will fetch the first maskable icon that is 96x96 pixels.
 
 If this icon is not found, Paquet will search for 128x128, 192x192, 256x256, 512x512.
 The first found will be set as icon.
+
 ### `screenshots`
 
 We fetch for all screenshots no matter the size. We recomend
 you to add screenshots for all suported devices. Screenshots
 will also improve your visibility on Paquet.
-
-> Since 3.2.0, Paquet does not store the app's screenshots anymore.
-> Please make sure your screenshots do not have a cross origin restriction.
-> 
-> `icons` no longer have this issue since 5.0.1, but this change will also
-> come to `screenshots`
 
 ### `theme_color`
 

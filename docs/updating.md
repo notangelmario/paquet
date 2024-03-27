@@ -1,13 +1,10 @@
 # How updates work
 
 Paquet fetches your app's details every 12 hours at 00:00 UTC.
-This is called a **update cycle**. To save on resources,
-we check for changes to your app's specification and app's manifest.
+This is called an **update cycle**.
 
-## When does it update?
+During an update cycle, Paquet will fetch your app's manifest file and compare it with the existing data.
+If there are any changes, Paquet will update your app's details in the database.
 
-Your app listing will update whenever the manifest's content changes
-or when the **version number** has been increased in the [app specification](/docs/app-spec.md).
-Other changes from the app specification will not trigger the update cycle to update your app.
-
-> In the future we will also check if the filename has changed
+Apps are forcefully updated whenever there are changes to the app specification.
+This means that if you update your app's specification, Paquet will update your app's details in the database immediately.

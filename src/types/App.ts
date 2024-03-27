@@ -26,7 +26,7 @@ export interface App {
 	screenshots?: string[];
 	cover?: string;
 
-	description: string;
+	description?: string;
 	categories: string[];
 
 	icon: string;

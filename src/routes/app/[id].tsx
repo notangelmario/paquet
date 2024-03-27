@@ -126,9 +126,11 @@ export default async function App(_: Request, ctx: RouteContext) {
 						<h3 class="text-2xl">
 							About
 						</h3>
-						<p>
-							{app.description}
-						</p>
+						{app.description ?
+							<p>
+								{app.description}
+							</p>
+						: null}
 					</Stack>
 				</Container>
 			</div>
