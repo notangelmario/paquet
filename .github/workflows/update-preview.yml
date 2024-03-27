@@ -17,6 +17,9 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v2
+          with:
+            fetch-depth: 2
+
         - name: Install Deno
           uses: denoland/setup-deno@v1
           with:
@@ -24,7 +27,7 @@ jobs:
 
         - name: Get changed files
           id: get_changed_files
-          run: echo "files=$(git diff --name-only $GITHUB_SHA^ | awk -F '/' '{print $NF}' | sed 's/\.json$//' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          run: echo "files=$(git diff --name-only HEAD^ | awk -F '/' '{print $NF}' | sed 's/\.json$//' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           if: ${{ github.event_name == 'push' }}
 
         - name: Update Apps
