@@ -7,7 +7,7 @@ on:
     paths:
       - 'apps/**'
     branches: 
-      - next
+      - preview
   workflow_dispatch: 
 
 jobs:
