@@ -1,7 +1,7 @@
 {
     "id": "io.github.nenadalm.life-counter",
     "url": "https://nenadalm.github.io/life-counter/",
-    "author": "Miloslav Nenadá",
+    "author": "Miloslav Nenadál",
     "manifestUrl": "https://nenadalm.github.io/life-counter/manifest.json",
     "features": [
         "openSource",
