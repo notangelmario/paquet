@@ -20,7 +20,7 @@ jobs:
 
         - name: Get changed files
           id: get_changed_files
-          run: echo '::set-output name=files::$(git diff-tree --no-commit-id --name-only -r HEAD | grep -v "\.json$" | xargs -n1 basename | tr "\n" " ")'
+          run: echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r HEAD | grep -v \"\.json$\" | xargs -n1 basename | tr \"\n\" \" \")"
           if: ${{ github.event_name == 'push' }}
 
         - name: Update Apps
