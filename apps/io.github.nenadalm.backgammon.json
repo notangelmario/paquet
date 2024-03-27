@@ -2,7 +2,6 @@
     "id": "io.github.nenadalm.backgammon",
     "url": "https://nenadalm.github.io/backgammon/",
     "author": "Miloslav Nenadál",
-    "authorUrl": "https://github.com/nenadalm",
     "manifestUrl": "https://nenadalm.github.io/backgammon/manifest.json",
     "features": [
         "openSource",
