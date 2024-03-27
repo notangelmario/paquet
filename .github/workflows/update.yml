@@ -21,7 +21,7 @@ jobs:
 
         - name: Get changed files
           id: get_changed_files
-          run: echo "files=$(git diff --name-only HEAD^ | awk -F '/' '{print $NF}' | sed 's/\.json$//' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          run: echo "files=$(git diff --name-only $GITHUB_SHA^ | awk -F '/' '{print $NF}' | sed 's/\.json$//' | tr '\n' ' ')" >> $GITHUB_OUTPUT
           if: ${{ github.event_name == 'push' }}
 
         - name: Update Apps

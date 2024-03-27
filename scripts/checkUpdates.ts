@@ -3,8 +3,7 @@ import type { App } from "@/types/App.ts";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
-import { createApp, getApps, updateApp } from "@/lib/db.ts";
-import { removeApp } from "@/lib/db.ts";
+import { createApp, getApps, updateApp, removeApp } from "@/lib/db.ts";
 
 const ICONS_SIZES = [
 	"96x96",
