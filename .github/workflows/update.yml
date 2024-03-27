@@ -25,7 +25,7 @@ jobs:
           if: ${{ github.event_name == 'push' }}
 
         - name: Update Apps
-          run: deno run --allow-net --unstable-kv update:apps ${{ steps.get_changed_files.outputs.files }}
+          run: deno task update:apps ${{ steps.get_changed_files.outputs.files }}
           env:
             DENO_KV_TOKEN: ${{ secrets.DENO_KV_TOKEN }}
             DENO_KV_NAMESPACE: ${{ secrets.DENO_KV_NAMESPACE }}

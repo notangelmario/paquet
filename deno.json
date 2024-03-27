@@ -13,6 +13,7 @@
 		"dev": "deno run --unstable-kv -A --watch=src/static/,src/routes/ src/dev.ts",
 		"cache": "deno cache --reload src/main.ts",
 		"check": "deno lint && deno fmt && deno check src/main.ts",
+		"update:apps": "deno run --unstable-kv --allow-net --allow-read scripts/update.ts",
 		"build": "deno run --unstable-kv --unstable-cron -A src/dev.ts build",
 		"preview": "deno run --unstable-kv --unstable-cron -A src/main.ts"
 	},
