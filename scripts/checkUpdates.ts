@@ -241,7 +241,6 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 		) as AppSpec;
 
 		appSpecs.push(app);
-
 		allAppSpecIds.push(app.id);
 	}
 
