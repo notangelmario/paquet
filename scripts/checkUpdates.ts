@@ -228,46 +228,22 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 	const appDir = Deno.readDir("./apps");
 	const appSpecs: AppSpec[] = [];
 	const allAppSpecIds: string[] = [];
-	const appIdsToUpdate = specificAppIds;
+	const apps: App[] = await getApps();
 
-	if (appIdsToUpdate.length === 0) {
-		console.log("Updating all apps");
 
-		for await (const dirEntry of appDir) {
-			if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
-				continue;
-			}
-
-			const app = JSON.parse(
-				await Deno.readTextFile(`./apps/${dirEntry.name}`),
-			) as AppSpec;
-
-			appSpecs.push(app);
-			appIdsToUpdate.push(app.id);
-
-			allAppSpecIds.push(app.id);
+	for await (const dirEntry of appDir) {
+		if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
+			continue;
 		}
-	} else {
-		console.log(`Updating ${specificAppIds.join(", ")}`);
-	
-		for await (const dirEntry of appDir) {
-			if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
-				continue;
-			}
 
-			const app = JSON.parse(
-				await Deno.readTextFile(`./apps/${dirEntry.name}`),
-			) as AppSpec;
+		const app = JSON.parse(
+			await Deno.readTextFile(`./apps/${dirEntry.name}`),
+		) as AppSpec;
 
-			if (appIdsToUpdate.includes(app.id)) {
-				appSpecs.push(app);
-			}
+		appSpecs.push(app);
 
-			allAppSpecIds.push(app.id);
-		}
+		allAppSpecIds.push(app.id);
 	}
-
-	const apps: App[] = await getApps(appSpecs.map((app) => app.id));
 
 	// Check every appSpec to see if it exists or needs to be created
 	// updated or deleted
@@ -301,8 +277,8 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 
 		const manifestHash = await digest(JSON.stringify(manifest));
 
-		if ((app.manifestHash !== manifestHash) || appIdsToUpdate) {
-			console.log(`Updating ${appSpec.id}`);
+		if ((app.manifestHash !== manifestHash) || specificAppIds.includes(appSpec.id)) {
+			console.log(`Updating ${appSpec.id} ${specificAppIds.includes(appSpec.id) ? "FORCEFULLY" : ""}`);
 
 			const manifestUrl = appSpec.manifestUrl || (await fetchManifestUrlFromIndex(appSpec.url));
 			if (!manifestUrl) continue;
