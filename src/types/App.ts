@@ -22,33 +22,35 @@ export interface AppSpec {
 	githubUrl?: string;
 	gitlabUrl?: string;
 	accentColor?: string;
-	allowSandboxInstall?: boolean;
+	allowSandbox?: boolean;
 }
-
 
 export interface App {
 	id: string;
 
 	name: string;
+	short_name?: string;
 
 	author: string;
 	authorUrl?: string;
+
+	description?: string;
+	categories: string[];
 
 	url: string;
 	manifestUrl: string;
 	manifestHash: string;
 
+	icon: string;
 	screenshots?: string[];
 	cover?: string;
 
-	description?: string;
-	categories: string[];
-
-	icon: string;
 	accentColor: string;
 
 	features: string[];
 
 	githubUrl?: string;
 	gitlabUrl?: string;
+
+	allowSandbox?: boolean;
 }

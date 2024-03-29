@@ -13,5 +13,5 @@
 	],
 	"author": "rtsfred3",
 	"accentColor": "#54c48c",
-	"allowSandboxInstall": true
+	"allowSandbox": true
 }

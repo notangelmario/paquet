@@ -49,8 +49,8 @@ export const handler: Handler = async (_, ctx) => {
 				form_factor: sizes.width > sizes.height ? "wide" : "narrow",
 			};
 		})).then((screenshots) => screenshots.filter((screenshot) => screenshot !== null)).then((screenshots) => screenshots as WebAppManifest["screenshots"]) : [],
-		start_url: "/wrapper?id=" + app.id,
-		scope: "/wrapper",
+		start_url: "/sandbox?id=" + app.id,
+		scope: "/sandbox",
 		theme_color: app.accentColor,
 		background_color: app.accentColor,
 		display: "standalone",

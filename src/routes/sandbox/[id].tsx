@@ -8,8 +8,8 @@ export const config: RouteConfig = {
 	skipInheritedLayouts: true
 }
 
-export default async function Wrapper(_: Request, ctx: RouteContext) {
-	const appId = ctx.url.searchParams.get("id");
+export default async function Sandbox(_: Request, ctx: RouteContext) {
+	const appId = ctx.params.id
 	const app = await getApp(appId || "");
 
 	if (!appId || !app) {
@@ -28,7 +28,7 @@ export default async function Wrapper(_: Request, ctx: RouteContext) {
 				<meta charset="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
-				<link rel="manifest" href={`/wrapper/manifest.json?id=${appId}`} />
+				<link rel="manifest" href={`/sandbox/manifest.json?id=${appId}`} />
 				<meta name="theme-color" content={app.accentColor} />
 				<style>{`
 					* {

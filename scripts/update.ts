@@ -1,4 +1,5 @@
-import { AppSpec, updateApps } from "./checkUpdates.ts";
+import { AppSpec } from "@/types/App.ts";
+import { updateApps } from "./checkUpdates.ts";
 
 async function main() {
 	const args = Deno.args;
@@ -17,7 +18,7 @@ async function main() {
 		appsSpecs.push(app);
 	}
 
-	const appIds = args.filter((arg) => appsSpecs.some((app) => app.id === arg));
+	const appIds = !args.includes("ALL") ? args.filter((arg) => appsSpecs.some((app) => app.id === arg)) : appsSpecs.map((app) => app.id);
 
 	updateApps(appIds);
 }

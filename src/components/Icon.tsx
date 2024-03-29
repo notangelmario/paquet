@@ -45,6 +45,7 @@ import CloudIcon from "tabler-icons/cloud.tsx";
 import UserIcon from "tabler-icons/user.tsx";
 import LoginIcon from "tabler-icons/login.tsx";
 import ArrowBigDownLineIcon from "tabler-icons/arrow-big-down-line.tsx";
+import SandboxIcon from "tabler-icons/box-padding.tsx";
 import LogoutIcon from "tabler-icons/logout.tsx";
 import DownloadOffIcon from "tabler-icons/download-off.tsx";
 import RefreshIcon from "tabler-icons/refresh.tsx";
@@ -102,6 +103,7 @@ export const ICONS = new Map([
 	["user", UserIcon],
 	["login", LoginIcon],
 	["arrow-big-down-line", ArrowBigDownLineIcon],
+	["sandbox", SandboxIcon],
 	["logout", LogoutIcon],
 	["download-off", DownloadOffIcon],
 	["analytics", AnalyticsIcon],

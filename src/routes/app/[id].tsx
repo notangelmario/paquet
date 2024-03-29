@@ -37,6 +37,8 @@ export default async function App(_: Request, ctx: RouteContext) {
 			<Head>
 				<title>{app.name} &middot; Paquet</title>
 				<link rel="manifest" href={`/wrapper/manifest.json?id=${app.id}`} key="manifest"/>
+				<link rel="apple-touch-icon" href={buildImageUrl(app.icon, 192, 192)} key="apple-touch-icon"/>
+				<link rel="apple-touch-icon" sizes="180x180" href={buildImageUrl(app.icon, 180, 180)} key="apple-touch-icon-180"/>
 			</Head>
 			<Navbar
 				transparentTop
@@ -122,7 +124,9 @@ export default async function App(_: Request, ctx: RouteContext) {
 											Open
 										</Button>
 									</a>
-									<SandboxInstallButton/>
+									{app.allowSandbox ?
+										<SandboxInstallButton/>
+									: null}
 								</div>
 							</div>
 						</Card>

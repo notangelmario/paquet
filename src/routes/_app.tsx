@@ -16,11 +16,12 @@ export default function App({ Component, url }: PageProps) {
 					content="width=device-width, initial-scale=1, user-scalable=0"
 				/>
 				<meta name="apple-mobile-web-app-capable" content="yes" />
-				<link rel="apple-touch-icon" href="/icon.png" />
+				<link rel="apple-touch-icon" href="/icon.png" key="apple-touch-icon" />
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
 					href="/apple-touch-icon.png"
+					key="apple-touch-icon-180"
 				/>
 				<link
 					rel="icon"
