@@ -4,8 +4,7 @@
 	"manifestUrl": "https://repo-tracker.com/manifest.json",
 	"features": [
 		"mobile",
-		"desktop",
-		"auth"
+		"desktop"
 	],
 	"categories": [
 		"productivity",
