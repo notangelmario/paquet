@@ -1,0 +1,17 @@
+{
+	"id": "app.screenrecorderweb",
+	"url": "https://screenrecorderweb.app",
+	"manifestUrl": "https://screenrecorderweb.app/manifest.json",
+	"features": [
+		"desktop",
+		"offline",
+		"openSource"
+	],
+	"githubUrl": "https://github.com/carsonsaldanha/screen-recorder",
+	"categories": [
+		"utilities"
+	],
+	"author": "Carson Saldanha",
+	"accentColor": "#c4241c",
+	"version": 1
+}
