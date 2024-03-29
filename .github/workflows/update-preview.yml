@@ -2,7 +2,7 @@ name: Update Apps in Preview
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 1 * *'
   push:
     paths:
       - 'apps/**'
