@@ -192,11 +192,21 @@ export const getCategories = (manifest: WebAppManifest): string[] => {
 	return [...new Set(manifestCategories)];
 }
 
+export const getCoverUrl = async (coverUrl: string, baseUrl: string): Promise<string | null> => {
+	const res = await fetch(coverUrl);
+
+	if (res.ok) {
+		relativeToAbsolute(coverUrl, baseUrl);
+	}
+
+	return null;
+}
+
 export const generateApp = async (appSpec: AppSpec, existingApp: App | null, manifest: WebAppManifest, manifestUrl: string, url: string): Promise<App> => {
 	const icon = getIcon(manifest, manifestUrl);
 	const screenshots = getScreenshots(manifest, manifestUrl);
 	const { author, description, cover } = await fetchIndexProps(url) || {};
-	const coverUrl = cover ? relativeToAbsolute(cover, url) : undefined;
+	const coverUrl = cover ? await getCoverUrl(cover, url) : undefined;
 	const categories = getCategories(manifest);
 
 	const newApp: Partial<App> = {
@@ -206,7 +216,7 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 		icon: icon || "",
 		screenshots: screenshots,
 		url: url,
-		cover: coverUrl,
+		cover: coverUrl || undefined,
 		// @ts-ignore Some manifests have author
 		author: appSpec.author || manifest.author || author,
 		accentColor: appSpec.accentColor || manifest.theme_color,
