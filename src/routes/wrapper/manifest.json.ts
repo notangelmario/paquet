@@ -1,6 +1,7 @@
 import { Handler } from "@/types/Handler.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { getApp } from "@/lib/db.ts";
+import { buildImageUrl, getImageSize } from "@/lib/image.ts";
 
 export const handler: Handler = async (_, ctx) => {
 	const id = ctx.url.searchParams.get("id");
@@ -22,12 +23,34 @@ export const handler: Handler = async (_, ctx) => {
 		description: app.description,
 		icons: [
 			{
-				src: app.icon,
-				type: "image/png"
+				src: buildImageUrl(app.icon, 96, 96),
+				type: "image/png",
+				sizes: "96x96",
+				purpose: "any",
+			},
+			{
+				src: buildImageUrl(app.icon, 144, 144),
+				type: "image/png",
+				sizes: "144x144",
+				purpose: "any",
 			}
 		],
-		start_url: "/wrapped?id=" + app.id,
-		scope: "/wrapped",
+		screenshots: app.screenshots ? await Promise.all(app.screenshots.map(async (screenshot) => {
+			const sizes = await getImageSize(screenshot);
+
+			if (!sizes) {
+				return null;
+			}
+
+			return {
+				src: screenshot,
+				type: "image/png",
+				sizes: `${sizes.width}x${sizes.height}`,
+				form_factor: sizes.width > sizes.height ? "wide" : "narrow",
+			};
+		})).then((screenshots) => screenshots.filter((screenshot) => screenshot !== null)).then((screenshots) => screenshots as WebAppManifest["screenshots"]) : [],
+		start_url: "/wrapper?id=" + app.id,
+		scope: "/wrapper",
 		theme_color: app.accentColor,
 		background_color: app.accentColor,
 		display: "standalone",

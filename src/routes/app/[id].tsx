@@ -36,7 +36,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 		<>
 			<Head>
 				<title>{app.name} &middot; Paquet</title>
-				<link rel="manifest" href={`/wrapped/manifest.json?id=${app.id}`} key="manifest" crossorigin="same-origin" />
+				<link rel="manifest" href={`/wrapper/manifest.json?id=${app.id}`} key="manifest"/>
 			</Head>
 			<Navbar
 				transparentTop
@@ -114,7 +114,6 @@ export default async function App(_: Request, ctx: RouteContext) {
 													`0 0 8px ${app.accentColor}`,
 												color: openButtonTextColor,
 											}}
-											class="mb-2"
 											iconProps={{
 												name: "external-link",
 												color: openButtonTextColor,
@@ -122,8 +121,8 @@ export default async function App(_: Request, ctx: RouteContext) {
 										>
 											Open
 										</Button>
-										<SandboxInstallButton/>
 									</a>
+									<SandboxInstallButton/>
 								</div>
 							</div>
 						</Card>

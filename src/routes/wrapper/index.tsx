@@ -24,12 +24,11 @@ export default async function Wrapper(_: Request, ctx: RouteContext) {
 	return (
 		<html lang="en">
 			<Head>
-				<title>Paquet</title>
 				<link rel="icon" href={app.icon} />
 				<meta charset="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
-				<link rel="manifest" href={`manifest.json?data=${appId}`} />
+				<link rel="manifest" href={`/wrapper/manifest.json?id=${appId}`} />
 				<meta name="theme-color" content={app.accentColor} />
 				<style>{`
 					* {
@@ -41,7 +40,7 @@ export default async function Wrapper(_: Request, ctx: RouteContext) {
 						width: 100%; 
 						height: 100%; 
 						overflow: hidden; 
-						background-color: #8267be;
+						background-color: ${app.accentColor};
 					}
 
 					iframe {
@@ -57,7 +56,7 @@ export default async function Wrapper(_: Request, ctx: RouteContext) {
 						padding: 0;
 						overflow: hidden;
 						z-index: 999999;
-						background-color: ${app.accentColor};
+						background-color: #fff;
 					}
 				`}
 				</style>
