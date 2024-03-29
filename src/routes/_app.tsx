@@ -34,7 +34,7 @@ export default function App({ Component, url }: PageProps) {
 					sizes="16x16"
 					href="/favicon-16x16.png"
 				/>
-				<link rel="manifest" href="/manifest.json" />
+				<link rel="manifest" href="/manifest.json" key="manifest" />
 				<link
 					rel="mask-icon"
 					href="/safari-pinned-tab.svg"

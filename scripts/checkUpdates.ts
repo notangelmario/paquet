@@ -1,5 +1,5 @@
 import "dotenv";
-import type { App } from "@/types/App.ts";
+import type { App, AppSpec } from "@/types/App.ts";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
@@ -14,19 +14,6 @@ const ICONS_SIZES = [
 	"256x256",
 	"512x512",
 ];
-
-export interface AppSpec {
-	id: string;
-	url: string;
-	manifestUrl?: string;
-	categories?: string[];
-	features: string[];
-	author?: string;
-	authorUrl?: string;
-	githubUrl?: string;
-	gitlabUrl?: string;
-	accentColor?: string;
-}
 
 export async function digest(message: string) {
 	const msgUint8 = new TextEncoder().encode(message);

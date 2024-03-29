@@ -16,6 +16,7 @@ import { RouteContext } from "@/types/Handler.ts";
 import { getApp, getAppsRandom } from "@/lib/db.ts";
 import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
+import SandboxInstallButton from "@/islands/SandboxInstallButton.tsx";
 
 export default async function App(_: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
@@ -35,6 +36,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 		<>
 			<Head>
 				<title>{app.name} &middot; Paquet</title>
+				<link rel="manifest" href={`/wrapped/manifest.json?id=${app.id}`} key="manifest" crossorigin="same-origin" />
 			</Head>
 			<Navbar
 				transparentTop
@@ -112,6 +114,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 													`0 0 8px ${app.accentColor}`,
 												color: openButtonTextColor,
 											}}
+											class="mb-2"
 											iconProps={{
 												name: "external-link",
 												color: openButtonTextColor,
@@ -119,6 +122,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 										>
 											Open
 										</Button>
+										<SandboxInstallButton/>
 									</a>
 								</div>
 							</div>

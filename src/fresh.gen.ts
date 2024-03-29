@@ -21,12 +21,15 @@ import * as $privacy from "./routes/privacy.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $settings from "./routes/settings.tsx";
 import * as $terms_and_conditions from "./routes/terms-and-conditions.tsx";
+import * as $wrapper_index from "./routes/wrapper/index.tsx";
+import * as $wrapper_manifest_json from "./routes/wrapper/manifest.json.ts";
 import * as $Dialog from "./islands/Dialog.tsx";
 import * as $InstallBanner from "./islands/InstallBanner.tsx";
 import * as $KvInsightsEntriesManagement from "./islands/KvInsightsEntriesManagement.tsx";
 import * as $KvInsightsEntryManagement from "./islands/KvInsightsEntryManagement.tsx";
 import * as $KvInsightsQueueManagement from "./islands/KvInsightsQueueManagement.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
+import * as $SandboxInstallButton from "./islands/SandboxInstallButton.tsx";
 import * as $settings_AnalyticsSwitch from "./islands/settings/AnalyticsSwitch.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -51,6 +54,8 @@ const manifest = {
 		"./routes/search.tsx": $search,
 		"./routes/settings.tsx": $settings,
 		"./routes/terms-and-conditions.tsx": $terms_and_conditions,
+		"./routes/wrapper/index.tsx": $wrapper_index,
+		"./routes/wrapper/manifest.json.ts": $wrapper_manifest_json,
 	},
 	islands: {
 		"./islands/Dialog.tsx": $Dialog,
@@ -60,6 +65,7 @@ const manifest = {
 		"./islands/KvInsightsEntryManagement.tsx": $KvInsightsEntryManagement,
 		"./islands/KvInsightsQueueManagement.tsx": $KvInsightsQueueManagement,
 		"./islands/Navbar.tsx": $Navbar,
+		"./islands/SandboxInstallButton.tsx": $SandboxInstallButton,
 		"./islands/settings/AnalyticsSwitch.tsx": $settings_AnalyticsSwitch,
 	},
 	baseUrl: import.meta.url,

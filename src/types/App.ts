@@ -11,6 +11,21 @@ export interface Feature {
 	icon: string;
 }
 
+export interface AppSpec {
+	id: string;
+	url: string;
+	manifestUrl?: string;
+	categories?: string[];
+	features: string[];
+	author?: string;
+	authorUrl?: string;
+	githubUrl?: string;
+	gitlabUrl?: string;
+	accentColor?: string;
+	allowSandboxInstall?: boolean;
+}
+
+
 export interface App {
 	id: string;
 
