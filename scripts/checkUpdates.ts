@@ -227,6 +227,7 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 export const updateApps = async (specificAppIds: string[] = []) => {
 	const appDir = Deno.readDir("./apps");
 	const appSpecs: AppSpec[] = [];
+	const allAppSpecIds: string[] = [];
 	const appIdsToUpdate = specificAppIds;
 
 	if (appIdsToUpdate.length === 0) {
@@ -243,6 +244,8 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 
 			appSpecs.push(app);
 			appIdsToUpdate.push(app.id);
+
+			allAppSpecIds.push(app.id);
 		}
 	} else {
 		console.log(`Updating ${specificAppIds.join(", ")}`);
@@ -259,6 +262,8 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 			if (appIdsToUpdate.includes(app.id)) {
 				appSpecs.push(app);
 			}
+
+			allAppSpecIds.push(app.id);
 		}
 	}
 
@@ -314,8 +319,7 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 	// Delete
 	console.log(`Checking for apps to delete`);
 	const appIds = await getApps().then((apps) => apps.map((app) => app.id));
-	const appSpecIds = appSpecs.map((app) => app.id);
-	const appsToDelete = appIds.filter((id) => !appSpecIds.includes(id));
+	const appsToDelete = appIds.filter((id) => !allAppSpecIds.includes(id));
 
 	for (const appId of appsToDelete) {
 		console.log(`Deleting ${appId}`);
