@@ -312,7 +312,6 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 	}
 
 	// Delete
-	if (appIdsToUpdate) return;
 	const appIds = apps.map((app) => app.id);
 	const appSpecIds = appSpecs.map((app) => app.id);
 	const appsToDelete = appIds.filter((id) => !appSpecIds.includes(id));
