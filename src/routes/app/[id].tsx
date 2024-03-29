@@ -38,7 +38,8 @@ export default async function App(_: Request, ctx: RouteContext) {
 			</Head>
 			<Navbar
 				transparentTop
-				color={colorHexToFull(app.accentColor)}
+				tint={colorHexToFull(app.accentColor)}
+				title={app.name}
 				back
 			/>
 			<div
@@ -73,10 +74,10 @@ export default async function App(_: Request, ctx: RouteContext) {
 									<h2 class="text-3xl">
 										{app.name}
 									</h2>
-									{app.authorLink
+									{app.authorUrl
 										? (
 											<a
-												href={app.authorLink}
+												href={app.authorUrl}
 												rel="noopener noreferrer"
 												target="_blank"
 												class="opacity-50 hover:underline"
@@ -125,9 +126,11 @@ export default async function App(_: Request, ctx: RouteContext) {
 						<h3 class="text-2xl">
 							About
 						</h3>
-						<p>
-							{app.description}
-						</p>
+						{app.description ?
+							<p>
+								{app.description}
+							</p>
+						: null}
 					</Stack>
 				</Container>
 			</div>

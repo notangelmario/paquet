@@ -3,8 +3,7 @@ import type { App } from "@/types/App.ts";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
-import { createApp, getApps, updateApp } from "@/lib/db.ts";
-import { removeApp } from "@/lib/db.ts";
+import { createApp, getApps, updateApp, removeApp } from "@/lib/db.ts";
 
 const ICONS_SIZES = [
 	"96x96",
@@ -23,7 +22,7 @@ export interface AppSpec {
 	categories?: string[];
 	features: string[];
 	author?: string;
-	authorLink?: string;
+	authorUrl?: string;
 	githubUrl?: string;
 	gitlabUrl?: string;
 	accentColor?: string;
@@ -217,7 +216,7 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 		manifestHash: await digest(JSON.stringify(manifest)),
 		githubUrl: appSpec.githubUrl || undefined,
 		gitlabUrl: appSpec.gitlabUrl || undefined,
-		authorLink: appSpec.authorLink || undefined,
+		authorUrl: appSpec.authorUrl || undefined,
 	} 
 
 	const updatedApp = { ...existingApp, ...newApp } as App;
@@ -225,44 +224,30 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 	return updatedApp;
 }
 
-export const updateApps = async (appIdsToUpdate?: string[]) => {
+export const updateApps = async (specificAppIds: string[] = []) => {
 	const appDir = Deno.readDir("./apps");
-	const appsSpecs: AppSpec[] = [];
-	const apps: App[] = await getApps(appIdsToUpdate || []);
+	const appSpecs: AppSpec[] = [];
+	const allAppSpecIds: string[] = [];
+	const apps: App[] = await getApps();
 
-	if (appIdsToUpdate) {
-		for (const appId of appIdsToUpdate) {
-			const app = apps.find((a) => a.id === appId);
-			if (!app) {
-				console.error(`App ${appId} not found`);
-				continue;
-			}
 
-			const appSpec = JSON.parse(
-				await Deno.readTextFile(`./apps/${appId}.json`),
-			) as AppSpec;
-
-			appsSpecs.push(appSpec);
+	for await (const dirEntry of appDir) {
+		if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
+			continue;
 		}
-	} else {
-		for await (const dirEntry of appDir) {
-			if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
-				continue;
-			}
 
-			const app = JSON.parse(
-				await Deno.readTextFile(`./apps/${dirEntry.name}`),
-			) as AppSpec;
+		const app = JSON.parse(
+			await Deno.readTextFile(`./apps/${dirEntry.name}`),
+		) as AppSpec;
 
-			appsSpecs.push(app);
-		}
+		appSpecs.push(app);
+		allAppSpecIds.push(app.id);
 	}
 
 	// Check every appSpec to see if it exists or needs to be created
 	// updated or deleted
 	// Check manifest hash to see if it needs to be updated
-	
-	for (const appSpec of appsSpecs) {
+	for (const appSpec of appSpecs) {
 		const app: App | undefined = apps.find((a) => a.id === appSpec.id);
 
 		console.log(`Checking ${appSpec.id}`);
@@ -291,8 +276,8 @@ export const updateApps = async (appIdsToUpdate?: string[]) => {
 
 		const manifestHash = await digest(JSON.stringify(manifest));
 
-		if ((app.manifestHash !== manifestHash) || appIdsToUpdate) {
-			console.log(`Updating ${appSpec.id}`);
+		if ((app.manifestHash !== manifestHash) || specificAppIds.includes(appSpec.id)) {
+			console.log(`Updating ${appSpec.id} ${specificAppIds.includes(appSpec.id) ? "FORCEFULLY" : ""}`);
 
 			const manifestUrl = appSpec.manifestUrl || (await fetchManifestUrlFromIndex(appSpec.url));
 			if (!manifestUrl) continue;
@@ -307,9 +292,9 @@ export const updateApps = async (appIdsToUpdate?: string[]) => {
 	}
 
 	// Delete
-	const appIds = apps.map((app) => app.id);
-	const appSpecIds = appsSpecs.map((app) => app.id);
-	const appsToDelete = appIds.filter((id) => !appSpecIds.includes(id));
+	console.log(`Checking for apps to delete`);
+	const appIds = await getApps().then((apps) => apps.map((app) => app.id));
+	const appsToDelete = appIds.filter((id) => !allAppSpecIds.includes(id));
 
 	for (const appId of appsToDelete) {
 		console.log(`Deleting ${appId}`);

@@ -18,6 +18,7 @@ export default async function Settings(_: Request, ctx: RouteContext) {
 				<title>Settings &middot; Paquet</title>
 			</Head>
 			<Navbar 
+				title="Settings"
 				back 
 			/>
 			<Container>

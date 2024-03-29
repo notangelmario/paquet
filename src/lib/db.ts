@@ -1,7 +1,9 @@
 import { App } from "@/types/App.ts";
-import { AppSpec } from "../../scripts/update.ts";
+import { AppSpec } from "../../scripts/checkUpdates.ts";
 
-export const kv = await Deno.openKv();
+const isRunningInCI = !!Deno.env.get("CI");
+
+export const kv = await Deno.openKv(isRunningInCI ? Deno.env.get("DENO_KV_PATH") : undefined);
 
 export const getApp = async (id: string, eager = false) => {
 	const app = await kv.get<App>(["apps", id], {

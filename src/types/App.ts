@@ -17,7 +17,7 @@ export interface App {
 	name: string;
 
 	author: string;
-	authorLink?: string;
+	authorUrl?: string;
 
 	url: string;
 	manifestUrl: string;
@@ -26,7 +26,7 @@ export interface App {
 	screenshots?: string[];
 	cover?: string;
 
-	description: string;
+	description?: string;
 	categories: string[];
 
 	icon: string;

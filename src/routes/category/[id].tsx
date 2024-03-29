@@ -44,6 +44,7 @@ export default async function Category(_: Request, ctx: RouteContext) {
 				</title>
 			</Head>
 			<Navbar 
+				title={getCategory(category)?.name}
 				back 
 			/>
 			<Container>
