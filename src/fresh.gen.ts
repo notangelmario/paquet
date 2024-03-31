@@ -6,6 +6,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
 import * as $api_image_proxy from "./routes/api/image-proxy.ts";
 import * as $api_index from "./routes/api/index.ts";
+import * as $api_splashscreen from "./routes/api/splashscreen.ts";
 import * as $app_id_ from "./routes/app/[id].tsx";
 import * as $app_error from "./routes/app/error.tsx";
 import * as $category_id_ from "./routes/category/[id].tsx";
@@ -39,6 +40,7 @@ const manifest = {
 		"./routes/_middleware.ts": $_middleware,
 		"./routes/api/image-proxy.ts": $api_image_proxy,
 		"./routes/api/index.ts": $api_index,
+		"./routes/api/splashscreen.ts": $api_splashscreen,
 		"./routes/app/[id].tsx": $app_id_,
 		"./routes/app/error.tsx": $app_error,
 		"./routes/category/[id].tsx": $category_id_,
