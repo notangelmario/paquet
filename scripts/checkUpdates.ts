@@ -199,13 +199,12 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 	const newApp: Partial<App> = {
 		id: appSpec.id,
 		name: manifest.name || manifest.short_name,
-		short_name: manifest.short_name || manifest.name,
 		description: manifest.description || description,
 		icon: icon || "",
 		screenshots: screenshots,
 		url: url,
 		cover: coverUrl || undefined,
-		// @ts-ignore Some manifests have author
+		// @ts-ignore Some manifests may have author
 		author: appSpec.author || manifest.author || author,
 		accentColor: appSpec.accentColor || manifest.theme_color,
 		categories: appSpec.categories || categories || [],

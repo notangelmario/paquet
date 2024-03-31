@@ -20,6 +20,8 @@ import * as $kv_insights_middleware from "./routes/kv-insights/_middleware.ts";
 import * as $offline from "./routes/offline.tsx";
 import * as $privacy from "./routes/privacy.tsx";
 import * as $sandbox_id_ from "./routes/sandbox/[id].tsx";
+import * as $sandbox_create from "./routes/sandbox/create.tsx";
+import * as $sandbox_index from "./routes/sandbox/index.ts";
 import * as $sandbox_manifest_json from "./routes/sandbox/manifest.json.ts";
 import * as $search from "./routes/search.tsx";
 import * as $settings from "./routes/settings.tsx";
@@ -30,7 +32,6 @@ import * as $KvInsightsEntriesManagement from "./islands/KvInsightsEntriesManage
 import * as $KvInsightsEntryManagement from "./islands/KvInsightsEntryManagement.tsx";
 import * as $KvInsightsQueueManagement from "./islands/KvInsightsQueueManagement.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
-import * as $SandboxInstallButton from "./islands/SandboxInstallButton.tsx";
 import * as $settings_AnalyticsSwitch from "./islands/settings/AnalyticsSwitch.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -54,6 +55,8 @@ const manifest = {
 		"./routes/offline.tsx": $offline,
 		"./routes/privacy.tsx": $privacy,
 		"./routes/sandbox/[id].tsx": $sandbox_id_,
+		"./routes/sandbox/create.tsx": $sandbox_create,
+		"./routes/sandbox/index.ts": $sandbox_index,
 		"./routes/sandbox/manifest.json.ts": $sandbox_manifest_json,
 		"./routes/search.tsx": $search,
 		"./routes/settings.tsx": $settings,
@@ -67,7 +70,6 @@ const manifest = {
 		"./islands/KvInsightsEntryManagement.tsx": $KvInsightsEntryManagement,
 		"./islands/KvInsightsQueueManagement.tsx": $KvInsightsQueueManagement,
 		"./islands/Navbar.tsx": $Navbar,
-		"./islands/SandboxInstallButton.tsx": $SandboxInstallButton,
 		"./islands/settings/AnalyticsSwitch.tsx": $settings_AnalyticsSwitch,
 	},
 	baseUrl: import.meta.url,

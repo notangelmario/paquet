@@ -89,7 +89,8 @@ export default function Navbar(props: Props) {
 					items-center 
 
 					transition-colors
-					px-2 py-2 z-30
+					px-2 z-30
+					pb-2 pt-[calc(0.5rem_+_env(safe-area-inset-top))]
 
 					${trigger ? "shadow-md" : ""}
 				`}
@@ -152,7 +153,7 @@ const decimalToHex = (decimal: number) =>
 //
 // First color is the overlay
 // Second is opaque background
-function combineColors(c1: string, c2: string) {
+export function combineColors(c1: string, c2: string) {
 	const c1r = hexToDecimal(c1.replace("#", "").slice(0, 2));
 	const c1g = hexToDecimal(c1.replace("#", "").slice(2, 4));
 	const c1b = hexToDecimal(c1.replace("#", "").slice(4, 6));

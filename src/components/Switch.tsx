@@ -1,4 +1,5 @@
 interface SwitchProps {
+	name?: string;
 	checked?: boolean;
 	onChange?: (checked: boolean) => void;
 }
@@ -7,8 +8,9 @@ export default function Switch(props: SwitchProps) {
 	return (
 		<label class="relative inline-flex items-center cursor-pointer">
 			<input
+				name={props.name}
 				type="checkbox"
-				value=""
+				value="on"
 				class="sr-only peer"
 				checked={props.checked}
 				onChange={(e) => props.onChange?.(e.currentTarget.checked)}

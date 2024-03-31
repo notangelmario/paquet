@@ -13,9 +13,14 @@ export default function App({ Component, url }: PageProps) {
 			<Head>
 				<meta
 					name="viewport"
-					content="width=device-width, initial-scale=1, user-scalable=0"
+					content="width=device-width, initial-scale=1, user-scalable=0, viewport-fit=cover"
 				/>
+				<meta name="mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta name="x5-orientation" content="portrait"/>
+				<meta name="screen-orientation" content="portrait"/>
+				<meta name="x5-page-mode" content="app"/>
+				<meta name="browsermode" content="application"/>
 				<link rel="apple-touch-icon" href="/icon.png" key="apple-touch-icon" />
 				<link
 					rel="apple-touch-icon"
@@ -118,6 +123,7 @@ export default function App({ Component, url }: PageProps) {
 					data-domains="paquet.app"
 				>
 				</script>
+				<script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
 			</Head>
 			<body>
 				<main>

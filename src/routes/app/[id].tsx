@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 
 import type { App } from "@/types/App.ts";
-import Navbar from "@/islands/Navbar.tsx";
+import Navbar, { combineColors } from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import Button from "@/components/Button.tsx";
@@ -16,7 +16,6 @@ import { RouteContext } from "@/types/Handler.ts";
 import { getApp, getAppsRandom } from "@/lib/db.ts";
 import Card from "@/components/Card.tsx";
 import Icon from "@/components/Icon.tsx";
-import SandboxInstallButton from "@/islands/SandboxInstallButton.tsx";
 
 export default async function App(_: Request, ctx: RouteContext) {
 	const app = await getApp(ctx.params.id);
@@ -39,46 +38,72 @@ export default async function App(_: Request, ctx: RouteContext) {
 				<link rel="manifest" href={`/sandbox/manifest.json?id=${app.id}`} key="manifest"/>
 				<link rel="apple-touch-icon" href={buildImageUrl(app.icon, 192, 192)} key="apple-touch-icon"/>
 				<link rel="apple-touch-icon" sizes="180x180" href={buildImageUrl(app.icon, 180, 180)} key="apple-touch-icon-180"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1290&height=2796`} key="apple-touch-startup-image-430-932-3-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1179&height=2556`} key="apple-touch-startup-image-393-852-3-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1284&height=2778`} key="apple-touch-startup-image-428-926-3-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1170&height=2532`} key="apple-touch-startup-image-390-844-3-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1125&height=2436`} key="apple-touch-startup-image-375-812-3-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1242&height=2688`} key="apple-touch-startup-image-414-896-3-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=828&height=1792`} key="apple-touch-startup-image-414-896-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1242&height=2208`} key="apple-touch-startup-image-414-736-3-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=750&height=1334`} key="apple-touch-startup-image-375-667-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=640&height=1136`} key="apple-touch-startup-image-320-568-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=2048&height=2732`} key="apple-touch-startup-image-1024-1366-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1668&height=2388`} key="apple-touch-startup-image-834-1194-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1640&height=2360`} key="apple-touch-startup-image-820-1180-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1668&height=2224`} key="apple-touch-startup-image-834-1112-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1620&height=2160`} key="apple-touch-startup-image-810-1080-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1536&height=2048`} key="apple-touch-startup-image-768-1024-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1488&height=2266`} key="apple-touch-startup-image-744-1133-2-landscape"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=930&height=2016`} key="apple-touch-startup-image-430-932-3-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=786&height=1704`} key="apple-touch-startup-image-393-852-3-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=856&height=1852`} key="apple-touch-startup-image-428-926-3-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=780&height=1688`} key="apple-touch-startup-image-390-844-3-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=750&height=1624`} key="apple-touch-startup-image-375-812-3-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=828&height=1792`} key="apple-touch-startup-image-414-896-3-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=414&height=896`} key="apple-touch-startup-image-414-896-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=828&height=1472`} key="apple-touch-startup-image-414-736-3-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=750&height=1334`} key="apple-touch-startup-image-375-667-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=640&height=1136`} key="apple-touch-startup-image-320-568-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1024&height=1366`} key="apple-touch-startup-image-1024-1366-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=834&height=1194`} key="apple-touch-startup-image-834-1194-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=820&height=1180`} key="apple-touch-startup-image-820-1180-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=834&height=1112`} key="apple-touch-startup-image-834-1112-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=810&height=1080`} key="apple-touch-startup-image-810-1080-2-portrait"/>
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=768&height=1024`} key="apple-touch-startup-image-768-1024-2-portrait"/>	
-				<link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURI(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=744&height=1133`} key="apple-touch-startup-image-744-1133-2-portrait"/>
+				<link rel="apple-touch-icon" href={buildImageUrl(app.icon, 192, 192)} key="apple-touch-icon"/>
+				<link rel="apple-touch-icon" sizes="180x180" href={buildImageUrl(app.icon, 180, 180)} key="apple-touch-icon-180"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1290&height=2796`} key="apple-touch-startup-image-430-932-3-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1179&height=2556`} key="apple-touch-startup-image-393-852-3-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1284&height=2778`} key="apple-touch-startup-image-428-926-3-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1170&height=2532`} key="apple-touch-startup-image-390-844-3-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1125&height=2436`} key="apple-touch-startup-image-375-812-3-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1242&height=2688`} key="apple-touch-startup-image-414-896-3-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=828&height=1792`} key="apple-touch-startup-image-414-896-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1242&height=2208`} key="apple-touch-startup-image-414-736-3-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=750&height=1334`} key="apple-touch-startup-image-375-667-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=640&height=1136`} key="apple-touch-startup-image-320-568-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=2048&height=2732`} key="apple-touch-startup-image-1024-1366-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1668&height=2388`} key="apple-touch-startup-image-834-1194-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1640&height=2360`} key="apple-touch-startup-image-820-1180-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1668&height=2224`} key="apple-touch-startup-image-834-1112-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1620&height=2160`} key="apple-touch-startup-image-810-1080-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1536&height=2048`} key="apple-touch-startup-image-768-1024-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1488&height=2266`} key="apple-touch-startup-image-744-1133-2-landscape"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=930&height=2016`} key="apple-touch-startup-image-430-932-3-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=786&height=1704`} key="apple-touch-startup-image-393-852-3-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=856&height=1852`} key="apple-touch-startup-image-428-926-3-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=780&height=1688`} key="apple-touch-startup-image-390-844-3-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=750&height=1624`} key="apple-touch-startup-image-375-812-3-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=828&height=1792`} key="apple-touch-startup-image-414-896-3-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=414&height=896`} key="apple-touch-startup-image-414-896-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=828&height=1472`} key="apple-touch-startup-image-414-736-3-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=750&height=1334`} key="apple-touch-startup-image-375-667-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=640&height=1136`} key="apple-touch-startup-image-320-568-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=1024&height=1366`} key="apple-touch-startup-image-1024-1366-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=834&height=1194`} key="apple-touch-startup-image-834-1194-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=820&height=1180`} key="apple-touch-startup-image-820-1180-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=834&height=1112`} key="apple-touch-startup-image-834-1112-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=810&height=1080`} key="apple-touch-startup-image-810-1080-2-portrait"/>
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=768&height=1024`} key="apple-touch-startup-image-768-1024-2-portrait"/>	
+				<link rel="apple-touch-startup-image" media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href={`/api/splashscreen?icon=${encodeURIComponent(app.icon)}&bkgColor=${app.accentColor.split("#")[1]}&width=744&height=1133`} key="apple-touch-startup-image-744-1133-2-portrait"/>
 			</Head>
 			<Navbar
 				transparentTop
 				tint={colorHexToFull(app.accentColor)}
 				title={app.name}
 				back
+			/>
+			<style>
+				{`
+					#ios-overscroll-bkg {
+						background-color: ${combineColors(colorHexToFull(app.accentColor) + "50", "#dddddd")}
+					}
+
+					@media (prefers-color-scheme: dark) {
+						#ios-overscroll-bkg {
+							background-color: ${combineColors(colorHexToFull(app.accentColor) + "50", "#121212")}
+						}
+					}
+				`}
+			</style>
+			<div
+				style={{
+					zIndex: -1,
+					position: "fixed",
+					height: "50vh",
+					top: 0,
+					left: 0,
+					right: 0,
+				}}
+				id="ios-overscroll-bkg"
 			/>
 			<div
 				style={{
@@ -89,7 +114,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 					`,
 				}}
 			>
-				<Container class="pt-16 mb-4">
+				<Container class="pt-[calc(4rem_+_env(safe-area-inset-top))] mb-4">
 					<Stack>
 						<Card
 							inset
@@ -134,7 +159,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 											</p>
 										)}
 								</div>
-								<div class="min-w-full space-y-2 sm:min-w-[30%]">
+								<div class="min-w-full flex flex-col space-y-2 sm:min-w-[30%]">
 									<a
 										href={app.url}
 										target="_blank"
@@ -159,7 +184,17 @@ export default async function App(_: Request, ctx: RouteContext) {
 										</Button>
 									</a>
 									{app.allowSandbox ?
-										<SandboxInstallButton/>
+										<a
+											href={`/sandbox/create?id=${app.id}`}
+										>
+											<Button
+												icon="sandbox"
+												fullWidth
+												variant="outlined"
+											>
+												Open in Sandbox
+											</Button>
+										</a>
 									: null}
 								</div>
 							</div>

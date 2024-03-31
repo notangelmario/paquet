@@ -50,6 +50,7 @@ import LogoutIcon from "tabler-icons/logout.tsx";
 import DownloadOffIcon from "tabler-icons/download-off.tsx";
 import RefreshIcon from "tabler-icons/refresh.tsx";
 import AnalyticsIcon from "tabler-icons/clipboard-data.tsx";
+import PointerIcon from "tabler-icons/pointer.tsx";
 import MoonIcon from "tabler-icons/moon.tsx";
 import SunIcon from "tabler-icons/sun.tsx";
 import SunMoonIcon from "tabler-icons/sun-moon.tsx";
@@ -107,6 +108,7 @@ export const ICONS = new Map([
 	["logout", LogoutIcon],
 	["download-off", DownloadOffIcon],
 	["analytics", AnalyticsIcon],
+	["pointer", PointerIcon],
 	["moon", MoonIcon],
 	["sun", SunIcon],
 	["sun-moon", SunMoonIcon],

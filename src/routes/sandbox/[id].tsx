@@ -34,6 +34,7 @@ export default async function Sandbox(_: Request, ctx: RouteContext) {
 					* {
 						margin: 0;
 						padding: 0;
+						box-sizing: border-box;
 					}
 
 					body {
@@ -55,8 +56,21 @@ export default async function Sandbox(_: Request, ctx: RouteContext) {
 						margin: 0;
 						padding: 0;
 						overflow: hidden;
-						z-index: 999999;
+						z-index: 999998;
 						background-color: #fff;
+					}
+
+					#sandbox-indicator {
+						position: fixed;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						right: 0;
+						width: 100vw;
+						height: 100vh;
+						pointer-events: none;
+						z-index: 999999;
+						border: 2px dashed red;
 					}
 				`}
 				</style>
@@ -67,6 +81,7 @@ export default async function Sandbox(_: Request, ctx: RouteContext) {
 					src={app.url}
 					frameborder="0"
 				></iframe>
+				<div id="sandbox-indicator"></div>
 			</body>
 		</html>
 	)
