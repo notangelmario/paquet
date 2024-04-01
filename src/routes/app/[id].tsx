@@ -192,7 +192,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 												fullWidth
 												variant="outlined"
 											>
-												Open in Sandbox
+												Create Sandbox
 											</Button>
 										</a>
 									: null}

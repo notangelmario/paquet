@@ -8,8 +8,11 @@ export const config: RouteConfig = {
 	skipInheritedLayouts: true
 }
 
-export default async function Sandbox(_: Request, ctx: RouteContext) {
+export default async function Sandbox(req: Request, ctx: RouteContext) {
 	const appId = ctx.params.id
+	const params = new URL(req.url).searchParams;
+	const allowScripts = params.get("scripts") === "true";
+	const allowPointerLock = params.get("pointer-lock") === "true";
 	const app = await getApp(appId || "");
 
 	if (!appId || !app) {
@@ -30,6 +33,7 @@ export default async function Sandbox(_: Request, ctx: RouteContext) {
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<link rel="manifest" href={`/sandbox/manifest.json?id=${appId}`} />
 				<meta name="theme-color" content={app.accentColor} />
+				<title>{app.name} &middot; Paquet Sandbox</title>
 				<style>{`
 					* {
 						margin: 0;
@@ -70,7 +74,6 @@ export default async function Sandbox(_: Request, ctx: RouteContext) {
 						height: 100vh;
 						pointer-events: none;
 						z-index: 999999;
-						border: 2px dashed red;
 					}
 				`}
 				</style>
@@ -80,6 +83,7 @@ export default async function Sandbox(_: Request, ctx: RouteContext) {
 					id="app"
 					src={app.url}
 					frameborder="0"
+					sandbox={`${allowScripts ? "allow-scripts" : ""} ${allowPointerLock ? "allow-pointer-lock" : ""}`}
 				></iframe>
 				<div id="sandbox-indicator"></div>
 			</body>

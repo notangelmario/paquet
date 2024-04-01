@@ -10,7 +10,7 @@ export default function Switch(props: SwitchProps) {
 			<input
 				name={props.name}
 				type="checkbox"
-				value="on"
+				value="true"
 				class="sr-only peer"
 				checked={props.checked}
 				onChange={(e) => props.onChange?.(e.currentTarget.checked)}

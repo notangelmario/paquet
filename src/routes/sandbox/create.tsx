@@ -42,7 +42,7 @@ export default async function CreateSandbox(req: Request) {
 						They are isolated from Paquet and other sandboxes and you can 
 						pick and choose the permissions you want to give them.
 					</Card>
-					<form action={`/sandbox/${id}`} method="GET">
+					<form target="_blank" action={`/sandbox/${id}`} method="GET">
 						<Stack>
 							<Card disableGutters>
 								<ListItem
