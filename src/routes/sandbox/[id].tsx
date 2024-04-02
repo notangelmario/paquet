@@ -13,6 +13,10 @@ export default async function Sandbox(req: Request, ctx: RouteContext) {
 	const params = new URL(req.url).searchParams;
 	const allowScripts = params.get("scripts") === "true";
 	const allowPointerLock = params.get("pointer-lock") === "true";
+	const allowAutoplay = params.get("autoplay") === "true";
+	const allowAccelerometer = params.get("accelerometer") === "true";
+	const allowGeolocation = params.get("geolocation") === "true";
+	const allowGyroscope = params.get("gyroscope") === "true";
 	const app = await getApp(appId || "");
 
 	if (!appId || !app) {
@@ -22,6 +26,28 @@ export default async function Sandbox(req: Request, ctx: RouteContext) {
 				Location: "/home"
 			}
 		});
+	}
+
+	const createAllowList = () => {
+		const allowList = [];
+
+		if (allowAutoplay) {
+			allowList.push("autoplay");
+		}
+
+		if (allowAccelerometer) {
+			allowList.push("accelerometer");
+		}
+
+		if (allowGeolocation) {
+			allowList.push("geolocation");
+		}
+		
+		if (allowGyroscope) {
+			allowList.push("gyroscope");
+		}
+
+		return allowList.join("; ");
 	}
 
 	return (
@@ -83,7 +109,8 @@ export default async function Sandbox(req: Request, ctx: RouteContext) {
 					id="app"
 					src={app.url}
 					frameborder="0"
-					sandbox={`${allowScripts ? "allow-scripts" : ""} ${allowPointerLock ? "allow-pointer-lock" : ""}`}
+					sandbox={`allow-same-origin ${allowScripts ? "allow-scripts" : ""} ${allowPointerLock ? "allow-pointer-lock" : ""}`}
+					allow={createAllowList()}
 				></iframe>
 				<div id="sandbox-indicator"></div>
 			</body>

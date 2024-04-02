@@ -67,6 +67,50 @@ export default async function CreateSandbox(req: Request) {
 										<Switch name="pointer-lock" checked />
 									}
 								/>
+								<ListItem
+									button
+									icon="play"
+									// @ts-ignore Allow using the onclick attribute
+									onClick="document.querySelector('input[name=autoplay]').click()"
+									title="Allow autoplay"
+									subtitle="Allow the app to autoplay media"
+									secondarySlot={
+										<Switch name="autoplay" checked />
+									}
+								/>
+								<ListItem
+									button
+									icon="rotate"
+									// @ts-ignore Allow using the onclick attribute
+									onClick="document.querySelector('input[name=accelerometer]').click()"
+									title="Allow accelerometer"
+									subtitle="Allow the app to access the accelerometer"
+									secondarySlot={
+										<Switch name="accelerometer" checked />
+									}
+								/>
+								<ListItem
+									button
+									icon="3d-rotate"
+									// @ts-ignore Allow using the onclick attribute
+									onClick="document.querySelector('input[name=gyroscope]').click()"
+									title="Allow gyroscope"
+									subtitle="Allow the app to access the gyroscope"
+									secondarySlot={
+										<Switch name="gyroscope" checked />
+									}
+								/>
+								<ListItem
+									button
+									icon="location"
+									// @ts-ignore Allow using the onclick attribute
+									onClick="document.querySelector('input[name=geolocation]').click()"
+									title="Allow geolocation"
+									subtitle="Allow the app to access your geolocation"
+									secondarySlot={
+										<Switch name="geolocation" checked />
+									}
+								/>
 							</Card>
 							<Button 
 								type="submit"
@@ -75,6 +119,10 @@ export default async function CreateSandbox(req: Request) {
 							>
 								Create "{app.name}" Sandbox
 							</Button>
+							<p class="text-sm opacity-50">
+								*You can even install the app as a PWA on your device,
+								keeping your sandbox settings.
+							</p>
 						</Stack>
 					</form>
 				</Stack>

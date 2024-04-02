@@ -7,6 +7,10 @@ import FreshIcon from "tabler-icons/lemon-2.tsx";
 import DenoIcon from "tabler-icons/brand-deno.tsx";
 import SupabaseIcon from "tabler-icons/bolt.tsx";
 
+import Rotate3DIcon from "tabler-icons/3d-rotate.tsx";
+import LocationIcon from "tabler-icons/location.tsx";
+import RotateIcon from "tabler-icons/rotate-360.tsx";
+import PlayIcon from "tabler-icons/player-play.tsx";
 import EuroIcon from "tabler-icons/currency-euro.tsx";
 import APIIcon from "tabler-icons/api.tsx";
 import SearchIcon from "tabler-icons/search.tsx";
@@ -65,6 +69,11 @@ export const ICONS = new Map([
 	["fresh", FreshIcon],
 	["deno", DenoIcon],
 	["supabase", SupabaseIcon],
+
+	["3d-rotate", Rotate3DIcon],
+	["location", LocationIcon],
+	["rotate", RotateIcon],
+	["play", PlayIcon],
 	["euro", EuroIcon],
 	["api", APIIcon],
 	["certificate", Certificate],

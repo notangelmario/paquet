@@ -39,10 +39,10 @@ export const DOCS: Doc[] = [
 		filename: "manifest.md",
 	},
 	{
-		title: "Sandbox Installations",
-		description: "How to allow users to install your app in a sandbox",
+		title: "Sandbox",
+		description: "Run apps within a sandbox",
 		icon: "sandbox",
-		filename: "sandbox-installations.md",
+		filename: "sandbox.md",
 	},
 	{
 		title: "Subdomain hosting",
