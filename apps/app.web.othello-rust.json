@@ -1,0 +1,13 @@
+{
+    "id": "app.web.othello-rust",
+    "url": "https://othello-rust.web.app/",
+    "manifestUrl": "https://othello-rust.web.app/manifest.webmanifest",
+    "features": [
+        "openSource",
+        "mobile",
+        "desktop",
+        "offline"
+    ],
+    "version": 1,
+    "githubUrl": "https://github.com/nstringham/othello-web-app"
+}
