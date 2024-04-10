@@ -22,7 +22,6 @@ export interface AppSpec {
 	githubUrl?: string;
 	gitlabUrl?: string;
 	accentColor?: string;
-	allowSandbox?: boolean;
 }
 
 export interface App {
@@ -50,6 +49,4 @@ export interface App {
 
 	githubUrl?: string;
 	gitlabUrl?: string;
-
-	allowSandbox?: boolean;
 }

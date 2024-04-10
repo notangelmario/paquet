@@ -214,7 +214,6 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 		githubUrl: appSpec.githubUrl || undefined,
 		gitlabUrl: appSpec.gitlabUrl || undefined,
 		authorUrl: appSpec.authorUrl || undefined,
-		allowSandbox: appSpec.allowSandbox || false,
 	} 
 
 	const updatedApp = { ...existingApp, ...newApp } as App;
