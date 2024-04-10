@@ -7,6 +7,10 @@ import FreshIcon from "tabler-icons/lemon-2.tsx";
 import DenoIcon from "tabler-icons/brand-deno.tsx";
 import SupabaseIcon from "tabler-icons/bolt.tsx";
 
+import Rotate3DIcon from "tabler-icons/3d-rotate.tsx";
+import LocationIcon from "tabler-icons/location.tsx";
+import RotateIcon from "tabler-icons/rotate-360.tsx";
+import PlayIcon from "tabler-icons/player-play.tsx";
 import EuroIcon from "tabler-icons/currency-euro.tsx";
 import APIIcon from "tabler-icons/api.tsx";
 import SearchIcon from "tabler-icons/search.tsx";
@@ -45,10 +49,12 @@ import CloudIcon from "tabler-icons/cloud.tsx";
 import UserIcon from "tabler-icons/user.tsx";
 import LoginIcon from "tabler-icons/login.tsx";
 import ArrowBigDownLineIcon from "tabler-icons/arrow-big-down-line.tsx";
+import SandboxIcon from "tabler-icons/box-padding.tsx";
 import LogoutIcon from "tabler-icons/logout.tsx";
 import DownloadOffIcon from "tabler-icons/download-off.tsx";
 import RefreshIcon from "tabler-icons/refresh.tsx";
 import AnalyticsIcon from "tabler-icons/clipboard-data.tsx";
+import PointerIcon from "tabler-icons/pointer.tsx";
 import MoonIcon from "tabler-icons/moon.tsx";
 import SunIcon from "tabler-icons/sun.tsx";
 import SunMoonIcon from "tabler-icons/sun-moon.tsx";
@@ -63,6 +69,11 @@ export const ICONS = new Map([
 	["fresh", FreshIcon],
 	["deno", DenoIcon],
 	["supabase", SupabaseIcon],
+
+	["3d-rotate", Rotate3DIcon],
+	["location", LocationIcon],
+	["rotate", RotateIcon],
+	["play", PlayIcon],
 	["euro", EuroIcon],
 	["api", APIIcon],
 	["certificate", Certificate],
@@ -102,9 +113,11 @@ export const ICONS = new Map([
 	["user", UserIcon],
 	["login", LoginIcon],
 	["arrow-big-down-line", ArrowBigDownLineIcon],
+	["sandbox", SandboxIcon],
 	["logout", LogoutIcon],
 	["download-off", DownloadOffIcon],
 	["analytics", AnalyticsIcon],
+	["pointer", PointerIcon],
 	["moon", MoonIcon],
 	["sun", SunIcon],
 	["sun-moon", SunMoonIcon],

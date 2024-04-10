@@ -40,7 +40,7 @@
 		"$fresh/": "https://deno.land/x/fresh@1.6.8/",
 		"fresh-seo": "https://deno.land/x/fresh_seo@1.0.0/mod.ts",
 		"gfm": "https://deno.land/x/gfm@0.1.22/mod.ts",
-		"tabler-icons/": "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/",
+		"tabler-icons/": "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/",
 		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
 		"@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
 		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",

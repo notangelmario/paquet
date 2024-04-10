@@ -11,6 +11,19 @@ export interface Feature {
 	icon: string;
 }
 
+export interface AppSpec {
+	id: string;
+	url: string;
+	manifestUrl?: string;
+	categories?: string[];
+	features: ["openSource" | "auth" | "mobile" | "desktop" | "offline"];
+	author?: string;
+	authorUrl?: string;
+	githubUrl?: string;
+	gitlabUrl?: string;
+	accentColor?: string;
+}
+
 export interface App {
 	id: string;
 
@@ -19,20 +32,20 @@ export interface App {
 	author: string;
 	authorUrl?: string;
 
+	description?: string;
+	categories: string[];
+
 	url: string;
 	manifestUrl: string;
 	manifestHash: string;
 
+	icon: string;
 	screenshots?: string[];
 	cover?: string;
 
-	description?: string;
-	categories: string[];
-
-	icon: string;
 	accentColor: string;
 
-	features: string[];
+	features: ["openSource" | "auth" | "mobile" | "desktop" | "offline"];
 
 	githubUrl?: string;
 	gitlabUrl?: string;
