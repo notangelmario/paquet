@@ -1,5 +1,5 @@
 import "dotenv";
-import type { App } from "@/types/App.ts";
+import type { App, AppSpec } from "@/types/App.ts";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
@@ -14,19 +14,6 @@ const ICONS_SIZES = [
 	"256x256",
 	"512x512",
 ];
-
-export interface AppSpec {
-	id: string;
-	url: string;
-	manifestUrl?: string;
-	categories?: string[];
-	features: string[];
-	author?: string;
-	authorUrl?: string;
-	githubUrl?: string;
-	gitlabUrl?: string;
-	accentColor?: string;
-}
 
 export async function digest(message: string) {
 	const msgUint8 = new TextEncoder().encode(message);
@@ -192,11 +179,21 @@ export const getCategories = (manifest: WebAppManifest): string[] => {
 	return [...new Set(manifestCategories)];
 }
 
+export const getCoverUrl = async (coverUrl: string, baseUrl: string): Promise<string | null> => {
+	const res = await fetch(relativeToAbsolute(coverUrl, baseUrl));
+
+	if (res.ok) {
+		relativeToAbsolute(coverUrl, baseUrl);
+	}
+
+	return null;
+}
+
 export const generateApp = async (appSpec: AppSpec, existingApp: App | null, manifest: WebAppManifest, manifestUrl: string, url: string): Promise<App> => {
 	const icon = getIcon(manifest, manifestUrl);
 	const screenshots = getScreenshots(manifest, manifestUrl);
 	const { author, description, cover } = await fetchIndexProps(url) || {};
-	const coverUrl = cover ? relativeToAbsolute(cover, url) : undefined;
+	const coverUrl = cover ? await getCoverUrl(cover, url) : undefined;
 	const categories = getCategories(manifest);
 
 	const newApp: Partial<App> = {
@@ -206,8 +203,8 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 		icon: icon || "",
 		screenshots: screenshots,
 		url: url,
-		cover: coverUrl,
-		// @ts-ignore Some manifests have author
+		cover: coverUrl || undefined,
+		// @ts-ignore Some manifests may have author
 		author: appSpec.author || manifest.author || author,
 		accentColor: appSpec.accentColor || manifest.theme_color,
 		categories: appSpec.categories || categories || [],

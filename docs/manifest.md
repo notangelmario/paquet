@@ -63,7 +63,7 @@ This is the name that is going to be used when showing your app.
 ### `short_name` (optional)
 
 This is the short name that is going to be used when showing your app.
-This is used as the name of the app in the app listing if `name` is not present.
+This is used for [sandbox installations](sandbox-installations.md).
 
 ### `author` (required)
 
