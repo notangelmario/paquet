@@ -206,7 +206,7 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 		cover: coverUrl || undefined,
 		// @ts-ignore Some manifests may have author
 		author: appSpec.author || manifest.author || author,
-		accentColor: appSpec.accentColor || manifest.theme_color,
+		accentColor: appSpec.accentColor || manifest.theme_color || "#212121",
 		categories: appSpec.categories || categories || [],
 		features: appSpec.features,
 		manifestUrl: appSpec.manifestUrl || url,
