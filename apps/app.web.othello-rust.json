@@ -9,5 +9,6 @@
         "offline"
     ],
     "version": 1,
-    "githubUrl": "https://github.com/nstringham/othello-web-app"
+    "githubUrl": "https://github.com/nstringham/othello-web-app",
+    "author": "Nate Stringham"
 }
