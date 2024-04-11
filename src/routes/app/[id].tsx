@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 
 import type { App } from "@/types/App.ts";
-import Navbar from "@/islands/Navbar.tsx";
+import Navbar, { combineColors } from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
 import Button from "@/components/Button.tsx";
@@ -42,6 +42,30 @@ export default async function App(_: Request, ctx: RouteContext) {
 				title={app.name}
 				back
 			/>
+			<style>
+				{`
+					#ios-overscroll-bkg {
+						background-color: ${combineColors(colorHexToFull(app.accentColor) + "50", "#dddddd")}
+					}
+
+					@media (prefers-color-scheme: dark) {
+						#ios-overscroll-bkg {
+							background-color: ${combineColors(colorHexToFull(app.accentColor) + "50", "#121212")}
+						}
+					}
+				`}
+			</style>
+			<div
+				style={{
+					zIndex: -1,
+					position: "fixed",
+					height: "50vh",
+					top: 0,
+					left: 0,
+					right: 0,
+				}}
+				id="ios-overscroll-bkg"
+			/>
 			<div
 				style={{
 					background: `linear-gradient(
@@ -51,7 +75,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 					`,
 				}}
 			>
-				<Container class="pt-16 mb-4">
+				<Container class="pt-[calc(4rem_+_env(safe-area-inset-top))] mb-4">
 					<Stack>
 						<Card
 							inset
@@ -96,7 +120,7 @@ export default async function App(_: Request, ctx: RouteContext) {
 											</p>
 										)}
 								</div>
-								<div class="min-w-full space-y-2 sm:min-w-[30%]">
+								<div class="min-w-full flex flex-col space-y-2 sm:min-w-[30%]">
 									<a
 										href={app.url}
 										target="_blank"

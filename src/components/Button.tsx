@@ -30,7 +30,7 @@ export default function Button(
 				
 				${
 				props.variant === "outlined"
-					? "btn bg-light border dark:bg-dark text-current"
+					? "btn bg-transparent border text-current"
 					: ""
 			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
