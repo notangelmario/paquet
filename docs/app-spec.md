@@ -8,7 +8,7 @@ This is a sample specification:
     "url": "https://paquet.app/home",
     "manifestUrl": "https://paquet.app/manifest.json",
     "features": ["openSource", "mobile", "desktop"],
-    "githubUrl": "https://github.com/roseto/paquet",
+    "githubUrl": "https://github.com/notangelmario/paquet",
     "version": 1
 }
 ```
@@ -21,7 +21,7 @@ This is required. This must be the domain of your app reversed.
 If your app is hosted at a subdomain, append the pathname at the end.
 
 Example 1: `https://paquet.app -> app.paquet` \
-Example 2: `https://roseto.github.io/paquet -> io.github.roseto.paquet`
+Example 2: `https://notangelmario.github.io/paquet -> io.github.notangelmario.paquet`
 
 ### `url` (required)
 

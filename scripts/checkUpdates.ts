@@ -145,11 +145,18 @@ export const getIcon = (manifest: WebAppManifest, manifestUrl: string): string |
 
 	const maskableIcons = icons.filter((icon) => icon.purpose === "maskable");
 	const pngIcons = icons.filter((icon) => icon.src.replace(/\?.*/, "").endsWith(".png"));
+	const svgIcons = icons.filter((icon) => icon.src.replace(/\?.*/, "").endsWith(".svg"))
 
 	const maskableIconsBySize = ICONS_SIZES.map((size) => maskableIcons.find((icon) => icon.sizes === size));
 	const maskableIcon = maskableIconsBySize.find((icon) => icon !== undefined);
 	if (maskableIcon) {
 		return relativeToAbsolute(maskableIcon.src, manifestParent);
+	}
+
+	const svgIcon = svgIcons[0];
+
+	if (svgIcon) {
+		return relativeToAbsolute(svgIcon.src, manifestParent);
 	}
 
 	const pngIconsBySize = ICONS_SIZES.map((size) => pngIcons.find((icon) => icon.sizes === size));

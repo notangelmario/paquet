@@ -129,24 +129,6 @@ export default async function Home() {
 				</SlideContainer>
 			</Stack>
 			<Container>
-				<Card class="mt-4 !bg-gradient-to-tr from-primary to-secondary text-light">
-					<h2 class="text-xl">
-						Paquet is now part of Roseto!
-					</h2>
-					<p>
-						We're excited to announce that Paquet is now part of Roseto! 
-						Roseto will be the new home for Paquet, and we're excited to see what the future holds.
-					</p>
-					<a
-						href="https://roseto.co/updates#welcome-paquet"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Button fullWidth variant="secondary" class="mt-4">
-							Learn more on Roseto's blog
-						</Button>
-					</a>
-				</Card>
 				<InstallBanner />
 			</Container>
 			<Stack class="mt-4">
