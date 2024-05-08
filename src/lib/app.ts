@@ -3,7 +3,7 @@ import "dotenv";
 export const APP = {
 	version: "6.1.1",
 	codename: "Gabriela",
-	githubRepo: "https://github.com/roseto/paquet",
+	githubRepo: "https://github.com/notangelmario/paquet",
 	umamiUrl: Deno.env.get("UMAMI_URL"),
 	umamiId: Deno.env.get("UMAMI_ID"),
 };

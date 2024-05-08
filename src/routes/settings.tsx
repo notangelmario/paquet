@@ -52,11 +52,11 @@ export default async function Settings(_: Request, ctx: RouteContext) {
 								divider
 								icon="github"
 								title="GitHub"
-								subtitle="roseto/paquet"
+								subtitle="notangelmario/paquet"
 							/>
 						</a>
 						<a
-							href="https://opencollective.com/roseto/projects/paquet/donate"
+							href="https://buymeacoffee.com/notangelmario"
 							target="_blank"
 							rel="noopener noreferrer"
 						>

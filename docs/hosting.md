@@ -13,7 +13,7 @@ you must meet a few requirements.
 
 ## How to apply
 
-Simply contact at [hello@roseto.co](mailto:hello@roseto.co) with 
+Simply contact at [savin@angelmario.eu](mailto:savin@angelmario.eu) with 
 the details of your app and the records that you need to be set.
 
 ## After approval
