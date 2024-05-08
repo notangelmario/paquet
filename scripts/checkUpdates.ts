@@ -3,7 +3,7 @@ import type { App, AppSpec } from "@/types/App.ts";
 import { CATEGORIES } from "@/lib/categories.ts";
 import { WebAppManifest } from "https://esm.sh/v96/@types/web-app-manifest@1.0.2/index.d.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.36-alpha/deno-dom-wasm.ts";
-import { createApp, getApps, updateApp, removeApp } from "@/lib/db.ts";
+import { createApp, getApps, removeApp, updateApp } from "@/lib/db.ts";
 
 const ICONS_SIZES = [
 	"96x96",
@@ -25,6 +25,8 @@ export async function digest(message: string) {
 	return hashHex;
 }
 
+const objectContains = (object: object, keys: string[]) => keys.every(k => k in object)
+
 export function slashSlashes(string: string) {
 	return string.replace(/^\/|\/$/g, "");
 }
@@ -42,7 +44,9 @@ export function relativeToAbsolute(url: string, baseUrl: string) {
 	}
 }
 
-export const fetchManifestUrlFromIndex = async (url: string): Promise<string | null> => {
+export const fetchManifestUrlFromIndex = async (
+	url: string,
+): Promise<string | null> => {
 	const body = await fetch(url, {
 		headers: {
 			Accept: "text/html",
@@ -68,7 +72,9 @@ export const fetchManifestUrlFromIndex = async (url: string): Promise<string | n
 	);
 
 	if (!headParsed) {
-		console.error(`[fetchManifestUrlFromIndex] Could not parse head of ${url}`);
+		console.error(
+			`[fetchManifestUrlFromIndex] Could not parse head of ${url}`,
+		);
 		return null;
 	}
 
@@ -80,9 +86,11 @@ export const fetchManifestUrlFromIndex = async (url: string): Promise<string | n
 		: relativeToAbsolute(manifestValue, url);
 
 	return manifestUrl;
-}
+};
 
-export const fetchManifest = async (manifestUrl: string): Promise<WebAppManifest | null> => {
+export const fetchManifest = async (
+	manifestUrl: string,
+): Promise<WebAppManifest | null> => {
 	let manifest: WebAppManifest | undefined;
 	try {
 		manifest = await fetch(manifestUrl, {
@@ -94,13 +102,17 @@ export const fetchManifest = async (manifestUrl: string): Promise<WebAppManifest
 			res,
 		) => res.json());
 	} catch {
-		console.error(`[fetchManifest] Could not fetch manifest from ${manifestUrl}`);
+		console.error(
+			`[fetchManifest] Could not fetch manifest from ${manifestUrl}`,
+		);
 	}
 
 	return manifest || null;
-}
+};
 
-export const fetchIndexProps = async (url: string): Promise<Pick<App, "author" | "description" | "cover"> | null> => {
+export const fetchIndexProps = async (
+	url: string,
+): Promise<Pick<App, "author" | "description" | "cover"> | null> => {
 	const body = await fetch(url, {
 		headers: {
 			Accept: "text/html",
@@ -130,24 +142,42 @@ export const fetchIndexProps = async (url: string): Promise<Pick<App, "author" |
 		return null;
 	}
 
-	const author = headParsed.querySelector("meta[name='author']")?.getAttribute("content") || "";
-	const description = headParsed.querySelector("meta[name='description']")?.getAttribute("content") || "";
-	const cover = headParsed.querySelector("meta[property='og:image']")?.getAttribute("content") || "";
+	const author =
+		headParsed.querySelector('meta[name="author"]')?.getAttribute(
+			"content",
+		) || "";
+	const description =
+		headParsed.querySelector('meta[name="description"]')?.getAttribute(
+			"content",
+		) || "";
+	const cover =
+		headParsed.querySelector('meta[property="og:image"]')?.getAttribute(
+			"content",
+		) || "";
 
 	return { author, description, cover };
-}
+};
 
-export const getIcon = (manifest: WebAppManifest, manifestUrl: string): string | null => {
+export const getIcon = (
+	manifest: WebAppManifest,
+	manifestUrl: string,
+): string | null => {
 	const manifestSplit = manifestUrl.split("/");
 	manifestSplit.pop();
 	const manifestParent = manifestSplit.join("/");
 	const icons = manifest.icons || [];
 
 	const maskableIcons = icons.filter((icon) => icon.purpose === "maskable");
-	const pngIcons = icons.filter((icon) => icon.src.replace(/\?.*/, "").endsWith(".png"));
-	const svgIcons = icons.filter((icon) => icon.src.replace(/\?.*/, "").endsWith(".svg"))
+	const pngIcons = icons.filter((icon) =>
+		icon.src.replace(/\?.*/, "").endsWith(".png")
+	);
+	const svgIcons = icons.filter((icon) =>
+		icon.src.replace(/\?.*/, "").endsWith(".svg")
+	);
 
-	const maskableIconsBySize = ICONS_SIZES.map((size) => maskableIcons.find((icon) => icon.sizes === size));
+	const maskableIconsBySize = ICONS_SIZES.map((size) =>
+		maskableIcons.find((icon) => icon.sizes === size)
+	);
 	const maskableIcon = maskableIconsBySize.find((icon) => icon !== undefined);
 	if (maskableIcon) {
 		return relativeToAbsolute(maskableIcon.src, manifestParent);
@@ -159,48 +189,73 @@ export const getIcon = (manifest: WebAppManifest, manifestUrl: string): string |
 		return relativeToAbsolute(svgIcon.src, manifestParent);
 	}
 
-	const pngIconsBySize = ICONS_SIZES.map((size) => pngIcons.find((icon) => icon.sizes === size));
+	const pngIconsBySize = ICONS_SIZES.map((size) =>
+		pngIcons.find((icon) => icon.sizes === size)
+	);
 	const pngIcon = pngIconsBySize.find((icon) => icon !== undefined);
 	if (pngIcon) {
 		return relativeToAbsolute(pngIcon.src, manifestParent);
 	}
 
 	return null;
-}
+};
 
-export const getScreenshots = (manifest: WebAppManifest, manifestUrl: string): string[] => {
+export const getScreenshots = (
+	manifest: WebAppManifest,
+	manifestUrl: string,
+): string[] => {
 	const manifestSplit = manifestUrl.split("/");
 	manifestSplit.pop();
 	const manifestParent = manifestSplit.join("/");
 	const screenshots = manifest.screenshots || [];
-	return screenshots.map((screenshot) => relativeToAbsolute(screenshot.src, manifestParent));
-}
+	return screenshots.map((screenshot) =>
+		relativeToAbsolute(screenshot.src, manifestParent)
+	);
+};
 
 export const getCategories = (manifest: WebAppManifest): string[] => {
 	const categories = manifest.categories || [];
 	const manifestCategories = categories.map((category) => {
-		const foundCategory = CATEGORIES.find((c) => c.id === category || c.aliases?.includes(category));
+		const foundCategory = CATEGORIES.find((c) =>
+			c.id === category || c.aliases?.includes(category)
+		);
 		return foundCategory?.id || category;
 	});
 
 	return [...new Set(manifestCategories)];
-}
+};
 
-export const getCoverUrl = async (coverUrl: string, baseUrl: string): Promise<string | null> => {
-	const res = await fetch(relativeToAbsolute(coverUrl, baseUrl));
+export const getCoverUrl = async (
+	coverUrl: string,
+): Promise<string | null> => {
+	const res = await fetch(coverUrl, {
+		headers: {
+			Accept: "image/*",
+		},
+	})
+		.catch(() => {
+			console.error(`Could not fetch cover image from ${coverUrl}`);
+			return null;
+		});
 
-	if (res.ok) {
-		relativeToAbsolute(coverUrl, baseUrl);
+	if (res?.ok) {
+		return coverUrl;
 	}
 
 	return null;
-}
+};
 
-export const generateApp = async (appSpec: AppSpec, existingApp: App | null, manifest: WebAppManifest, manifestUrl: string, url: string): Promise<App> => {
+export const generateApp = async (
+	appSpec: AppSpec,
+	existingApp: App | null,
+	manifest: WebAppManifest,
+	manifestUrl: string,
+	url: string,
+): Promise<App | null> => {
 	const icon = getIcon(manifest, manifestUrl);
 	const screenshots = getScreenshots(manifest, manifestUrl);
 	const { author, description, cover } = await fetchIndexProps(url) || {};
-	const coverUrl = cover ? await getCoverUrl(cover, url) : undefined;
+	const coverUrl = cover ? await getCoverUrl(cover) : undefined;
 	const categories = getCategories(manifest);
 
 	const newApp: Partial<App> = {
@@ -221,19 +276,25 @@ export const generateApp = async (appSpec: AppSpec, existingApp: App | null, man
 		githubUrl: appSpec.githubUrl || undefined,
 		gitlabUrl: appSpec.gitlabUrl || undefined,
 		authorUrl: appSpec.authorUrl || undefined,
-	} 
+	};
 
 	const updatedApp = { ...existingApp, ...newApp } as App;
-	
+
+	if (!objectContains(updatedApp, ["id", "name", "author", "icon", "description"])) {
+		console.log(
+			`[generateApp] Missing required fields for ${appSpec.id}. Skipping.`,
+		);
+		return null;
+	}
+
 	return updatedApp;
-}
+};
 
 export const updateApps = async (specificAppIds: string[] = []) => {
 	const appDir = Deno.readDir("./apps");
 	const appSpecs: AppSpec[] = [];
 	const allAppSpecIds: string[] = [];
 	const apps: App[] = await getApps();
-
 
 	for await (const dirEntry of appDir) {
 		if (!dirEntry.isFile || !dirEntry.name.endsWith(".json")) {
@@ -260,13 +321,20 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 		if (!app) {
 			console.log(`Creating ${appSpec.id}`);
 
-			const manifestUrl = appSpec.manifestUrl || (await fetchManifestUrlFromIndex(appSpec.url));
+			const manifestUrl = appSpec.manifestUrl ||
+				(await fetchManifestUrlFromIndex(appSpec.url));
 			if (!manifestUrl) continue;
 
 			const manifest = await fetchManifest(manifestUrl);
 			if (!manifest) continue;
 
-			const appData = await generateApp(appSpec, null, manifest, manifestUrl, appSpec.url);
+			const appData = await generateApp(
+				appSpec,
+				null,
+				manifest,
+				manifestUrl,
+				appSpec.url,
+			);
 
 			if (!appData) continue;
 
@@ -280,13 +348,27 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 
 		const manifestHash = await digest(JSON.stringify(manifest));
 
-		if ((app.manifestHash !== manifestHash) || specificAppIds.includes(appSpec.id)) {
-			console.log(`Updating ${appSpec.id} ${specificAppIds.includes(appSpec.id) ? "FORCEFULLY" : ""}`);
+		if (
+			(app.manifestHash !== manifestHash) ||
+			specificAppIds.includes(appSpec.id)
+		) {
+			console.log(
+				`Updating ${appSpec.id} ${
+					specificAppIds.includes(appSpec.id) ? "FORCEFULLY" : ""
+				}`,
+			);
 
-			const manifestUrl = appSpec.manifestUrl || (await fetchManifestUrlFromIndex(appSpec.url));
+			const manifestUrl = appSpec.manifestUrl ||
+				(await fetchManifestUrlFromIndex(appSpec.url));
 			if (!manifestUrl) continue;
 
-			const appData = await generateApp(appSpec, app, manifest, manifestUrl, app.url);
+			const appData = await generateApp(
+				appSpec,
+				app,
+				manifest,
+				manifestUrl,
+				app.url,
+			);
 
 			if (!appData) continue;
 
@@ -304,4 +386,5 @@ export const updateApps = async (specificAppIds: string[] = []) => {
 		console.log(`Deleting ${appId}`);
 		removeApp(appId);
 	}
-}
+};
+
