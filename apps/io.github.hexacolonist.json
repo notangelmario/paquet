@@ -1,0 +1,14 @@
+{
+	"id": "io.github.hexacolonist",
+	"url": "https://hexacolonist.github.io",
+	"manifestUrl": "https://hexacolonist.github.io/manifest.webmanifest",
+	"features": [
+		"mobile",
+		"desktop",
+		"openSource",
+		"offline"
+	],
+	"githubUrl": "https://github.com/hexacolonist/hexacolonist.github.io",
+	"author": "ShuP1",
+	"version": 1
+}
