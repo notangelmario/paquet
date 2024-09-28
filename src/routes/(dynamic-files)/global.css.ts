@@ -1,7 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+import { asset } from "$fresh/runtime.ts"
 
+const globalCss = `
 
 /* poppins-100 - latin */
 @font-face {
@@ -9,8 +8,8 @@
   font-style: normal;
   font-weight: 100;
   src: local(''),
-       url('/fonts/poppins-v20-latin-100.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/poppins-v20-latin-100.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url(${asset('/fonts/poppins-v20-latin-100.woff2')}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url(${asset('/fonts/poppins-v20-latin-100.woff')}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* poppins-300 - latin */
 @font-face {
@@ -18,8 +17,8 @@
   font-style: normal;
   font-weight: 300;
   src: local(''),
-       url('/fonts/poppins-v20-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/poppins-v20-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url(${asset('/fonts/poppins-v20-latin-300.woff2')}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url(${asset('/fonts/poppins-v20-latin-300.woff')}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* poppins-regular - latin */
 @font-face {
@@ -27,8 +26,8 @@
   font-style: normal;
   font-weight: 400;
   src: local(''),
-       url('/fonts/poppins-v20-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/poppins-v20-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url(${asset('/fonts/poppins-v20-latin-regular.woff2')}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url(${asset('/fonts/poppins-v20-latin-regular.woff')}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* poppins-500 - latin */
 @font-face {
@@ -36,8 +35,8 @@
   font-style: normal;
   font-weight: 500;
   src: local(''),
-       url('/fonts/poppins-v20-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/fonts/poppins-v20-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url(${asset('/fonts/poppins-v20-latin-500.woff2')}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url(${asset('/fonts/poppins-v20-latin-500.woff')}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* poppins-700 - latin */
 @font-face {
@@ -175,3 +174,12 @@ a {
 	color: inherit;
 	text-decoration-line: none;
 }
+`
+
+export const handler = () =>
+	new Response(globalCss, {
+		headers: {
+			"content-type": "text/css",
+			"cache-control": "public, max-age=31536000, immutable",
+		},
+	});

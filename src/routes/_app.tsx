@@ -1,6 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
 import Footer from "@/components/Footer.tsx";
-import { APP } from "@/lib/app.ts";
 import { PageProps } from "$fresh/server.ts";
 
 export default function App({ Component, url }: PageProps) {
@@ -116,13 +115,8 @@ export default function App({ Component, url }: PageProps) {
 					content="https://paquet.app/og-image.jpg"
 				/>
 
+				<link rel="stylesheet" href="/tw.css" />
 				<link rel="stylesheet" href="/global.css" />
-				<script
-					src={APP.umamiUrl}
-					data-website-id={APP.umamiId}
-					data-domains="paquet.app"
-				>
-				</script>
 				<script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
 			</Head>
 			<body>

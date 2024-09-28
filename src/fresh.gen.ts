@@ -2,6 +2,8 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $_dynamic_files_gfm_css from "./routes/(dynamic-files)/gfm.css.ts";
+import * as $_dynamic_files_global_css from "./routes/(dynamic-files)/global.css.ts";
 import * as $_app from "./routes/_app.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
 import * as $api_image_proxy from "./routes/api/image-proxy.ts";
@@ -13,7 +15,6 @@ import * as $category_id_ from "./routes/category/[id].tsx";
 import * as $category_index from "./routes/category/index.tsx";
 import * as $docs_doc_ from "./routes/docs/[doc].tsx";
 import * as $docs_index from "./routes/docs/index.tsx";
-import * as $gfm_css from "./routes/gfm.css.ts";
 import * as $home from "./routes/home.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $kv_insights_middleware from "./routes/kv-insights/_middleware.ts";
@@ -32,6 +33,8 @@ import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
 	routes: {
+		"./routes/(dynamic-files)/gfm.css.ts": $_dynamic_files_gfm_css,
+		"./routes/(dynamic-files)/global.css.ts": $_dynamic_files_global_css,
 		"./routes/_app.tsx": $_app,
 		"./routes/_middleware.ts": $_middleware,
 		"./routes/api/image-proxy.ts": $api_image_proxy,
@@ -43,7 +46,6 @@ const manifest = {
 		"./routes/category/index.tsx": $category_index,
 		"./routes/docs/[doc].tsx": $docs_doc_,
 		"./routes/docs/index.tsx": $docs_index,
-		"./routes/gfm.css.ts": $gfm_css,
 		"./routes/home.tsx": $home,
 		"./routes/index.tsx": $index,
 		"./routes/kv-insights/_middleware.ts": $kv_insights_middleware,
