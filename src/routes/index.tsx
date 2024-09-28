@@ -275,7 +275,7 @@ export default async function Welcome(req: Request) {
 								Paquet
 							</h2>
 							<a
-								href="https://angelmario.eu"
+								href="https://notangelmario.dev"
 								rel="noopener noreferrer"
 								target="_blank"
 								class="opacity-50 hover:underline"

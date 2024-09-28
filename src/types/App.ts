@@ -45,7 +45,7 @@ export interface App {
 
 	accentColor: string;
 
-	features: ["openSource" | "auth" | "mobile" | "desktop" | "offline"];
+	features: Array<"openSource" | "auth" | "mobile" | "desktop" | "offline">;
 
 	githubUrl?: string;
 	gitlabUrl?: string;

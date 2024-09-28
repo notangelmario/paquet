@@ -5,7 +5,7 @@ export default function Footer() {
 		<footer class="my-8 text-center">
 			<Container>
 				<a
-					href="https://angelmario.eu"
+					href="https://notangelmario.dev"
 					target="_blank"
 					class="hover:underline opacity-75 text-center"
 				>
