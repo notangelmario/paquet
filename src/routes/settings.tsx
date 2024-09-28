@@ -6,12 +6,8 @@ import Navbar from "@/islands/Navbar.tsx";
 import Card from "@/components/Card.tsx";
 import ListItem from "@/components/ListItem.tsx";
 import { APP } from "@/lib/app.ts";
-import type { RouteContext } from "@/types/Handler.ts";
-import AnalyticsSwitch from "@/islands/settings/AnalyticsSwitch.tsx";
 
-export default async function Settings(_: Request, ctx: RouteContext) {
-	await Promise.resolve();
-
+export default function Settings() {
 	return (
 		<>
 			<Head>
@@ -26,11 +22,6 @@ export default async function Settings(_: Request, ctx: RouteContext) {
 					<Header icon="settings">
 						Settings
 					</Header>
-					<Card disableGutters>
-						<AnalyticsSwitch
-							analyticsDisabled={!!ctx.state.analyticsDisabled}
-						/>
-					</Card>
 					<Card disableGutters>
 						<a href="/docs">
 							<ListItem

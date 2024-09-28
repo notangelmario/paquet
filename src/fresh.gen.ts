@@ -28,7 +28,6 @@ import * as $KvInsightsEntriesManagement from "./islands/KvInsightsEntriesManage
 import * as $KvInsightsEntryManagement from "./islands/KvInsightsEntryManagement.tsx";
 import * as $KvInsightsQueueManagement from "./islands/KvInsightsQueueManagement.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
-import * as $settings_AnalyticsSwitch from "./islands/settings/AnalyticsSwitch.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -62,7 +61,6 @@ const manifest = {
 		"./islands/KvInsightsEntryManagement.tsx": $KvInsightsEntryManagement,
 		"./islands/KvInsightsQueueManagement.tsx": $KvInsightsQueueManagement,
 		"./islands/Navbar.tsx": $Navbar,
-		"./islands/settings/AnalyticsSwitch.tsx": $settings_AnalyticsSwitch,
 	},
 	baseUrl: import.meta.url,
 } satisfies Manifest;

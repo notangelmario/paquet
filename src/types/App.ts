@@ -16,7 +16,7 @@ export interface AppSpec {
 	url: string;
 	manifestUrl?: string;
 	categories?: string[];
-	features: ["openSource" | "auth" | "mobile" | "desktop" | "offline"];
+	features: ("openSource" | "auth" | "mobile" | "desktop" | "offline")[];
 	author?: string;
 	authorUrl?: string;
 	githubUrl?: string;
@@ -45,7 +45,7 @@ export interface App {
 
 	accentColor: string;
 
-	features: Array<"openSource" | "auth" | "mobile" | "desktop" | "offline">;
+	features: ("openSource" | "auth" | "mobile" | "desktop" | "offline")[];
 
 	githubUrl?: string;
 	gitlabUrl?: string;

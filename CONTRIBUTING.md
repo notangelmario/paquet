@@ -19,7 +19,7 @@ things are working here.
 The `main` branch is reserved for production only. This
 is the branch that gets deployed to production.
 
-The `next` branch is used for the next major version.
+The `preview` branch is used for the next major version.
 This branch can also be used for the next minor version
 in case there are no plans yet for a major version release.
 
@@ -34,7 +34,7 @@ creating the issue, not for me reading it.
 Pull requests should be made against:
 
 - `main` in case of hotfix, doc change, config change
-- `next` in case of improvement, bug fixes or anything else (so they are included in the next release ;))
+- `preview` in case of improvement, bug fixes or anything else (so they are included in the next release ;))
 
 Pull requests should be reviewed by **at least one person** so they can be
 merged.

@@ -1,5 +1,4 @@
-import { App } from "@/types/App.ts";
-import { AppSpec } from "../../scripts/checkUpdates.ts";
+import { App, AppSpec } from "@/types/App.ts";
 
 const isRunningInCI = !!Deno.env.get("CI");
 

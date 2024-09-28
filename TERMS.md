@@ -3,8 +3,8 @@
 ## 1. Privacy
 
 Our [Privacy Policy](https://paquet.app/privacy) describe how
-we handle the information you give to Paquet by signing in. By signing
-in you agree with our [Privacy Policy](https://paquet.app/privacy) and those
+we handle the information you give to Paquet. By using Paquet, you
+agree with our [Privacy Policy](https://paquet.app/privacy) and those
 terms and conditions.
 
 ## 2. Using the service

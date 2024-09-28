@@ -1,7 +1,7 @@
 import "dotenv";
 
 export const APP = {
-	version: "6.2.0",
+	version: "6.3.0",
 	codename: "Gabriela",
 	githubRepo: "https://github.com/notangelmario/paquet",
 };
