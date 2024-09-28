@@ -9,7 +9,7 @@ Here is a `manifest.json` example:
 ```json
 {
 	"name": "Paquet",
-	"author": "Roseto",
+	"author": "Savin Angel-Mario",
 	"short_name": "Paquet",
 	"description": "Check out Paquet to find the best web apps on the open web.",
 	"id": "app.paquet",

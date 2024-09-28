@@ -1,0 +1,14 @@
+{
+    "id": "ch.grrd.reversi",
+    "url": "https://reversi.grrd.ch/",
+    "manifestUrl": "https://reversi.grrd.ch/manifest/appmanifest.json",
+    "features": [
+        "openSource",
+        "mobile",
+        "desktop",
+        "offline"
+    ],
+    "version": 1,
+    "githubUrl": "https://github.com/grrd01/Reversi",
+    "author": "Gerard Tyedmers"
+}

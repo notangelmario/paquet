@@ -13,10 +13,10 @@ you must meet a few requirements.
 
 ## How to apply
 
-Simply contact at [hello@roseto.co](mailto:hello@roseto.co) with 
+Simply contact at [hello@notangelmario.dev](mailto:hello@notangelmario.dev) with
 the details of your app and the records that you need to be set.
 
 ## After approval
 
-After your app is approved, you must file an app request to 
+After your app is approved, you must file an app request to
 add your app on Paquet.

@@ -169,7 +169,7 @@ export default async function Welcome(req: Request) {
 							<ListItem
 								icon="github"
 								title="GitHub"
-								subtitle="roseto/paquet"
+								subtitle="notangelmario/paquet"
 								button
 								divider
 							/>
@@ -275,12 +275,12 @@ export default async function Welcome(req: Request) {
 								Paquet
 							</h2>
 							<a
-								href="https://roseto.co"
+								href="https://notangelmario.dev"
 								rel="noopener noreferrer"
 								target="_blank"
 								class="opacity-50 hover:underline"
 							>
-								Roseto
+								Savin Angel-Mario
 							<Icon
 								inline
 								size={16}

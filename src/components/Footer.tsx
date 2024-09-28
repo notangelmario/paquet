@@ -5,12 +5,12 @@ export default function Footer() {
 		<footer class="my-8 text-center">
 			<Container>
 				<a
-					href="https://roseto.co"
+					href="https://notangelmario.dev"
 					target="_blank"
 					class="hover:underline opacity-75 text-center"
 				>
 					Made with <span role="img">❤</span>{" "}
-					by Roseto
+					by Savin Angel-Mario
 				</a>
 				<div class="flex flex-row gap-2 mt-4 justify-center">
 					<a

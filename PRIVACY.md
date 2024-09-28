@@ -19,4 +19,4 @@ used to make a profit in any way.
 ## For short
 
 We keep no data that can be traced to you. Analytics data used for improving the 
-service is also collected, but is not tailored to you. No one except [Roseto](https://roseto.co) can see this information.
+service is also collected, but is not tailored to you.
