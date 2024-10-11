@@ -25,7 +25,8 @@ export async function digest(message: string) {
 	return hashHex;
 }
 
-const objectContains = (object: object, keys: string[]) => keys.every(k => k in object)
+const objectContains = (object: object, keys: string[]) =>
+	keys.every((k) => k in object);
 
 export function slashSlashes(string: string) {
 	return string.replace(/^\/|\/$/g, "");
@@ -280,7 +281,15 @@ export const generateApp = async (
 
 	const updatedApp = { ...existingApp, ...newApp } as App;
 
-	if (!objectContains(updatedApp, ["id", "name", "author", "icon", "description"])) {
+	if (
+		!objectContains(updatedApp, [
+			"id",
+			"name",
+			"author",
+			"icon",
+			"description",
+		])
+	) {
 		console.log(
 			`[generateApp] Missing required fields for ${appSpec.id}. Skipping.`,
 		);

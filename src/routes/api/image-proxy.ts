@@ -1,5 +1,4 @@
 import type { Handler } from "$fresh/server.ts";
-// @ts-expect-error: This library is not typed
 import { Image } from "https://deno.land/x/imagescript@1.3.0/mod.ts";
 
 export const handler: Handler = async (req: Request) => {

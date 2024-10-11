@@ -1,4 +1,3 @@
-// @ts-expect-error: This library is not typed
 import { Image } from "https://deno.land/x/imagescript@1.3.0/mod.ts";
 
 export const buildImageUrl = (url: string, width?: number, height?: number) => {
@@ -31,4 +30,4 @@ export const getImageSize = async (url: string) => {
 	} catch {
 		return null;
 	}
-}
+};

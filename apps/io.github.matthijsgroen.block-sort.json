@@ -1,14 +1,14 @@
 {
-    "id": "io.github.matthijsgroen.block-sort",
-    "url": "https://matthijsgroen.github.io/block-sort/",
-    "author": "Matthijs Groen",
-    "manifestUrl": "https://matthijsgroen.github.io/block-sort/manifest.webmanifest",
-    "features": [
-        "openSource",
-        "mobile",
-        "desktop",
-        "offline"
-    ],
-    "version": 1,
-    "githubUrl": "https://github.com/matthijsgroen/block-sort"
+	"id": "io.github.matthijsgroen.block-sort",
+	"url": "https://matthijsgroen.github.io/block-sort/",
+	"author": "Matthijs Groen",
+	"manifestUrl": "https://matthijsgroen.github.io/block-sort/manifest.webmanifest",
+	"features": [
+		"openSource",
+		"mobile",
+		"desktop",
+		"offline"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/matthijsgroen/block-sort"
 }

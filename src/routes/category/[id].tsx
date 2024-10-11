@@ -1,6 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
 import type { RouteContext } from "$fresh/server.ts";
-import type { Category } from "@/types/App.ts";
 import { getCategory } from "@/lib/categories.ts";
 
 import Navbar from "@/islands/Navbar.tsx";
@@ -43,9 +42,9 @@ export default async function Category(_: Request, ctx: RouteContext) {
 					{getCategory(category)?.name} &middot; Paquet
 				</title>
 			</Head>
-			<Navbar 
+			<Navbar
 				title={getCategory(category)?.name}
-				back 
+				back
 			/>
 			<Container>
 				<Stack>

@@ -13,9 +13,9 @@ export default function Settings() {
 			<Head>
 				<title>Settings &middot; Paquet</title>
 			</Head>
-			<Navbar 
+			<Navbar
 				title="Settings"
-				back 
+				back
 			/>
 			<Container>
 				<Stack>

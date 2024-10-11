@@ -112,7 +112,11 @@ export default async function Search(req: Request) {
 											<ListItem
 												button
 												key={app.id}
-												image={buildImageUrl(app.icon, 96, 96)}
+												image={buildImageUrl(
+													app.icon,
+													96,
+													96,
+												)}
 												title={app.name}
 												subtitle={app.categories
 													?.map((category) =>

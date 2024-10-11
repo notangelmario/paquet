@@ -1,13 +1,13 @@
 {
-    "id": "io.github.nenadalm.life-counter",
-    "url": "https://nenadalm.github.io/life-counter/",
-    "author": "Miloslav Nenadál",
-    "manifestUrl": "https://nenadalm.github.io/life-counter/manifest.json",
-    "features": [
-        "openSource",
-        "mobile",
-        "offline"
-    ],
-    "version": 1,
-    "githubUrl": "https://github.com/nenadalm/life-counter"
+	"id": "io.github.nenadalm.life-counter",
+	"url": "https://nenadalm.github.io/life-counter/",
+	"author": "Miloslav Nenadál",
+	"manifestUrl": "https://nenadalm.github.io/life-counter/manifest.json",
+	"features": [
+		"openSource",
+		"mobile",
+		"offline"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/nenadalm/life-counter"
 }

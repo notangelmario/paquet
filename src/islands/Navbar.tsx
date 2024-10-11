@@ -15,8 +15,12 @@ export type Props = {
 };
 
 export default function Navbar(props: Props) {
-	const darkAccent = props.tint ? combineColors(props.tint + "50", "#121212") : "#121212";
-	const lightAccent = props.tint ? combineColors(props.tint + "50", "#dddddd") : "#dddddd";
+	const darkAccent = props.tint
+		? combineColors(props.tint + "50", "#121212")
+		: "#121212";
+	const lightAccent = props.tint
+		? combineColors(props.tint + "50", "#dddddd")
+		: "#dddddd";
 
 	const [visitedHome, setVisitedHome] = useState(
 		!!globalThis.sessionStorage?.getItem("visitedHome"),
@@ -122,7 +126,11 @@ export default function Navbar(props: Props) {
 							)
 						: null}
 				</div>
-				<p class={`ml-2 text-md ${trigger ? "opacity-100" : "opacity-0"} transition-opacity`}>
+				<p
+					class={`ml-2 text-md ${
+						trigger ? "opacity-100" : "opacity-0"
+					} transition-opacity`}
+				>
 					{props.title}
 				</p>
 				<div class="flex flex-row ml-auto items-center gap-2">

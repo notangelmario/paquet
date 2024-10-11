@@ -1,17 +1,17 @@
 {
-    "id": "ar.com.jfm.flappy-clone",
-    "url": "https://www.jfm.com.ar/flappy-clone/",
-    "manifestUrl": "https://www.jfm.com.ar/flappy-clone/manifest.webmanifest",
-    "features": [
-        "openSource",
-        "mobile",
-        "desktop",
-        "offline"
-    ],
-    "categories": [
-        "games"
-    ],
-    "version": 1,
-    "githubUrl": "https://github.com/jfmdev/flappy-clone",
-    "author": "José"
+	"id": "ar.com.jfm.flappy-clone",
+	"url": "https://www.jfm.com.ar/flappy-clone/",
+	"manifestUrl": "https://www.jfm.com.ar/flappy-clone/manifest.webmanifest",
+	"features": [
+		"openSource",
+		"mobile",
+		"desktop",
+		"offline"
+	],
+	"categories": [
+		"games"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/jfmdev/flappy-clone",
+	"author": "José"
 }

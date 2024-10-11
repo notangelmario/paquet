@@ -9,7 +9,7 @@ export const useScroll = ({ threshold = 0 }: Props) => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setTriggered(window.scrollY > threshold);
+			setTriggered(globalThis.scrollY > threshold);
 		};
 
 		globalThis.addEventListener("scroll", handleScroll);

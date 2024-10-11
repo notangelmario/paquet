@@ -2,7 +2,9 @@ import { App, AppSpec } from "@/types/App.ts";
 
 const isRunningInCI = !!Deno.env.get("CI");
 
-export const kv = await Deno.openKv(isRunningInCI ? Deno.env.get("DENO_KV_PATH") : undefined);
+export const kv = await Deno.openKv(
+	isRunningInCI ? Deno.env.get("DENO_KV_PATH") : undefined,
+);
 
 export const getApp = async (id: string, eager = false) => {
 	const app = await kv.get<App>(["apps", id], {
@@ -122,7 +124,7 @@ export const removeApp = async (id: string) => {
 	}
 
 	return true;
-}
+};
 
 export const getApps = async (ids: string[] = []) => {
 	const apps: App[] = [];

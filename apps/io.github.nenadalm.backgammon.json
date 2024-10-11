@@ -1,13 +1,13 @@
 {
-    "id": "io.github.nenadalm.backgammon",
-    "url": "https://nenadalm.github.io/backgammon/",
-    "author": "Miloslav Nenadál",
-    "manifestUrl": "https://nenadalm.github.io/backgammon/manifest.json",
-    "features": [
-        "openSource",
-        "mobile",
-        "offline"
-    ],
-    "version": 1,
-    "githubUrl": "https://github.com/nenadalm/backgammon"
+	"id": "io.github.nenadalm.backgammon",
+	"url": "https://nenadalm.github.io/backgammon/",
+	"author": "Miloslav Nenadál",
+	"manifestUrl": "https://nenadalm.github.io/backgammon/manifest.json",
+	"features": [
+		"openSource",
+		"mobile",
+		"offline"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/nenadalm/backgammon"
 }

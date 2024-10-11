@@ -1,6 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
 
-import type { App } from "@/types/App.ts";
 import Navbar, { combineColors } from "@/islands/Navbar.tsx";
 import Stack from "@/components/Stack.tsx";
 import Container from "@/components/Container.tsx";
@@ -45,12 +44,22 @@ export default async function App(_: Request, ctx: RouteContext) {
 			<style>
 				{`
 					#ios-overscroll-bkg {
-						background-color: ${combineColors(colorHexToFull(app.accentColor) + "50", "#dddddd")}
+						background-color: ${
+					combineColors(
+						colorHexToFull(app.accentColor) + "50",
+						"#dddddd",
+					)
+				}
 					}
 
 					@media (prefers-color-scheme: dark) {
 						#ios-overscroll-bkg {
-							background-color: ${combineColors(colorHexToFull(app.accentColor) + "50", "#121212")}
+							background-color: ${
+					combineColors(
+						colorHexToFull(app.accentColor) + "50",
+						"#121212",
+					)
+				}
 						}
 					}
 				`}
@@ -69,8 +78,8 @@ export default async function App(_: Request, ctx: RouteContext) {
 			<div
 				style={{
 					background: `linear-gradient(
-						to bottom, 
-						${colorHexToFull(app.accentColor)}50 0%, 
+						to bottom,
+						${colorHexToFull(app.accentColor)}50 0%,
 						rgba(0, 0, 0, 0) 100%)
 					`,
 				}}
@@ -150,11 +159,13 @@ export default async function App(_: Request, ctx: RouteContext) {
 						<h3 class="text-2xl">
 							About
 						</h3>
-						{app.description ?
-							<p>
-								{app.description}
-							</p>
-						: null}
+						{app.description
+							? (
+								<p>
+									{app.description}
+								</p>
+							)
+							: null}
 					</Stack>
 				</Container>
 			</div>

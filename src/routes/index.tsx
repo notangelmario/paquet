@@ -135,9 +135,9 @@ export default async function Welcome(req: Request) {
 								Loved by the community
 							</p>
 							<p>
-								Only apps that are loved by the community
-								are featured on Paquet. We make sure that
-								you only get the best apps.
+								Only apps that are loved by the community are
+								featured on Paquet. We make sure that you only
+								get the best apps.
 							</p>
 						</Card>
 					</div>
@@ -202,8 +202,8 @@ export default async function Welcome(req: Request) {
 					</h3>
 					<Card class="max-w-screen-md mx-auto">
 						<p>
-							Deployed in 12 regions around the world, Paquet
-							is always close to you. We use{" "}
+							Deployed in 12 regions around the world, Paquet is
+							always close to you. We use{" "}
 							<a
 								href="https://deno.com/deploy"
 								target="_blank"
@@ -281,11 +281,11 @@ export default async function Welcome(req: Request) {
 								class="opacity-50 hover:underline"
 							>
 								Savin Angel-Mario
-							<Icon
-								inline
-								size={16}
-								name="external-link"
-							/>
+								<Icon
+									inline
+									size={16}
+									name="external-link"
+								/>
 							</a>
 						</div>
 						<div class="min-w-full space-y-2 sm:min-w-[30%]">

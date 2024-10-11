@@ -14,12 +14,12 @@ const _variants = {
 	"secondary": "btn-secondary",
 	"error": "btn-error",
 	"outlined": "btn-outlined",
-}
+};
+_variants;
 
 export default function Button(
 	props: ButtonProps & JSX.IntrinsicElements["button"],
 ) {
-
 	return (
 		<button
 			{...props}
@@ -27,14 +27,14 @@ export default function Button(
 				btn-${props.variant || "outset"}
 				relative rounded px-8 py-2 text-base
 				${props.variant === "error" ? "border-error" : "border-current"}
-				
+
 				${
 				props.variant === "outlined"
 					? "btn bg-transparent border text-current"
 					: ""
 			}
 				flex flex-row flex-nowrap gap-2 justify-center items-center
-				
+
 				${props.fullWidth ? "w-full" : ""}
 				${props.class || ""}
 			`}

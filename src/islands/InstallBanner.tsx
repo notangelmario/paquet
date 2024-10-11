@@ -1,8 +1,8 @@
 declare global {
-	interface Window {
-		// deno-lint-ignore no-explicit-any
-		installPrompt: any;
-	}
+	// deno-lint-ignore no-var
+	var installPrompt: {
+		prompt: () => void;
+	} | undefined;
 }
 
 import { useEffect, useState } from "preact/hooks";
@@ -31,8 +31,8 @@ export default function InstallBanner() {
 	}, []);
 
 	const onClickInstall = () => {
-		if (window.installPrompt) {
-			window.installPrompt.prompt();
+		if (globalThis.installPrompt) {
+			globalThis.installPrompt.prompt();
 		} else {
 			setDialogOpen(true);
 		}
@@ -41,7 +41,11 @@ export default function InstallBanner() {
 	const installInstructions = (props: typeof clientBrowser) => {
 		const header = ``;
 
-		if (props.isIos && (props.browserName === "Mobile Safari" || parseFloat(props.osVersion || "0") >= 16.4)) {
+		if (
+			props.isIos &&
+			(props.browserName === "Mobile Safari" ||
+				parseFloat(props.osVersion || "0") >= 16.4)
+		) {
 			return header + `
 				Add Paquet by tapping
 				the share button
@@ -52,7 +56,7 @@ export default function InstallBanner() {
 		if (props.isIos && props.browserName !== "Mobile Safari") {
 			return header + `
 				Unfortunately, Paquet on iOS only works in Safari.
-				Open Paquet in Safari and tap 
+				Open Paquet in Safari and tap
 				the share button
 				and tap "Add to Home Screen".
 			`;

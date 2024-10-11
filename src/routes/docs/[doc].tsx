@@ -25,7 +25,7 @@ export default function DocPage({ data, params }: PageProps<DataProps>) {
 				/>
 				<title>{data.title} &middot; Paquet</title>
 			</Head>
-			<Navbar 
+			<Navbar
 				title={data.title}
 				back
 			/>

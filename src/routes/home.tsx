@@ -19,7 +19,6 @@ import {
 	getAppsRandom,
 	getRandomAppsWithCover,
 } from "@/lib/db.ts";
-import Card from "@/components/Card.tsx";
 
 export default async function Home() {
 	const randomCategoryId: string =

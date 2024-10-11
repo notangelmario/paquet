@@ -17,7 +17,6 @@ import * as $docs_doc_ from "./routes/docs/[doc].tsx";
 import * as $docs_index from "./routes/docs/index.tsx";
 import * as $home from "./routes/home.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $kv_insights_middleware from "./routes/kv-insights/_middleware.ts";
 import * as $offline from "./routes/offline.tsx";
 import * as $privacy from "./routes/privacy.tsx";
 import * as $search from "./routes/search.tsx";
@@ -25,9 +24,6 @@ import * as $settings from "./routes/settings.tsx";
 import * as $terms_and_conditions from "./routes/terms-and-conditions.tsx";
 import * as $Dialog from "./islands/Dialog.tsx";
 import * as $InstallBanner from "./islands/InstallBanner.tsx";
-import * as $KvInsightsEntriesManagement from "./islands/KvInsightsEntriesManagement.tsx";
-import * as $KvInsightsEntryManagement from "./islands/KvInsightsEntryManagement.tsx";
-import * as $KvInsightsQueueManagement from "./islands/KvInsightsQueueManagement.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -48,7 +44,6 @@ const manifest = {
 		"./routes/docs/index.tsx": $docs_index,
 		"./routes/home.tsx": $home,
 		"./routes/index.tsx": $index,
-		"./routes/kv-insights/_middleware.ts": $kv_insights_middleware,
 		"./routes/offline.tsx": $offline,
 		"./routes/privacy.tsx": $privacy,
 		"./routes/search.tsx": $search,
@@ -58,10 +53,6 @@ const manifest = {
 	islands: {
 		"./islands/Dialog.tsx": $Dialog,
 		"./islands/InstallBanner.tsx": $InstallBanner,
-		"./islands/KvInsightsEntriesManagement.tsx":
-			$KvInsightsEntriesManagement,
-		"./islands/KvInsightsEntryManagement.tsx": $KvInsightsEntryManagement,
-		"./islands/KvInsightsQueueManagement.tsx": $KvInsightsQueueManagement,
 		"./islands/Navbar.tsx": $Navbar,
 	},
 	baseUrl: import.meta.url,

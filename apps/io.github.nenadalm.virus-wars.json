@@ -1,12 +1,12 @@
 {
-    "id": "io.github.nenadalm.virus-wars",
-    "url": "https://nenadalm.github.io/virus-wars/",
-    "manifestUrl": "https://nenadalm.github.io/virus-wars/manifest.json",
-    "features": [
-        "openSource",
-        "mobile",
-        "offline"
-    ],
-    "version": 1,
-    "githubUrl": "https://github.com/nenadalm/virus-wars"
+	"id": "io.github.nenadalm.virus-wars",
+	"url": "https://nenadalm.github.io/virus-wars/",
+	"manifestUrl": "https://nenadalm.github.io/virus-wars/manifest.json",
+	"features": [
+		"openSource",
+		"mobile",
+		"offline"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/nenadalm/virus-wars"
 }

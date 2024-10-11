@@ -1,13 +1,13 @@
 {
-    "id": "io.github.nenadalm.player-order-selector",
-    "url": "https://nenadalm.github.io/player-order-selector/",
-    "author": "Miloslav Nenadál",
-    "manifestUrl": "https://nenadalm.github.io/player-order-selector/manifest.json",
-    "features": [
-        "openSource",
-        "mobile",
-        "offline"
-    ],
-    "version": 1,
-    "githubUrl": "https://github.com/nenadalm/player-order-selector"
+	"id": "io.github.nenadalm.player-order-selector",
+	"url": "https://nenadalm.github.io/player-order-selector/",
+	"author": "Miloslav Nenadál",
+	"manifestUrl": "https://nenadalm.github.io/player-order-selector/manifest.json",
+	"features": [
+		"openSource",
+		"mobile",
+		"offline"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/nenadalm/player-order-selector"
 }

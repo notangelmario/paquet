@@ -23,7 +23,7 @@ export default function TermsAndConditions({ data }: PageProps<DataProps>) {
 			</Head>
 			<Navbar
 				title="Terms and Conditions"
-				back 
+				back
 			/>
 			<Container class="mt-16 mb-8">
 				<p>
