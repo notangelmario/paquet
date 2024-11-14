@@ -1,0 +1,15 @@
+{
+	"id": "com.recipesage",
+	"url": "https://recipesage.com",
+	"author": "Julian Poyourow",
+	"manifestUrl": "https://recipesage.com/manifest.json",
+	"features": [
+		"openSource",
+		"mobile",
+        "desktop",
+		"offline",
+        "auth"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/julianpoy/RecipeSage"
+}
