@@ -1,0 +1,16 @@
+{
+	"id": "io.github.svimanet.blockit",
+	"url": "https://svimanet.github.io/blockit/",
+	"author": "Eirik",
+	"features": [
+		"openSource",
+		"mobile",
+		"desktop",
+		"offline"
+	],
+	"version": 1,
+	"githubUrl": "https://github.com/svimanet/blockit",
+	"categories": [
+		"games"
+	]
+}
